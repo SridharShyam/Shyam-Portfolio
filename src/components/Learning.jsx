@@ -46,12 +46,6 @@ const nextUp = [
     "Real-world ML Deployment Basics"
 ];
 
-const stats = [
-    { label: "Active Courses", value: "4", icon: BookOpen },
-    { label: "Hours Learned", value: "120+", icon: Clock },
-    { label: "Certifications", value: "7", icon: Award },
-];
-
 const LearningCard = ({ item, index }) => {
     const Icon = item.icon || Target;
     return (
@@ -105,27 +99,12 @@ const Learning = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-12 md:flex justify-between items-end"
+                    className="mb-12"
                 >
-                    <div>
-                        <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Evolution</span>
-                        <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
-                            Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
-                        </h2>
-                    </div>
-
-                    {/* Stats Widget */}
-                    <div className="flex gap-6 mt-6 md:mt-0">
-                        {stats.map((stat, idx) => (
-                            <div key={idx} className="text-center">
-                                <div className="flex items-center justify-center w-8 h-8 mx-auto mb-1 rounded-full bg-white/5 text-primary">
-                                    <stat.icon size={14} />
-                                </div>
-                                <div className="text-2xl font-bold text-white">{stat.value}</div>
-                                <div className="text-xs text-gray-500 uppercase tracking-wide">{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
+                    <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Evolution</span>
+                    <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
+                        Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
+                    </h2>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
