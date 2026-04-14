@@ -1,0 +1,37 @@
+
+> portfolio@0.0.0 lint
+> eslint .
+
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\App.jsx
+  1:10  error  'useRef' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\About.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Contact.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Hero.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Innovation.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Learning.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Navbar.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Projects.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Skills.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\admin\OneDrive\MyPersonalDocs\Portfolio\src\components\Vision.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+✖ 10 problems (10 errors, 0 warnings)
+
