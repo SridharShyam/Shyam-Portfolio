@@ -36,7 +36,7 @@ const About = () => {
                 >
                     <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 overflow-hidden relative group">
                         <img 
-                            src="/Shyam%20Casual%202.jpeg" 
+                            src="https://drive.google.com/uc?export=view&id=12ImFcIaDRDsU8WP0JWDf-Vq2k68zNI-o" 
                             alt="Sridhar Shyam"
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
                             onError={(e) => {
