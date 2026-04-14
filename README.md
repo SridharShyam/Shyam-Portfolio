@@ -1,16 +1,30 @@
-# React + Vite
+# Shyam-Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, interactive portfolio built with **React**, **Vite**, and **Tailwind CSS**. Optimized for Vercel deployment and designed with a modern, high-end editorial aesthetic.
 
-Currently, two official plugins are available:
+## Features
+- **Dynamic Animations**: Powered by Framer Motion.
+- **Responsive Design**: Mobile-first approach with Tailwind CSS.
+- **Glassmorphism UI**: High-end visual elements.
+- **Performance**: Built with Vite for ultra-fast load times.
+- **Vercel Optimized**: Custom `vercel.json` for seamless hosting.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+- `src/components`: UI components (Navbar, Hero, About, etc.)
+- `src/assets`: Static assets and images.
+- `src/index.css`: Global styles and design system tokens.
 
-## React Compiler
+## Getting Started
+To run locally:
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To build for production:
+```bash
+npm run build
+```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Hosting
+Deployment is configured for **Vercel**.
