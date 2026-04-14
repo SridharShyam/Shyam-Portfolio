@@ -5,29 +5,29 @@ const Vision = () => {
     const pillars = [
         {
             title: "Data Science",
-            subtitle: "Building intelligent systems",
-            description: "Harnessing the power of data to uncover patterns and drive strategic decision-making.",
+            subtitle: "Building data-driven systems",
+            description: "Working with real-world datasets to extract insights, identify patterns, and support better decision-making.",
             icon: Database,
             color: "from-blue-400 to-cyan-400",
         },
         {
             title: "Artificial Intelligence",
-            subtitle: "Augmenting human capability",
-            description: "Developing models that enhance productivity and solve complex cognitive tasks.",
+            subtitle: "Applying ML to real problems",
+            description: "Exploring machine learning techniques to build intelligent systems that go beyond theoretical models.",
             icon: Brain,
             color: "from-purple-400 to-pink-400",
         },
         {
             title: "Space Exploration",
-            subtitle: "Beyond the horizon",
-            description: "Applying advanced algorithms to analyze astronomical data and propel humanity forward.",
+            subtitle: "AI for space & discovery",
+            description: "Interested in applying data science and AI to space-related problems and future exploration.",
             icon: Rocket,
             color: "from-orange-400 to-red-400",
         },
         {
             title: "Social Impact",
-            subtitle: "Technology for good",
-            description: "Creating ethical, inclusive solutions that address critical societal challenges.",
+            subtitle: "Technology for real-world impact",
+            description: "Focused on using AI to solve meaningful problems in areas like healthcare and everyday systems.",
             icon: Heart,
             color: "from-green-400 to-emerald-400",
         },
@@ -48,7 +48,7 @@ const Vision = () => {
                         Vision & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary">Interests</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        "Real learning happens when theory meets experimentation. I focus on understanding *why* systems work, not just *how* to use them."
+                        "I focus on building practical AI systems by understanding how data, models, and real-world problems connect."
                     </p>
                 </motion.div>
 

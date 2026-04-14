@@ -18,17 +18,18 @@ const Hero = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                     <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary font-mono text-sm mb-6 backdrop-blur-sm">
-                        Available for new opportunities
+                        Available for AI/ML & Data Science Opportunities
                     </span>
                     <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 leading-tight tracking-tight">
-                        Building Intelligent <br className="hidden md:block" />
+                        Building Intelligent Systems <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary animate-gradient-x">
-                            Systems for the Future
+                            for Real-World Impact
                         </span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                        3rd-year CS student building AI products for Indian SMBs — from inventory intelligence to health risk platforms.
+                    <p className="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-10 leading-relaxed">
+                        AI & ML/Data Science Student from Chennai. Focused on designing data-driven systems, machine learning models, and intelligent applications that solve real-world problems beyond notebooks.
+
                     </p>
                 </motion.div>
 
@@ -47,6 +48,8 @@ const Hero = () => {
                     </a>
                     <a
                         href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30 rounded-full font-medium transition-all flex items-center gap-2"
                     >
                         Download Resume

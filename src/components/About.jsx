@@ -1,29 +1,11 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { Brain, Heart, Rocket } from 'lucide-react';
+import { useRef } from 'react';
+import { Brain, Heart, Rocket, Database } from 'lucide-react';
 
-const StatCounter = ({ value, label, isInView }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (isInView) {
-            let start = 0;
-            const end = parseInt(value);
-            if (start === end) return;
-
-            let timer = setInterval(() => {
-                start += 1;
-                setCount(start);
-                if (start === end) clearInterval(timer);
-            }, 50); // basic animation logic
-            return () => clearInterval(timer);
-        }
-    }, [isInView, value]);
-
+const AchievementCard = ({ label }) => {
     return (
-        <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-primary/30 transition-all">
-            <div className="text-3xl font-bold text-primary mb-1 font-heading">{count}+</div>
-            <div className="text-sm text-gray-400">{label}</div>
+        <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-primary/30 transition-all flex items-center justify-center min-h-[80px]">
+            <div className="text-sm md:text-base font-semibold text-gray-200">{label}</div>
         </div>
     );
 };
@@ -32,11 +14,11 @@ const About = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-    const stats = [
-        { value: 10, label: "Projects Completed" },
-        { value: 5, label: "ML Models Deployed" },
-        { value: 2, label: "Hackathon Wins" },
-        { value: 15, label: "Hackathons Participated" },
+    const achievements = [
+        "TNStartify 3.0 Finalist",
+        "AI/ML Projects (In Progress)",
+        "Data Science & ML Focus",
+        "Hands-on Learning & Building",
     ];
 
     return (
@@ -54,9 +36,9 @@ const About = () => {
                 >
                     <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 overflow-hidden relative group">
                         <img 
-                            src="/profile.jpg" 
+                            src="/Shyam%20Casual%202.jpeg" 
                             alt="Sridhar Shyam"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
                             onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.nextSibling.style.display = 'flex';
@@ -83,23 +65,29 @@ const About = () => {
                 >
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
-                            Data Scientist buildng <span className="text-primary">Impactful AI</span>
+                            AI & ML/Data Science Student building <span className="text-primary">Impactful AI Systems</span>
                         </h2>
-                        <p className="text-gray-300 leading-relaxed text-lg">
-                            I'm a 3rd-year CS student dedicated to building AI-driven solutions that solve real-world problems. 
-                            From optimizing inventory for local SMBs with <span className="text-white font-semibold">RetailMind AI</span> to identifying health risks with <span className="text-white font-semibold">HealthSentinel</span>, 
-                            I focus on engineering precision, accessibility, and user impact.
-                        </p>
+                        <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
+                            <p>
+                                I'm an AI & Data Science student from Chennai, focused on building practical, data-driven systems and machine learning applications.
+                            </p>
+                            <p>
+                                I have worked on projects involving inventory optimization and health risk analysis using AI concepts, gaining hands-on experience in data analysis, feature engineering, and model development.
+                            </p>
+                            <p>
+                                I focus on clarity, usability, and building systems that go beyond experimentation.
+                            </p>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex items-start gap-4">
                             <div className="p-3 rounded-lg bg-primary/10 text-primary">
                                 <Rocket size={24} />
                             </div>
                             <div>
                                 <h3 className="font-heading font-semibold text-white mb-1">Problem-Solver</h3>
-                                <p className="text-sm text-gray-400">Transforming complex challenges into logic.</p>
+                                <p className="text-sm text-gray-400">Transforming complex challenges into structured, logical solutions.</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-4">
@@ -108,23 +96,32 @@ const About = () => {
                             </div>
                             <div>
                                 <h3 className="font-heading font-semibold text-white mb-1">Curiosity-Driven</h3>
-                                <p className="text-sm text-gray-400">Always learning, always exploring new frontiers.</p>
+                                <p className="text-sm text-gray-400">Continuously exploring new ideas, tools, and technologies.</p>
                             </div>
                         </div>
-                        <div className="flex items-start gap-4 col-span-1 md:col-span-2">
+                        <div className="flex items-start gap-4">
                             <div className="p-3 rounded-lg bg-accent/10 text-accent">
                                 <Heart size={24} />
                             </div>
                             <div>
                                 <h3 className="font-heading font-semibold text-white mb-1">Impact-Focused</h3>
-                                <p className="text-sm text-gray-400">Building precise, human-centered technology.</p>
+                                <p className="text-sm text-gray-400">Building practical, user-centered AI systems that create real value.</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="p-3 rounded-lg bg-blue-400/10 text-blue-400">
+                                <Database size={24} />
+                            </div>
+                            <div>
+                                <h3 className="font-heading font-semibold text-white mb-1">Data-Driven</h3>
+                                <p className="text-sm text-gray-400">Making informed decisions through data analysis and insights.</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-                        {stats.map((stat, idx) => (
-                            <StatCounter key={idx} {...stat} isInView={isInView} />
+                        {achievements.map((achievement, idx) => (
+                            <AchievementCard key={idx} label={achievement} />
                         ))}
                     </div>
                 </motion.div>

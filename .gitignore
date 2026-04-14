@@ -34,5 +34,16 @@ Thumbs.db
 *.swp
 *.swo
 
-# Optional: Configuration that might contain user-specific paths
-vite.config.js.timestamp-*
+# Personal Assets
+public/*.jpeg
+public/*.jpg
+public/*.png
+*.jpeg
+*.jpg
+*.png
+
+# Build & Logs
+dist/
+dist-ssr/
+*.log
+lint_output.txt

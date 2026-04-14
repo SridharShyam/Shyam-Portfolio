@@ -2,28 +2,24 @@ import { motion } from 'framer-motion';
 
 const skills = [
     {
-        category: "Data Science & ML",
-        items: ["Python", "Pandas", "NumPy", "Scikit-learn", "Statistical Modeling"]
+        category: "Data Science & Machine Learning",
+        items: ["Python", "Pandas", "NumPy", "Scikit-learn", "Statistical Analysis", "Feature Engineering"]
     },
     {
         category: "AI & Deep Learning",
-        items: ["TensorFlow", "PyTorch", "OpenCV", "NLP", "Neural Networks"]
+        items: ["PyTorch", "Neural Networks", "Basic NLP"]
     },
     {
-        category: "Backend & Cloud",
-        items: ["FastAPI", "SQL", "PostgreSQL", "Redis", "Docker", "Git"]
-    },
-    {
-        category: "Frontend Development",
-        items: ["React", "Next.js", "Tailwind CSS", "JavaScript", "Framer Motion"]
-    },
-    {
-        category: "Core Programming",
-        items: ["Python", "C++", "C", "Scripting"]
+        category: "Backend & Data Handling",
+        items: ["FastAPI", "SQL", "PostgreSQL", "MongoDB", "Git/GitHub"]
     },
     {
         category: "Visualization & Tools",
-        items: ["Streamlit", "Matplotlib", "Seaborn", "Jupyter", "Figma"]
+        items: ["Matplotlib", "Seaborn", "Jupyter Notebook", "Streamlit"]
+    },
+    {
+        category: "Core Programming",
+        items: ["Python", "Java", "C"]
     }
 ];
 
@@ -61,9 +57,9 @@ const Skills = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold font-heading mb-4">Technical <span className="text-primary">Expertise</span></h2>
+                    <h2 className="text-4xl font-bold font-heading mb-4">Technical <span className="text-primary">Skills</span></h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        A comprehensive toolkit for solving complex problems, from data analysis to full-stack development.
+                        Focused on building data-driven systems and machine learning applications with practical, real-world impact.
                     </p>
                 </motion.div>
 

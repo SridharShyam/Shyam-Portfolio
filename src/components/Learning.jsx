@@ -3,47 +3,47 @@ import { BookOpen, Calendar, Target, Clock, Award, ChevronRight, Star } from 'lu
 
 const researchFocus = [
     {
-        title: "Deep Learning Architectures",
-        status: "Deep Dive",
-        source: "PyTorch / TensorFlow",
-        date: "Continuous",
-        reason: "Exploring transformer-based models for spatial-temporal data analysis.",
+        title: "Exploring Machine Learning Techniques",
+        status: "Skill Building",
+        source: "Practical Projects",
+        date: "Ongoing",
+        reason: "Learning and experimenting with machine learning models, feature engineering, and real-world datasets.",
         color: "text-cyan-400",
         icon: Target
     },
     {
-        title: "Health-AI Diagnostic Integrity",
-        status: "Active Research",
-        source: "Open Healthcare Datasets",
-        date: "Q3 2026",
-        reason: "Researching robust feature engineering methods for high-accuracy disease detection.",
+        title: "Health Risk Analysis (AI Concepts)",
+        status: "Applied Project",
+        source: "Clinical Datasets",
+        date: "2024",
+        reason: "Worked on projects involving health data analysis and applying AI concepts for risk prediction.",
         color: "text-purple-400",
         icon: Target
     },
     {
-        title: "Supply Chain Optimization",
-        status: "Implementation",
-        source: "RetailMind AI Project",
-        date: "Deployed",
-        reason: "Applied time-series forecasting to real-world inventory management for Indian SMBs.",
+        title: "Customer Segmentation (Project Work)",
+        status: "Data Analysis",
+        source: "Retail Data",
+        date: "Completed",
+        reason: "Explored customer segmentation using K-Means clustering to analyze behavior and derive actionable insights.",
         color: "text-green-400",
         icon: Award
     },
     {
-        title: "Full-Stack AI Deployment",
-        status: "Certified",
-        source: "AWS / Google Cloud",
-        date: "2025",
-        reason: "End-to-end production pipelines using FastAPI, Docker, and Cloud Engine.",
+        title: "Building AI Systems (In Progress)",
+        status: "Development",
+        source: "End-to-End Workflows",
+        date: "Present",
+        reason: "Currently learning how to structure AI workflows from data processing to production model building.",
         color: "text-amber-400",
         icon: Award
     }
 ];
 
 const nextUp = [
-    "Quantum Machine Learning",
-    "Edge AI Optimization",
-    "Generative AI Architectures"
+    "Deep Learning Fundamentals",
+    "Model Optimization Techniques",
+    "Real-world ML Deployment Basics"
 ];
 
 const stats = [
@@ -110,7 +110,7 @@ const Learning = () => {
                     <div>
                         <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Evolution</span>
                         <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
-                            Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
+                            Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
                         </h2>
                     </div>
 
@@ -166,7 +166,7 @@ const Learning = () => {
                         {/* Quick Fact or Quote */}
                         <div className="p-6 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/5">
                             <p className="text-sm text-gray-300">
-                                Currently focusing on <span className="text-white font-semibold">Deep Reinforcement Learning</span> agents for multi-agent environments.
+                                Currently focusing on <span className="text-white font-semibold">strengthening machine learning fundamentals</span> and building practical AI systems.
                             </p>
                         </div>
                     </motion.div>

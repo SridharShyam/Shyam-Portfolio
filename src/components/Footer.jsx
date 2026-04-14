@@ -17,14 +17,14 @@ const Footer = () => {
                     <a href="https://twitter.com/SridharShyam" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-sky-400 transition-all hover:scale-110 border border-white/5">
                         <Twitter size={20} />
                     </a>
-                    <a href="mailto:shyam.ds.ml@gmail.com" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-green-400 transition-all hover:scale-110 border border-white/5">
+                    <a href="mailto:shyamsridhar935@gmail.com" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-green-400 transition-all hover:scale-110 border border-white/5">
                         <Mail size={20} />
                     </a>
                 </div>
 
                 <div className="text-center text-gray-400 text-sm space-y-2">
-                    <p>© {new Date().getFullYear()} Sridhar Shyam. All rights reserved.</p>
-                    <p>Built with React, Tailwind CSS, and Framer Motion.</p>
+                    <p>© {new Date().getFullYear()} Shyam. All rights reserved.</p>
+                    <p>Designed and developed by Shyam using React, Tailwind CSS, and Framer Motion.</p>
                 </div>
 
             </div>
