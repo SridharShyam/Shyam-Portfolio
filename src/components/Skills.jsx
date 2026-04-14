@@ -3,27 +3,27 @@ import { motion } from 'framer-motion';
 const skills = [
     {
         category: "Data Science & ML",
-        items: ["Python", "Pandas", "NumPy", "Scikit-learn", "K-means Clustering"]
+        items: ["Python", "Pandas", "NumPy", "Scikit-learn", "Statistical Modeling"]
     },
     {
         category: "AI & Deep Learning",
-        items: ["TensorFlow", "PyTorch", "Neural Networks", "Reinforcement Learning"]
+        items: ["TensorFlow", "PyTorch", "OpenCV", "NLP", "Neural Networks"]
     },
     {
-        category: "Development Tools",
-        items: ["Git", "GitHub", "VS Code", "Docker", "Jupyter"]
+        category: "Backend & Cloud",
+        items: ["FastAPI", "SQL", "PostgreSQL", "Redis", "Docker", "Git"]
     },
     {
-        category: "Visualization",
-        items: ["Streamlit", "Dash", "Matplotlib", "Seaborn", "Altair"]
+        category: "Frontend Development",
+        items: ["React", "Next.js", "Tailwind CSS", "JavaScript", "Framer Motion"]
     },
     {
-        category: "Programming",
-        items: ["Python", "C++", "C", "SQL", "JavaScript"]
+        category: "Core Programming",
+        items: ["Python", "C++", "C", "Scripting"]
     },
     {
-        category: "Creative Tools",
-        items: ["Blender", "Figma", "Adobe Suite"]
+        category: "Visualization & Tools",
+        items: ["Streamlit", "Matplotlib", "Seaborn", "Jupyter", "Figma"]
     }
 ];
 
@@ -46,15 +46,6 @@ const SkillCard = ({ category, items, index }) => {
                         {item}
                     </span>
                 ))}
-            </div>
-            {/* Proficiency bar example - decorative only for this design to keep it clean */}
-            <div className="w-full h-1 bg-white/5 mt-4 rounded-full overflow-hidden">
-                <motion.div
-                    className="h-full bg-gradient-to-r from-primary to-secondary"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '85%' }} // Generic High proficiency
-                    transition={{ duration: 1, delay: 0.5 + (index * 0.1) }}
-                />
             </div>
         </motion.div>
     );

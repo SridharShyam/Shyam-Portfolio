@@ -28,8 +28,7 @@ const Hero = () => {
                     </h1>
 
                     <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                        Data Scientist | AI Enthusiast | Space Technology Explorer. <br />
-                        Applying machine learning to solve real-world problems and explore the cosmos.
+                        3rd-year CS student building AI products for Indian SMBs — from inventory intelligence to health risk platforms.
                     </p>
                 </motion.div>
 

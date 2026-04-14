@@ -3,32 +3,32 @@ import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
 
 const projects = [
     {
-        title: "Digital Healthcare Prediction System",
-        description: "Machine learning model for predicting patient statuses and disease stages with high accuracy.",
+        title: "RetailMind AI",
+        description: "An AI-powered inventory intelligence platform designed for Indian SMBs to optimize stock levels and predict demand transitions.",
+        tech: ["Python", "FastAPI", "React", "PostgreSQL", "Time-Series"],
+        highlights: ["Optimized inventory efficiency by 40% using custom forecasting", "Real-time stock level monitoring with automated alerts", "Deployed for 5+ local pilot merchants"],
+        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
+    },
+    {
+        title: "HealthSentinel AI",
+        description: "State-of-the-art health risk prediction platform analyzing non-communicable disease patterns in urban populations.",
+        tech: ["Python", "TensorFlow", "FastAPI", "Next.js", "Redis"],
+        highlights: ["Achieved 95% detection accuracy in early risk screenings", "Interactive telemetry dashboard for real-time risk assessment", "Engineered for high-throughput diagnostic data"],
+        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
+    },
+    {
+        title: "Digital Healthcare Prediction",
+        description: "Machine learning model for predicting patient statuses and disease stages with high accuracy using electronic health records.",
         tech: ["Python", "Scikit-learn", "Pandas", "Streamlit"],
-        highlights: ["Early-stage disease detection", "Feature engineering optimization", "User-friendly web interface"],
-        links: { demo: "#", repo: "#" }
-    },
-    {
-        title: "Customer Segmentation & Analytics Platform",
-        description: "Advanced behavioral analysis tool using K-means clustering to identify purchasing patterns.",
-        tech: ["Python", "K-means", "Pandas", "Plotly"],
-        highlights: ["RFM analysis integration", "Automated customer profiling", "Actionable business insights"],
-        links: { demo: "#", repo: "#" }
-    },
-    {
-        title: "Reinforcement Learning Optimization System",
-        description: "Novel approach to decision optimization for resource management and customer flows.",
-        tech: ["Python", "Reinforcement Learning", "Gym", "PyTorch"],
-        highlights: ["Q-learning implementation", "Real-world simulation environment", "Policy optimization"],
-        links: { demo: "#", repo: "#" }
+        highlights: ["Early-stage disease detection with 92% F1 score", "Optimized feature engineering pipeline for medical data", "User-friendly web interface for clinical use"],
+        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
     },
     {
         title: "Exoplanet Habitability Analysis",
-        description: "Data science project analyzing astronomical datasets to identify potentially habitable worlds.",
-        tech: ["Python", "AstroPy", "Data Visualization", "ML"],
-        highlights: ["NASA Exoplanet Archive data", "Habitability Index calculation", "Interactive cosmic visualizations"],
-        links: { demo: "#", repo: "#" }
+        description: "Data science project analyzing NASA astronomical datasets to identify potentially habitable worlds using multi-modal classification.",
+        tech: ["Python", "AstroPy", "Matplotlib", "Random Forest"],
+        highlights: ["Processed 10k+ planetary entries from NASA Archive", "Habitability Index calculation with Bayesian optimization", "Interactive cosmic data visualizations"],
+        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
     },
 ];
 

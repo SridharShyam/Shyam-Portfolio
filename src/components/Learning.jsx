@@ -1,56 +1,42 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Calendar, Target, Clock, Award, ChevronRight, Star } from 'lucide-react';
 
-const learningItems = [
+const researchFocus = [
     {
-        title: "PyTorch & Deep Learning",
-        progress: 70,
-        source: "DeepLearning.AI",
-        date: "Q2 2026",
-        reason: "Core framework for advanced AI research.",
+        title: "Deep Learning Architectures",
+        status: "Deep Dive",
+        source: "PyTorch / TensorFlow",
+        date: "Continuous",
+        reason: "Exploring transformer-based models for spatial-temporal data analysis.",
         color: "text-cyan-400",
-        barColor: "bg-cyan-400",
-        status: "Advanced"
+        icon: Target
     },
     {
-        title: "Astronomy Data Analysis",
-        progress: 55,
-        source: "NASA Open Data",
+        title: "Health-AI Diagnostic Integrity",
+        status: "Active Research",
+        source: "Open Healthcare Datasets",
         date: "Q3 2026",
-        reason: "Applying ML to exoplanet detection.",
+        reason: "Researching robust feature engineering methods for high-accuracy disease detection.",
         color: "text-purple-400",
-        barColor: "bg-purple-400",
-        status: "Intermediate"
+        icon: Target
     },
     {
-        title: "Advanced RL Algorithms",
-        progress: 45,
-        source: "Sutton & Barto",
-        date: "Q4 2026",
-        reason: "Optimizing complex decision systems.",
-        color: "text-purple-400",
-        barColor: "bg-purple-400",
-        status: "Intermediate"
+        title: "Supply Chain Optimization",
+        status: "Implementation",
+        source: "RetailMind AI Project",
+        date: "Deployed",
+        reason: "Applied time-series forecasting to real-world inventory management for Indian SMBs.",
+        color: "text-green-400",
+        icon: Award
     },
     {
-        title: "Cloud ML Deployment",
-        progress: 30,
-        source: "AWS Certification",
-        date: "Q1 2027",
-        reason: " scalable production pipelines.",
+        title: "Full-Stack AI Deployment",
+        status: "Certified",
+        source: "AWS / Google Cloud",
+        date: "2025",
+        reason: "End-to-end production pipelines using FastAPI, Docker, and Cloud Engine.",
         color: "text-amber-400",
-        barColor: "bg-amber-400",
-        status: "In Progress"
-    },
-    {
-        title: "Graph Neural Networks",
-        progress: 20,
-        source: "Stanford CS224W",
-        date: "Q2 2027",
-        reason: "Structuring complex relational data.",
-        color: "text-amber-400",
-        barColor: "bg-amber-400",
-        status: "Just Started"
+        icon: Award
     }
 ];
 
@@ -67,6 +53,7 @@ const stats = [
 ];
 
 const LearningCard = ({ item, index }) => {
+    const Icon = item.icon || Target;
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -76,7 +63,7 @@ const LearningCard = ({ item, index }) => {
             className="bg-surface/40 p-6 rounded-xl border border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 hover:shadow-lg group relative overflow-hidden"
         >
             <div className={`absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity ${item.color}`}>
-                <Target size={40} />
+                <Icon size={40} />
             </div>
 
             <div className="flex justify-between items-start mb-4">
@@ -88,34 +75,18 @@ const LearningCard = ({ item, index }) => {
                 </div>
             </div>
 
-            <p className="text-gray-400 text-sm mb-4 min-h-[40px]">{item.reason}</p>
+            <p className="text-gray-400 text-sm mb-4 min-h-[40px] leading-relaxed">{item.reason}</p>
 
             <div className="space-y-4">
-                {/* Progress Bar */}
-                <div className="relative pt-1">
-                    <div className="flex mb-2 items-center justify-between">
+                <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                    <div className="flex flex-col gap-1">
                         <div className="text-xs text-gray-400 flex items-center gap-1">
                             <BookOpen size={12} /> {item.source}
                         </div>
-                        <div className={`text-xs font-semibold ${item.color}`}>
-                            {item.progress}%
+                        <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                            <Calendar size={10} />
+                            <span>{item.date}</span>
                         </div>
-                    </div>
-                    <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-white/5">
-                        <motion.div
-                            style={{ width: `${item.progress}%` }}
-                            className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${item.barColor}`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${item.progress}%` }}
-                            transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-                        />
-                    </div>
-                </div>
-
-                <div className="flex items-center justify-between border-t border-white/5 pt-3">
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <Calendar size={12} />
-                        <span>Target: {item.date}</span>
                     </div>
                     <ChevronRight size={16} className="text-gray-600 group-hover:text-primary transition-colors" />
                 </div>
@@ -137,9 +108,9 @@ const Learning = () => {
                     className="mb-12 md:flex justify-between items-end"
                 >
                     <div>
-                        <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Growth</span>
+                        <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Evolution</span>
                         <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
-                            Learning <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Journey</span>
+                            Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
                         </h2>
                     </div>
 
@@ -160,7 +131,7 @@ const Learning = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Main Grid - Spans 3 columns on large screens */}
                     <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {learningItems.map((item, index) => (
+                        {researchFocus.map((item, index) => (
                             <LearningCard key={index} item={item} index={index} />
                         ))}
                     </div>

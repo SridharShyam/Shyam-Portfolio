@@ -45,16 +45,30 @@ const About = () => {
 
             <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
-                {/* Left: Image Placeholder / Visual */}
+                {/* Left: Image / Visual */}
                 <motion.div
                     className="relative"
                     initial={{ opacity: 0, x: -50 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-background to-secondary/10 border border-white/10 overflow-hidden flex items-center justify-center relative group">
-                        <div className="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-20 transition-opacity" />
-                        <span className="text-gray-500 font-mono text-sm">[ Profile Image Placeholder ]</span>
+                    <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 overflow-hidden relative group">
+                        <img 
+                            src="/profile.jpg" 
+                            alt="Sridhar Shyam"
+                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                            onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'flex';
+                            }}
+                        />
+                        <div className="absolute inset-0 hidden items-center justify-center bg-white/5 flex-col gap-2">
+                             <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
+                                <Brain className="text-primary" size={40} />
+                             </div>
+                             <span className="text-gray-500 font-mono text-xs text-center px-4">Upload profile.jpg <br/> to /public folder</span>
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                     </div>
                     {/* Decorative elements behind image */}
                     <div className="absolute -z-10 -bottom-4 -left-4 w-full h-full border border-primary/20 rounded-2xl" />
@@ -69,12 +83,12 @@ const About = () => {
                 >
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
-                            Data Scientist with a <span className="text-primary">Vision</span>
+                            Data Scientist buildng <span className="text-primary">Impactful AI</span>
                         </h2>
                         <p className="text-gray-300 leading-relaxed text-lg">
-                            I'm a passionate technologist driven by curiosity and the desire to build systems that make a difference.
-                            My journey involves exploring the intersection of data science, machine learning, and space technology,
-                            aiming to push the boundaries of what's possible.
+                            I'm a 3rd-year CS student dedicated to building AI-driven solutions that solve real-world problems. 
+                            From optimizing inventory for local SMBs with <span className="text-white font-semibold">RetailMind AI</span> to identifying health risks with <span className="text-white font-semibold">HealthSentinel</span>, 
+                            I focus on engineering precision, accessibility, and user impact.
                         </p>
                     </div>
 

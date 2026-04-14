@@ -6,13 +6,27 @@ const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState('idle');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('submitting');
-        setTimeout(() => {
-            setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-        }, 2000);
+        
+        try {
+            const response = await fetch("https://formspree.io/f/placeholder", { // USER: REPLACE WITH YOUR FORMSPREE ID
+                method: "POST",
+                body: new FormData(e.target),
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            setStatus('error');
+        }
     };
 
     const handleChange = (e) => {
@@ -45,17 +59,17 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-6">
-                        <a href="mailto:your.email@example.com" className="flex items-center gap-4 group hover:bg-white/5 p-4 rounded-xl transition-all border border-transparent hover:border-white/10">
+                        <a href="mailto:shyam.ds.ml@gmail.com" className="flex items-center gap-4 group hover:bg-white/5 p-4 rounded-xl transition-all border border-transparent hover:border-white/10">
                             <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <Mail size={20} />
                             </div>
                             <div>
                                 <span className="block text-sm text-gray-400 group-hover:text-primary transition-colors">Email Me</span>
-                                <span className="text-lg font-medium text-white">hello@example.com</span>
+                                <span className="text-lg font-medium text-white">shyam.ds.ml@gmail.com</span>
                             </div>
                         </a>
 
-                        <a href="https://www.linkedin.com/in/shyam-2005-ds-ml/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group hover:bg-white/5 p-4 rounded-xl transition-all border border-transparent hover:border-white/10">
+                        <a href="https://linkedin.com/in/shyam-2005-ds-ml" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group hover:bg-white/5 p-4 rounded-xl transition-all border border-transparent hover:border-white/10">
                             <div className="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <Linkedin size={20} />
                             </div>
