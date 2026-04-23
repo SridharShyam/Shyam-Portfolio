@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -13,9 +13,6 @@ const Footer = () => {
                     </a>
                     <a href="https://linkedin.com/in/shyam-2005-ds-ml" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-blue-400 transition-all hover:scale-110 border border-white/5">
                         <Linkedin size={20} />
-                    </a>
-                    <a href="https://twitter.com/SridharShyam" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-sky-400 transition-all hover:scale-110 border border-white/5">
-                        <Twitter size={20} />
                     </a>
                     <a href="mailto:shyamsridhar935@gmail.com" className="p-3 bg-white/5 rounded-full hover:bg-white/10 hover:text-green-400 transition-all hover:scale-110 border border-white/5">
                         <Mail size={20} />
