@@ -5,6 +5,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Innovation from './components/Innovation';
 import Learning from './components/Learning';
+import CodingStats from './components/CodingStats';
 import Vision from './components/Vision';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -19,6 +20,7 @@ function App() {
       <Projects />
       <Innovation />
       <Learning />
+      <CodingStats />
       <Vision />
       <Contact />
       <Footer />

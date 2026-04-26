@@ -1,13 +1,8 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight, Download } from 'lucide-react';
-import ParticleBackground from './ParticleBackground';
-
 const Hero = () => {
     return (
         <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-gray-900/50 px-6 pt-20">
-
-            {/* Background 3D Particles */}
-            <ParticleBackground />
 
             <div className="max-w-5xl mx-auto text-center z-10 relative">
                 <motion.div

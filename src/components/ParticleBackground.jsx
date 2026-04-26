@@ -5,7 +5,8 @@ const ParticleBackground = () => {
     const containerRef = useRef();
 
     useEffect(() => {
-        if (!containerRef.current) return;
+        const container = containerRef.current;
+        if (!container) return;
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -13,7 +14,7 @@ const ParticleBackground = () => {
         
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        containerRef.current.appendChild(renderer.domElement);
+        container.appendChild(renderer.domElement);
 
         // Particles
         const particlesGeometry = new THREE.BufferGeometry();
@@ -38,10 +39,7 @@ const ParticleBackground = () => {
             vertexColors: true
         });
 
-        // Texture for better looking particles
-        const textureLoader = new THREE.TextureLoader();
-        // Simple circle texture using canvas if needed, but standard points look okay for "subtle"
-        
+        // Particles are added to the scene
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
 
@@ -74,8 +72,8 @@ const ParticleBackground = () => {
         // Clean up
         return () => {
             window.removeEventListener('resize', handleResize);
-            if (containerRef.current) {
-                containerRef.current.removeChild(renderer.domElement);
+            if (container) {
+                container.removeChild(renderer.domElement);
             }
             scene.clear();
             particlesGeometry.dispose();
