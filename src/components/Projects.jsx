@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Star, GitBranch } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const projects = [
     {
@@ -17,22 +18,43 @@ const projects = [
         links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
     },
     {
-        title: "Digital Healthcare Prediction",
-        description: "Machine learning model for predicting patient statuses and disease stages with high accuracy using electronic health records.",
-        tech: ["Python", "Scikit-learn", "Pandas", "Streamlit"],
-        highlights: ["Early-stage disease detection with 92% F1 score", "Optimized feature engineering pipeline for medical data", "User-friendly web interface for clinical use"],
-        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
-    },
-    {
-        title: "Exoplanet Habitability Analysis",
-        description: "Data science project analyzing NASA astronomical datasets to identify potentially habitable worlds using multi-modal classification.",
-        tech: ["Python", "AstroPy", "Matplotlib", "Random Forest"],
-        highlights: ["Processed 10k+ planetary entries from NASA Archive", "Habitability Index calculation with Bayesian optimization", "Interactive cosmic data visualizations"],
-        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
+        title: "Cirrhosis Patient Outcome Prediction",
+        description: "Machine learning pipeline for predicting disease progression stages and patient survival outcomes using clinical data from the Mayo Clinic PBC trial dataset.",
+        tech: ["Python", "scikit-learn", "XGBoost", "pandas", "matplotlib", "seaborn"],
+        highlights: [
+            "Recovered 34% of discarded data through median/mode imputation instead of blind data removal",
+            "Benchmarked Logistic Regression, SVM, Random Forest, and XGBoost using 5-fold cross-validation with F1-macro scoring",
+            "Achieved 0.81 macro ROC-AUC for Stage 4 disease detection, the most clinically critical outcome",
+            "Identified Bilirubin, Prothrombin, and Copper as key predictive biomarkers while eliminating data leakage from the original pipeline"
+        ],
+        links: { demo: "https://colab.research.google.com/drive/1nGldo1nsror7lzBKc9yGZsroErhbQnEL?usp=sharing", repo: "https://github.com/SridharShyam/Cirrhosis-Stage-and-Status-Prediction" }
     },
 ];
 
 const ProjectCard = ({ project, index }) => {
+    const [githubStats, setGithubStats] = useState({ stars: 0, forks: 0 });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            if (project.links.repo) {
+                try {
+                    const repoPath = project.links.repo.split('github.com/')[1];
+                    const response = await fetch(`https://api.github.com/repos/${repoPath}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        setGithubStats({
+                            stars: data.stargazers_count,
+                            forks: data.forks_count
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error fetching GitHub stats:", error);
+                }
+            }
+        };
+        fetchStats();
+    }, [project.links.repo]);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -41,9 +63,19 @@ const ProjectCard = ({ project, index }) => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="group relative bg-surface rounded-2xl border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col h-full"
         >
-            <div className="h-48 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+            <div className="h-48 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors" />
+                
+                {/* GitHub Quick Stats Overlay */}
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-xs text-white">
+                        <Star size={12} className="text-yellow-500 fill-yellow-500" /> {githubStats.stars}
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-xs text-white">
+                        <GitBranch size={12} className="text-primary" /> {githubStats.forks}
+                    </div>
+                </div>
             </div>
 
             <div className="p-6 flex flex-col flex-grow">
@@ -52,8 +84,8 @@ const ProjectCard = ({ project, index }) => {
                         {project.title}
                     </h3>
                     <div className="flex gap-3">
-                        <a href={project.links.repo} className="text-gray-400 hover:text-white transition-colors" aria-label="GitHub Repo"><Github size={20} /></a>
-                        <a href={project.links.demo} className="text-gray-400 hover:text-primary transition-colors" aria-label="Live Demo"><ExternalLink size={20} /></a>
+                        <a href={project.links.repo} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="GitHub Repo"><Github size={20} /></a>
+                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors" aria-label="Live Demo"><ExternalLink size={20} /></a>
                     </div>
                 </div>
 

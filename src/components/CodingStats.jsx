@@ -63,14 +63,15 @@ const CodingStats = () => {
     const platformStats = {
         leetcode: leetcodeData,
         hackerrank: [
-            { label: "Python Domain", value: "5 Stars", color: "bg-[#2EC866]" },
+            { label: "Python", value: "5 Stars", color: "bg-[#2EC866]" },
+            { label: "10 Days of Statistics", value: "5 Stars", color: "bg-[#2EC866]" },
             { label: "Java / SQL", value: "4 Stars", color: "bg-[#2EC866]" },
-            { label: "Problem Solving", value: "2 Stars", color: "bg-blue-500" }
+            { label: "30 Days of Code", value: "3 Stars", color: "bg-blue-500" }
         ],
         gfg: [
-            { label: "Coding Score", value: "86", color: "bg-[#298d46]" },
-            { label: "Problems Solved", value: "58", color: "bg-blue-400" },
-            { label: "Institute Rank", value: "119", color: "bg-purple-400" }
+            { label: "Coding Score", value: "92", color: "bg-[#298d46]" },
+            { label: "Problems Solved", value: "60", color: "bg-blue-400" },
+            { label: "Institute Rank", value: "113", color: "bg-purple-400" }
         ]
     };
 
