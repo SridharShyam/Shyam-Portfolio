@@ -4,18 +4,15 @@ import { useState, useEffect } from 'react';
 
 const projects = [
     {
-        title: "RetailMind AI",
-        description: "An AI-powered inventory intelligence platform designed for Indian SMBs to optimize stock levels and predict demand transitions.",
-        tech: ["Python", "FastAPI", "React", "PostgreSQL", "Time-Series"],
-        highlights: ["Optimized inventory efficiency by 40% using custom forecasting", "Real-time stock level monitoring with automated alerts", "Deployed for 5+ local pilot merchants"],
-        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
-    },
-    {
-        title: "HealthSentinel AI",
-        description: "State-of-the-art health risk prediction platform analyzing non-communicable disease patterns in urban populations.",
-        tech: ["Python", "TensorFlow", "FastAPI", "Next.js", "Redis"],
-        highlights: ["Achieved 95% detection accuracy in early risk screenings", "Interactive telemetry dashboard for real-time risk assessment", "Engineered for high-throughput diagnostic data"],
-        links: { demo: "https://github.com/SridharShyam/Shyam-Portfolio", repo: "https://github.com/SridharShyam/Shyam-Portfolio" }
+        title: "Data Science & Machine Learning Projects",
+        description: "A living portfolio showcasing end-to-end workflows, hands-on experiments, and model building across various difficulty levels.",
+        tech: ["Python", "Machine Learning", "Scikit-learn", "Pandas"],
+        highlights: [
+            "Developing diverse predictive models spanning classification and regression tasks",
+            "Showcasing end-to-end workflows and hands-on experiments",
+            "Showcases projects spanning across various difficulty levels"
+        ],
+        links: { demo: "https://github.com/SridharShyam/Data-Science-and-Machine-Learning-Projects", repo: "https://github.com/SridharShyam/Data-Science-and-Machine-Learning-Projects" }
     },
     {
         title: "Cirrhosis Patient Outcome Prediction",

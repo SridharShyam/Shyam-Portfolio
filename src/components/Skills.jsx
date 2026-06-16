@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { 
-    SiPython, SiPandas, SiNumpy, SiScikitlearn, SiPytorch, 
-    SiFastapi, SiPostgresql, SiMongodb, SiJupyter, SiStreamlit, SiC 
+    SiPython, SiPandas, SiNumpy, SiScikitlearn, 
+    SiFastapi, SiMongodb, SiJupyter, SiGooglecolab, SiC 
 } from 'react-icons/si';
 import { 
-    FaChartBar, FaTools, FaBrain, FaLanguage, FaDatabase, 
+    FaChartBar, FaTools, FaDatabase, 
     FaGithub, FaChartArea, FaChartLine, FaJava 
 } from 'react-icons/fa';
 
@@ -15,18 +15,14 @@ const iconMap = {
     "Scikit-learn": <SiScikitlearn className="text-[#F7931E]" />,
     "Statistical Analysis": <FaChartBar className="text-blue-400" />,
     "Feature Engineering": <FaTools className="text-gray-400" />,
-    "PyTorch": <SiPytorch className="text-[#EE4C2C]" />,
-    "Neural Networks": <FaBrain className="text-pink-400" />,
-    "Basic NLP": <FaLanguage className="text-green-400" />,
     "FastAPI": <SiFastapi className="text-[#05998B]" />,
     "SQL": <FaDatabase className="text-blue-500" />,
-    "PostgreSQL": <SiPostgresql className="text-[#336791]" />,
     "MongoDB": <SiMongodb className="text-[#47A248]" />,
     "Git/GitHub": <FaGithub className="text-white" />,
     "Matplotlib": <FaChartArea className="text-orange-400" />,
     "Seaborn": <FaChartLine className="text-blue-300" />,
+    "Google Colab": <SiGooglecolab className="text-[#F9AB00]" />,
     "Jupyter Notebook": <SiJupyter className="text-[#F37626]" />,
-    "Streamlit": <SiStreamlit className="text-[#FF4B4B]" />,
     "Java": <FaJava className="text-[#007396]" />,
     "C": <SiC className="text-[#A8B9CC]" />
 };
@@ -37,16 +33,12 @@ const skills = [
         items: ["Python", "Pandas", "NumPy", "Scikit-learn", "Statistical Analysis", "Feature Engineering"]
     },
     {
-        category: "AI & Deep Learning",
-        items: ["PyTorch", "Neural Networks", "Basic NLP"]
-    },
-    {
         category: "Backend & Data Handling",
-        items: ["FastAPI", "SQL", "PostgreSQL", "MongoDB", "Git/GitHub"]
+        items: ["FastAPI", "SQL", "MongoDB", "Git/GitHub"]
     },
     {
         category: "Visualization & Tools",
-        items: ["Matplotlib", "Seaborn", "Jupyter Notebook", "Streamlit"]
+        items: ["Matplotlib", "Seaborn", "Google Colab", "Jupyter Notebook"]
     },
     {
         category: "Core Programming",
@@ -97,7 +89,7 @@ const Skills = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {skills.map((skill, index) => (
                         <SkillCard key={index} {...skill} index={index} />
                     ))}
