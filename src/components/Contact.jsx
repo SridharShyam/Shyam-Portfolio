@@ -1,36 +1,57 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Send } from 'lucide-react';
+import { useToast } from '../context/ToastContext';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState('idle');
+    const [errors, setErrors] = useState({});
+    const { showToast } = useToast();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        const newErrors = {};
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.email.trim()) newErrors.email = "Email is required";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Please enter a valid email address";
+        if (!formData.message.trim()) newErrors.message = "Message is required";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setErrors({});
         setStatus('submitting');
         
         try {
-            const response = await fetch("https://formspree.io/f/placeholder", { // USER: REPLACE WITH YOUR FORMSPREE ID
+            const response = await fetch("https://formspree.io/f/xpqgjyld", {
                 method: "POST",
                 body: new FormData(e.target),
                 headers: { 'Accept': 'application/json' }
             });
             
             if (response.ok) {
-                setStatus('success');
+                setStatus('idle');
                 setFormData({ name: '', email: '', message: '' });
-                setTimeout(() => setStatus('idle'), 5000);
+                showToast("Message sent successfully!", "success");
             } else {
-                setStatus('error');
+                setStatus('idle');
+                showToast("Failed to send message. Please try again.", "error");
             }
         } catch {
-            setStatus('error');
+            setStatus('idle');
+            showToast("An error occurred. Please try again later.", "error");
         }
     };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (errors[e.target.name]) {
+            setErrors({ ...errors, [e.target.name]: '' });
+        }
     };
 
     return (
@@ -98,26 +119,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-2xl shadow-xl"
                 >
-                        {status === 'success' ? (
-                            <motion.div 
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="h-full flex flex-col items-center justify-center text-center p-8 bg-green-500/10 border border-green-500/20 rounded-2xl"
-                            >
-                                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-                                    <Send className="text-green-400" size={32} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">Message sent successfully!</h3>
-                                <p className="text-gray-400">I'll get back to you soon. Looking forward to connecting!</p>
-                                <button 
-                                    onClick={() => setStatus('idle')}
-                                    className="mt-6 text-sm text-primary hover:underline"
-                                >
-                                    Send another message
-                                </button>
-                            </motion.div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
                                     <input
@@ -126,10 +128,10 @@ const Contact = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-500"
+                                        className={`w-full bg-black/20 border ${errors.name ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/10 focus:border-primary focus:ring-primary/20'} rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 transition-all placeholder-gray-500`}
                                         placeholder="Enter your name"
-                                        required
                                     />
+                                    {errors.name && <p className="text-red-400 text-sm mt-2">{errors.name}</p>}
                                 </div>
 
                                 <div>
@@ -140,10 +142,10 @@ const Contact = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-500"
+                                        className={`w-full bg-black/20 border ${errors.email ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/10 focus:border-primary focus:ring-primary/20'} rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 transition-all placeholder-gray-500`}
                                         placeholder="Enter your email"
-                                        required
                                     />
+                                    {errors.email && <p className="text-red-400 text-sm mt-2">{errors.email}</p>}
                                 </div>
 
                                 <div>
@@ -154,10 +156,10 @@ const Contact = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows="4"
-                                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-500 resize-none"
+                                        className={`w-full bg-black/20 border ${errors.message ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20' : 'border-white/10 focus:border-primary focus:ring-primary/20'} rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 transition-all placeholder-gray-500 resize-none`}
                                         placeholder="Tell me what you're working on or how we can collaborate..."
-                                        required
                                     />
+                                    {errors.message && <p className="text-red-400 text-sm mt-2">{errors.message}</p>}
                                 </div>
 
                                 <button
@@ -175,7 +177,6 @@ const Contact = () => {
                                     )}
                                 </button>
                             </form>
-                        )}
                 </motion.div>
 
             </div>

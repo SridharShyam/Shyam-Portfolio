@@ -1,4 +1,6 @@
 import Navbar from './components/Navbar';
+import { ToastProvider } from './context/ToastContext';
+import Toast from './components/Toast';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -12,19 +14,22 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Innovation />
-      <Learning />
-      <CodingStats />
-      <Vision />
-      <Contact />
-      <Footer />
-    </div>
+    <ToastProvider>
+      <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth">
+        <Toast />
+        <Navbar />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Innovation />
+        <Learning />
+        <CodingStats />
+        <Vision />
+        <Contact />
+        <Footer />
+      </div>
+    </ToastProvider>
   );
 }
 

@@ -36,20 +36,10 @@ const About = () => {
                 >
                     <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 overflow-hidden relative group">
                         <img 
-                            src="https://lh3.googleusercontent.com/d/12ImFcIaDRDsU8WP0JWDf-Vq2k68zNI-o" 
+                            src="/Shyam Casual 2.jpeg" 
                             alt="Sridhar Shyam"
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                            onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'flex';
-                            }}
                         />
-                        <div className="absolute inset-0 hidden items-center justify-center bg-white/5 flex-col gap-2">
-                             <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center">
-                                <Brain className="text-primary" size={40} />
-                             </div>
-                             <span className="text-gray-500 font-mono text-xs text-center px-4">Upload profile.jpg <br/> to /public folder</span>
-                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                     </div>
                     {/* Decorative elements behind image */}

@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-white/5' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#" className="text-2xl font-bold font-heading text-primary relative group">
+                <a href="#home" className="text-2xl font-bold font-heading text-primary relative group">
                     Port<span className="text-white">folio</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                 </a>

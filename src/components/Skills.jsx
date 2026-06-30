@@ -24,7 +24,8 @@ const iconMap = {
     "Google Colab": <SiGooglecolab className="text-[#F9AB00]" />,
     "Jupyter Notebook": <SiJupyter className="text-[#F37626]" />,
     "Java": <FaJava className="text-[#007396]" />,
-    "C": <SiC className="text-[#A8B9CC]" />
+    "C": <SiC className="text-[#A8B9CC]" />,
+    "Power BI": <FaChartBar className="text-[#F2C811]" />
 };
 
 const skills = [
@@ -38,7 +39,7 @@ const skills = [
     },
     {
         category: "Visualization & Tools",
-        items: ["Matplotlib", "Seaborn", "Google Colab", "Jupyter Notebook"]
+        items: ["Matplotlib", "Seaborn", "Power BI", "Google Colab", "Jupyter Notebook"]
     },
     {
         category: "Core Programming",

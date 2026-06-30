@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, ArrowRight, Download } from 'lucide-react';
+import { ChevronDown, ArrowRight, Download, ExternalLink } from 'lucide-react';
+
 const Hero = () => {
     return (
         <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-gray-900/50 px-6 pt-20">
@@ -40,13 +41,13 @@ const Hero = () => {
                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a
-                        href="/resume.pdf"
+                        href="https://docs.google.com/document/d/18c0g0e6Wfn7Rj7NPX0mjJhf6Uuj4BJWBvO-THDgxapY/edit?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30 rounded-full font-medium transition-all flex items-center gap-2"
                     >
-                        Download Resume
-                        <Download size={18} className="group-hover:translate-y-1 transition-transform" />
+                        View Resume
+                        <ExternalLink size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                     </a>
                 </motion.div>
             </div>
