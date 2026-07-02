@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Award, Zap, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles } from 'lucide-react';
 
-const Innovation = () => {
+const Journey = () => {
     const timeline = [
         {
             year: "2023 (Foundation Phase)",
@@ -49,7 +49,7 @@ const Innovation = () => {
     ];
 
     return (
-        <section id="innovation" className="py-24 bg-background relative overflow-hidden">
+        <section id="journey" className="py-24 bg-background relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
 
@@ -132,4 +132,4 @@ const Innovation = () => {
     );
 };
 
-export default Innovation;
+export default Journey;

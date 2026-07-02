@@ -5,7 +5,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Innovation from './components/Innovation';
+import Journey from './components/Journey';
 import Learning from './components/Learning';
 import CodingStats from './components/CodingStats';
 import Vision from './components/Vision';
@@ -22,7 +22,7 @@ function App() {
         <About />
         <Skills />
         <Projects />
-        <Innovation />
+        <Journey />
         <Learning />
         <CodingStats />
         <Vision />

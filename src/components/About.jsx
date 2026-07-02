@@ -16,7 +16,7 @@ const About = () => {
 
     const achievements = [
         "TNStartify 3.0 Finalist",
-        "AI/ML Projects (In Progress)",
+        "Building End-to-End AI Systems | ML | EDA | Power BI.",
         "Data Science & ML Focus",
         "Hands-on Learning & Building",
     ];
@@ -55,7 +55,7 @@ const About = () => {
                 >
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
-                            AI & ML/Data Science Student building <span className="text-primary">Impactful AI Systems</span>
+                            Data Science and Machine Learning Student building <span className="text-primary">Impactful AI Systems</span>
                         </h2>
                         <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
                             <p>

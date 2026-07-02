@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Calendar, Target, Clock, Award, ChevronRight, Star } from 'lucide-react';
 
-const researchFocus = [
+const learningFocus = [
     {
-        title: "Exploring Machine Learning Techniques",
+        title: "Predictive Modeling for Demographic Classification",
         status: "Skill Building",
         source: "Practical Projects",
         date: "Ongoing",
@@ -12,7 +12,7 @@ const researchFocus = [
         icon: Target
     },
     {
-        title: "Health Risk Analysis (AI Concepts)",
+        title: "Exploratory Data Analysis of Streaming Media Trends",
         status: "Applied Project",
         source: "Clinical Datasets",
         date: "2024",
@@ -21,7 +21,7 @@ const researchFocus = [
         icon: Target
     },
     {
-        title: "Customer Segmentation (Project Work)",
+        title: "Time Series Forecasting for Aviation Demand Analytics",
         status: "Data Analysis",
         source: "Retail Data",
         date: "Completed",
@@ -30,7 +30,7 @@ const researchFocus = [
         icon: Award
     },
     {
-        title: "Building AI Systems (In Progress)",
+        title: "Hybrid Recommender System for Personalized Media",
         status: "Development",
         source: "End-to-End Workflows",
         date: "Present",
@@ -110,7 +110,7 @@ const Learning = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Main Grid - Spans 3 columns on large screens */}
                     <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {researchFocus.map((item, index) => (
+                        {learningFocus.map((item, index) => (
                             <LearningCard key={index} item={item} index={index} />
                         ))}
                     </div>

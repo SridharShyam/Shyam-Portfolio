@@ -2,27 +2,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const additionalProjects = [
+const caseStudies = [
     {
-        title: "Gender Classification Using Machine Learning",
+        title: "Predictive Modeling for Demographic Classification",
         description: "Build a classifier to predict an individual's gender based on physical attributes (height, weight, and age).",
         tech: ["Python", "Scikit-Learn", "Pandas"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Beginner_Level/Gender_Classification" }
     },
     {
-        title: "Netflix Content Library Analysis",
+        title: "Exploratory Data Analysis of Streaming Media Trends",
         description: "Perform Exploratory Data Analysis (EDA) on the Netflix dataset to uncover insights regarding content types and trends.",
         tech: ["Pandas", "NumPy", "Matplotlib", "Seaborn"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Beginner_Level/Netflix_Content_Library_Analysis" }
     },
     {
-        title: "Hybrid Movie Recommendation Engine",
+        title: "Time Series Forecasting for Aviation Demand Analytics",
+        description: "Apply classical time series analysis and forecasting techniques to identify demand trends and seasonal cycles in international airline passenger numbers.",
+        tech: ["Python", "Pandas", "Statsmodels", "ARIMA"],
+        links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Beginner_Level/AirPassengers_Time_Series_Forecasting" }
+    },
+    {
+        title: "Hybrid Recommender System for Personalized Media",
         description: "Robust recommendation system combining Content-Based and Collaborative Filtering using the MovieLens dataset.",
         tech: ["Python", "scikit-surprise", "TF-IDF"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Intermediate_Level/Movie_Recommendation_Engine" }
     },
     {
-        title: "Health Analytics Dashboard",
+        title: "Interactive Health and Demographic Analytics Dashboard",
         description: "Interactive Power BI dashboard built on a 10,000-record dataset to analyze body metrics across demographics.",
         tech: ["Power BI", "DAX", "Power Query"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/PowerBI_Dashboards" }
@@ -31,7 +37,7 @@ const additionalProjects = [
 
 const projects = [
     {
-        title: "Data Science & Machine Learning Projects",
+        title: "Comprehensive ML, Data Science & Analytics Portfolio",
         description: "A living portfolio showcasing end-to-end workflows, hands-on experiments, and model building across various difficulty levels.",
         tech: ["Python", "Machine Learning", "Scikit-learn", "Pandas"],
         highlights: [
@@ -208,7 +214,7 @@ const Projects = () => {
 
                             {/* Modal Body */}
                             <div className="p-6 overflow-y-auto space-y-6">
-                                {additionalProjects.map((p, i) => (
+                                {caseStudies.map((p, i) => (
                                     <div key={i} className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:border-primary/50 transition-colors flex flex-col sm:flex-row gap-6 justify-between items-start">
                                         <div>
                                             <h4 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{p.title}</h4>
