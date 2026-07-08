@@ -4,37 +4,37 @@ import { BookOpen, Calendar, Target, Clock, Award, ChevronRight, Star } from 'lu
 const learningFocus = [
     {
         title: "Predictive Modeling for Demographic Classification",
-        status: "Skill Building",
-        source: "Practical Projects",
-        date: "Ongoing",
-        reason: "Learning and experimenting with machine learning models, feature engineering, and real-world datasets.",
+        status: "Machine Learning",
+        source: "Demographic Data",
+        date: "Beginner",
+        reason: "Building and evaluating classifiers (Logistic Regression, Random Forest, KNN) to predict demographic attributes.",
         color: "text-cyan-400",
         icon: Target
     },
     {
         title: "Exploratory Data Analysis of Streaming Media Trends",
-        status: "Applied Project",
-        source: "Clinical Datasets",
-        date: "2024",
-        reason: "Worked on projects involving health data analysis and applying AI concepts for risk prediction.",
+        status: "Data Analysis",
+        source: "Streaming Media Data",
+        date: "Beginner",
+        reason: "Performing extensive EDA using Pandas and Seaborn to uncover insights into content types, regional distributions, and genre popularity.",
         color: "text-purple-400",
         icon: Target
     },
     {
         title: "Time Series Forecasting for Aviation Demand Analytics",
-        status: "Data Analysis",
-        source: "Retail Data",
-        date: "Completed",
-        reason: "Explored customer segmentation using K-Means clustering to analyze behavior and derive actionable insights.",
+        status: "Time Series",
+        source: "Aviation Data",
+        date: "Beginner",
+        reason: "Applying classical time series techniques like ARIMA and SARIMA to identify demand trends and seasonal cycles in passenger numbers.",
         color: "text-green-400",
         icon: Award
     },
     {
         title: "Hybrid Recommender System for Personalized Media",
-        status: "Development",
-        source: "End-to-End Workflows",
-        date: "Present",
-        reason: "Currently learning how to structure AI workflows from data processing to production model building.",
+        status: "Recommendation",
+        source: "MovieLens Dataset",
+        date: "Intermediate",
+        reason: "Building a robust recommendation system combining Content-Based and Collaborative Filtering using TF-IDF and Matrix Factorization.",
         color: "text-amber-400",
         icon: Award
     }

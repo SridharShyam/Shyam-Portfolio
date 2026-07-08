@@ -2,9 +2,21 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const navLinks = [
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Journey', href: '#journey' },
+    { name: 'Learning', href: '#learning' },
+    { name: 'Coding Stats', href: '#stats' },
+    { name: 'Vision', href: '#vision' },
+    { name: 'Contact', href: '#contact' },
+];
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,16 +26,33 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = [
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Journey', href: '#journey' },
-        { name: 'Learning', href: '#learning' },
-        { name: 'Coding Stats', href: '#stats' },
-        { name: 'Vision', href: '#vision' },
-        { name: 'Contact', href: '#contact' },
-    ];
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5,
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        const sections = navLinks.map(link => document.getElementById(link.href.substring(1))).filter(Boolean);
+        const homeSection = document.getElementById('home');
+        if (homeSection) sections.push(homeSection);
+
+        sections.forEach(sec => observer.observe(sec));
+
+        return () => {
+            sections.forEach(sec => observer.unobserve(sec));
+        };
+    }, []);
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-white/5' : 'bg-transparent py-6'}`}>
@@ -39,7 +68,7 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-gray-300 hover:text-primary transition-colors font-medium text-sm tracking-wide"
+                            className={`transition-colors font-medium text-sm tracking-wide ${activeSection === link.href.substring(1) ? 'text-primary' : 'text-gray-300 hover:text-primary'}`}
                         >
                             {link.name}
                         </a>
@@ -70,7 +99,7 @@ const Navbar = () => {
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="text-lg text-gray-300 hover:text-primary font-medium"
+                                    className={`text-lg font-medium transition-colors ${activeSection === link.href.substring(1) ? 'text-primary' : 'text-gray-300 hover:text-primary'}`}
                                 >
                                     {link.name}
                                 </a>

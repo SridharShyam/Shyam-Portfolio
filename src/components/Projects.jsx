@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const caseStudies = [
     {
         title: "Predictive Modeling for Demographic Classification",
-        description: "Build a classifier to predict an individual's gender based on physical attributes (height, weight, and age).",
+        description: "Build a classifier to predict an individual's gender based on physical attributes (height, weight, and age). Demographic segmentation models like this are used in retail, healthcare, and HR to personalize decisions at scale.",
         tech: ["Python", "Scikit-Learn", "Pandas"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Beginner_Level/Gender_Classification" }
     },
@@ -17,19 +17,19 @@ const caseStudies = [
     },
     {
         title: "Time Series Forecasting for Aviation Demand Analytics",
-        description: "Apply classical time series analysis and forecasting techniques to identify demand trends and seasonal cycles in international airline passenger numbers.",
+        description: "Apply classical time series analysis and forecasting techniques to identify demand trends and seasonal cycles in international airline passenger numbers. Accurate demand forecasting reduces airline overbooking losses and optimizes crew and fleet allocation.",
         tech: ["Python", "Pandas", "Statsmodels", "ARIMA"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Beginner_Level/AirPassengers_Time_Series_Forecasting" }
     },
     {
         title: "Hybrid Recommender System for Personalized Media",
-        description: "Robust recommendation system combining Content-Based and Collaborative Filtering using the MovieLens dataset.",
+        description: "Robust recommendation system combining Content-Based and Collaborative Filtering using the MovieLens dataset. Recommendation engines are the primary revenue lever for streaming platforms — a 1% lift in click-through rate translates to millions in retention value.",
         tech: ["Python", "scikit-surprise", "TF-IDF"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/Intermediate_Level/Movie_Recommendation_Engine" }
     },
     {
         title: "Interactive Health and Demographic Analytics Dashboard",
-        description: "Interactive Power BI dashboard built on a 10,000-record dataset to analyze body metrics across demographics.",
+        description: "Interactive Power BI dashboard built on a 10,000-record dataset to analyze body metrics across demographics. This dashboard prototype demonstrates how health administrators can identify at-risk demographic segments without writing a single SQL query.",
         tech: ["Power BI", "DAX", "Power Query"],
         links: { repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio/tree/main/PowerBI_Dashboards" }
     }
@@ -38,7 +38,7 @@ const caseStudies = [
 const projects = [
     {
         title: "Comprehensive ML, Data Science & Analytics Portfolio",
-        description: "A living portfolio showcasing end-to-end workflows, hands-on experiments, and model building across various difficulty levels.",
+        description: "A living portfolio showcasing end-to-end workflows, hands-on experiments, and model building across various difficulty levels. Each case study is framed around a real decision problem — what question does the data answer, and who acts on it.",
         tech: ["Python", "Machine Learning", "Scikit-learn", "Pandas"],
         highlights: [
             "Developing diverse predictive models spanning classification and regression tasks",
@@ -48,9 +48,9 @@ const projects = [
         links: { demo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio", repo: "https://github.com/SridharShyam/Data-Science-Machine-Learning-Analytics-Portfolio" }
     },
     {
-        title: "Cirrhosis Patient Outcome Prediction",
-        description: "Machine learning pipeline predicting disease progression stages and patient survival outcomes using clinical biomarkers from the Mayo Clinic PBC trial, rebuilt end-to-end with production-grade practices.",
-        tech: ["Python", "scikit-learn", "XGBoost", "pandas", "matplotlib", "seaborn"],
+        title: "Cirrhosis Stage & Status Prediction",
+        description: "Machine learning pipeline predicting disease progression stages and patient survival outcomes using clinical biomarkers from the Mayo Clinic PBC trial, rebuilt end-to-end with production-grade practices. Clinically, achieving 0.81 ROC-AUC for Stage 4 detection means earlier identification of high-risk patients — directly supporting faster intervention decisions by hepatologists.",
+        tech: ["Python", "Scikit-Learn", "XGBoost", "Pandas", "Matplotlib", "Seaborn"],
         highlights: [
             "Recovered 34% of discarded data (retaining all 418 patients) using median/mode imputation",
             "Benchmarked LR, SVM, Random Forest, and XGBoost using 5-fold cross-validation with F1-macro scoring",
