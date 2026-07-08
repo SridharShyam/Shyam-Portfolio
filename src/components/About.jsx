@@ -36,7 +36,7 @@ const About = () => {
                 >
                     <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 overflow-hidden relative group">
                         <img 
-                            src="/Shyam Casual 2.jpeg" 
+                            src="/shyam-casual-2.jpeg" 
                             alt="Sridhar Shyam"
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
                         />
