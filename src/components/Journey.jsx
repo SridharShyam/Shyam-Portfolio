@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Award, Zap, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles } from 'lucide-react';
+import { Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap } from 'lucide-react';
 
 const Journey = () => {
     const timeline = [
@@ -13,7 +13,7 @@ const Journey = () => {
             year: "2024 (Skill Building Phase)",
             title: "AI & Data Science Learning Phase",
             description: "Completed foundational courses in Data Science and AI, focusing on Python, data analysis, and machine learning concepts.",
-            icon: Award,
+            icon: BookOpen,
         },
         {
             year: "2024 (Mid – Practical Exposure)",
@@ -22,25 +22,37 @@ const Journey = () => {
             icon: TrendingUp,
         },
         {
-            year: "2025",
+            year: "Feb 2025",
             title: "Student Immersion Programme (SEC × UTP, Malaysia)",
             description: "Selected for an international student immersion programme in collaboration with UTP, Malaysia, gaining global exposure and collaborative experience.",
             icon: Globe,
         },
         {
-            year: "2025 (Growth & Recognition)",
+            year: "Oct 2025 (Growth & Recognition)",
             title: "Finalist — TNStartify 3.0",
             description: "Recognized as a finalist for developing innovative solutions in TNStartify 3.0.",
-            icon: Rocket,
+            icon: Award,
         },
         {
-            year: "2025 (Present)",
+            year: "Oct 2025 - Present",
             title: "Innovation Vertical Chair — YUVA Club",
             description: "Leading innovation initiatives, organizing projects, and driving a culture of problem-solving within YUVA Club.",
             icon: Users,
         },
         {
-            year: "Beyond 2025",
+            year: "Aug 2025 - Dec 2025",
+            title: "Intern Trainee — QuodeSchool",
+            description: "Engaged in structured training and foundational projects to build core technical competencies.",
+            icon: Code,
+        },
+        {
+            year: "Jan 2026 - Jun 2026",
+            title: "AI Forward Intern — QuodeWorks",
+            description: "Contributing to advanced AI initiatives and real-world machine learning solutions.",
+            icon: Rocket,
+        },
+        {
+            year: "Beyond 2026",
             title: "The Horizon",
             description: "Continuously evolving, building, and exploring the next frontiers of AI and human-centered technology.",
             icon: Sparkles,
