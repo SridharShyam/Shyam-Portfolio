@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const caseStudies = [
@@ -53,6 +53,7 @@ const projects = [
         description: "A showcase of end-to-end case studies covering predictive modeling, time series forecasting, and hybrid recommendation systems.",
         image: "/projects/ml_portfolio_bg.png",
         tech: ["Python", "TensorFlow", "Scikit-Learn", "FastAPI"],
+        status: "Showcase",
         highlights: [
             "Predictive modeling for retail & healthcare",
             "Advanced time series & econometric models",
@@ -140,9 +141,29 @@ const StatusBadge = ({ status }) => {
             colorClass = "bg-amber-500/10 text-amber-400 border-amber-500/20";
             Icon = Clock;
             break;
-        case "Planned":
+        case "Upcoming":
             colorClass = "bg-blue-500/10 text-blue-400 border-blue-500/20";
             Icon = Calendar;
+            break;
+        case "Beta":
+            colorClass = "bg-pink-500/10 text-pink-400 border-pink-500/20";
+            Icon = Beaker;
+            break;
+        case "Iterating":
+            colorClass = "bg-indigo-500/10 text-indigo-400 border-indigo-500/20";
+            Icon = RefreshCw;
+            break;
+        case "Paused":
+            colorClass = "bg-gray-500/10 text-gray-400 border-gray-500/20";
+            Icon = PauseCircle;
+            break;
+        case "Legacy":
+            colorClass = "bg-stone-500/10 text-stone-400 border-stone-500/20";
+            Icon = Archive;
+            break;
+        case "Showcase":
+            colorClass = "bg-purple-500/10 text-purple-400 border-purple-500/20";
+            Icon = Star;
             break;
         default:
             return null;
@@ -279,9 +300,14 @@ const Projects = () => {
 
     // Group Case Studies by Status
     const groupedCaseStudies = {
+        "Showcase": caseStudies.filter(p => p.status === "Showcase"),
         "Completed": caseStudies.filter(p => p.status === "Completed"),
+        "Iterating": caseStudies.filter(p => p.status === "Iterating"),
         "In Progress": caseStudies.filter(p => p.status === "In Progress"),
-        "Planned": caseStudies.filter(p => p.status === "Planned")
+        "Beta": caseStudies.filter(p => p.status === "Beta"),
+        "Upcoming": caseStudies.filter(p => p.status === "Upcoming"),
+        "Paused": caseStudies.filter(p => p.status === "Paused"),
+        "Legacy": caseStudies.filter(p => p.status === "Legacy")
     };
 
     return (
