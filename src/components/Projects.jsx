@@ -79,7 +79,7 @@ const projects = [
         description: "A fun, AI-powered web application that generates creative and believable excuses for any situation on demand. Currently in development.",
         image: "/projects/excuse_api_bg.png",
         tech: ["React", "Tailwind CSS", "AI"],
-        status: "In Progress",
+        status: "Paused",
         highlights: [
             "Generates context-aware excuses",
             "Sleek and responsive user interface",
@@ -92,7 +92,7 @@ const projects = [
         description: "A robust health monitoring and predictive analytics platform to track patient vitals and identify potential risks.",
         image: "/projects/health_sentinel_bg.png",
         tech: ["Python", "Machine Learning", "Data Analytics"],
-        status: "In Progress",
+        status: "Iterating",
         highlights: [
             "Predictive risk modeling for early detection",
             "Secure and scalable patient data processing",
@@ -105,7 +105,7 @@ const projects = [
         description: "An innovative AI-driven fashion tech application currently under development, focusing on intelligent style analysis and modern digital apparel solutions.",
         image: "/projects/pantemo_fashion_bg.png",
         tech: ["Fashion Tech", "AI", "Computer Vision"],
-        status: "In Progress",
+        status: "Beta",
         highlights: [
             "Exploring new frontiers in AI-driven fashion",
             "Building scalable digital apparel architecture",
