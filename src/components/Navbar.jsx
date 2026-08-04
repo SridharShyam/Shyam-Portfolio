@@ -8,7 +8,6 @@ const navLinks = [
     { name: 'Projects', href: '#projects' },
     { name: 'Journey', href: '#journey' },
     { name: 'Learning', href: '#learning' },
-    { name: 'Coding Stats', href: '#stats' },
     { name: 'Vision', href: '#vision' },
     { name: 'Contact', href: '#contact' },
 ];
@@ -29,8 +28,8 @@ const Navbar = () => {
     useEffect(() => {
         const observerOptions = {
             root: null,
-            rootMargin: '0px',
-            threshold: 0.5,
+            rootMargin: '-20% 0px -50% 0px',
+            threshold: 0,
         };
 
         const observerCallback = (entries) => {
@@ -57,8 +56,8 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-white/5' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#home" className="text-2xl font-bold font-heading text-primary relative group">
-                    Port<span className="text-white">folio</span>
+                <a href="#home" className="text-2xl font-bold font-heading text-primary relative group tracking-wide">
+                    Shyam<span className="text-white">etrics</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                 </a>
 

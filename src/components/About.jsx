@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Brain, Heart, Rocket, Database } from 'lucide-react';
+import { HelpCircle, Layers, Target, Rocket } from 'lucide-react';
 
 const AchievementCard = ({ label }) => {
     return (
@@ -70,41 +70,44 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                                <Rocket size={24} />
+                    <div>
+                        <h3 className="text-2xl font-bold font-heading text-white mb-6">How I Think</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
+                                    <HelpCircle size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="font-heading font-semibold text-white mb-1">Question First</h4>
+                                    <p className="text-sm text-gray-400">Before I touch a dataset, I write the question the model needs to answer — and who acts on the answer. A model without a decision-maker is just a science experiment.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="font-heading font-semibold text-white mb-1">Problem-Solver</h3>
-                                <p className="text-sm text-gray-400">Transforming complex challenges into structured, logical solutions.</p>
+                            <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-lg bg-secondary/10 text-secondary shrink-0">
+                                    <Layers size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="font-heading font-semibold text-white mb-1">Three Domains, One Lens</h4>
+                                    <p className="text-sm text-gray-400">I build across FashionTech, HealthTech, and CareerTech — not because they're similar, but because the decision-support problem is the same in all three: turn messy data into the right next action.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-lg bg-secondary/10 text-secondary">
-                                <Brain size={24} />
+                            <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-lg bg-accent/10 text-accent shrink-0">
+                                    <Target size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="font-heading font-semibold text-white mb-1">Business KPI {'>'} Accuracy Score</h4>
+                                    <p className="text-sm text-gray-400">A 0.81 ROC-AUC means nothing if no one acts on the output. I design systems around the metric that matters to the stakeholder — acceptance rate, utilization, avoidance of a bad decision.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="font-heading font-semibold text-white mb-1">Curiosity-Driven</h3>
-                                <p className="text-sm text-gray-400">Continuously exploring new ideas, tools, and technologies.</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-lg bg-accent/10 text-accent">
-                                <Heart size={24} />
-                            </div>
-                            <div>
-                                <h3 className="font-heading font-semibold text-white mb-1">Impact-Focused</h3>
-                                <p className="text-sm text-gray-400">Building practical, user-centered AI systems that create real value.</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-lg bg-blue-400/10 text-blue-400">
-                                <Database size={24} />
-                            </div>
-                            <div>
-                                <h3 className="font-heading font-semibold text-white mb-1">Data-Driven</h3>
-                                <p className="text-sm text-gray-400">Making informed decisions through data analysis and insights.</p>
+                            <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-lg bg-blue-400/10 text-blue-400 shrink-0">
+                                    <Rocket size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="font-heading font-semibold text-white mb-1">Ship, Then Improve</h4>
+                                    <p className="text-sm text-gray-400">I deploy before I'm ready, because real users ask questions a test set never will. Production feedback is the best feature engineer.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
