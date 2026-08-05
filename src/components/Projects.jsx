@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const caseStudies = [
+export const caseStudies = [
     {
         title: "Predictive Modeling for Demographic Classification",
         tagline: "Retail & HR Demographic Segmentation",
@@ -83,7 +83,7 @@ const caseStudies = [
     }
 ];
 
-const projects = [
+export const projects = [
     {
         title: "Comprehensive ML, Data Science & Analytics Portfolio",
         tagline: "End-to-End Applied Machine Learning Showcase",

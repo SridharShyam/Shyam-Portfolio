@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import { ToastProvider } from './context/ToastContext';
 import Toast from './components/Toast';
@@ -13,6 +14,15 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  useEffect(() => {
+    // Prevent the browser from automatically restoring the scroll position on reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    // Force scroll to the absolute top of the page
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <ToastProvider>
       <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth">

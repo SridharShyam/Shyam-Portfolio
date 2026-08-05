@@ -1,7 +1,14 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap } from 'lucide-react';
 
 const Journey = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end center"]
+    });
+
     const timeline = [
         {
             year: "2023 (Foundation Phase)",
@@ -81,22 +88,32 @@ const Journey = () => {
                     </h2>
                 </motion.div>
 
-                <div className="space-y-12 relative before:absolute before:content-[''] before:left-8 md:before:left-1/2 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-primary/50 before:via-secondary/50 before:to-transparent">
+                <div ref={containerRef} className="space-y-12 relative">
+                    {/* Base faded line */}
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-white/5 -translate-x-1/2 rounded-full" />
+                    
+                    {/* Animated glowing neon line (Optimized using scaleY for zero lag) */}
+                    <motion.div 
+                        className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-pink-500 origin-top rounded-full z-0"
+                        style={{ 
+                            x: "-50%",
+                            scaleY: scrollYProgress,
+                            boxShadow: "0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(236, 72, 153, 0.4)"
+                        }}
+                    />
+
                     {timeline.map((item, index) => {
                         if (item.isFuture) {
                             return (
                                 <motion.div
                                     key={index}
-                                    className="flex flex-col md:flex-row gap-8 items-start md:items-center relative"
+                                    className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
                                 >
                                     {/* Pulsing Dot */}
                                     <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_15px_rgba(236,72,153,0.5)] z-20" />
-                                    
-                                    {/* Fading Extension Line */}
-                                    <div className="absolute left-8 md:left-1/2 -translate-x-1/2 top-4 w-0.5 h-32 bg-gradient-to-b from-secondary/50 to-transparent z-10" />
 
                                     <div className="ml-16 md:ml-0 md:w-full flex flex-col md:items-center justify-center pt-2">
                                         <div className="flex items-center gap-3 text-secondary animate-pulse duration-[3000ms]">
@@ -114,20 +131,36 @@ const Journey = () => {
                         return (
                             <motion.div
                                 key={index}
-                                className={`flex flex-col md:flex-row gap-8 items-start md:items-center relative ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                                className={`flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ delay: index * 0.2 }}
+                                viewport={{ once: true, margin: "-100px" }}
                             >
-                                {/* Timeline Dot */}
-                                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
+                                {/* Timeline Dot that lights up when scrolled into view */}
+                                <motion.div 
+                                    className="absolute left-8 md:left-1/2 w-5 h-5 rounded-full bg-background border-2 z-20"
+                                    style={{ x: "-50%" }}
+                                    initial={{ borderColor: "rgba(255,255,255,0.2)", boxShadow: "0 0 0px rgba(0,0,0,0)" }}
+                                    whileInView={{ 
+                                        borderColor: "#00D4FF",
+                                        backgroundColor: "#00D4FF",
+                                        boxShadow: "0 0 15px rgba(0,212,255,0.8)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    viewport={{ once: true, margin: "-50% 0px -40% 0px" }}
+                                />
 
                                 {/* Content Card */}
-                                <div className="ml-16 md:ml-0 md:w-1/2 p-6 rounded-xl bg-surface/40 border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-all hover:bg-surface/60 group">
+                                <div className="ml-16 md:ml-0 md:w-1/2 p-6 rounded-xl bg-surface/40 border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-all hover:bg-surface/80 group shadow-lg">
                                     <div className="flex items-center gap-3 mb-2">
                                         <span className="text-primary font-mono text-sm">{item.year}</span>
-                                        <item.icon size={18} className="text-gray-400 group-hover:text-secondary transition-colors" />
+                                        <motion.div
+                                            initial={{ rotate: 0 }}
+                                            whileHover={{ rotate: 15, scale: 1.1 }}
+                                            className="text-gray-400 group-hover:text-secondary transition-colors"
+                                        >
+                                            <item.icon size={18} />
+                                        </motion.div>
                                     </div>
                                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
                                     <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
