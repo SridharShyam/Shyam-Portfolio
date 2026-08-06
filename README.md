@@ -18,6 +18,7 @@ This portfolio is not just a static site; it is a **Headless CMS-powered Applica
 - **Structure**: Clean Feature-Based Component Architecture
 
 ### Component Architecture
+
 ```text
 src/
  ├── components/
@@ -48,14 +49,17 @@ Inside Shyametrics, you won't just find performance metrics; you will find the a
 I build across three distinct verticals. They may seem unrelated on the surface, but the core decision-support problem is identical in all three: *turning messy, unstructured data into the right next action.*
 
 ### 👗 FashionTech
+
 *Style is data. Personal fit is a prediction problem.*
 Explore systems that go beyond clothing recognition. Discover architecture that converts wardrobe images into structured intelligence to generate ranked recommendations for what to wear, purchase, or design next.
 
 ### 🏥 HealthTech
+
 *AI should flag risk before a doctor has to guess.*
 Dive into predictive health analytics that track patient trajectories to identify high-risk conditions before critical symptoms appear, accelerating diagnostic triage and optimizing clinical resource allocation.
 
 ### 🎓 CareerTech
+
 *Career decisions deserve the same rigour as medical ones.*
 See how generic career advice is replaced with personalized trajectory modeling, improving user retention on job platforms and increasing the success rate of upskilling recommendations.
 
@@ -63,7 +67,8 @@ See how generic career advice is replaced with personalized trajectory modeling,
 
 ## ⚙️ MLOps & Production Deployments
 
-Shifting away from Jupyter Notebooks, my current focus is on **Production-Grade MLOps**. 
+Shifting away from Jupyter Notebooks, my current focus is on **Production-Grade MLOps**.
+
 - **End-to-End MLOps Pipelines** (CI/CD, MLflow, AWS)
 - **Model Serving & API Architecture** (FastAPI, Redis)
 - **Data Engineering for AI** (Airflow, PySpark)
