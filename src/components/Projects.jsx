@@ -337,6 +337,12 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
             onClick={onClick}
             className={`group relative bg-surface rounded-2xl border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col h-full ${isFullWidth ? 'md:col-span-2' : ''} ${onClick ? 'cursor-pointer' : ''}`}
         >
+            {project.isGithubSourced && (
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 text-[10px] font-bold text-emerald-400 bg-black/60 px-2 py-1 rounded border border-emerald-400/20 backdrop-blur-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    LIVE VIA API
+                </div>
+            )}
             <div className="h-48 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden group">
                 {project.image ? (
                     <>
@@ -455,6 +461,7 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
 
 const Projects = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [githubProjects, setGithubProjects] = useState([]);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -464,6 +471,38 @@ const Projects = () => {
         }
         return () => { document.body.style.overflow = 'unset'; };
     }, [isModalOpen]);
+
+    useEffect(() => {
+        const fetchGithubProjects = async () => {
+            try {
+                // Phase 1: GitHub Tag Engine
+                // Fetches any public repo tagged with 'portfolio-project'
+                const res = await fetch('https://api.github.com/search/repositories?q=user:SridharShyam+topic:portfolio-project');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.items && data.items.length > 0) {
+                        const formatted = data.items.map(repo => ({
+                            title: repo.name.replace(/-/g, ' ').replace(/_/g, ' '),
+                            tagline: repo.description || "Live Sourced GitHub Repository",
+                            description: `Automatically sourced from GitHub. Last updated: ${new Date(repo.updated_at).toLocaleDateString()}`,
+                            businessImpact: "Automatically synchronized from source control.",
+                            tech: repo.language ? [repo.language, "GitHub API"] : ["GitHub API"],
+                            status: "Live",
+                            domain: "ml-core",
+                            question: "Live Code Synchronization via GitHub API",
+                            highlights: ["Dynamically sourced via Tag Engine", `⭐ ${repo.stargazers_count} Stars`, `🍴 ${repo.forks_count} Forks`],
+                            links: { repo: repo.html_url, demo: repo.homepage || undefined },
+                            isGithubSourced: true
+                        }));
+                        setGithubProjects(formatted);
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to fetch github projects", error);
+            }
+        };
+        fetchGithubProjects();
+    }, []);
 
     // Group Case Studies by Status
     const groupedCaseStudies = {
@@ -481,12 +520,11 @@ const Projects = () => {
     const healthSentinel = projects.find(p => p.title === "HealthSentinel AI");
     const careerSynk = projects.find(p => p.title === "CareerSynk");
     
-    // Remaining projects in standard grid
-    const remainingProjects = projects.filter(p => 
-        p.title !== "StyleSynk" && 
-        p.title !== "HealthSentinel AI" && 
-        p.title !== "CareerSynk"
-    );
+    // Inject Live GitHub Projects directly into the remaining projects list!
+    const remainingProjects = [
+        ...githubProjects,
+        ...projects.filter(p => !["StyleSynk", "HealthSentinel AI", "CareerSynk"].includes(p.title))
+    ];
 
     return (
         <section id="projects" className="py-24 bg-surface/50 relative">

@@ -59,13 +59,10 @@ const About = () => {
                         </h2>
                         <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
                             <p>
-                                I'm an AI & Data Science student from Chennai, focused on building practical, data-driven systems and machine learning applications.
+                                I'm an AI Engineer based in Chennai. I don't just train models in Jupyter Notebooks; I build end-to-end data systems that translate raw inputs into actionable business intelligence.
                             </p>
                             <p>
-                                I have worked on projects involving inventory optimization and health risk analysis using AI concepts, gaining hands-on experience in data analysis, feature engineering, and model development.
-                            </p>
-                            <p>
-                                I focus on clarity, usability, and building systems that go beyond experimentation.
+                                From predicting supply chain bottlenecks to flagging clinical health risks, my focus is always on engineering features that capture reality and deploying models that solve actual operational problems.
                             </p>
                         </div>
                     </div>

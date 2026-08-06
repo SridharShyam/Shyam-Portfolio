@@ -1,25 +1,21 @@
 import { useRef } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap } from 'lucide-react';
 
 const Journey = () => {
     const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start center", "end center"]
-    });
 
     const timeline = [
         {
             year: "2023 (Foundation Phase)",
-            title: "Started Journey in AI & Programming",
-            description: "Began exploring programming fundamentals, problem-solving, and core concepts in data science and AI.",
+            title: "The Foundation",
+            description: "Wrote my first lines of code and immediately gravitated towards data structures, probabilistic models, and the mechanics of machine learning.",
             icon: Lightbulb,
         },
         {
             year: "2024 (Skill Building Phase)",
-            title: "AI & Data Science Learning Phase",
-            description: "Completed foundational courses in Data Science and AI, focusing on Python, data analysis, and machine learning concepts.",
+            title: "AI & Data Science Immersion",
+            description: "Mastered foundational Data Science and AI concepts, focusing on Python, Pandas, and Scikit-Learn to build functional predictive models.",
             icon: BookOpen,
         },
         {
@@ -30,7 +26,7 @@ const Journey = () => {
         },
         {
             year: "Feb 2025",
-            title: "Student Immersion Programme (SEC × UTP, Malaysia)",
+            title: "Student Immersion (SEC × UTP, Malaysia)",
             description: "Selected for an international student immersion programme in collaboration with UTP, Malaysia, gaining global exposure and collaborative experience.",
             icon: Globe,
         },
@@ -48,8 +44,8 @@ const Journey = () => {
         },
         {
             year: "Aug 2025 - Dec 2025",
-            title: "Intern Trainee — QuodeSchool",
-            description: "Engaged in structured training and foundational projects to build core technical competencies.",
+            title: "QuodeSchool Engineering Trainee",
+            description: "Built foundational software engineering competencies, transitioning from theoretical data science to production-ready code architecture.",
             icon: Code,
         },
         {
@@ -61,20 +57,25 @@ const Journey = () => {
         {
             year: "Beyond 2026",
             title: "The Horizon",
-            description: "Continuously evolving, building, and exploring the next frontiers of AI and human-centered technology.",
+            description: "Exploring the next frontiers of AI and building systems that matter.",
             icon: Sparkles,
             isFuture: true
         },
     ];
 
+    // Chunk timeline into groups of 3 for desktop
+    const chunkedTimeline = [];
+    for (let i = 0; i < timeline.length; i += 3) {
+        chunkedTimeline.push(timeline.slice(i, i + 3));
+    }
+
     return (
         <section id="journey" className="py-24 bg-background relative overflow-hidden">
-            {/* Background Elements */}
             <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
 
-            <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -88,87 +89,103 @@ const Journey = () => {
                     </h2>
                 </motion.div>
 
-                <div ref={containerRef} className="space-y-12 relative">
-                    {/* Base faded line */}
-                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-white/5 -translate-x-1/2 rounded-full" />
+                {/* Snake Grid Container */}
+                <div ref={containerRef} className="space-y-12 md:space-y-16 relative">
                     
-                    {/* Animated glowing neon line (Optimized using scaleY for zero lag) */}
-                    <motion.div 
-                        className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-pink-500 origin-top rounded-full z-0"
-                        style={{ 
-                            x: "-50%",
-                            scaleY: scrollYProgress,
-                            boxShadow: "0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(236, 72, 153, 0.4)"
-                        }}
-                    />
+                    {/* Mobile-only continuous vertical liquid line */}
+                    <div className="md:hidden absolute left-8 top-0 bottom-0 w-1 bg-white/5 rounded-full z-0 overflow-hidden">
+                        <motion.div 
+                            className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-transparent via-primary to-transparent opacity-80"
+                            animate={{ top: ["-25%", "100%"] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        />
+                    </div>
 
-                    {timeline.map((item, index) => {
-                        if (item.isFuture) {
-                            return (
-                                <motion.div
-                                    key={index}
-                                    className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                >
-                                    {/* Pulsing Dot */}
-                                    <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_15px_rgba(236,72,153,0.5)] z-20" />
-
-                                    <div className="ml-16 md:ml-0 md:w-full flex flex-col md:items-center justify-center pt-2">
-                                        <div className="flex items-center gap-3 text-secondary animate-pulse duration-[3000ms]">
-                                            <item.icon size={24} />
-                                            <span className="font-heading font-bold text-xl tracking-wider uppercase italic">The Journey Continues...</span>
-                                        </div>
-                                        <p className="text-gray-500 text-sm mt-2 max-w-sm md:text-center italic">
-                                            Exploring the next frontiers of AI and building systems that matter.
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            );
-                        }
-
+                    {chunkedTimeline.map((chunk, rowIndex) => {
+                        const isReverseRow = rowIndex % 2 !== 0;
+                        const isLastRow = rowIndex === chunkedTimeline.length - 1;
+                        
                         return (
-                            <motion.div
-                                key={index}
-                                className={`flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                            >
-                                {/* Timeline Dot that lights up when scrolled into view */}
-                                <motion.div 
-                                    className="absolute left-8 md:left-1/2 w-5 h-5 rounded-full bg-background border-2 z-20"
-                                    style={{ x: "-50%" }}
-                                    initial={{ borderColor: "rgba(255,255,255,0.2)", boxShadow: "0 0 0px rgba(0,0,0,0)" }}
-                                    whileInView={{ 
-                                        borderColor: "#00D4FF",
-                                        backgroundColor: "#00D4FF",
-                                        boxShadow: "0 0 15px rgba(0,212,255,0.8)"
-                                    }}
-                                    transition={{ duration: 0.3 }}
-                                    viewport={{ once: true, margin: "-50% 0px -40% 0px" }}
-                                />
-
-                                {/* Content Card */}
-                                <div className="ml-16 md:ml-0 md:w-1/2 p-6 rounded-xl bg-surface/40 border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-all hover:bg-surface/80 group shadow-lg">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <span className="text-primary font-mono text-sm">{item.year}</span>
-                                        <motion.div
-                                            initial={{ rotate: 0 }}
-                                            whileHover={{ rotate: 15, scale: 1.1 }}
-                                            className="text-gray-400 group-hover:text-secondary transition-colors"
-                                        >
-                                            <item.icon size={18} />
-                                        </motion.div>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                                    <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                            <div key={rowIndex} className={`flex flex-col md:flex-row gap-8 relative ${isReverseRow ? 'md:flex-row-reverse' : ''}`}>
+                                
+                                {/* Horizontal connecting line (Desktop only) */}
+                                <div className="hidden md:block absolute top-1/2 left-[16.66%] right-[16.66%] h-1 bg-gradient-to-r from-primary/10 via-secondary/10 to-pink-500/10 -translate-y-1/2 rounded-full overflow-hidden z-0">
+                                    <motion.div 
+                                        className={`absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent ${isReverseRow ? 'via-secondary' : 'via-primary'} to-transparent opacity-80`}
+                                        animate={{ left: isReverseRow ? ["100%", "-50%"] : ["-50%", "100%"] }}
+                                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                    />
                                 </div>
+                                
+                                {/* Vertical Connector to next row (Desktop only) */}
+                                {!isLastRow && !isReverseRow && (
+                                    <div className="hidden md:block absolute right-[16.66%] top-1/2 w-1 h-[calc(100%+4rem)] bg-pink-500/10 overflow-hidden z-0">
+                                        <motion.div 
+                                            className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-pink-500 to-transparent opacity-80"
+                                            animate={{ top: ["-50%", "100%"] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                        />
+                                    </div>
+                                )}
+                                {!isLastRow && isReverseRow && (
+                                    <div className="hidden md:block absolute left-[16.66%] top-1/2 w-1 h-[calc(100%+4rem)] bg-primary/10 overflow-hidden z-0">
+                                        <motion.div 
+                                            className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-primary to-transparent opacity-80"
+                                            animate={{ top: ["-50%", "100%"] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                        />
+                                    </div>
+                                )}
 
-                                {/* Spacer for the other side */}
-                                <div className="hidden md:block md:w-1/2" />
-                            </motion.div>
+                                {chunk.map((item, colIndex) => {
+                                    const actualIndex = rowIndex * 3 + colIndex;
+                                    const delay = actualIndex * 0.1;
+
+                                    if (item.isFuture) {
+                                        return (
+                                            <motion.div
+                                                key={actualIndex}
+                                                className="w-full md:w-1/3 flex flex-col justify-center items-center text-center p-6 relative z-10 pl-16 md:pl-6"
+                                                initial={{ opacity: 0, scale: 0.9 }}
+                                                whileInView={{ opacity: 1, scale: 1 }}
+                                                viewport={{ once: true, margin: "-50px" }}
+                                                transition={{ duration: 0.5, delay }}
+                                            >
+                                                <div className="w-16 h-16 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_20px_rgba(236,72,153,0.5)] flex items-center justify-center text-secondary mb-4">
+                                                    <item.icon size={28} />
+                                                </div>
+                                                <h3 className="font-heading font-bold text-2xl tracking-wide uppercase italic text-secondary mb-2">{item.title}</h3>
+                                                <p className="text-gray-500 text-sm">{item.description}</p>
+                                            </motion.div>
+                                        );
+                                    }
+
+                                    return (
+                                        <motion.div
+                                            key={actualIndex}
+                                            className="w-full md:w-1/3 relative z-10 pl-16 md:pl-0"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, margin: "-50px" }}
+                                            transition={{ duration: 0.5, delay }}
+                                        >
+                                            <div className="h-full flex flex-col p-6 rounded-2xl bg-surface/60 border border-white/10 backdrop-blur-md hover:border-primary/40 hover:bg-surface/90 transition-all duration-300 group shadow-lg hover:shadow-primary/5 hover:-translate-y-2 relative z-10">
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <span className="text-primary font-mono text-xs font-semibold px-2 py-1 bg-primary/10 rounded">{item.year}</span>
+                                                    <motion.div
+                                                        whileHover={{ rotate: 15, scale: 1.2 }}
+                                                        className="text-gray-400 group-hover:text-secondary transition-colors"
+                                                    >
+                                                        <item.icon size={20} />
+                                                    </motion.div>
+                                                </div>
+                                                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors leading-tight">{item.title}</h3>
+                                                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
                         );
                     })}
                 </div>
