@@ -12,6 +12,7 @@ import {
     FaBrain, FaCodeBranch, FaPaintBrush
 } from 'react-icons/fa';
 import { Cpu, Database, Server, PieChart, Cloud, Code } from 'lucide-react';
+import notionData from '../../data/notion-data.json';
 
 const iconMap = {
     "Python": <SiPython className="text-[#3776AB]" />,
@@ -44,81 +45,20 @@ const iconMap = {
     "UI/UX": <FaPaintBrush className="text-pink-400" />
 };
 
-// Truthful, self-assessed F-Scores (Importance) for the Feature Importance Plot
-const initialSkillDomains = [
-    {
-        domain: "Machine Learning",
-        icon: <Cpu size={20} />,
-        importance: 0.92, // Fallback if API fails
-        githubLanguages: ["Jupyter Notebook", "Python"],
-        description: "Designing predictive models, classification systems, and decision engines to solve complex business problems.",
-        items: ["Python", "Scikit-Learn", "Statistical Analysis", "Feature Engineering", "Time Series", "ARIMA", "XGBoost", "SMOTE"],
-        impactMetrics: [
-            { label: "Predictive Models Built", value: "5+" },
-            { label: "Peak AUC-ROC Achieved", value: "0.81" }
-        ]
-    },
-    {
-        domain: "Data Engineering",
-        icon: <Database size={20} />,
-        importance: 0.85,
-        githubLanguages: ["Python", "SQL"],
-        description: "Wrangling messy, unstructured data into clean pipelines and optimizing queries for high-throughput analysis.",
-        items: ["Pandas", "NumPy", "SQL", "MongoDB"],
-        impactMetrics: [
-            { label: "Records Analyzed", value: "10k+" },
-            { label: "Pipelines Automated", value: "3" }
-        ]
-    },
-    {
-        domain: "Backend Architecture",
-        icon: <Server size={20} />,
-        importance: 0.88,
-        githubLanguages: ["Python", "Java", "C"],
-        description: "Building resilient, high-performance APIs and microservices to serve machine learning models at scale.",
-        items: ["FastAPI", "Python", "Java", "C", "Git"],
-        impactMetrics: [
-            { label: "REST APIs Deployed", value: "2" },
-            { label: "System Availability", value: "99.9%" }
-        ]
-    },
-    {
-        domain: "Data Visualization",
-        icon: <PieChart size={20} />,
-        importance: 0.80,
-        githubLanguages: ["Jupyter Notebook", "HTML"],
-        description: "Translating raw algorithmic outputs into intuitive, actionable intelligence dashboards for stakeholders.",
-        items: ["Matplotlib", "Seaborn", "Power BI", "Jupyter Notebook", "Google Colab", "DAX"],
-        impactMetrics: [
-            { label: "Dashboards Created", value: "4" },
-            { label: "Stakeholder Reports", value: "10+" }
-        ]
-    },
-    {
-        domain: "Cloud & MLOps",
-        icon: <Cloud size={20} />,
-        importance: 0.75,
-        githubLanguages: ["Python", "Shell", "Dockerfile"],
-        description: "Deploying and scaling machine learning pipelines in cloud environments, ensuring uptime and continuous integration.",
-        items: ["Git/GitHub", "FastAPI", "Optuna"],
-        impactMetrics: [
-            { label: "Deployments Managed", value: "5" },
-            { label: "Hyperparam Trials", value: "100+" }
-        ]
-    },
-    {
-        domain: "App Development",
-        icon: <Code size={20} />,
-        importance: 0.70,
-        githubLanguages: ["JavaScript", "HTML", "CSS", "TypeScript"],
-        description: "Building responsive frontend interfaces and seamless full-stack integrations to bring data insights directly to users.",
-        items: ["React", "Tailwind CSS", "UI/UX"],
-        impactMetrics: [
-            { label: "Web Apps Shipped", value: "3" },
-            { label: "Lighthouse Score", value: "95+" }
-        ]
-    }
-].sort((a, b) => b.importance - a.importance);
+const domainIconMap = {
+    Cpu: <Cpu size={20} />,
+    Database: <Database size={20} />,
+    Server: <Server size={20} />,
+    PieChart: <PieChart size={20} />,
+    Cloud: <Cloud size={20} />,
+    Code: <Code size={20} />
+};
+
+// Map the Notion data to the expected format
+const initialSkillDomains = notionData.skills.map(domain => ({
+    ...domain,
+    icon: domainIconMap[domain.iconString] || <Cpu size={20} />
+})).sort((a, b) => b.importance - a.importance);
 
 // Removed CustomTooltip as we are building bespoke UI
 

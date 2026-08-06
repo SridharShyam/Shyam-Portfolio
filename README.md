@@ -8,6 +8,28 @@ This repository houses the frontend architecture of Shyametrics, but the code yo
 
 ---
 
+## 🏗️ Architecture & Stack
+
+This portfolio is not just a static site; it is a **Headless CMS-powered Application** built for dynamic content management.
+
+- **Frontend Engine**: React + Vite
+- **Styling & Animations**: Tailwind CSS + Framer Motion (Directional-Aware 3D Flips, Liquid Gradients)
+- **Headless CMS**: Notion API (Journey, Skills, and Learning content are dynamically hydrated at build time)
+- **Structure**: Clean Feature-Based Component Architecture
+
+### Component Architecture
+```text
+src/
+ ├── components/
+ │    ├── layout/      # Persistent shells (Navbar, Footer)
+ │    ├── sections/    # Major page blocks (Hero, About, MLOps/Learning, Projects)
+ │    └── ui/          # Granular widgets (TerminalModal, Toast)
+ ├── data/             # JSON hydration from Notion
+ └── scripts/          # Node.js data fetching pipeline
+```
+
+---
+
 ## 🔍 The Philosophy: Question First, Model Second
 
 Before I touch a dataset, I write the question the model needs to answer—and define who acts on the answer. A model without a decision-maker is just a science experiment.
@@ -19,32 +41,39 @@ Inside Shyametrics, you won't just find performance metrics; you will find the a
 - **Given everything a user already owns, what should they wear, reuse, avoid buying, or purchase next?**
 - **Can clinical biomarkers alone predict liver disease stage accurately enough to inform early intervention?**
 
+---
+
 ## 🌐 Three Domains, One Lens
 
 I build across three distinct verticals. They may seem unrelated on the surface, but the core decision-support problem is identical in all three: *turning messy, unstructured data into the right next action.*
 
 ### 👗 FashionTech
-
 *Style is data. Personal fit is a prediction problem.*
 Explore systems that go beyond clothing recognition. Discover architecture that converts wardrobe images into structured intelligence to generate ranked recommendations for what to wear, purchase, or design next.
 
 ### 🏥 HealthTech
-
 *AI should flag risk before a doctor has to guess.*
 Dive into predictive health analytics that track patient trajectories to identify high-risk conditions before critical symptoms appear, accelerating diagnostic triage and optimizing clinical resource allocation.
 
 ### 🎓 CareerTech
-
 *Career decisions deserve the same rigour as medical ones.*
 See how generic career advice is replaced with personalized trajectory modeling, improving user retention on job platforms and increasing the success rate of upskilling recommendations.
+
+---
+
+## ⚙️ MLOps & Production Deployments
+
+Shifting away from Jupyter Notebooks, my current focus is on **Production-Grade MLOps**. 
+- **End-to-End MLOps Pipelines** (CI/CD, MLflow, AWS)
+- **Model Serving & API Architecture** (FastAPI, Redis)
+- **Data Engineering for AI** (Airflow, PySpark)
+- **LLM Orchestration & RAG** (LangChain, Vector DBs)
 
 ---
 
 ## 🚀 Experience the Intelligence
 
 You could browse the source code here, but that only tells half the story. To truly understand how these systems drive decisions, you need to see them in action.
-
-Shyametrics features interactive case studies, architectural breakdowns, and the exact business impacts of these models.
 
 **Curious to see the answers?**
 

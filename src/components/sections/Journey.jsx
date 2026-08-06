@@ -1,67 +1,20 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap } from 'lucide-react';
+import { Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap, Star } from 'lucide-react';
+import notionData from '../../data/notion-data.json';
+
+const iconMap = {
+    Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, BookOpen, Code, Zap, Star
+};
 
 const Journey = () => {
     const containerRef = useRef(null);
 
-    const timeline = [
-        {
-            year: "2023 (Foundation Phase)",
-            title: "The Foundation",
-            description: "Wrote my first lines of code and immediately gravitated towards data structures, probabilistic models, and the mechanics of machine learning.",
-            icon: Lightbulb,
-        },
-        {
-            year: "2024 (Skill Building Phase)",
-            title: "AI & Data Science Immersion",
-            description: "Mastered foundational Data Science and AI concepts, focusing on Python, Pandas, and Scikit-Learn to build functional predictive models.",
-            icon: BookOpen,
-        },
-        {
-            year: "2024 (Mid – Practical Exposure)",
-            title: "Inplant Training – CIRF",
-            description: "Gained hands-on experience in exploratory data analysis, data science workflows, and real-world datasets.",
-            icon: TrendingUp,
-        },
-        {
-            year: "Feb 2025",
-            title: "Student Immersion (SEC × UTP, Malaysia)",
-            description: "Selected for an international student immersion programme in collaboration with UTP, Malaysia, gaining global exposure and collaborative experience.",
-            icon: Globe,
-        },
-        {
-            year: "Oct 2025 (Growth & Recognition)",
-            title: "Finalist — TNStartify 3.0",
-            description: "Recognized as a finalist for developing innovative solutions in TNStartify 3.0.",
-            icon: Award,
-        },
-        {
-            year: "Oct 2025 - Present",
-            title: "Innovation Vertical Chair — YUVA Club",
-            description: "Leading innovation initiatives, organizing projects, and driving a culture of problem-solving within YUVA Club.",
-            icon: Users,
-        },
-        {
-            year: "Aug 2025 - Dec 2025",
-            title: "QuodeSchool Engineering Trainee",
-            description: "Built foundational software engineering competencies, transitioning from theoretical data science to production-ready code architecture.",
-            icon: Code,
-        },
-        {
-            year: "Jan 2026 - Jun 2026",
-            title: "AI Forward Intern — QuodeWorks",
-            description: "Contributing to advanced AI initiatives and real-world machine learning solutions.",
-            icon: Rocket,
-        },
-        {
-            year: "Beyond 2026",
-            title: "The Horizon",
-            description: "Exploring the next frontiers of AI and building systems that matter.",
-            icon: Sparkles,
-            isFuture: true
-        },
-    ];
+    // Load timeline from Notion data and map the icon string to the actual component
+    const timeline = notionData.journey.map(item => ({
+        ...item,
+        icon: iconMap[item.iconString] || Star
+    }));
 
     // Chunk timeline into groups of 3 for desktop
     const chunkedTimeline = [];

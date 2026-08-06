@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react';
-import { useToast } from '../context/ToastContext';
-
+import { useToast } from '../../context/ToastContext';
 const iconMap = {
     success: <CheckCircle2 className="text-green-400" size={20} />,
     error: <AlertCircle className="text-red-400" size={20} />,

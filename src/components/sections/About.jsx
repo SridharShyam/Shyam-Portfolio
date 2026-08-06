@@ -15,10 +15,10 @@ const About = () => {
     const isInView = useInView(ref, { once: true, amount: 0.3 });
 
     const achievements = [
-        "TNStartify 3.0 Finalist",
-        "Building End-to-End AI Systems | ML | EDA | Power BI.",
-        "Data Science & ML Focus",
-        "Hands-on Learning & Building",
+        "Architecting Scalable AI Pipelines",
+        "TNStartify 3.0 Finalist (Innovation)",
+        "Bridging Data Science & Systems",
+        "Production-Ready ML Deployments",
     ];
 
     return (

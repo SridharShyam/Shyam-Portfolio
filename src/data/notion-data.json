@@ -1,0 +1,234 @@
+{
+  "journey": [
+    {
+      "year": "2023 (Foundation Phase)",
+      "title": "The Foundation",
+      "description": "Wrote my first lines of code and immediately gravitated towards data structures, probabilistic models, and the mechanics of machine learning.",
+      "iconString": "Lightbulb",
+      "isFuture": false
+    },
+    {
+      "year": "2024 (Skill Building Phase)",
+      "title": "AI & Data Science Immersion",
+      "description": "Mastered foundational Data Science and AI concepts, focusing on Python, Pandas, and Scikit-Learn to build functional predictive models.",
+      "iconString": "BookOpen",
+      "isFuture": false
+    },
+    {
+      "year": "2024 (Mid – Practical Exposure)",
+      "title": "Inplant Training – CIRF",
+      "description": "Gained hands-on experience in exploratory data analysis, data science workflows, and real-world datasets.",
+      "iconString": "TrendingUp",
+      "isFuture": false
+    },
+    {
+      "year": "Feb 2025",
+      "title": "Student Immersion (SEC × UTP, Malaysia)",
+      "description": "Selected for an international student immersion programme in collaboration with UTP, Malaysia, gaining global exposure and collaborative experience.",
+      "iconString": "Globe",
+      "isFuture": false
+    },
+    {
+      "year": "Oct 2025 (Growth & Recognition)",
+      "title": "Finalist — TNStartify 3.0",
+      "description": "Recognized as a finalist for developing innovative solutions in TNStartify 3.0.",
+      "iconString": "Award",
+      "isFuture": false
+    },
+    {
+      "year": "Oct 2025 - Present",
+      "title": "Innovation Vertical Chair — YUVA Club",
+      "description": "Leading innovation initiatives, organizing projects, and driving a culture of problem-solving within YUVA Club.",
+      "iconString": "Users",
+      "isFuture": false
+    },
+    {
+      "year": "Aug 2025 - Dec 2025",
+      "title": "QuodeSchool Engineering Trainee",
+      "description": "Built foundational software engineering competencies, transitioning from theoretical data science to production-ready code architecture.",
+      "iconString": "Code",
+      "isFuture": false
+    },
+    {
+      "year": "Jan 2026 - Jun 2026",
+      "title": "AI Forward Intern — QuodeWorks",
+      "description": "Contributing to advanced AI initiatives and real-world machine learning solutions.",
+      "iconString": "Rocket",
+      "isFuture": false
+    },
+    {
+      "year": "Beyond 2026",
+      "title": "The Horizon",
+      "description": "Exploring the next frontiers of AI and building systems that matter.",
+      "iconString": "Sparkles",
+      "isFuture": true
+    }
+  ],
+  "skills": [
+    {
+      "domain": "App Development",
+      "iconString": "Code",
+      "importance": 0.7,
+      "githubLanguages": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "TypeScript"
+      ],
+      "description": "Building responsive frontend interfaces and seamless full-stack integrations to bring data insights directly to users.",
+      "items": [
+        "React",
+        "Tailwind CSS",
+        "UI/UX"
+      ],
+      "impactMetrics": [
+        {
+          "label": "Web Apps Shipped",
+          "value": "3"
+        },
+        {
+          "label": "Lighthouse Score",
+          "value": "95+"
+        }
+      ]
+    },
+    {
+      "domain": "Cloud & MLOps",
+      "iconString": "Cloud",
+      "importance": 0.75,
+      "githubLanguages": [
+        "Python",
+        "Shell",
+        "Dockerfile"
+      ],
+      "description": "Deploying and scaling machine learning pipelines in cloud environments, ensuring uptime and continuous integration.",
+      "items": [
+        "Git/GitHub",
+        "FastAPI",
+        "Optuna"
+      ],
+      "impactMetrics": [
+        {
+          "label": "Deployments Managed",
+          "value": "5"
+        },
+        {
+          "label": "Hyperparam Trials",
+          "value": "100+"
+        }
+      ]
+    },
+    {
+      "domain": "Data Visualization",
+      "iconString": "PieChart",
+      "importance": 0.8,
+      "githubLanguages": [
+        "Jupyter Notebook",
+        "HTML"
+      ],
+      "description": "Translating raw algorithmic outputs into intuitive, actionable intelligence dashboards for stakeholders.",
+      "items": [
+        "Matplotlib",
+        "Seaborn",
+        "Power BI",
+        "Jupyter Notebook",
+        "Google Colab",
+        "DAX"
+      ],
+      "impactMetrics": [
+        {
+          "label": "Dashboards Created",
+          "value": "4"
+        },
+        {
+          "label": "Stakeholder Reports",
+          "value": "10+"
+        }
+      ]
+    },
+    {
+      "domain": "Backend Architecture",
+      "iconString": "Server",
+      "importance": 0.88,
+      "githubLanguages": [
+        "Python",
+        "Java",
+        "C"
+      ],
+      "description": "Building resilient, high-performance APIs and microservices to serve machine learning models at scale.",
+      "items": [
+        "FastAPI",
+        "Python",
+        "Java",
+        "C",
+        "Git"
+      ],
+      "impactMetrics": [
+        {
+          "label": "REST APIs Deployed",
+          "value": "2"
+        },
+        {
+          "label": "System Availability",
+          "value": "99.9%"
+        }
+      ]
+    },
+    {
+      "domain": "Data Engineering",
+      "iconString": "Database",
+      "importance": 0.85,
+      "githubLanguages": [
+        "Python",
+        "SQL"
+      ],
+      "description": "Wrangling messy, unstructured data into clean pipelines and optimizing queries for high-throughput analysis.",
+      "items": [
+        "Pandas",
+        "NumPy",
+        "SQL",
+        "MongoDB"
+      ],
+      "impactMetrics": [
+        {
+          "label": "Records Analyzed",
+          "value": "10k+"
+        },
+        {
+          "label": "Pipelines Automated",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "domain": "Machine Learning",
+      "iconString": "Cpu",
+      "importance": 0.92,
+      "githubLanguages": [
+        "Jupyter Notebook",
+        "Python"
+      ],
+      "description": "Designing predictive models, classification systems, and decision engines to solve complex business problems.",
+      "items": [
+        "Python",
+        "Scikit-Learn",
+        "Statistical Analysis",
+        "Feature Engineering",
+        "Time Series",
+        "ARIMA",
+        "XGBoost",
+        "SMOTE"
+      ],
+      "impactMetrics": [
+        {
+          "label": "Predictive Models Built",
+          "value": "5+"
+        },
+        {
+          "label": "Peak AUC-ROC Achieved",
+          "value": "0.81"
+        }
+      ]
+    }
+  ]
+}

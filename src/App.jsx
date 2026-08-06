@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import { ToastProvider } from './context/ToastContext';
-import Toast from './components/Toast';
-import ScrollToTop from './components/ScrollToTop';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Journey from './components/Journey';
-import Learning from './components/Learning';
-import Vision from './components/Vision';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Toast from './components/ui/Toast';
+import ScrollToTop from './components/layout/ScrollToTop';
+import Hero from './components/sections/Hero';
+import About from './components/sections/About';
+import Skills from './components/sections/Skills';
+import Projects from './components/sections/Projects';
+import Journey from './components/sections/Journey';
+import Learning from './components/sections/Learning';
+import Contact from './components/sections/Contact';
+import Footer from './components/layout/Footer';
 
 function App() {
   useEffect(() => {
@@ -34,7 +33,6 @@ function App() {
         <Projects />
         <Journey />
         <Learning />
-        <Vision />
         <Contact />
         <Footer />
         <ScrollToTop />

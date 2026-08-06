@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Send } from 'lucide-react';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../../context/ToastContext';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -75,7 +75,7 @@ const Contact = () => {
                             Let's Build <br /><span className="text-primary">Something Meaningful</span>
                         </h2>
                         <p className="text-gray-400 leading-relaxed text-lg">
-                            If you have a project idea, collaboration opportunity, or just want to connect, feel free to reach out. I'm always open to working on AI, data science, and impactful tech solutions.
+                            Whether you need to architect a predictive engine from scratch, scale an existing ML pipeline, or simply talk data strategy, let's connect. I'm actively looking for opportunities to deploy high-impact AI in production.
                         </p>
                     </div>
 

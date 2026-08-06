@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ArrowRight, Download, ExternalLink, Terminal } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import TerminalModal from './TerminalModal';
+import TerminalModal from '../ui/TerminalModal';
 
 const taglines = [
     "Wardrobe intelligence. Health risk signals. Career decision support.",
