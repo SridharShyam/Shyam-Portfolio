@@ -6,7 +6,6 @@
   "scripts": {
     "predev": "node scripts/fetch-notion.js",
     "dev": "vite",
-    "prebuild": "node scripts/fetch-notion.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
