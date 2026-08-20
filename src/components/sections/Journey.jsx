@@ -58,33 +58,63 @@ const Journey = () => {
                         const isReverseRow = rowIndex % 2 !== 0;
                         const isLastRow = rowIndex === chunkedTimeline.length - 1;
                         
+                        let horizontalLeft = '16.66%';
+                        let horizontalRight = '16.66%';
+                        let showHorizontal = true;
+
+                        if (isLastRow) {
+                            if (chunk.length === 1) showHorizontal = false;
+                            else if (chunk.length === 2) {
+                                if (isReverseRow) horizontalLeft = '50%';
+                                else horizontalRight = '50%';
+                            }
+                        }
+
+                        const dropDownPosition = !isReverseRow ? { right: '16.66%' } : { left: '16.66%' };
+                        const dropInPosition = isReverseRow ? { right: '16.66%' } : { left: '16.66%' };
+                        
                         return (
                             <div key={rowIndex} className={`flex flex-col md:flex-row gap-8 relative ${isReverseRow ? 'md:flex-row-reverse' : ''}`}>
                                 
                                 {/* Horizontal connecting line (Desktop only) */}
-                                <div className="hidden md:block absolute top-1/2 left-[16.66%] right-[16.66%] h-1 bg-gradient-to-r from-primary/10 via-secondary/10 to-pink-500/10 -translate-y-1/2 rounded-full overflow-hidden z-0">
-                                    <motion.div 
-                                        className={`absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent ${isReverseRow ? 'via-secondary' : 'via-primary'} to-transparent opacity-80`}
-                                        animate={{ left: isReverseRow ? ["100%", "-50%"] : ["-50%", "100%"] }}
-                                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                                    />
-                                </div>
-                                
-                                {/* Vertical Connector to next row (Desktop only) */}
-                                {!isLastRow && !isReverseRow && (
-                                    <div className="hidden md:block absolute right-[16.66%] top-1/2 w-1 h-[calc(100%+4rem)] bg-pink-500/10 overflow-hidden z-0">
+                                {showHorizontal && (
+                                    <div 
+                                        className="hidden md:block absolute top-1/2 h-1 bg-gradient-to-r from-primary/10 via-secondary/10 to-pink-500/10 -translate-y-1/2 rounded-full overflow-hidden z-0"
+                                        style={{ left: horizontalLeft, right: horizontalRight }}
+                                    >
                                         <motion.div 
-                                            className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-pink-500 to-transparent opacity-80"
-                                            animate={{ top: ["-50%", "100%"] }}
+                                            className={`absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent ${isReverseRow ? 'via-secondary' : 'via-primary'} to-transparent opacity-80`}
+                                            animate={{ left: isReverseRow ? ["100%", "-50%"] : ["-50%", "100%"] }}
+                                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                        />
+                                    </div>
+                                )}
+                                
+                                {/* Vertical Drop-In from previous row (Desktop only) */}
+                                {rowIndex > 0 && (
+                                    <div 
+                                        className="hidden md:block absolute top-[-2rem] w-1 h-[calc(50%+2rem)] overflow-hidden z-0"
+                                        style={{ ...dropInPosition, backgroundColor: isReverseRow ? 'rgba(236,72,153,0.1)' : 'rgba(0,199,183,0.1)' }}
+                                    >
+                                        <motion.div 
+                                            className="absolute left-0 right-0 h-full opacity-80"
+                                            style={{ background: `linear-gradient(to bottom, transparent, ${isReverseRow ? '#ec4899' : '#00c7b7'}, transparent)` }}
+                                            animate={{ top: ["-100%", "100%"] }}
                                             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                                         />
                                     </div>
                                 )}
-                                {!isLastRow && isReverseRow && (
-                                    <div className="hidden md:block absolute left-[16.66%] top-1/2 w-1 h-[calc(100%+4rem)] bg-primary/10 overflow-hidden z-0">
+
+                                {/* Vertical Drop-Down to next row (Desktop only) */}
+                                {!isLastRow && (
+                                    <div 
+                                        className="hidden md:block absolute top-1/2 w-1 h-[calc(50%+2rem)] overflow-hidden z-0"
+                                        style={{ ...dropDownPosition, backgroundColor: !isReverseRow ? 'rgba(236,72,153,0.1)' : 'rgba(0,199,183,0.1)' }}
+                                    >
                                         <motion.div 
-                                            className="absolute left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-primary to-transparent opacity-80"
-                                            animate={{ top: ["-50%", "100%"] }}
+                                            className="absolute left-0 right-0 h-full opacity-80"
+                                            style={{ background: `linear-gradient(to bottom, transparent, ${!isReverseRow ? '#ec4899' : '#00c7b7'}, transparent)` }}
+                                            animate={{ top: ["-100%", "100%"] }}
                                             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                                         />
                                     </div>
