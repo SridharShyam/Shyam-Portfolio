@@ -70,12 +70,15 @@ const Contact = () => {
                     className="space-y-8"
                 >
                     <div>
-                        <span className="text-secondary font-mono text-sm uppercase tracking-widest">Get In Touch</span>
-                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mt-3 mb-6">
-                            Let's Build <br /><span className="text-primary">Something Meaningful</span>
+                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
+                            <Mail size={14} className="text-primary" />
+                            GET IN TOUCH // COLLABORATION & INQUIRIES
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mb-6">
+                            Let's Build <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Something Impactful</span>
                         </h2>
-                        <p className="text-gray-400 leading-relaxed text-lg">
-                            Whether you need to architect a predictive engine from scratch, scale an existing ML pipeline, or simply talk data strategy, let's connect. I'm actively looking for opportunities to deploy high-impact AI in production.
+                        <p className="text-gray-400 leading-relaxed text-base md:text-lg">
+                            Whether you need to architect a predictive engine from scratch, scale an existing ML pipeline, or talk data strategy, let's connect. I'm actively seeking opportunities to deploy high-impact AI systems.
                         </p>
                     </div>
 
@@ -117,8 +120,10 @@ const Contact = () => {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-2xl shadow-xl"
+                    className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden"
                 >
+                    {/* Ambient Top Glow Line */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-purple-500 to-secondary" />
                             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>

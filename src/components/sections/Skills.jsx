@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// Recharts removed for bespoke UI
 import { 
     SiPython, SiPandas, SiNumpy, SiScikitlearn, 
     SiFastapi, SiMongodb, SiJupyter, SiGooglecolab, SiC,
@@ -11,7 +10,7 @@ import {
     FaGithub, FaChartArea, FaChartLine, FaJava,
     FaBrain, FaCodeBranch, FaPaintBrush
 } from 'react-icons/fa';
-import { Cpu, Database, Server, PieChart, Cloud, Code } from 'lucide-react';
+import { Cpu, Database, Server, PieChart, Cloud, Code, Sparkles, Activity, CheckCircle2 } from 'lucide-react';
 import notionData from '../../data/notion-data.json';
 
 const iconMap = {
@@ -54,13 +53,10 @@ const domainIconMap = {
     Code: <Code size={20} />
 };
 
-// Map the Notion data to the expected format
 const initialSkillDomains = notionData.skills.map(domain => ({
     ...domain,
     icon: domainIconMap[domain.iconString] || <Cpu size={20} />
 })).sort((a, b) => b.importance - a.importance);
-
-// Removed CustomTooltip as we are building bespoke UI
 
 const Skills = () => {
     const [skillDomains, setSkillDomains] = useState(initialSkillDomains);
@@ -70,12 +66,10 @@ const Skills = () => {
     useEffect(() => {
         const fetchGithubStats = async () => {
             try {
-                // Fetch public repos for SridharShyam
                 const response = await fetch('https://api.github.com/users/SridharShyam/repos?per_page=100');
                 if (!response.ok) return;
                 const repos = await response.json();
                 
-                // Aggregate size (in KB) by primary language across all repos
                 const langSizes = {};
                 repos.forEach(repo => {
                     if (repo.language) {
@@ -83,34 +77,25 @@ const Skills = () => {
                     }
                 });
 
-                // Calculate domain sizes
                 const rawDomains = initialSkillDomains.map(domain => {
                     let domainSize = 0;
                     domain.githubLanguages.forEach(lang => {
                         if (langSizes[lang]) domainSize += langSizes[lang];
                     });
 
-                    // Add domain-specific weighting to balance the visualization
                     let modifier = 1.0;
                     if (domain.domain === "Machine Learning") modifier = 1.2;
-                    if (domain.domain === "App Development") modifier = 1.5; // JS repos are usually smaller
-                    if (domain.domain === "Cloud & MLOps") modifier = 1.8; // Infrastructure code is small
+                    if (domain.domain === "App Development") modifier = 1.5;
+                    if (domain.domain === "Cloud & MLOps") modifier = 1.8;
 
                     return { ...domain, rawSize: domainSize * modifier };
                 });
 
-                // Find max for relative scaling so the top skill is near 1.0
                 const maxRawSize = Math.max(...rawDomains.map(d => d.rawSize));
 
                 const updatedDomains = rawDomains.map(domain => {
-                    // Calculate a relative score driven by GitHub data (0 to 1.0)
                     let githubScore = maxRawSize > 0 ? (domain.rawSize / maxRawSize) : 0;
-                    
-                    // Blend the GitHub empirical score (40%) with the self-assessed baseline (60%)
-                    // This prevents domains with 0 public bytes (like private repo work) from bottoming out completely.
                     let blendedScore = (githubScore * 0.4) + (domain.importance * 0.6);
-                    
-                    // Bound the final score between 0.45 and 0.98 for visual aesthetics
                     let boundedScore = Math.min(Math.max(blendedScore, 0.45), 0.98);
 
                     return { ...domain, importance: boundedScore };
@@ -118,7 +103,7 @@ const Skills = () => {
 
                 const sortedDomains = updatedDomains.sort((a, b) => b.importance - a.importance);
                 setSkillDomains(sortedDomains);
-                setActiveDomain(sortedDomains[0]); // Reset active to the new #1
+                setActiveDomain(sortedDomains[0]);
                 setIsLive(true);
             } catch (error) {
                 console.error("Error fetching GitHub stats", error);
@@ -129,48 +114,58 @@ const Skills = () => {
     }, []);
 
     return (
-        <section id="skills" className="py-32 bg-background relative overflow-hidden">
-            {/* Background Gradients */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <section id="skills" className="py-28 bg-background relative overflow-hidden">
+            {/* Background Radial Glow Orbs */}
+            <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[550px] h-[550px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
+                
+                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="mb-16 text-left"
                 >
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
+                        <Activity size={14} className="text-secondary" />
+                        TECHNICAL PROFICIENCY // MODEL FEATURE IMPORTANCE
+                    </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Feature</span> Importance
+                        Empirical <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Skill Architecture</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl text-lg">
-                        A multi-dimensional view of my technical proficiency, mapped as a model feature importance plot. I don't just write scripts; I architect complete decision-support ecosystems.
+                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed">
+                        A multi-dimensional view of my technical proficiency, structured as a machine learning feature importance plot dynamically weighted by GitHub repository data.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     
-                    {/* Left Side: Premium Bespoke Feature Importance Plot */}
+                    {/* Left Column: Feature Importance Plot Card */}
                     <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-5 h-full bg-surface/30 rounded-2xl border border-white/5 relative glass-card p-6 md:p-8 flex flex-col"
+                        transition={{ duration: 0.7 }}
+                        className="lg:col-span-5 h-full bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 md:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden"
                     >
-                        <div className="flex justify-between items-end mb-6 border-b border-white/5 pb-2">
-                            <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
-                                Relative Proficiency (F-Score)
-                            </h3>
+                        <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+                            <div>
+                                <h3 className="text-xs font-mono text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-2">
+                                    <Sparkles size={14} className="text-primary" />
+                                    Relative Proficiency (F-Score)
+                                </h3>
+                            </div>
                             {isLive && (
-                                <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded border border-emerald-400/20">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                    Live via GitHub API
+                                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                    Live Sync
                                 </div>
                             )}
                         </div>
                         
-                        <div className="flex-1 w-full flex flex-col gap-6 py-4 justify-center">
+                        <div className="flex-1 w-full flex flex-col gap-6 justify-center">
                             {skillDomains.map((entry, index) => {
                                 const isActive = activeDomain.domain === entry.domain;
                                 return (
@@ -180,27 +175,34 @@ const Skills = () => {
                                         onMouseEnter={() => setActiveDomain(entry)}
                                         onClick={() => setActiveDomain(entry)}
                                     >
-                                        {/* Domain Label (Left Aligned) */}
-                                        <div className={`flex-shrink-0 w-32 md:w-44 text-right pr-4 text-xs md:text-sm font-medium leading-tight transition-colors ${isActive ? 'text-primary' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                                        {/* Domain Title */}
+                                        <div className={`flex-shrink-0 w-32 md:w-40 text-right pr-4 text-xs md:text-sm font-medium leading-tight transition-colors duration-300 ${isActive ? 'text-primary font-bold' : 'text-gray-400 group-hover:text-gray-200'}`}>
                                             {entry.domain}
                                         </div>
                                         
-                                        {/* Bar Track */}
-                                        <div className="flex-1 h-3 bg-white/5 rounded-full relative overflow-visible">
-                                            {/* Animated Bar Fill */}
+                                        {/* Bar Container */}
+                                        <div className="flex-1 h-3.5 bg-white/5 rounded-full relative overflow-visible backdrop-blur-sm">
                                             <motion.div 
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: `${entry.importance * 100}%` }}
-                                                transition={{ duration: 1.2, ease: "easeOut", delay: index * 0.15 }}
+                                                transition={{ duration: 1.2, ease: "easeOut", delay: index * 0.1 }}
                                                 viewport={{ once: true }}
-                                                className={`absolute top-0 left-0 h-full rounded-full transition-colors duration-500 ${isActive ? 'bg-gradient-to-r from-primary to-purple-500 shadow-[0_0_20px_rgba(0,212,255,0.6)]' : 'bg-white/20 group-hover:bg-white/40'}`}
+                                                className={`absolute top-0 left-0 h-full rounded-full transition-all duration-500 ${
+                                                    isActive 
+                                                        ? 'bg-gradient-to-r from-primary via-purple-500 to-secondary shadow-[0_0_20px_rgba(236,72,153,0.5)]' 
+                                                        : 'bg-white/20 group-hover:bg-white/40'
+                                                }`}
                                             >
-                                                {/* Glowing Data Node at tip */}
-                                                <div className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full border-2 border-background transition-all duration-500 ${isActive ? 'bg-white shadow-[0_0_15px_white] scale-110' : 'bg-gray-400 opacity-0 group-hover:opacity-100'}`} />
+                                                {/* Animated Tip Dot */}
+                                                <div className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full border-2 border-background transition-all duration-500 ${
+                                                    isActive 
+                                                        ? 'bg-white shadow-[0_0_15px_white] scale-125' 
+                                                        : 'bg-gray-400 opacity-0 group-hover:opacity-100'
+                                                }`} />
                                             </motion.div>
                                         </div>
                                         
-                                        {/* F-Score (Right Aligned) */}
+                                        {/* F-Score */}
                                         <div className={`w-14 text-left pl-4 font-mono text-xs md:text-sm transition-colors duration-300 ${isActive ? 'text-white font-bold' : 'text-gray-500 group-hover:text-gray-300'}`}>
                                             {entry.importance.toFixed(2)}
                                         </div>
@@ -208,83 +210,113 @@ const Skills = () => {
                                 );
                             })}
                         </div>
+
+                        <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-500">
+                            <span>* Model weights updated via GitHub</span>
+                            <span>Scale: 0.00 - 1.00</span>
+                        </div>
                     </motion.div>
 
-                    {/* Right Side: Interactive Selection & Details */}
+                    {/* Right Column: Interactive Selectors & Detail Card */}
                     <div className="lg:col-span-7 h-full flex flex-col gap-6">
                         
-                        {/* Domain Selectors */}
-                        <div className="grid grid-cols-2 gap-4 mb-4">
-                            {skillDomains.map((domain) => (
-                                <button
-                                    key={domain.domain}
-                                    onClick={() => setActiveDomain(domain)}
-                                    onMouseEnter={() => setActiveDomain(domain)}
-                                    className={`flex items-center gap-3 p-4 rounded-xl border transition-all duration-300 text-left ${
-                                        activeDomain.domain === domain.domain 
-                                            ? 'bg-primary/10 border-primary shadow-[0_0_20px_rgba(0,212,255,0.15)]' 
-                                            : 'bg-surface/50 border-white/5 hover:border-white/20 hover:bg-surface'
-                                    }`}
-                                >
-                                    <div className={`${activeDomain.domain === domain.domain ? 'text-primary' : 'text-gray-400'}`}>
-                                        {domain.icon}
-                                    </div>
-                                    <span className={`font-medium ${activeDomain.domain === domain.domain ? 'text-white' : 'text-gray-400'}`}>
-                                        {domain.domain}
-                                    </span>
-                                </button>
-                            ))}
+                        {/* Domain Pills */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            {skillDomains.map((domain) => {
+                                const isActive = activeDomain.domain === domain.domain;
+                                return (
+                                    <button
+                                        key={domain.domain}
+                                        onClick={() => setActiveDomain(domain)}
+                                        onMouseEnter={() => setActiveDomain(domain)}
+                                        className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 text-left backdrop-blur-md ${
+                                            isActive 
+                                                ? 'bg-primary/10 border-primary/50 shadow-[0_0_20px_rgba(236,72,153,0.2)]' 
+                                                : 'bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.05]'
+                                        }`}
+                                    >
+                                        <div className={`p-2 rounded-lg ${isActive ? 'bg-primary/20 text-primary' : 'bg-white/5 text-gray-400'}`}>
+                                            {domain.icon}
+                                        </div>
+                                        <span className={`text-xs md:text-sm font-medium ${isActive ? 'text-white font-semibold' : 'text-gray-400'}`}>
+                                            {domain.domain}
+                                        </span>
+                                    </button>
+                                );
+                            })}
                         </div>
 
-                        {/* Domain Details (Dynamic) */}
-                        <div className="flex-1 min-h-[300px]">
+                        {/* Active Domain Details Card */}
+                        <div className="flex-1 min-h-[340px]">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={activeDomain.domain}
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="bg-surface/40 border border-white/10 rounded-xl p-8 h-full flex flex-col"
+                                    exit={{ opacity: 0, y: -15 }}
+                                    transition={{ duration: 0.25 }}
+                                    className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between backdrop-blur-xl shadow-2xl relative overflow-hidden"
                                 >
-                                    <h3 className="text-2xl font-semibold text-white mb-3 flex items-center gap-3">
-                                        <span className="text-primary">{activeDomain.icon}</span>
-                                        {activeDomain.domain}
-                                    </h3>
-                                    <p className="text-gray-400 mb-6 leading-relaxed">
-                                        {activeDomain.description}
-                                    </p>
-                                    
-                                    {/* Core Stack */}
-                                    <div className="mb-6">
-                                        <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-3">Core Stack</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {activeDomain.items.map((item, idx) => (
-                                                <div
-                                                    key={idx}
-                                                    className="flex items-center gap-2 px-3 py-1.5 bg-background text-gray-300 text-sm rounded-lg border border-white/10"
-                                                >
-                                                    <span className="text-lg">
-                                                        {iconMap[item] || null}
-                                                    </span>
-                                                    <span>{item}</span>
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none" />
+
+                                    <div>
+                                        {/* Header Title */}
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-2xl font-bold font-heading text-white flex items-center gap-3">
+                                                <span className="p-2 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                                                    {activeDomain.icon}
+                                                </span>
+                                                {activeDomain.domain}
+                                            </h3>
+                                            <span className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                                                F-Score: {activeDomain.importance.toFixed(2)}
+                                            </span>
+                                        </div>
+
+                                        <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">
+                                            {activeDomain.description}
+                                        </p>
+                                        
+                                        {/* Core Stack Pills */}
+                                        <div className="mb-6">
+                                            <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 font-semibold">Core Stack & Technologies</p>
+                                            <div className="flex flex-wrap gap-2.5">
+                                                {activeDomain.items.map((item, idx) => (
+                                                    <motion.div
+                                                        key={idx}
+                                                        whileHover={{ scale: 1.05, y: -2 }}
+                                                        className="flex items-center gap-2 px-3.5 py-2 bg-white/[0.04] hover:bg-white/[0.08] text-gray-200 text-xs md:text-sm rounded-xl border border-white/10 shadow-sm transition-all"
+                                                    >
+                                                        <span className="text-base">
+                                                            {iconMap[item] || null}
+                                                        </span>
+                                                        <span className="font-medium">{item}</span>
+                                                    </motion.div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Empirical Impact Metrics */}
+                                    <div className="pt-5 border-t border-white/10 mt-4">
+                                        <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 font-semibold flex items-center gap-1.5">
+                                            <CheckCircle2 size={13} className="text-secondary" />
+                                            Empirical Impact & Scale
+                                        </p>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            {activeDomain.impactMetrics.map((metric, idx) => (
+                                                <div key={idx} className="bg-white/[0.03] rounded-xl p-3.5 border border-white/5 hover:border-white/15 transition-all">
+                                                    <div className="text-xl md:text-2xl font-bold font-mono text-white mb-1 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                                                        {metric.value}
+                                                    </div>
+                                                    <div className="text-xs text-gray-400 leading-tight">
+                                                        {metric.label}
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
 
-                                    {/* Impact Metrics (Path 3) */}
-                                    <div className="mt-auto pt-4 border-t border-white/10">
-                                        <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4">Empirical Impact</p>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            {activeDomain.impactMetrics.map((metric, idx) => (
-                                                <div key={idx} className="bg-background/50 rounded-lg p-3 border border-white/5">
-                                                    <div className="text-2xl font-bold font-mono text-white mb-1">{metric.value}</div>
-                                                    <div className="text-xs text-gray-400 leading-tight">{metric.label}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
                                 </motion.div>
                             </AnimatePresence>
                         </div>
@@ -297,3 +329,4 @@ const Skills = () => {
 };
 
 export default Skills;
+

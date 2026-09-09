@@ -133,19 +133,18 @@ const DirectionAwareCard = ({ item }) => {
             >
                 {/* FRONT FACE */}
                 <div 
-                    className="absolute inset-0 bg-surface/40 p-6 rounded-xl border border-white/5 shadow-lg flex flex-col overflow-hidden"
+                    className="absolute inset-0 bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-amber-400/40 shadow-xl flex flex-col overflow-hidden transition-colors"
                     style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                 >
-                    <div className={`absolute top-0 right-0 p-3 opacity-10 ${item.textColor}`}>
-                        <Icon size={40} />
-                    </div>
+                    {/* Ambient Corner Glow */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-amber-400/5 rounded-bl-full pointer-events-none" />
 
                     <div className="flex justify-between items-start mb-4 relative z-10">
                         <div>
-                            <span className={`text-xs font-mono px-2 py-1 rounded bg-white/5 border border-white/10 ${item.textColor} mb-3 inline-block`}>
+                            <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-white/5 border border-white/10 ${item.textColor} mb-3 inline-block shadow-sm backdrop-blur-md`}>
                                 {item.status}
                             </span>
-                            <h3 className="text-xl font-bold text-white leading-tight">{item.title}</h3>
+                            <h3 className="text-xl font-bold text-white leading-tight font-heading">{item.title}</h3>
                         </div>
                     </div>
 
@@ -154,22 +153,22 @@ const DirectionAwareCard = ({ item }) => {
                     <div className="space-y-4 relative z-10 mt-auto">
                         <div className="flex items-center justify-between border-t border-white/5 pt-3">
                             <div className="flex flex-col gap-1">
-                                <div className="text-xs text-gray-400 flex items-center gap-1">
-                                    <Layers size={12} /> {item.source}
+                                <div className="text-xs text-gray-300 flex items-center gap-1 font-mono">
+                                    <Layers size={12} className="text-amber-400" /> {item.source}
                                 </div>
-                                <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                                <div className="flex items-center gap-2 text-[10px] text-gray-500 font-mono">
                                     <Target size={10} />
                                     <span>{item.date}</span>
                                 </div>
                             </div>
-                            <ChevronRight size={16} className="text-gray-600" />
+                            <ChevronRight size={16} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
                         </div>
                     </div>
                 </div>
 
                 {/* BACK FACE */}
                 <div 
-                    className="absolute inset-0 bg-gradient-to-br from-surface to-background p-6 rounded-xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                    className="absolute inset-0 bg-[#0b0f17] p-6 rounded-2xl border border-white/15 shadow-2xl flex flex-col overflow-hidden"
                     style={{ 
                         transform: backfaceTransform,
                         backfaceVisibility: "hidden", 
@@ -180,18 +179,18 @@ const DirectionAwareCard = ({ item }) => {
                     <div className={`absolute -top-10 -right-10 w-32 h-32 ${item.glowColor} blur-3xl rounded-full`} />
                     
                     <div className="relative z-10 flex flex-col h-full">
-                        <h4 className={`text-sm font-bold mb-3 flex items-center gap-2 ${item.textColor}`}>
+                        <h4 className={`text-sm font-bold mb-3 flex items-center gap-2 ${item.textColor} font-heading`}>
                             <Brain size={14} /> The Philosophy
                         </h4>
-                        <p className="text-sm text-gray-300 leading-relaxed italic mb-4 font-serif">
+                        <p className="text-sm text-gray-300 leading-relaxed italic mb-4">
                             "{item.philosophy}"
                         </p>
                         
                         <div className="mt-auto border-t border-white/10 pt-4">
-                            <h4 className="text-xs font-mono text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                            <h4 className="text-xs font-mono text-gray-400 mb-3 uppercase tracking-wider font-bold">Tech Stack</h4>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {item.stack.map(tech => (
-                                    <span key={tech} className="text-[10px] px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/10">
+                                    <span key={tech} className="text-[10px] px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/10 font-mono">
                                         {tech}
                                     </span>
                                 ))}
@@ -199,7 +198,7 @@ const DirectionAwareCard = ({ item }) => {
                             <div className="w-full bg-black/40 rounded-full h-1.5 overflow-hidden">
                                 <div className={`h-full bg-gradient-to-r from-gray-600 ${item.gradientTo}`} style={{ width: `${item.progress}%` }} />
                             </div>
-                            <div className="text-[10px] text-right mt-1 text-gray-500">
+                            <div className="text-[10px] text-right mt-1 text-gray-400 font-mono">
                                 Mastery Progress: {item.progress}%
                             </div>
                         </div>
@@ -212,20 +211,26 @@ const DirectionAwareCard = ({ item }) => {
 
 const Learning = () => {
     return (
-        <section id="learning" className="py-24 bg-background relative">
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <section id="learning" className="py-28 bg-background relative overflow-hidden">
+            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-12"
+                    className="mb-16 text-left"
                 >
-                    <span className="text-secondary font-mono text-sm tracking-wider uppercase">Continuous Evolution</span>
-                    <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
-                        Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Focus</span>
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
+                        <BookOpen size={14} className="text-amber-400" />
+                        CONTINUOUS EVOLUTION // ACTIVE RESEARCH & LEARNING
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
+                        Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
                     </h2>
+                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                        Active skill acquisition, production engineering research, and next-generation ML architecture studies.
+                    </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -244,29 +249,29 @@ const Learning = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <div className="bg-surface/30 p-6 rounded-xl border border-white/5">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                <Star className="text-accent" size={18} /> Next Up
+                        <div className="bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2 font-heading">
+                                <Star className="text-amber-400" size={18} /> Next Up
                             </h3>
                             <ul className="space-y-4">
                                 {nextUp.map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-sm text-gray-300 group cursor-default">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-600 group-hover:bg-primary transition-colors" />
+                                    <li key={idx} className="flex items-center gap-3 text-sm text-gray-300 group cursor-default font-mono">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 group-hover:bg-amber-400 transition-colors" />
                                         <span className="group-hover:text-white transition-colors">{item}</span>
                                     </li>
                                 ))}
                             </ul>
                             <div className="mt-6 pt-6 border-t border-white/5">
-                                <p className="text-xs text-gray-500 italic">
+                                <p className="text-xs text-gray-400 italic">
                                     "The more I learn, the more I realize how much I don't know."
                                 </p>
                             </div>
                         </div>
 
                         {/* Quick Fact or Quote */}
-                        <div className="p-6 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/5">
-                            <p className="text-sm text-gray-300">
-                                Currently focusing on <span className="text-white font-semibold">strengthening MLOps fundamentals</span> and scaling practical AI systems.
+                        <div className="p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-xl">
+                            <p className="text-sm text-gray-300 leading-relaxed">
+                                Currently focusing on <span className="text-white font-semibold underline decoration-amber-400/50">strengthening MLOps fundamentals</span> and scaling practical AI systems.
                             </p>
                         </div>
                     </motion.div>

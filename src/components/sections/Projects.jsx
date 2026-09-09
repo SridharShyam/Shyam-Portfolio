@@ -335,46 +335,48 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             onClick={onClick}
-            className={`group relative bg-surface rounded-2xl border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 flex flex-col h-full ${isFullWidth ? 'md:col-span-2' : ''} ${onClick ? 'cursor-pointer' : ''}`}
+            className={`group relative bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col h-full ${isFullWidth ? 'md:col-span-2' : ''} ${onClick ? 'cursor-pointer' : ''}`}
         >
+            {/* Ambient Corner Glow */}
+            <div className="absolute top-0 right-0 w-36 h-36 bg-primary/5 rounded-bl-full group-hover:bg-primary/10 transition-colors pointer-events-none" />
+
             {project.isGithubSourced && (
-                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 text-[10px] font-bold text-emerald-400 bg-black/60 px-2 py-1 rounded border border-emerald-400/20 backdrop-blur-md">
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 text-[10px] font-mono font-bold text-emerald-400 bg-black/80 px-2.5 py-1 rounded-full border border-emerald-400/30 backdrop-blur-xl shadow-lg">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     LIVE VIA API
                 </div>
             )}
-            <div className="h-48 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden group">
+
+            <div className="h-48 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden group">
                 {project.image ? (
                     <>
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-20 group-hover:scale-105 transition-all duration-500" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 ease-out" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                     </>
                 ) : (
                     <>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(236,72,153,0.15),rgba(0,0,0,0))]" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-primary/15 rounded-full blur-3xl group-hover:bg-primary/25 transition-colors duration-500" />
                     </>
                 )}
 
-                {/* Architecture Node-Graph Hover State */}
-                <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 z-0 flex items-center justify-center overflow-hidden">
+                {/* Architecture Node-Graph Hover Overlay */}
+                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 z-0 flex items-center justify-center overflow-hidden">
                     <div className="relative w-full h-full">
-                        {/* Connecting Lines */}
                         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60">
                             <motion.line x1="20%" y1="30%" x2="50%" y2="50%" stroke="#00C7B7" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
                             <motion.line x1="50%" y1="50%" x2="80%" y2="70%" stroke="#a855f7" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
                             <motion.line x1="50%" y1="50%" x2="75%" y2="25%" stroke="#10b981" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
                         </svg>
 
-                        {/* Nodes */}
                         <div className="absolute top-[30%] left-[20%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-primary shadow-[0_0_10px_#00C7B7] animate-pulse" />
                         <div className="absolute top-[50%] left-[50%] w-3 h-3 -ml-[6px] -mt-[6px] rounded-full bg-purple-500 shadow-[0_0_15px_#a855f7] animate-pulse" style={{ animationDelay: '0.2s' }} />
                         <div className="absolute top-[70%] left-[80%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" style={{ animationDelay: '0.4s' }} />
                         <div className="absolute top-[25%] left-[75%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" style={{ animationDelay: '0.1s' }} />
 
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-white font-mono text-[10px] font-bold tracking-widest uppercase bg-black/80 px-4 py-1.5 rounded border border-white/10 shadow-xl">
-                                AI Architecture
+                            <span className="text-white font-mono text-[10px] font-bold tracking-widest uppercase bg-black/90 px-4 py-1.5 rounded-full border border-white/20 shadow-2xl backdrop-blur-md">
+                                AI Architecture Node
                             </span>
                         </div>
                     </div>
@@ -387,52 +389,52 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
 
                 {/* GitHub Quick Stats Overlay */}
                 <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-xs text-white">
-                        <Star size={12} className="text-yellow-500 fill-yellow-500" /> {githubStats.stars}
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/80 backdrop-blur-xl rounded-full border border-white/15 text-xs text-white shadow-lg">
+                        <Star size={12} className="text-yellow-400 fill-yellow-400" /> {githubStats.stars}
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-xs text-white">
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black/80 backdrop-blur-xl rounded-full border border-white/15 text-xs text-white shadow-lg">
                         <GitBranch size={12} className="text-primary" /> {githubStats.forks}
                     </div>
                 </div>
             </div>
 
             <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold font-heading text-white group-hover:text-primary transition-colors flex items-center gap-3">
+                <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-xl font-bold font-heading text-white group-hover:text-primary transition-colors flex items-center gap-2">
                         {project.title}
                         {onClick && (
-                            <span className="hidden sm:inline-flex items-center gap-1 text-xs font-normal px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
-                                Click to view detailed case studies <ArrowUpRight size={14} />
+                            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-normal px-2.5 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20">
+                                Case Study <ArrowUpRight size={12} />
                             </span>
                         )}
                     </h3>
-                    <div className="flex gap-3 shrink-0">
+                    <div className="flex gap-2.5 shrink-0">
                         {project.links.repo && project.links.repo !== "#" && (
-                            <a href={project.links.repo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="GitHub Repo"><Github size={20} /></a>
+                            <a href={project.links.repo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/10" aria-label="GitHub Repo"><Github size={16} /></a>
                         )}
                         {project.links.demo && project.links.demo !== "#" && (
-                            <a href={project.links.demo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors" aria-label="Live Demo"><ExternalLink size={20} /></a>
+                            <a href={project.links.demo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary hover:text-white transition-all border border-primary/20" aria-label="Live Demo"><ExternalLink size={16} /></a>
                         )}
                     </div>
                 </div>
 
                 {project.question && (
-                    <div className="mb-4 pb-4 border-b border-white/5">
-                        <span className="text-[10px] font-bold text-primary/70 tracking-wider uppercase block mb-1">THE QUESTION</span>
-                        <p className="text-[12px] italic text-gray-300">
+                    <div className="mb-4 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                        <span className="text-[10px] font-mono font-bold text-primary/80 tracking-widest uppercase block mb-1">THE QUESTION</span>
+                        <p className="text-[12px] italic text-gray-300 leading-snug">
                             "{project.question}"
                         </p>
                     </div>
                 )}
 
-                <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+                <p className="text-gray-400 mb-5 text-xs md:text-sm leading-relaxed">
                     {project.description}
                 </p>
 
                 {project.businessImpact && (
-                    <div className="mb-6 pt-4 border-t border-white/5">
-                        <span className="text-[10px] font-bold text-emerald-500/70 tracking-wider uppercase block mb-1">BUSINESS IMPACT</span>
-                        <p className="text-[12px] italic text-gray-300">
+                    <div className="mb-5 p-3 rounded-xl bg-emerald-500/[0.03] border border-emerald-500/10">
+                        <span className="text-[10px] font-mono font-bold text-emerald-400 tracking-widest uppercase block mb-1">BUSINESS IMPACT</span>
+                        <p className="text-[12px] text-gray-300 leading-snug">
                             {project.businessImpact}
                         </p>
                     </div>
@@ -441,15 +443,15 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                 <ul className="mb-6 space-y-2">
                     {project.highlights.map((h, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
-                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/50 shrink-0" />
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                             <span>{h}</span>
                         </li>
                     ))}
                 </ul>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                <div className="mt-auto pt-4 border-t border-white/10 flex flex-wrap gap-2">
                     {project.tech.map((t, i) => (
-                        <span key={i} className="bg-white/5 text-xs text-primary px-2 py-1 rounded border border-white/10">
+                        <span key={i} className="bg-white/5 text-[11px] font-mono text-gray-300 px-2.5 py-1 rounded-lg border border-white/10">
                             {t}
                         </span>
                     ))}
@@ -527,18 +529,28 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-24 bg-surface/50 relative">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="projects" className="py-28 bg-surface/50 relative overflow-hidden">
+            {/* Background Orbs */}
+            <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="mb-16 text-left"
                 >
-                    <span className="text-primary font-mono text-sm tracking-wider uppercase">Shyametrics</span>
-                    <h2 className="text-3xl md:text-5xl font-bold font-heading text-white mt-2">
-                        Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Domains</span>
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
+                        <GitBranch size={14} className="text-primary" />
+                        SYSTEMS ARCHITECTURE // APPLIED AI & ML PROJECTS
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
+                        Production & Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI Systems</span>
                     </h2>
+                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                        End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.
+                    </p>
                 </motion.div>
 
                 {/* 3 Domain Pillars */}
