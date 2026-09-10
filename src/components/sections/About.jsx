@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { HelpCircle, Layers, Target, Rocket, MapPin, Award, Cpu, Zap, Trophy, Network } from 'lucide-react';
 
-const AchievementCard = ({ icon: Icon, label, accentColor, delay }) => {
+const AchievementCard = ({ icon: IconComponent, label, accentColor, delay }) => {
     return (
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -14,7 +14,7 @@ const AchievementCard = ({ icon: Icon, label, accentColor, delay }) => {
         >
             <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl ${accentColor} opacity-10 group-hover:opacity-25 rounded-bl-full transition-opacity duration-300`} />
             <div className="flex items-center gap-2 mb-2">
-                <Icon size={18} className="text-gray-400 group-hover:text-white transition-colors" />
+                <IconComponent size={18} className="text-gray-400 group-hover:text-white transition-colors" />
                 <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500 group-hover:text-gray-300">Pillar</span>
             </div>
             <div className="text-xs md:text-sm font-semibold text-gray-200 group-hover:text-white transition-colors leading-snug">
