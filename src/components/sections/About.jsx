@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { HelpCircle, Layers, Target, Rocket, MapPin, Award, Cpu, Zap, Trophy, Network } from 'lucide-react';
 
+// eslint-disable-next-line no-unused-vars
 const AchievementCard = ({ icon: IconComponent, label, accentColor, delay }) => {
     return (
         <motion.div 
