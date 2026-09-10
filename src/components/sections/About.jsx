@@ -131,7 +131,7 @@ const About = () => {
                                 className="absolute top-4 -left-4 z-20 py-2 px-3.5 bg-black/80 backdrop-blur-xl border border-white/15 rounded-full shadow-lg flex items-center gap-2"
                             >
                                 <MapPin size={14} className="text-secondary" />
-                                <span className="text-xs font-mono text-gray-200">Chennai, IN</span>
+                                <span className="text-xs font-mono text-gray-200">Chennai, TN</span>
                             </motion.div>
 
                             {/* Floating Badge 2: Engineering */}

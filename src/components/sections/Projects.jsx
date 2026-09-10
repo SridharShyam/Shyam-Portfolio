@@ -492,7 +492,7 @@ const Projects = () => {
                             status: "Live",
                             domain: "ml-core",
                             question: "Live Code Synchronization via GitHub API",
-                            highlights: ["Dynamically sourced via Tag Engine", `⭐ ${repo.stargazers_count} Stars`, `🍴 ${repo.forks_count} Forks`],
+                            highlights: ["Dynamically sourced via Tag Engine", `${repo.stargazers_count} Stars`, `${repo.forks_count} Forks`],
                             links: { repo: repo.html_url, demo: repo.homepage || undefined },
                             isGithubSourced: true
                         }));

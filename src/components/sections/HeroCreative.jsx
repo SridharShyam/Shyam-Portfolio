@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Layers, Figma, Code2 } from 'lucide-react';
+import { ArrowRight, Layers, Figma, Code2, Sparkles, Brain, Users, Target } from 'lucide-react';
 import { useState } from 'react';
 import TerminalModal from '../ui/TerminalModal';
 
@@ -136,12 +136,13 @@ const HeroCreative = () => {
 
                         {/* Floating Logic Node */}
                         <motion.div
-                            animate={{ x: [10, -10, 10], y: [5, -5, 5] }}
-                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                            className="absolute bottom-[20%] -left-[5%] p-4 bg-white/5 backdrop-blur-md rounded-full border border-primary/20 shadow-[0_0_15px_rgba(236,72,153,0.2)]"
+                            animate={{ y: [10, -10, 10], x: [-3, 3, -3] }}
+                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                            className="absolute -bottom-2 left-0 z-20 w-13 h-13 p-3 rounded-full bg-[#0a2033]/90 border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.35)] backdrop-blur-md flex items-center justify-center"
                         >
-                            <Code2 size={24} className="text-primary" />
+                            <Code2 size={24} className="text-cyan-400" />
                         </motion.div>
+
                     </div>
                 </motion.div>
 
@@ -157,10 +158,18 @@ const HeroCreative = () => {
                 >
                     {[...Array(4)].map((_, i) => (
                         <span key={i} className="flex gap-12">
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-4"><span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,199,183,0.5)]"></span>✨ Elegant Design Systems</span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-4"><span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,199,183,0.5)]"></span>🧠 Creative Architecture</span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-4"><span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,199,183,0.5)]"></span>🤝 Human-Centric AI</span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-4"><span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,199,183,0.5)]"></span>🎯 Strategic Vision</span>
+                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
+                                <Sparkles size={14} className="text-secondary" /> Elegant Design Systems
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
+                                <Brain size={14} className="text-purple-400" /> Creative Architecture
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
+                                <Users size={14} className="text-pink-400" /> Human-Centric AI
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
+                                <Target size={14} className="text-emerald-400" /> Strategic Vision
+                            </span>
                         </span>
                     ))}
                 </motion.div>

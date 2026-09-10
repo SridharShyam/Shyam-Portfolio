@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Activity, Database, Network, Cpu, Code2, Layers } from 'lucide-react';
+import { ArrowRight, Activity, Database, Network, Cpu, Code2, Layers, RefreshCw, Settings, Zap, Brain } from 'lucide-react';
 
 const HeroData = () => {
     return (
@@ -150,13 +150,7 @@ const HeroData = () => {
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
                             className="absolute top-2 right-2 z-20 w-13 h-13 p-3 rounded-full bg-[#1b1535]/90 border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.35)] backdrop-blur-md flex items-center justify-center"
                         >
-                            <svg className="w-6 h-6 text-purple-400 fill-current" viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" />
-                                <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" />
-                                <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" />
-                                <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" />
-                                <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" />
-                            </svg>
+                            <Cpu size={24} className="text-purple-400" />
                         </motion.div>
 
                         {/* 4. Floating Badge - Code Brackets (Bottom Left) */}
@@ -183,10 +177,18 @@ const HeroData = () => {
                 >
                     {[...Array(4)].map((_, i) => (
                         <span key={i} className="flex gap-12">
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-4"><span className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(236,72,153,0.5)]"></span>⟳ Continuous Model Evaluation</span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-4"><span className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(236,72,153,0.5)]"></span>⚙️ Scalable Decision Architecture</span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-4"><span className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(236,72,153,0.5)]"></span>⚡ Low-Latency Inference</span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-4"><span className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(236,72,153,0.5)]"></span>🧠 Probabilistic Reasoning</span>
+                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
+                                <RefreshCw size={14} className="text-primary" /> Continuous Model Evaluation
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
+                                <Settings size={14} className="text-purple-400" /> Scalable Decision Architecture
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
+                                <Zap size={14} className="text-secondary" /> Low-Latency Inference
+                            </span>
+                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
+                                <Brain size={14} className="text-pink-400" /> Probabilistic Reasoning
+                            </span>
                         </span>
                     ))}
                 </motion.div>
