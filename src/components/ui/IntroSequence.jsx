@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const IntroSequence = ({ onComplete, onPortalOpen }) => {
@@ -29,8 +29,14 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
   // Tumbling effect on X axis (must land on a multiple of 360 to stay flat)
   const finalRotateX = 720; // 2 full tumbles (reduced from 1440 for smoother rendering)
 
-  // Particle generation for the impact burst - reduced to 8 for performance
-  const particles = Array.from({ length: 8 });
+  // Pre-computed particle metrics generated once on mount to maintain pure render
+  const particles = useMemo(() => {
+    return Array.from({ length: 8 }, (_, i) => ({
+      angle: (i / 8) * 360,
+      distance: 200 + Math.random() * 150,
+      size: 3 + Math.random() * 4,
+    }));
+  }, []);
 
   return (
     <AnimatePresence>
@@ -61,19 +67,16 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
 
           {/* Particle Burst on Landing */}
           <AnimatePresence>
-            {phase === 'landing' && particles.map((_, i) => {
-                const angle = (i / particles.length) * 360;
-                const distance = 200 + Math.random() * 150;
-                const size = 3 + Math.random() * 4;
+            {phase === 'landing' && particles.map((particle, i) => {
                 return (
                     <motion.div
                         key={i}
                         className="absolute rounded-full bg-white pointer-events-none z-10"
-                        style={{ width: size, height: size, boxShadow: '0 0 10px rgba(255,255,255,0.8)' }}
+                        style={{ width: particle.size, height: particle.size, boxShadow: '0 0 10px rgba(255,255,255,0.8)' }}
                         initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
                         animate={{ 
-                            x: Math.cos(angle * (Math.PI / 180)) * distance, 
-                            y: Math.sin(angle * (Math.PI / 180)) * distance,
+                            x: Math.cos(particle.angle * (Math.PI / 180)) * particle.distance, 
+                            y: Math.sin(particle.angle * (Math.PI / 180)) * particle.distance,
                             opacity: 0,
                             scale: 0
                         }}
