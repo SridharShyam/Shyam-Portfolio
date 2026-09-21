@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import TextScramble from './TextScramble';
+
 // Pure pre-configured particle telemetry layout
 const PARTICLE_METRICS = Array.from({ length: 10 }, (_, i) => ({
   angle: (i / 10) * 360,
