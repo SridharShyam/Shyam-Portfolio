@@ -4,7 +4,7 @@ import {
     Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, 
     BookOpen, Code, Zap, Star, MapPin, ChevronRight, X, Calendar, 
     Layers, Filter, CheckCircle2, ShieldCheck, ExternalLink, Maximize2, 
-    FileCheck, BarChart2, Building2
+    FileCheck, BarChart2, Building2, ArrowLeft, ArrowRight, RotateCw
 } from 'lucide-react';
 import notionData from '../../data/notion-data.json';
 
@@ -31,14 +31,16 @@ const categories = ['All', 'Leadership', 'Experience', 'Global', 'Foundations'];
 const Journey = () => {
     const containerRef = useRef(null);
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [flippingCardId, setFlippingCardId] = useState(null);
     const [activeMilestone, setActiveMilestone] = useState(null);
-    const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'proof'
     const [lightboxImage, setLightboxImage] = useState(null);
+    const [activeShowcaseTab, setActiveShowcaseTab] = useState('all');
 
     // Map timeline items from Notion data
     const rawTimeline = notionData.journey.map((item, index) => ({
         ...item,
         stepNumber: String(index + 1).padStart(2, '0'),
+        index,
         icon: iconMap[item.iconString] || Star
     }));
 
@@ -53,9 +55,28 @@ const Journey = () => {
         chunkedTimeline.push(filteredTimeline.slice(i, i + 3));
     }
 
-    const openMilestoneModal = (item) => {
-        setActiveMilestone(item);
-        setActiveTab('overview');
+    // Trigger 3D flip animation first, then open full-page showcase
+    const handleCardClick = (item) => {
+        if (flippingCardId) return; // prevent duplicate clicks
+        setFlippingCardId(item.stepNumber);
+        
+        setTimeout(() => {
+            setActiveMilestone(item);
+            setFlippingCardId(null);
+            setActiveShowcaseTab('all');
+        }, 400); // match flip animation duration
+    };
+
+    const navigateMilestone = (direction) => {
+        if (!activeMilestone) return;
+        const currentIndex = rawTimeline.findIndex(m => m.stepNumber === activeMilestone.stepNumber);
+        if (currentIndex === -1) return;
+
+        let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+        if (nextIndex < 0) nextIndex = rawTimeline.length - 1;
+        if (nextIndex >= rawTimeline.length) nextIndex = 0;
+
+        setActiveMilestone(rawTimeline[nextIndex]);
     };
 
     return (
@@ -74,13 +95,13 @@ const Journey = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        CAREER TIMELINE // VERIFIABLE MILESTONES
+                        CAREER TIMELINE // INTERACTIVE 3D EXPLORER
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
                         Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        A chronological record of engineering milestones, hackathon achievements, international delegations, and strategic leadership roles with verifiable proof documents.
+                        Click any milestone card to flip it in 3D space and launch its dedicated full-page showcase with verified proofs, metrics, and deliverables.
                     </p>
                 </motion.div>
 
@@ -217,6 +238,7 @@ const Journey = () => {
                                 {chunk.map((item, colIndex) => {
                                     const actualIndex = rowIndex * 3 + colIndex;
                                     const delay = actualIndex * 0.08;
+                                    const isFlipping = flippingCardId === item.stepNumber;
 
                                     if (item.isFuture) {
                                         return (
@@ -227,7 +249,7 @@ const Journey = () => {
                                                 whileInView={{ opacity: 1, scale: 1 }}
                                                 viewport={{ once: true, margin: "-50px" }}
                                                 transition={{ duration: 0.5, delay }}
-                                                onClick={() => openMilestoneModal(item)}
+                                                onClick={() => handleCardClick(item)}
                                             >
                                                 <div className="w-16 h-16 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_20px_rgba(236,72,153,0.5)] flex items-center justify-center text-secondary mb-4">
                                                     <item.icon size={28} />
@@ -249,80 +271,104 @@ const Journey = () => {
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true, margin: "-50px" }}
                                             transition={{ duration: 0.5, delay }}
+                                            style={{ perspective: '1200px' }}
                                         >
                                             <motion.div 
-                                                whileHover={{ y: -6, scale: 1.02 }}
-                                                onClick={() => openMilestoneModal(item)}
-                                                className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-secondary/40 transition-all duration-500 group shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10 overflow-hidden cursor-pointer"
+                                                animate={{ rotateY: isFlipping ? 180 : 0 }}
+                                                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                                whileHover={!isFlipping ? { y: -6, scale: 1.02 } : {}}
+                                                onClick={() => handleCardClick(item)}
+                                                className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-secondary/40 transition-all duration-300 group shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10 overflow-hidden cursor-pointer"
+                                                style={{ transformStyle: 'preserve-3d' }}
                                             >
-                                                {/* Ambient Corner Glow */}
-                                                <div className="absolute top-0 right-0 w-28 h-28 bg-secondary/5 rounded-bl-full group-hover:bg-secondary/15 transition-colors pointer-events-none" />
+                                                {/* FRONT FACE OF THE CARD */}
+                                                <div className="flex flex-col h-full" style={{ backfaceVisibility: 'hidden' }}>
+                                                    {/* Ambient Corner Glow */}
+                                                    <div className="absolute top-0 right-0 w-28 h-28 bg-secondary/5 rounded-bl-full group-hover:bg-secondary/15 transition-colors pointer-events-none" />
 
-                                                {/* Top Meta Bar */}
-                                                <div className="flex items-center justify-between mb-3.5 relative z-10">
-                                                    <div className="flex flex-wrap items-center gap-1.5">
-                                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
-                                                            #{item.stepNumber}
+                                                    {/* Top Meta Bar */}
+                                                    <div className="flex items-center justify-between mb-3.5 relative z-10">
+                                                        <div className="flex flex-wrap items-center gap-1.5">
+                                                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
+                                                                #{item.stepNumber}
+                                                            </span>
+                                                            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border`}>
+                                                                {item.category?.toUpperCase() || 'MILESTONE'}
+                                                            </span>
+                                                            {item.proof && (
+                                                                <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm">
+                                                                    <ShieldCheck size={10} className="text-emerald-400" />
+                                                                    VERIFIED
+                                                                </span>
+                                                            )}
+                                                        </div>
+
+                                                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300">
+                                                            <item.icon size={16} />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Year Pill & Location */}
+                                                    <div className="flex items-center gap-2 mb-2">
+                                                        <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-sm backdrop-blur-md">
+                                                            {item.year}
                                                         </span>
-                                                        <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border`}>
-                                                            {item.category?.toUpperCase() || 'MILESTONE'}
-                                                        </span>
-                                                        {item.proof && (
-                                                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm">
-                                                                <ShieldCheck size={10} className="text-emerald-400" />
-                                                                VERIFIED
+                                                        {item.location && (
+                                                            <span className="text-[11px] text-gray-400 flex items-center gap-1 font-mono">
+                                                                <MapPin size={10} className="text-gray-500" />
+                                                                {item.location}
                                                             </span>
                                                         )}
                                                     </div>
 
-                                                    <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300">
-                                                        <item.icon size={16} />
-                                                    </div>
-                                                </div>
+                                                    {/* Title */}
+                                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-secondary transition-colors leading-snug font-heading">
+                                                        {item.title}
+                                                    </h3>
 
-                                                {/* Year Pill & Location */}
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-sm backdrop-blur-md">
-                                                        {item.year}
-                                                    </span>
-                                                    {item.location && (
-                                                        <span className="text-[11px] text-gray-400 flex items-center gap-1 font-mono">
-                                                            <MapPin size={10} className="text-gray-500" />
-                                                            {item.location}
-                                                        </span>
+                                                    {/* Description */}
+                                                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-4 flex-grow">
+                                                        {item.description}
+                                                    </p>
+
+                                                    {/* Highlight Chips */}
+                                                    {item.highlights && item.highlights.length > 0 && (
+                                                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                                                            {item.highlights.map((h, hIdx) => (
+                                                                <span key={hIdx} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10 font-mono">
+                                                                    {h}
+                                                                </span>
+                                                            ))}
+                                                        </div>
                                                     )}
+
+                                                    {/* Click to flip & view indicator */}
+                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2">
+                                                        <span className="text-[10px] text-gray-500 font-sans flex items-center gap-1">
+                                                            <RotateCw size={11} className="text-secondary/70 group-hover:rotate-180 transition-transform duration-500" />
+                                                            Click to 3D Flip
+                                                        </span>
+                                                        <div className="flex items-center gap-0.5 font-bold text-secondary">
+                                                            <span>Open Showcase</span>
+                                                            <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                {/* Title */}
-                                                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-secondary transition-colors leading-snug font-heading">
-                                                    {item.title}
-                                                </h3>
-
-                                                {/* Description */}
-                                                <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-4 flex-grow">
-                                                    {item.description}
-                                                </p>
-
-                                                {/* Highlight Chips */}
-                                                {item.highlights && item.highlights.length > 0 && (
-                                                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
-                                                        {item.highlights.map((h, hIdx) => (
-                                                            <span key={hIdx} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10 font-mono">
-                                                                {h}
-                                                            </span>
-                                                        ))}
+                                                {/* BACK FACE OF THE CARD (Rotated 180 deg) */}
+                                                <div 
+                                                    className="absolute inset-0 p-6 rounded-2xl bg-[#090e17] border border-secondary/50 flex flex-col items-center justify-center text-center z-20"
+                                                    style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
+                                                >
+                                                    <div className="w-14 h-14 rounded-full bg-secondary/10 border border-secondary/40 flex items-center justify-center text-secondary mb-3 animate-spin">
+                                                        <RotateCw size={24} />
                                                     </div>
-                                                )}
-
-                                                {/* Click to expand indicator */}
-                                                <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2">
-                                                    <span className="text-[10px] text-gray-500 font-sans">
-                                                        {item.proof ? '📜 Evidence Attached' : 'Details Available'}
+                                                    <span className="text-xs font-mono font-bold text-secondary tracking-widest uppercase mb-1">
+                                                        FLIPPING CARD // 3D PORTAL
                                                     </span>
-                                                    <div className="flex items-center gap-0.5">
-                                                        <span>View detail</span>
-                                                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                                                    </div>
+                                                    <h4 className="text-base font-bold text-white font-heading">
+                                                        Launching Full Showcase...
+                                                    </h4>
                                                 </div>
                                             </motion.div>
                                         </motion.div>
@@ -334,240 +380,316 @@ const Journey = () => {
                 </div>
             </div>
 
-            {/* Interactive Milestone Detail & Proof Modal */}
+            {/* FULL-PAGE SHOWCASE DRAWER / PAGE OVERLAY */}
             <AnimatePresence>
                 {activeMilestone && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="bg-[#0b0f17] border border-white/15 rounded-3xl max-w-2xl w-full p-6 md:p-8 relative shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
-                        >
-                            {/* Gradient Header Light */}
-                            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-purple-500 to-pink-500" />
-                            
-                            {/* Close Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: '100%' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: '100%' }}
+                        transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+                        className="fixed inset-0 z-50 bg-[#07090e]/98 backdrop-blur-2xl overflow-y-auto min-h-screen flex flex-col text-white custom-scrollbar"
+                    >
+                        {/* STICKY TOP NAVIGATION HEADER */}
+                        <div className="sticky top-0 z-30 bg-[#07090e]/90 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
                             <button
                                 onClick={() => setActiveMilestone(null)}
-                                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors z-20"
+                                className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white font-mono text-xs flex items-center gap-2 transition-all group"
+                            >
+                                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                                <span>RETURN TO TIMELINE</span>
+                            </button>
+
+                            <div className="flex items-center gap-3">
+                                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 hidden sm:inline-block">
+                                    MILESTONE #{activeMilestone.stepNumber} // {activeMilestone.year}
+                                </span>
+                                {activeMilestone.proof && (
+                                    <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
+                                        <ShieldCheck size={14} className="text-emerald-400" />
+                                        VERIFIED PROOF ATTACHED
+                                    </span>
+                                )}
+                            </div>
+
+                            <button
+                                onClick={() => setActiveMilestone(null)}
+                                className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
                             >
                                 <X size={20} />
                             </button>
+                        </div>
 
-                            {/* Modal Header */}
-                            <div className="flex items-start gap-4 mb-4 pr-10">
-                                <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/30 text-secondary shrink-0">
-                                    <activeMilestone.icon size={28} />
-                                </div>
-                                <div>
-                                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                                        <span className="text-xs font-mono font-bold text-secondary px-2 py-0.5 rounded bg-secondary/10 border border-secondary/20">
-                                            #{activeMilestone.stepNumber} // {activeMilestone.year}
+                        {/* FULL PAGE HERO BANNER */}
+                        <div className="max-w-5xl mx-auto px-6 pt-10 pb-8 w-full">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-white/10 pb-8">
+                                <div className="space-y-3 max-w-3xl">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full bg-gradient-to-r ${categoryColorMap[activeMilestone.category] || 'text-gray-300'} border`}>
+                                            {activeMilestone.category?.toUpperCase() || 'MILESTONE'}
                                         </span>
-                                        <span className="text-xs font-mono text-gray-400 flex items-center gap-1">
-                                            <MapPin size={12} />
-                                            {activeMilestone.location}
+                                        <span className="text-xs font-mono text-secondary px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20">
+                                            {activeMilestone.phase}
                                         </span>
+                                        {activeMilestone.location && (
+                                            <span className="text-xs font-mono text-gray-400 flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                                                <MapPin size={12} className="text-secondary" />
+                                                {activeMilestone.location}
+                                            </span>
+                                        )}
                                     </div>
-                                    <h3 className="text-xl md:text-2xl font-bold text-white font-heading leading-tight">
+                                    <h1 className="text-3xl md:text-5xl font-black font-heading tracking-tight leading-tight text-white">
                                         {activeMilestone.title}
-                                    </h3>
+                                    </h1>
+                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed pt-1">
+                                        {activeMilestone.details || activeMilestone.description}
+                                    </p>
+                                </div>
+
+                                <div className="p-6 rounded-3xl bg-secondary/10 border border-secondary/30 text-secondary flex flex-col items-center justify-center shrink-0 w-32 h-32 self-start md:self-center shadow-[0_0_30px_rgba(0,199,183,0.15)]">
+                                    <activeMilestone.icon size={48} />
+                                    <span className="text-[10px] font-mono font-bold mt-2 uppercase text-secondary/80">
+                                        #{activeMilestone.stepNumber}
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Navigation Tabs (Overview vs Verified Evidence) */}
-                            <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-2">
+                            {/* SHOWCASE SECTION TABS */}
+                            <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5">
                                 <button
-                                    onClick={() => setActiveTab('overview')}
-                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all ${
-                                        activeTab === 'overview'
-                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.3)]'
+                                    onClick={() => setActiveShowcaseTab('all')}
+                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                                        activeShowcaseTab === 'all'
+                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
                                             : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
                                     }`}
                                 >
-                                    <Layers size={14} />
-                                    OVERVIEW & IMPACT
+                                    SHOW ALL SECTIONS
                                 </button>
+                                {activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
+                                    <button
+                                        onClick={() => setActiveShowcaseTab('metrics')}
+                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                                            activeShowcaseTab === 'metrics'
+                                                ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
+                                                : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                                        }`}
+                                    >
+                                        VERIFIED METRICS
+                                    </button>
+                                )}
                                 {activeMilestone.proof && (
                                     <button
-                                        onClick={() => setActiveTab('proof')}
-                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all ${
-                                            activeTab === 'proof'
-                                                ? 'bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.3)]'
+                                        onClick={() => setActiveShowcaseTab('proof')}
+                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                                            activeShowcaseTab === 'proof'
+                                                ? 'bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.4)]'
                                                 : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
                                         }`}
                                     >
-                                        <ShieldCheck size={14} />
-                                        VERIFIED PROOF & CREDENTIALS
+                                        📜 PROOF & CERTIFICATE
                                     </button>
                                 )}
+                                <button
+                                    onClick={() => setActiveShowcaseTab('overview')}
+                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                                        activeShowcaseTab === 'overview'
+                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
+                                            : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    KEY DELIVERABLES
+                                </button>
                             </div>
 
-                            {/* Scrollable Content Body */}
-                            <div className="overflow-y-auto pr-1 space-y-6 flex-grow custom-scrollbar">
+                            {/* MAIN PAGE SHOWCASE CONTENT GRID */}
+                            <div className="space-y-12 pb-16">
                                 
-                                {activeTab === 'overview' && (
-                                    <>
-                                        {/* Quantifiable Impact Metrics Grid */}
-                                        {activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
-                                            <div>
-                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-2.5 font-bold tracking-wider flex items-center gap-1.5">
-                                                    <BarChart2 size={14} className="text-secondary" />
-                                                    QUANTIFIABLE METRICS & OUTCOMES
-                                                </h4>
-                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                                                    {activeMilestone.hardMetrics.map((metric, mIdx) => (
-                                                        <div key={mIdx} className="p-3 rounded-xl bg-white/[0.03] border border-secondary/20 flex items-center gap-2.5">
-                                                            <div className="w-2 h-2 rounded-full bg-secondary shrink-0" />
-                                                            <span className="text-xs font-semibold text-gray-200">{metric}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {/* Detailed Description */}
-                                        <div className="bg-white/[0.02] border border-white/5 p-4 rounded-2xl">
-                                            <h4 className="text-xs font-mono uppercase text-gray-400 mb-2 font-bold tracking-wider flex items-center gap-1.5">
-                                                <FileCheck size={14} className="text-secondary" />
-                                                CONTEXT & ENGINE DETAILS
-                                            </h4>
-                                            <p className="text-gray-300 text-sm leading-relaxed">
-                                                {activeMilestone.details || activeMilestone.description}
-                                            </p>
+                                {/* SECTION 1: QUANTIFIABLE IMPACT METRICS */}
+                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'metrics') && activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
+                                    <motion.section 
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-4"
+                                    >
+                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
+                                            <BarChart2 size={16} />
+                                            <span>Quantifiable Impact & Verified Outcomes</span>
                                         </div>
-
-                                        {/* Key Highlights */}
-                                        {activeMilestone.highlights && (
-                                            <div>
-                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-3 font-bold tracking-wider flex items-center gap-1.5">
-                                                    <CheckCircle2 size={14} className="text-emerald-400" />
-                                                    KEY DELIVERABLES
-                                                </h4>
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                                    {activeMilestone.highlights.map((h, i) => (
-                                                        <div key={i} className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-200">
-                                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                                                            <span>{h}</span>
-                                                        </div>
-                                                    ))}
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            {activeMilestone.hardMetrics.map((metric, mIdx) => (
+                                                <div key={mIdx} className="p-5 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-secondary/30 flex items-start gap-3.5 group hover:border-secondary transition-all">
+                                                    <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary group-hover:scale-110 transition-transform">
+                                                        <CheckCircle2 size={20} />
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-base font-bold text-white block leading-snug">{metric}</span>
+                                                        <span className="text-[11px] font-mono text-gray-400 mt-1 block">Verified Metric</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )}
-
-                                        {/* Skills / Focus Area */}
-                                        {activeMilestone.skills && (
-                                            <div>
-                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-2.5 font-bold tracking-wider">
-                                                    COMPETENCIES & DOMAINS
-                                                </h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {activeMilestone.skills.map((skill, sIdx) => (
-                                                        <span key={sIdx} className="text-xs px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-mono">
-                                                            {skill}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </>
+                                            ))}
+                                        </div>
+                                    </motion.section>
                                 )}
 
-                                {activeTab === 'proof' && activeMilestone.proof && (
-                                    <div className="space-y-5">
-                                        {/* Proof Metadata Bar */}
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
-                                            <div>
+                                {/* SECTION 2: VERIFIED PROOF GALLERY & CREDENTIAL METADATA */}
+                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'proof') && activeMilestone.proof && (
+                                    <motion.section 
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-6 p-6 md:p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 relative overflow-hidden"
+                                    >
+                                        <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
+                                            <div className="flex items-center gap-2.5 text-sm font-mono font-bold text-emerald-300 uppercase tracking-wider">
+                                                <ShieldCheck size={18} className="text-emerald-400" />
+                                                <span>Official Credential & Evidence Record</span>
+                                            </div>
+                                            <span className="text-xs font-mono font-bold text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                                                VERIFIED AUTHENTIC
+                                            </span>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
                                                 <span className="text-[10px] font-mono text-gray-400 uppercase block">CREDENTIAL TYPE</span>
-                                                <span className="text-xs font-bold text-white flex items-center gap-1.5 mt-0.5">
-                                                    <Award size={14} className="text-emerald-400" />
+                                                <span className="text-sm font-bold text-white flex items-center gap-1.5 mt-1">
+                                                    <Award size={16} className="text-emerald-400" />
                                                     {activeMilestone.proof.proofType}
                                                 </span>
                                             </div>
-                                            <div>
-                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">ISSUED BY</span>
-                                                <span className="text-xs font-bold text-white flex items-center gap-1.5 mt-0.5">
-                                                    <Building2 size={14} className="text-emerald-400" />
+                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
+                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">ISSUING AUTHORITY</span>
+                                                <span className="text-sm font-bold text-white flex items-center gap-1.5 mt-1">
+                                                    <Building2 size={16} className="text-emerald-400" />
                                                     {activeMilestone.proof.issuer}
                                                 </span>
                                             </div>
-                                            {activeMilestone.proof.credentialId && (
-                                                <div className="sm:col-span-2 pt-2 border-t border-emerald-500/10 flex items-center justify-between">
-                                                    <span className="text-[10px] font-mono text-gray-400">CREDENTIAL ID:</span>
-                                                    <span className="text-xs font-mono font-bold text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/30">
-                                                        {activeMilestone.proof.credentialId}
-                                                    </span>
-                                                </div>
-                                            )}
+                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
+                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">CREDENTIAL RECORD ID</span>
+                                                <span className="text-sm font-mono font-bold text-emerald-300 flex items-center gap-1.5 mt-1">
+                                                    {activeMilestone.proof.credentialId || 'N/A'}
+                                                </span>
+                                            </div>
                                         </div>
 
-                                        {/* Certificate / Image Preview Card */}
+                                        {/* Certificate Image Document Preview */}
                                         {activeMilestone.proof.proofImage && (
-                                            <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/50 aspect-video flex items-center justify-center">
-                                                <img 
-                                                    src={activeMilestone.proof.proofImage} 
-                                                    alt={activeMilestone.title} 
-                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                />
-                                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
-                                                    <button 
-                                                        onClick={() => setLightboxImage(activeMilestone.proof.proofImage)}
-                                                        className="px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:scale-105 transition-transform"
-                                                    >
-                                                        <Maximize2 size={14} />
-                                                        View Fullscreen Preview
-                                                    </button>
+                                            <div className="space-y-3">
+                                                <span className="text-xs font-mono text-gray-400 uppercase block">DOCUMENT PREVIEW / PROOF ARTIFACT</span>
+                                                <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/60 aspect-[16/9] flex items-center justify-center max-h-[450px]">
+                                                    <img 
+                                                        src={activeMilestone.proof.proofImage} 
+                                                        alt={activeMilestone.title} 
+                                                        className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
+                                                        <button 
+                                                            onClick={() => setLightboxImage(activeMilestone.proof.proofImage)}
+                                                            className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+                                                        >
+                                                            <Maximize2 size={16} />
+                                                            View Fullscreen High-Res Scan
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
 
-                                        {/* Verification External Link */}
+                                        {/* External Direct Link */}
                                         {activeMilestone.proof.verificationUrl && (
                                             <div className="pt-2">
                                                 <a 
                                                     href={activeMilestone.proof.verificationUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-full py-3 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group"
+                                                    className="w-full py-3.5 px-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group"
                                                 >
-                                                    <ExternalLink size={14} />
-                                                    <span>VERIFY CREDENTIAL ONLINE</span>
-                                                    <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                                    <ExternalLink size={16} />
+                                                    <span>OPEN ONLINE VERIFICATION PORTAL</span>
+                                                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                                 </a>
                                             </div>
                                         )}
-                                    </div>
+                                    </motion.section>
+                                )}
+
+                                {/* SECTION 3: KEY DELIVERABLES & HIGHLIGHTS */}
+                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'overview') && (
+                                    <motion.section 
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-4"
+                                    >
+                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
+                                            <FileCheck size={16} />
+                                            <span>Key Deliverables & Milestones Achieved</span>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            {activeMilestone.highlights && activeMilestone.highlights.map((h, i) => (
+                                                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sm text-gray-200">
+                                                    <div className="w-2 h-2 rounded-full bg-secondary shrink-0" />
+                                                    <span className="font-medium">{h}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </motion.section>
+                                )}
+
+                                {/* SECTION 4: TECHNICAL SKILLS & COMPETENCIES */}
+                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'overview') && activeMilestone.skills && (
+                                    <motion.section 
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-4"
+                                    >
+                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
+                                            <Code size={16} />
+                                            <span>Competencies & Technologies Applied</span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2.5">
+                                            {activeMilestone.skills.map((skill, sIdx) => (
+                                                <span key={sIdx} className="text-xs px-4 py-2 rounded-xl bg-secondary/10 text-secondary border border-secondary/20 font-mono font-bold">
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </motion.section>
                                 )}
 
                             </div>
 
-                            {/* Footer CTA Bar */}
-                            <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
-                                {activeMilestone.proof ? (
-                                    <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
-                                        <ShieldCheck size={14} />
-                                        Verified Credential & Proof Attached
-                                    </span>
-                                ) : (
-                                    <span className="text-[11px] text-gray-500 font-mono">
-                                        Future Horizon Milestone
-                                    </span>
-                                )}
+                            {/* FOOTER PREV / NEXT NAVIGATION BAR */}
+                            <div className="border-t border-white/10 pt-6 pb-4 flex items-center justify-between mt-auto">
+                                <button
+                                    onClick={() => navigateMilestone('prev')}
+                                    className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-bold flex items-center gap-2 transition-all"
+                                >
+                                    <ArrowLeft size={14} />
+                                    <span>PREVIOUS MILESTONE</span>
+                                </button>
 
                                 <button
                                     onClick={() => setActiveMilestone(null)}
-                                    className="px-6 py-2 rounded-xl bg-secondary text-black font-semibold text-xs hover:bg-secondary/90 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
+                                    className="px-6 py-2.5 rounded-xl bg-secondary text-black text-xs font-bold font-mono hover:bg-secondary/90 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
                                 >
-                                    Close Detail
+                                    BACK TO TIMELINE
+                                </button>
+
+                                <button
+                                    onClick={() => navigateMilestone('next')}
+                                    className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-bold flex items-center gap-2 transition-all"
+                                >
+                                    <span>NEXT MILESTONE</span>
+                                    <ArrowRight size={14} />
                                 </button>
                             </div>
-                        </motion.div>
-                    </div>
+
+                        </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Lightbox Modal for Certificate/Photo View */}
+            {/* Lightbox Modal for Fullscreen Certificate/Photo View */}
             <AnimatePresence>
                 {lightboxImage && (
                     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg">
@@ -575,7 +697,7 @@ const Journey = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
-                            className="relative max-w-4xl w-full"
+                            className="relative max-w-5xl w-full"
                         >
                             <button
                                 onClick={() => setLightboxImage(null)}
