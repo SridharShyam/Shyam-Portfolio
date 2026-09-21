@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import CardSpotlight from '../ui/CardSpotlight';
+import TextScramble from '../ui/TextScramble';
 
 const caseStudies = [
     {
@@ -330,13 +332,18 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
             onClick={onClick}
-            className={`group relative bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col h-full ${isFullWidth ? 'md:col-span-2' : ''} ${onClick ? 'cursor-pointer' : ''}`}
+            className={`h-full ${isFullWidth ? 'md:col-span-2' : ''}`}
         >
+            <CardSpotlight
+                color="rgba(236, 72, 153, 0.12)"
+                slotColor="rgba(0, 199, 183, 0.15)"
+                className={`h-full flex flex-col p-0 overflow-hidden ${onClick ? 'cursor-pointer' : ''}`}
+            >
             {/* Ambient Corner Glow */}
             <div className="absolute top-0 right-0 w-36 h-36 bg-primary/5 rounded-bl-full group-hover:bg-primary/10 transition-colors pointer-events-none" />
 
@@ -457,6 +464,7 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                     ))}
                 </div>
             </div>
+            </CardSpotlight>
         </motion.div>
     );
 };

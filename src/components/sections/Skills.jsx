@@ -12,6 +12,8 @@ import {
 } from 'react-icons/fa';
 import { Cpu, Database, Server, PieChart, Cloud, Code, Sparkles, Activity, CheckCircle2 } from 'lucide-react';
 import notionData from '../../data/notion-data.json';
+import CardSpotlight from '../ui/CardSpotlight';
+import TextScramble from '../ui/TextScramble';
 
 const iconMap = {
     "Python": <SiPython className="text-[#3776AB]" />,
@@ -133,7 +135,7 @@ const Skills = () => {
                         TECHNICAL PROFICIENCY // MODEL FEATURE IMPORTANCE
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">
-                        Empirical <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Skill Architecture</span>
+                        Empirical <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary"><TextScramble text="Skill Architecture" /></span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed">
                         A multi-dimensional view of my technical proficiency, structured as a machine learning feature importance plot dynamically weighted by GitHub repository data.
