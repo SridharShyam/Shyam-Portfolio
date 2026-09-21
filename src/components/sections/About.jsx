@@ -116,7 +116,7 @@ const About = () => {
                                     <img 
                                         src="/shyam-formal.jpeg" 
                                         alt="Sridhar Shyam"
-                                        className="w-full h-full object-cover object-[50%_22%] scale-[1.25] grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-[1.3] transition-all duration-700 ease-out" 
+                                        className="w-full h-full object-cover object-[50%_22%] scale-[1.25] group-hover:scale-[1.3] transition-all duration-700 ease-out" 
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
                                 </div>
