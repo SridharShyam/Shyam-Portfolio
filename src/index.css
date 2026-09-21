@@ -5,8 +5,15 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     @apply bg-background text-text font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-background;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading text-white;
@@ -28,21 +35,30 @@
   @apply bg-muted/30 rounded-full hover:bg-primary transition-colors;
 }
 
-/* Glassmorphism utility */
+/* Hardware GPU acceleration helper */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Glassmorphism utility - GPU optimized */
 .glass {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+  transform: translateZ(0);
 }
 
 .glass-card {
-   @apply bg-gray-900/40 backdrop-blur-md border border-white/5 shadow-2xl rounded-2xl;
+   @apply bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-lg rounded-2xl;
+   transform: translateZ(0);
 }
 
 /* Animation utilities */
 .animate-in {
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }

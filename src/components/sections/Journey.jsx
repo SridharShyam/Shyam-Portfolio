@@ -55,7 +55,7 @@ const Journey = () => {
         chunkedTimeline.push(filteredTimeline.slice(i, i + 3));
     }
 
-    // Trigger 3D flip animation first, then open full-page showcase
+    // Trigger 3D pop, spin & morph sequence before launching showcase page
     const handleCardClick = (item) => {
         if (flippingCardId) return; // prevent duplicate clicks
         setFlippingCardId(item.stepNumber);
@@ -64,7 +64,7 @@ const Journey = () => {
             setActiveMilestone(item);
             setFlippingCardId(null);
             setActiveShowcaseTab('all');
-        }, 400); // match flip animation duration
+        }, 420); // match spin animation duration
     };
 
     const navigateMilestone = (direction) => {
@@ -81,9 +81,9 @@ const Journey = () => {
 
     return (
         <section id="journey" className="py-24 bg-background relative overflow-hidden">
-            {/* Background Glow Orbs */}
-            <div className="absolute top-1/3 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-[120px] pointer-events-none" />
+            {/* Background Glow Orbs - GPU Optimized */}
+            <div className="absolute top-1/3 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />
+            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />
 
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 {/* Header */}
@@ -92,16 +92,17 @@ const Journey = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        CAREER TIMELINE // INTERACTIVE 3D EXPLORER
+                        CAREER TIMELINE // 3D EXPLORER & VERIFIED PROOFS
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
                         Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Click any milestone card to flip it in 3D space and launch its dedicated full-page showcase with verified proofs, metrics, and deliverables.
+                        Click any milestone card to trigger a 3D spin & pop animation, opening a dedicated showcase page with verified proof documents and hard metrics.
                     </p>
                 </motion.div>
 
@@ -110,11 +111,12 @@ const Journey = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                     className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
                 >
                     {executiveStats.map((stat, idx) => (
-                        <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300">
-                            <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform`}>
+                        <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated">
+                            <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
                                 <stat.icon size={20} />
                             </div>
                             <div>
@@ -133,6 +135,7 @@ const Journey = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
                     className="flex flex-wrap items-center gap-2 mb-14 pb-2 border-b border-white/5"
                 >
                     <div className="flex items-center gap-1.5 text-xs text-gray-400 font-mono mr-2">
@@ -237,18 +240,18 @@ const Journey = () => {
 
                                 {chunk.map((item, colIndex) => {
                                     const actualIndex = rowIndex * 3 + colIndex;
-                                    const delay = actualIndex * 0.08;
+                                    const delay = actualIndex * 0.06;
                                     const isFlipping = flippingCardId === item.stepNumber;
 
                                     if (item.isFuture) {
                                         return (
                                             <motion.div
                                                 key={actualIndex}
-                                                className="w-full md:w-1/3 flex flex-col justify-center items-center text-center p-6 relative z-10 pl-16 md:pl-6 cursor-pointer"
+                                                className="w-full md:w-1/3 flex flex-col justify-center items-center text-center p-6 relative z-10 pl-16 md:pl-6 cursor-pointer gpu-accelerated"
                                                 initial={{ opacity: 0, scale: 0.9 }}
                                                 whileInView={{ opacity: 1, scale: 1 }}
-                                                viewport={{ once: true, margin: "-50px" }}
-                                                transition={{ duration: 0.5, delay }}
+                                                viewport={{ once: true, margin: "-30px" }}
+                                                transition={{ duration: 0.4, delay }}
                                                 onClick={() => handleCardClick(item)}
                                             >
                                                 <div className="w-16 h-16 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_20px_rgba(236,72,153,0.5)] flex items-center justify-center text-secondary mb-4">
@@ -267,18 +270,44 @@ const Journey = () => {
                                         <motion.div
                                             key={actualIndex}
                                             className="w-full md:w-1/3 relative z-10 pl-16 md:pl-0"
-                                            initial={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, y: 16 }}
                                             whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true, margin: "-50px" }}
-                                            transition={{ duration: 0.5, delay }}
+                                            viewport={{ once: true, margin: "-30px" }}
+                                            transition={{ duration: 0.4, delay }}
                                             style={{ perspective: '1200px' }}
                                         >
+                                            {/* Glowing burst ring on flip click */}
+                                            <AnimatePresence>
+                                                {isFlipping && (
+                                                    <motion.div 
+                                                        className="absolute inset-0 rounded-2xl border-2 border-secondary shadow-[0_0_50px_rgba(0,199,183,0.9)] pointer-events-none z-30"
+                                                        initial={{ scale: 0.95, opacity: 1 }}
+                                                        animate={{ scale: 1.35, opacity: 0 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{ duration: 0.42, ease: 'easeOut' }}
+                                                    />
+                                                )}
+                                            </AnimatePresence>
+
                                             <motion.div 
-                                                animate={{ rotateY: isFlipping ? 180 : 0 }}
-                                                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                                animate={
+                                                    isFlipping
+                                                        ? { 
+                                                            scale: [1, 1.14, 0.94, 1.08],
+                                                            rotateY: [0, 180, 360],
+                                                            rotateZ: [0, -6, 6, 0],
+                                                            y: [0, -22, -6, 0]
+                                                          }
+                                                        : { scale: 1, rotateY: 0, rotateZ: 0, y: 0 }
+                                                }
+                                                transition={
+                                                    isFlipping
+                                                        ? { duration: 0.42, ease: [0.34, 1.56, 0.64, 1] }
+                                                        : { duration: 0.3, ease: 'easeOut' }
+                                                }
                                                 whileHover={!isFlipping ? { y: -6, scale: 1.02 } : {}}
                                                 onClick={() => handleCardClick(item)}
-                                                className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-secondary/40 transition-all duration-300 group shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10 overflow-hidden cursor-pointer"
+                                                className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-secondary/40 transition-colors duration-300 group shadow-lg relative z-10 overflow-hidden cursor-pointer gpu-accelerated"
                                                 style={{ transformStyle: 'preserve-3d' }}
                                             >
                                                 {/* FRONT FACE OF THE CARD */}
@@ -342,14 +371,14 @@ const Journey = () => {
                                                         </div>
                                                     )}
 
-                                                    {/* Click to flip & view indicator */}
-                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2">
+                                                    {/* Click to spin & open page indicator */}
+                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2 border-t border-white/5">
                                                         <span className="text-[10px] text-gray-500 font-sans flex items-center gap-1">
                                                             <RotateCw size={11} className="text-secondary/70 group-hover:rotate-180 transition-transform duration-500" />
-                                                            Click to 3D Flip
+                                                            Spin & Expand
                                                         </span>
                                                         <div className="flex items-center gap-0.5 font-bold text-secondary">
-                                                            <span>Open Showcase</span>
+                                                            <span>Launch Showcase</span>
                                                             <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                                         </div>
                                                     </div>
@@ -364,10 +393,10 @@ const Journey = () => {
                                                         <RotateCw size={24} />
                                                     </div>
                                                     <span className="text-xs font-mono font-bold text-secondary tracking-widest uppercase mb-1">
-                                                        FLIPPING CARD // 3D PORTAL
+                                                        3D POP & SPIN PORTAL
                                                     </span>
                                                     <h4 className="text-base font-bold text-white font-heading">
-                                                        Launching Full Showcase...
+                                                        Opening Full Showcase Page...
                                                     </h4>
                                                 </div>
                                             </motion.div>
@@ -384,14 +413,14 @@ const Journey = () => {
             <AnimatePresence>
                 {activeMilestone && (
                     <motion.div
-                        initial={{ opacity: 0, y: '100%' }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: '100%' }}
-                        transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-                        className="fixed inset-0 z-50 bg-[#07090e]/98 backdrop-blur-2xl overflow-y-auto min-h-screen flex flex-col text-white custom-scrollbar"
+                        initial={{ opacity: 0, scale: 0.92, y: 40 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 40 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="fixed inset-0 z-50 bg-[#07090e]/98 backdrop-blur-xl overflow-y-auto min-h-screen flex flex-col text-white custom-scrollbar gpu-accelerated"
                     >
                         {/* STICKY TOP NAVIGATION HEADER */}
-                        <div className="sticky top-0 z-30 bg-[#07090e]/90 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex items-center justify-between">
+                        <div className="sticky top-0 z-30 bg-[#07090e]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
                             <button
                                 onClick={() => setActiveMilestone(null)}
                                 className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white font-mono text-xs flex items-center gap-2 transition-all group"
@@ -446,7 +475,7 @@ const Journey = () => {
                                     </p>
                                 </div>
 
-                                <div className="p-6 rounded-3xl bg-secondary/10 border border-secondary/30 text-secondary flex flex-col items-center justify-center shrink-0 w-32 h-32 self-start md:self-center shadow-[0_0_30px_rgba(0,199,183,0.15)]">
+                                <div className="p-6 rounded-3xl bg-secondary/10 border border-secondary/30 text-secondary flex flex-col items-center justify-center shrink-0 w-32 h-32 self-start md:self-center shadow-lg">
                                     <activeMilestone.icon size={48} />
                                     <span className="text-[10px] font-mono font-bold mt-2 uppercase text-secondary/80">
                                         #{activeMilestone.stepNumber}
@@ -510,6 +539,7 @@ const Journey = () => {
                                     <motion.section 
                                         initial={{ opacity: 0, y: 15 }}
                                         animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
                                         className="space-y-4"
                                     >
                                         <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
@@ -518,7 +548,7 @@ const Journey = () => {
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                             {activeMilestone.hardMetrics.map((metric, mIdx) => (
-                                                <div key={mIdx} className="p-5 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-secondary/30 flex items-start gap-3.5 group hover:border-secondary transition-all">
+                                                <div key={mIdx} className="p-5 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-secondary/30 flex items-start gap-3.5 group hover:border-secondary transition-colors gpu-accelerated">
                                                     <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary group-hover:scale-110 transition-transform">
                                                         <CheckCircle2 size={20} />
                                                     </div>
@@ -537,7 +567,8 @@ const Journey = () => {
                                     <motion.section 
                                         initial={{ opacity: 0, y: 15 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="space-y-6 p-6 md:p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 relative overflow-hidden"
+                                        transition={{ duration: 0.3 }}
+                                        className="space-y-6 p-6 md:p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 relative overflow-hidden gpu-accelerated"
                                     >
                                         <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
                                             <div className="flex items-center gap-2.5 text-sm font-mono font-bold text-emerald-300 uppercase tracking-wider">
@@ -618,6 +649,7 @@ const Journey = () => {
                                     <motion.section 
                                         initial={{ opacity: 0, y: 15 }}
                                         animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
                                         className="space-y-4"
                                     >
                                         <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
@@ -640,6 +672,7 @@ const Journey = () => {
                                     <motion.section 
                                         initial={{ opacity: 0, y: 15 }}
                                         animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
                                         className="space-y-4"
                                     >
                                         <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
