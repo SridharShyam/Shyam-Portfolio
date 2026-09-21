@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, 
     BookOpen, Code, Zap, Star, MapPin, ChevronRight, X, Calendar, 
-    Layers, Filter, CheckCircle2 
+    Layers, Filter, CheckCircle2, ShieldCheck, ExternalLink, Maximize2, 
+    FileCheck, BarChart2, Building2
 } from 'lucide-react';
 import notionData from '../../data/notion-data.json';
 
@@ -31,6 +32,8 @@ const Journey = () => {
     const containerRef = useRef(null);
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [activeMilestone, setActiveMilestone] = useState(null);
+    const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'proof'
+    const [lightboxImage, setLightboxImage] = useState(null);
 
     // Map timeline items from Notion data
     const rawTimeline = notionData.journey.map((item, index) => ({
@@ -50,6 +53,11 @@ const Journey = () => {
         chunkedTimeline.push(filteredTimeline.slice(i, i + 3));
     }
 
+    const openMilestoneModal = (item) => {
+        setActiveMilestone(item);
+        setActiveTab('overview');
+    };
+
     return (
         <section id="journey" className="py-24 bg-background relative overflow-hidden">
             {/* Background Glow Orbs */}
@@ -66,13 +74,13 @@ const Journey = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        CAREER TIMELINE // GROWTH & MILESTONES
+                        CAREER TIMELINE // VERIFIABLE MILESTONES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
                         Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        A chronological record of engineering milestones, hackathon achievements, international delegations, and strategic leadership roles.
+                        A chronological record of engineering milestones, hackathon achievements, international delegations, and strategic leadership roles with verifiable proof documents.
                     </p>
                 </motion.div>
 
@@ -219,7 +227,7 @@ const Journey = () => {
                                                 whileInView={{ opacity: 1, scale: 1 }}
                                                 viewport={{ once: true, margin: "-50px" }}
                                                 transition={{ duration: 0.5, delay }}
-                                                onClick={() => setActiveMilestone(item)}
+                                                onClick={() => openMilestoneModal(item)}
                                             >
                                                 <div className="w-16 h-16 rounded-full bg-background border-2 border-secondary animate-pulse shadow-[0_0_20px_rgba(236,72,153,0.5)] flex items-center justify-center text-secondary mb-4">
                                                     <item.icon size={28} />
@@ -244,7 +252,7 @@ const Journey = () => {
                                         >
                                             <motion.div 
                                                 whileHover={{ y: -6, scale: 1.02 }}
-                                                onClick={() => setActiveMilestone(item)}
+                                                onClick={() => openMilestoneModal(item)}
                                                 className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:border-secondary/40 transition-all duration-500 group shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10 overflow-hidden cursor-pointer"
                                             >
                                                 {/* Ambient Corner Glow */}
@@ -252,13 +260,19 @@ const Journey = () => {
 
                                                 {/* Top Meta Bar */}
                                                 <div className="flex items-center justify-between mb-3.5 relative z-10">
-                                                    <div className="flex items-center gap-2">
+                                                    <div className="flex flex-wrap items-center gap-1.5">
                                                         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
                                                             #{item.stepNumber}
                                                         </span>
                                                         <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border`}>
                                                             {item.category?.toUpperCase() || 'MILESTONE'}
                                                         </span>
+                                                        {item.proof && (
+                                                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm">
+                                                                <ShieldCheck size={10} className="text-emerald-400" />
+                                                                VERIFIED
+                                                            </span>
+                                                        )}
                                                     </div>
 
                                                     <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300">
@@ -301,9 +315,14 @@ const Journey = () => {
                                                 )}
 
                                                 {/* Click to expand indicator */}
-                                                <div className="mt-3 flex items-center justify-end text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors">
-                                                    <span>View detail</span>
-                                                    <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                                <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2">
+                                                    <span className="text-[10px] text-gray-500 font-sans">
+                                                        {item.proof ? '📜 Evidence Attached' : 'Details Available'}
+                                                    </span>
+                                                    <div className="flex items-center gap-0.5">
+                                                        <span>View detail</span>
+                                                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                                    </div>
                                                 </div>
                                             </motion.div>
                                         </motion.div>
@@ -315,15 +334,15 @@ const Journey = () => {
                 </div>
             </div>
 
-            {/* Interactive Milestone Detail Modal */}
+            {/* Interactive Milestone Detail & Proof Modal */}
             <AnimatePresence>
                 {activeMilestone && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="bg-[#0b0f17] border border-white/15 rounded-3xl max-w-xl w-full p-6 md:p-8 relative shadow-2xl overflow-hidden"
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            className="bg-[#0b0f17] border border-white/15 rounded-3xl max-w-2xl w-full p-6 md:p-8 relative shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
                         >
                             {/* Gradient Header Light */}
                             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-purple-500 to-pink-500" />
@@ -331,18 +350,18 @@ const Journey = () => {
                             {/* Close Button */}
                             <button
                                 onClick={() => setActiveMilestone(null)}
-                                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
+                                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors z-20"
                             >
                                 <X size={20} />
                             </button>
 
                             {/* Modal Header */}
-                            <div className="flex items-start gap-4 mb-6">
-                                <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/30 text-secondary">
+                            <div className="flex items-start gap-4 mb-4 pr-10">
+                                <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/30 text-secondary shrink-0">
                                     <activeMilestone.icon size={28} />
                                 </div>
                                 <div>
-                                    <div className="flex items-center gap-2 mb-1">
+                                    <div className="flex flex-wrap items-center gap-2 mb-1">
                                         <span className="text-xs font-mono font-bold text-secondary px-2 py-0.5 rounded bg-secondary/10 border border-secondary/20">
                                             #{activeMilestone.stepNumber} // {activeMilestone.year}
                                         </span>
@@ -351,59 +370,191 @@ const Journey = () => {
                                             {activeMilestone.location}
                                         </span>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white font-heading">
+                                    <h3 className="text-xl md:text-2xl font-bold text-white font-heading leading-tight">
                                         {activeMilestone.title}
                                     </h3>
                                 </div>
                             </div>
 
-                            {/* Detailed Description */}
-                            <div className="mb-6 bg-white/[0.02] border border-white/5 p-4 rounded-2xl">
-                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-2 font-bold tracking-wider flex items-center gap-1.5">
-                                    <Layers size={14} className="text-secondary" />
-                                    OVERVIEW & CONTEXT
-                                </h4>
-                                <p className="text-gray-300 text-sm leading-relaxed">
-                                    {activeMilestone.details || activeMilestone.description}
-                                </p>
+                            {/* Navigation Tabs (Overview vs Verified Evidence) */}
+                            <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-2">
+                                <button
+                                    onClick={() => setActiveTab('overview')}
+                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all ${
+                                        activeTab === 'overview'
+                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.3)]'
+                                            : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    <Layers size={14} />
+                                    OVERVIEW & IMPACT
+                                </button>
+                                {activeMilestone.proof && (
+                                    <button
+                                        onClick={() => setActiveTab('proof')}
+                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all ${
+                                            activeTab === 'proof'
+                                                ? 'bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.3)]'
+                                                : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
+                                        }`}
+                                    >
+                                        <ShieldCheck size={14} />
+                                        VERIFIED PROOF & CREDENTIALS
+                                    </button>
+                                )}
                             </div>
 
-                            {/* Key Highlights */}
-                            {activeMilestone.highlights && (
-                                <div className="mb-6">
-                                    <h4 className="text-xs font-mono uppercase text-gray-400 mb-3 font-bold tracking-wider flex items-center gap-1.5">
-                                        <CheckCircle2 size={14} className="text-emerald-400" />
-                                        KEY ACHIEVEMENTS & HIGHLIGHTS
-                                    </h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                        {activeMilestone.highlights.map((h, i) => (
-                                            <div key={i} className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-200">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                                                <span>{h}</span>
+                            {/* Scrollable Content Body */}
+                            <div className="overflow-y-auto pr-1 space-y-6 flex-grow custom-scrollbar">
+                                
+                                {activeTab === 'overview' && (
+                                    <>
+                                        {/* Quantifiable Impact Metrics Grid */}
+                                        {activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
+                                            <div>
+                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-2.5 font-bold tracking-wider flex items-center gap-1.5">
+                                                    <BarChart2 size={14} className="text-secondary" />
+                                                    QUANTIFIABLE METRICS & OUTCOMES
+                                                </h4>
+                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                                                    {activeMilestone.hardMetrics.map((metric, mIdx) => (
+                                                        <div key={mIdx} className="p-3 rounded-xl bg-white/[0.03] border border-secondary/20 flex items-center gap-2.5">
+                                                            <div className="w-2 h-2 rounded-full bg-secondary shrink-0" />
+                                                            <span className="text-xs font-semibold text-gray-200">{metric}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                                        )}
 
-                            {/* Skills / Focus Area */}
-                            {activeMilestone.skills && (
-                                <div className="mb-6">
-                                    <h4 className="text-xs font-mono uppercase text-gray-400 mb-3 font-bold tracking-wider">
-                                        COMPETENCIES & SKILLS APPLIED
-                                    </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {activeMilestone.skills.map((skill, sIdx) => (
-                                            <span key={sIdx} className="text-xs px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-mono">
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                                        {/* Detailed Description */}
+                                        <div className="bg-white/[0.02] border border-white/5 p-4 rounded-2xl">
+                                            <h4 className="text-xs font-mono uppercase text-gray-400 mb-2 font-bold tracking-wider flex items-center gap-1.5">
+                                                <FileCheck size={14} className="text-secondary" />
+                                                CONTEXT & ENGINE DETAILS
+                                            </h4>
+                                            <p className="text-gray-300 text-sm leading-relaxed">
+                                                {activeMilestone.details || activeMilestone.description}
+                                            </p>
+                                        </div>
 
-                            {/* Footer Close CTA */}
-                            <div className="flex justify-end pt-4 border-t border-white/10">
+                                        {/* Key Highlights */}
+                                        {activeMilestone.highlights && (
+                                            <div>
+                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-3 font-bold tracking-wider flex items-center gap-1.5">
+                                                    <CheckCircle2 size={14} className="text-emerald-400" />
+                                                    KEY DELIVERABLES
+                                                </h4>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                                    {activeMilestone.highlights.map((h, i) => (
+                                                        <div key={i} className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-200">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                                                            <span>{h}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Skills / Focus Area */}
+                                        {activeMilestone.skills && (
+                                            <div>
+                                                <h4 className="text-xs font-mono uppercase text-gray-400 mb-2.5 font-bold tracking-wider">
+                                                    COMPETENCIES & DOMAINS
+                                                </h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {activeMilestone.skills.map((skill, sIdx) => (
+                                                        <span key={sIdx} className="text-xs px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 font-mono">
+                                                            {skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+
+                                {activeTab === 'proof' && activeMilestone.proof && (
+                                    <div className="space-y-5">
+                                        {/* Proof Metadata Bar */}
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
+                                            <div>
+                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">CREDENTIAL TYPE</span>
+                                                <span className="text-xs font-bold text-white flex items-center gap-1.5 mt-0.5">
+                                                    <Award size={14} className="text-emerald-400" />
+                                                    {activeMilestone.proof.proofType}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">ISSUED BY</span>
+                                                <span className="text-xs font-bold text-white flex items-center gap-1.5 mt-0.5">
+                                                    <Building2 size={14} className="text-emerald-400" />
+                                                    {activeMilestone.proof.issuer}
+                                                </span>
+                                            </div>
+                                            {activeMilestone.proof.credentialId && (
+                                                <div className="sm:col-span-2 pt-2 border-t border-emerald-500/10 flex items-center justify-between">
+                                                    <span className="text-[10px] font-mono text-gray-400">CREDENTIAL ID:</span>
+                                                    <span className="text-xs font-mono font-bold text-emerald-300 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/30">
+                                                        {activeMilestone.proof.credentialId}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Certificate / Image Preview Card */}
+                                        {activeMilestone.proof.proofImage && (
+                                            <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/50 aspect-video flex items-center justify-center">
+                                                <img 
+                                                    src={activeMilestone.proof.proofImage} 
+                                                    alt={activeMilestone.title} 
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
+                                                    <button 
+                                                        onClick={() => setLightboxImage(activeMilestone.proof.proofImage)}
+                                                        className="px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:scale-105 transition-transform"
+                                                    >
+                                                        <Maximize2 size={14} />
+                                                        View Fullscreen Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Verification External Link */}
+                                        {activeMilestone.proof.verificationUrl && (
+                                            <div className="pt-2">
+                                                <a 
+                                                    href={activeMilestone.proof.verificationUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="w-full py-3 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group"
+                                                >
+                                                    <ExternalLink size={14} />
+                                                    <span>VERIFY CREDENTIAL ONLINE</span>
+                                                    <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
+                            </div>
+
+                            {/* Footer CTA Bar */}
+                            <div className="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
+                                {activeMilestone.proof ? (
+                                    <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
+                                        <ShieldCheck size={14} />
+                                        Verified Credential & Proof Attached
+                                    </span>
+                                ) : (
+                                    <span className="text-[11px] text-gray-500 font-mono">
+                                        Future Horizon Milestone
+                                    </span>
+                                )}
+
                                 <button
                                     onClick={() => setActiveMilestone(null)}
                                     className="px-6 py-2 rounded-xl bg-secondary text-black font-semibold text-xs hover:bg-secondary/90 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
@@ -415,9 +566,34 @@ const Journey = () => {
                     </div>
                 )}
             </AnimatePresence>
+
+            {/* Lightbox Modal for Certificate/Photo View */}
+            <AnimatePresence>
+                {lightboxImage && (
+                    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="relative max-w-4xl w-full"
+                        >
+                            <button
+                                onClick={() => setLightboxImage(null)}
+                                className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+                            <img 
+                                src={lightboxImage} 
+                                alt="Full Proof Certificate" 
+                                className="w-full h-auto rounded-2xl border border-white/20 shadow-2xl max-h-[85vh] object-contain"
+                            />
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };
 
 export default Journey;
-

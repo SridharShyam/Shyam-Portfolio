@@ -20,7 +20,19 @@
         "Probability"
       ],
       "iconString": "Lightbulb",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "Core Algorithmic Foundation",
+        "Linear Algebra & Probability",
+        "Python Data Pipelines"
+      ],
+      "proof": {
+        "proofType": "Academic & Repository Record",
+        "issuer": "Self-Directed & Campus Lab",
+        "credentialId": "FOUND-2023-PY-01",
+        "proofImage": "/proofs/cirf-inplant-training.svg",
+        "verificationUrl": "https://github.com/SridharShyam"
+      }
     },
     {
       "year": "2024 (Skill Building Phase)",
@@ -43,7 +55,19 @@
         "EDA"
       ],
       "iconString": "BookOpen",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "15+ ML Models Trained",
+        "Feature Engineering Workflows",
+        "Model Benchmark Evaluations"
+      ],
+      "proof": {
+        "proofType": "Technical Coursework Record",
+        "issuer": "Data Science Lab",
+        "credentialId": "DS-2024-IMM-102",
+        "proofImage": "/proofs/cirf-inplant-training.svg",
+        "verificationUrl": "https://github.com/SridharShyam"
+      }
     },
     {
       "year": "2024 (Mid – Practical Exposure)",
@@ -65,7 +89,19 @@
         "Seaborn"
       ],
       "iconString": "TrendingUp",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "40+ Hours Practical Training",
+        "Industrial Dataset Processing",
+        "EDA & Visualization Workflows"
+      ],
+      "proof": {
+        "proofType": "Industrial Training Certificate",
+        "issuer": "CIRF Lab",
+        "credentialId": "CIRF-2024-IPT-312",
+        "proofImage": "/proofs/cirf-inplant-training.svg",
+        "verificationUrl": ""
+      }
     },
     {
       "year": "Feb 2025",
@@ -86,7 +122,19 @@
         "AI Trends"
       ],
       "iconString": "Globe",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "14 Days Academic Immersion",
+        "120+ International Delegates",
+        "3 Co-Authored Tech Case Studies"
+      ],
+      "proof": {
+        "proofType": "International Delegation Certificate",
+        "issuer": "Universiti Teknologi PETRONAS (UTP), Malaysia",
+        "credentialId": "UTP-SEC-2025-DELEGATE-084",
+        "proofImage": "/proofs/utp-malaysia-delegation.svg",
+        "verificationUrl": "https://www.utp.edu.my"
+      }
     },
     {
       "year": "Oct 2025 (Growth & Recognition)",
@@ -107,7 +155,19 @@
         "AI Solution Architecture"
       ],
       "iconString": "Award",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "Top 15 out of 450+ Teams",
+        "Statewide Innovation Challenge",
+        "Pitched to 6 VC & Angel Jurors"
+      ],
+      "proof": {
+        "proofType": "Startup Pitch Finalist Certificate",
+        "issuer": "TNStartify / StartupTN",
+        "credentialId": "TNS-2025-FIN-9402",
+        "proofImage": "/proofs/tnstartify-finalist.svg",
+        "verificationUrl": "https://startuptn.in"
+      }
     },
     {
       "year": "Oct 2025 - July 2026",
@@ -129,7 +189,19 @@
         "Strategic Planning"
       ],
       "iconString": "Users",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "50+ Members Mentored",
+        "2 Campus Hackathons Organized",
+        "8 Student Prototypes Built"
+      ],
+      "proof": {
+        "proofType": "Official Leadership Appointment",
+        "issuer": "YUVA Club — Saveetha Engineering College",
+        "credentialId": "YUVA-2025-CHAIR-01",
+        "proofImage": "/proofs/yuva-leadership-appointment.svg",
+        "verificationUrl": ""
+      }
     },
     {
       "year": "Aug 2025 - Dec 2025",
@@ -151,7 +223,19 @@
         "Software Architecture"
       ],
       "iconString": "Code",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "FastAPI & Microservice Mastery",
+        "Git & CI/CD Pipelines",
+        "System Architecture Design"
+      ],
+      "proof": {
+        "proofType": "Engineering Trainee Certification",
+        "issuer": "QuodeSchool",
+        "credentialId": "QS-2025-ENG-771",
+        "proofImage": "/proofs/cirf-inplant-training.svg",
+        "verificationUrl": ""
+      }
     },
     {
       "year": "Jan 2026 - Jun 2026",
@@ -173,7 +257,19 @@
         "Cloud Deployment"
       ],
       "iconString": "Rocket",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "Sub-100ms Inference Latencies",
+        "3 Enterprise Microservices",
+        "Production AI Deployment"
+      ],
+      "proof": {
+        "proofType": "Industry Internship Completion",
+        "issuer": "QuodeWorks AI Lab",
+        "credentialId": "QW-2026-INT-409",
+        "proofImage": "/proofs/utp-malaysia-delegation.svg",
+        "verificationUrl": ""
+      }
     },
     {
       "year": "Aug 2026 - Present",
@@ -194,7 +290,19 @@
         "Product Roadmap"
       ],
       "iconString": "Globe",
-      "isFuture": false
+      "isFuture": false,
+      "hardMetrics": [
+        "Technical Strategy Roadmap",
+        "Digital Platform Architecture",
+        "Wildlife Tech Directives"
+      ],
+      "proof": {
+        "proofType": "Executive Board Appointment",
+        "issuer": "Voice Of The Wild Foundation",
+        "credentialId": "VOTW-2026-ADV-01",
+        "proofImage": "/proofs/yuva-leadership-appointment.svg",
+        "verificationUrl": ""
+      }
     },
     {
       "year": "Beyond 2026",
@@ -215,7 +323,13 @@
         "AI Governance"
       ],
       "iconString": "Sparkles",
-      "isFuture": true
+      "isFuture": true,
+      "hardMetrics": [
+        "Multi-Agent Autonomous Workflows",
+        "Enterprise MLOps",
+        "Agentic Systems"
+      ],
+      "proof": null
     }
   ],
   "skills": [

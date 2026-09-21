@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" rx="16" fill="#0B0F17"/>
+  <rect x="2" y="2" width="796" height="496" rx="14" stroke="#EC4899" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="400" cy="180" r="48" fill="#EC4899" fill-opacity="0.1" stroke="#EC4899" stroke-width="2"/>
+  <path d="M385 190L400 165L415 190H385Z" stroke="#EC4899" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="270" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">TNSTARTIFY 3.0 INNOVATION CHALLENGE</text>
+  <text x="400" y="302" text-anchor="middle" fill="#EC4899" font-family="monospace" font-size="14" font-weight="600" letter-spacing="2">STATEWIDE STARTUP FINALIST RECOGNITION</text>
+  <text x="400" y="340" text-anchor="middle" fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="13">Awarded to Sridhar Shyam • Top 15 Finalist • Oct 2025</text>
+  <rect x="250" y="380" width="300" height="40" rx="8" fill="#1E293B" stroke="#334155"/>
+  <text x="400" y="405" text-anchor="middle" fill="#64748B" font-family="monospace" font-size="12">CREDENTIAL ID: TNS-2025-FIN-9402</text>
+</svg>

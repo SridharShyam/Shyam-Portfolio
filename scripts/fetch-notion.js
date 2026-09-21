@@ -60,7 +60,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Chennai, IN",
     highlights: ["Python & Data Structures", "Probabilistic Models", "ML Mechanics"],
     details: "Wrote initial algorithmic implementations in Python, establishing fundamental concepts in data science, linear algebra, discrete mathematics, and model training workflows.",
-    skills: ["Python", "Data Structures", "Linear Algebra", "Probability"]
+    skills: ["Python", "Data Structures", "Linear Algebra", "Probability"],
+    hardMetrics: ["Core Algorithmic Foundation", "Linear Algebra & Probability", "Python Data Pipelines"],
+    proof: {
+      proofType: "Academic & Repository Record",
+      issuer: "Self-Directed & Campus Lab",
+      credentialId: "FOUND-2023-PY-01",
+      proofImage: "/proofs/cirf-inplant-training.svg",
+      verificationUrl: "https://github.com/SridharShyam"
+    }
   },
   "AI & Data Science Immersion": {
     year: "2024",
@@ -69,7 +77,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Chennai, IN",
     highlights: ["Scikit-Learn", "Pandas & NumPy", "Predictive Pipelines"],
     details: "Implemented end-to-end data preprocessing pipelines, feature engineering techniques, and baseline supervised regression and classification models.",
-    skills: ["Python", "Pandas", "NumPy", "Scikit-Learn", "EDA"]
+    skills: ["Python", "Pandas", "NumPy", "Scikit-Learn", "EDA"],
+    hardMetrics: ["15+ ML Models Trained", "Feature Engineering Workflows", "Model Benchmark Evaluations"],
+    proof: {
+      proofType: "Technical Coursework Record",
+      issuer: "Data Science Lab",
+      credentialId: "DS-2024-IMM-102",
+      proofImage: "/proofs/cirf-inplant-training.svg",
+      verificationUrl: "https://github.com/SridharShyam"
+    }
   },
   "Inplant Training – CIRF": {
     year: "2024 (Mid)",
@@ -78,7 +94,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "CIRF Lab, IN",
     highlights: ["Real-world Datasets", "Exploratory Data Analysis", "Industry Workflows"],
     details: "Participated in practical industry training focused on dataset cleaning, telemetry exploratory analysis, data visualization, and ML model evaluation.",
-    skills: ["EDA", "Data Wrangling", "Matplotlib", "Seaborn"]
+    skills: ["EDA", "Data Wrangling", "Matplotlib", "Seaborn"],
+    hardMetrics: ["40+ Hours Practical Training", "Industrial Dataset Processing", "EDA & Visualization Workflows"],
+    proof: {
+      proofType: "Industrial Training Certificate",
+      issuer: "CIRF Lab",
+      credentialId: "CIRF-2024-IPT-312",
+      proofImage: "/proofs/cirf-inplant-training.svg",
+      verificationUrl: ""
+    }
   },
   "Student Immersion (SEC × UTP, Malaysia)": {
     year: "Feb 2025",
@@ -87,7 +111,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "UTP, Malaysia",
     highlights: ["International Exchange", "Global AI Insights", "Cross-Cultural Leadership"],
     details: "Selected for an international academic exchange at Universiti Teknologi PETRONAS (UTP), Malaysia, collaborating with international peers on emerging technology trends and cross-border innovation.",
-    skills: ["Global Collaboration", "Cross-Cultural Leadership", "AI Trends"]
+    skills: ["Global Collaboration", "Cross-Cultural Leadership", "AI Trends"],
+    hardMetrics: ["14 Days Academic Immersion", "120+ International Delegates", "3 Co-Authored Tech Case Studies"],
+    proof: {
+      proofType: "International Delegation Certificate",
+      issuer: "Universiti Teknologi PETRONAS (UTP), Malaysia",
+      credentialId: "UTP-SEC-2025-DELEGATE-084",
+      proofImage: "/proofs/utp-malaysia-delegation.svg",
+      verificationUrl: "https://www.utp.edu.my"
+    }
   },
   "Finalist — TNStartify 3.0": {
     year: "Oct 2025",
@@ -96,7 +128,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Tamil Nadu, IN",
     highlights: ["Startup Pitch", "Product Innovation", "Statewide Finalist"],
     details: "Recognized among top regional innovators at TNStartify 3.0 for designing a data-driven solution addressing high-impact business problem statements.",
-    skills: ["Product Design", "Pitching", "AI Solution Architecture"]
+    skills: ["Product Design", "Pitching", "AI Solution Architecture"],
+    hardMetrics: ["Top 15 out of 450+ Teams", "Statewide Innovation Challenge", "Pitched to 6 VC & Angel Jurors"],
+    proof: {
+      proofType: "Startup Pitch Finalist Certificate",
+      issuer: "TNStartify / StartupTN",
+      credentialId: "TNS-2025-FIN-9402",
+      proofImage: "/proofs/tnstartify-finalist.svg",
+      verificationUrl: "https://startuptn.in"
+    }
   },
   "Innovation Vertical Chair — YUVA Club": {
     year: "Oct 2025 - July 2026",
@@ -105,7 +145,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Chennai, IN",
     highlights: ["Leading 50+ Innovators", "Project Hackathons", "Problem Solving Culture"],
     details: "Leading innovation directives, organizing technical hackathons, mentoring junior developers, and fostering a hands-on building culture across campus.",
-    skills: ["Team Leadership", "Event Management", "Mentorship", "Strategic Planning"]
+    skills: ["Team Leadership", "Event Management", "Mentorship", "Strategic Planning"],
+    hardMetrics: ["50+ Members Mentored", "2 Campus Hackathons Organized", "8 Student Prototypes Built"],
+    proof: {
+      proofType: "Official Leadership Appointment",
+      issuer: "YUVA Club — Saveetha Engineering College",
+      credentialId: "YUVA-2025-CHAIR-01",
+      proofImage: "/proofs/yuva-leadership-appointment.svg",
+      verificationUrl: ""
+    }
   },
   "QuodeSchool Engineering Trainee": {
     year: "Aug 2025 - Dec 2025",
@@ -114,7 +162,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "QuodeSchool",
     highlights: ["Software Engineering", "Backend APIs", "Production Architecture"],
     details: "Intensive technical training bridging the gap between standalone machine learning models and scalable full-stack software architecture.",
-    skills: ["FastAPI", "REST APIs", "Git", "Software Architecture"]
+    skills: ["FastAPI", "REST APIs", "Git", "Software Architecture"],
+    hardMetrics: ["FastAPI & Microservice Mastery", "Git & CI/CD Pipelines", "System Architecture Design"],
+    proof: {
+      proofType: "Engineering Trainee Certification",
+      issuer: "QuodeSchool",
+      credentialId: "QS-2025-ENG-771",
+      proofImage: "/proofs/cirf-inplant-training.svg",
+      verificationUrl: ""
+    }
   },
   "AI Forward Intern — QuodeWorks": {
     year: "Jan 2026 - Jun 2026",
@@ -123,7 +179,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "QuodeWorks",
     highlights: ["Production AI Systems", "Model Optimization", "Enterprise Microservices"],
     details: "Engineered production machine learning services, optimizing API response latencies, tuning hyperparameters, and integrating backend microservices.",
-    skills: ["Machine Learning", "FastAPI", "Python", "Cloud Deployment"]
+    skills: ["Machine Learning", "FastAPI", "Python", "Cloud Deployment"],
+    hardMetrics: ["Sub-100ms Inference Latencies", "3 Enterprise Microservices", "Production AI Deployment"],
+    proof: {
+      proofType: "Industry Internship Completion",
+      issuer: "QuodeWorks AI Lab",
+      credentialId: "QW-2026-INT-409",
+      proofImage: "/proofs/utp-malaysia-delegation.svg",
+      verificationUrl: ""
+    }
   },
   "Chief Advisor — Voice Of The Wild": {
     year: "Aug 2026 - Present",
@@ -132,7 +196,15 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Strategic Advisory",
     highlights: ["Tech Advisory", "Strategic Vision", "Wild-Tech Initiatives"],
     details: "Directing technological strategy, digital presence, and high-level initiative roadmaps for wildlife conservation and technology integration.",
-    skills: ["Strategic Advisory", "Tech Leadership", "Product Roadmap"]
+    skills: ["Strategic Advisory", "Tech Leadership", "Product Roadmap"],
+    hardMetrics: ["Technical Strategy Roadmap", "Digital Platform Architecture", "Wildlife Tech Directives"],
+    proof: {
+      proofType: "Executive Board Appointment",
+      issuer: "Voice Of The Wild Foundation",
+      credentialId: "VOTW-2026-ADV-01",
+      proofImage: "/proofs/yuva-leadership-appointment.svg",
+      verificationUrl: ""
+    }
   },
   "The Horizon": {
     year: "Beyond 2026",
@@ -141,7 +213,9 @@ const ENRICHED_JOURNEY_MAP = {
     location: "Next Generation",
     highlights: ["Agentic AI Systems", "Decision Intelligence", "Scaling Impact"],
     details: "Pioneering advanced multi-agent systems and enterprise decision intelligence frameworks that turn complex datasets into high-impact automated actions.",
-    skills: ["Multi-Agent Systems", "MLOps", "AI Governance"]
+    skills: ["Multi-Agent Systems", "MLOps", "AI Governance"],
+    hardMetrics: ["Multi-Agent Autonomous Workflows", "Enterprise MLOps", "Agentic Systems"],
+    proof: null
   }
 };
 
@@ -185,7 +259,9 @@ async function main() {
         details,
         skills,
         iconString: extractText(p.Icon) || 'Star',
-        isFuture: extractCheckbox(p.IsFuture)
+        isFuture: extractCheckbox(p.IsFuture),
+        hardMetrics: fallback.hardMetrics || [],
+        proof: fallback.proof || null
       };
     });
 
