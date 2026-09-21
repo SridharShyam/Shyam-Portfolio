@@ -2,23 +2,25 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Layers, Figma, Code2, Sparkles, Brain, Users, Target } from 'lucide-react';
 import { useState } from 'react';
 import TerminalModal from '../ui/TerminalModal';
+import TextScramble from '../ui/TextScramble';
+import MovingBorder from '../ui/MovingBorder';
 
 const HeroCreative = () => {
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
     return (
         <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-background px-6 pt-20">
-            {/* Fluid Organic Background */}
+            {/* Fluid Organic Background - GPU Optimized */}
             <div className="absolute inset-0 z-0">
                 <motion.div 
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[20%] left-[60%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"
+                    className="absolute top-[20%] left-[60%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none gpu-accelerated"
                 />
                 <motion.div 
                     animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }}
                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute top-[40%] right-[60%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none"
+                    className="absolute top-[40%] right-[60%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none gpu-accelerated"
                 />
             </div>
 
@@ -33,9 +35,9 @@ const HeroCreative = () => {
                 >
                     <motion.div 
                         whileHover={{ scale: 1.05 }}
-                        className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs md:text-sm mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(0,199,183,0.1)] cursor-default"
+                        className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs md:text-sm mb-8 backdrop-blur-md shadow-sm cursor-default"
                     >
-                        <span className="font-bold text-secondary drop-shadow-[0_0_8px_rgba(0,199,183,0.8)]">SHYAM // CREATIVE</span>
+                        <span className="font-bold text-secondary">SHYAM // CREATIVE</span>
                     </motion.div>
                     
                     <motion.h1 
@@ -45,8 +47,8 @@ const HeroCreative = () => {
                         className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-white/95"
                     >
                         Architecting digital experiences driven by <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary drop-shadow-sm">
-                            human intuition.
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
+                            <TextScramble text="human intuition." />
                         </span>
                     </motion.h1>
                         
@@ -65,15 +67,12 @@ const HeroCreative = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <motion.a
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            href="#projects"
-                            className="group px-8 py-4 text-background bg-secondary hover:bg-white rounded-full font-medium transition-all duration-500 flex items-center gap-2 shadow-[0_0_20px_rgba(0,199,183,0.4)]"
-                        >
-                            Explore My Work
-                            <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
-                        </motion.a>
+                        <a href="#projects">
+                            <MovingBorder duration={3200} className="font-sans font-semibold text-sm">
+                                <span>Explore My Work</span>
+                                <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
+                            </MovingBorder>
+                        </a>
                     </motion.div>
                 </motion.div>
 
@@ -91,88 +90,84 @@ const HeroCreative = () => {
                         <motion.div 
                             animate={{ y: [-10, 10, -10], rotate: [-1, 1, -1] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-[15%] left-[10%] w-[80%] h-[60%] bg-surface/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl"
+                            className="absolute top-[15%] left-[10%] w-[80%] h-[60%] bg-surface/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl gpu-accelerated"
                         >
                             <div className="flex items-center gap-2 mb-4">
                                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
                             </div>
-                            <div className="space-y-3">
-                                <div className="h-4 w-3/4 bg-white/5 rounded" />
-                                <div className="h-4 w-1/2 bg-white/5 rounded" />
-                                <div className="h-4 w-5/6 bg-white/5 rounded" />
-                                <div className="h-4 w-2/3 bg-white/5 rounded" />
-                            </div>
-                            <div className="mt-8 flex gap-4">
-                                <div className="h-10 w-24 rounded-lg bg-secondary/20 border border-secondary/30" />
-                                <div className="h-10 w-24 rounded-lg bg-primary/20 border border-primary/30" />
+                            
+                            <div className="space-y-4 font-mono text-xs text-gray-400">
+                                <div className="flex items-center justify-between pb-2 border-b border-white/5">
+                                    <span className="text-secondary font-bold">// USER_EXPERIENCE.config</span>
+                                    <span className="text-[10px] text-gray-500">v2.4.0</span>
+                                </div>
+                                <div className="p-3 bg-black/40 rounded-lg border border-white/5 space-y-2">
+                                    <div className="flex items-center gap-2">
+                                        <Layers size={14} className="text-secondary" />
+                                        <span className="text-gray-300">Design System: Tokenized</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Brain size={14} className="text-primary" />
+                                        <span className="text-gray-300">Cognitive Load: Optimized</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Sparkles size={14} className="text-amber-400" />
+                                        <span className="text-gray-300">Micro-Interactions: 60fps</span>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* Floating Wireframe Card */}
+                        {/* Floating Tool Badge 1: Figma/Design */}
                         <motion.div 
-                            animate={{ y: [15, -15, 15], rotate: [2, -2, 2] }}
-                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute -bottom-[5%] right-[0%] w-[200px] h-[250px] bg-[#050508]/60 backdrop-blur-2xl border border-white/5 rounded-2xl p-5 shadow-2xl flex flex-col justify-between"
+                            animate={{ y: [10, -10, 10] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute top-[5%] right-[5%] p-4 bg-white/5 backdrop-blur-md border border-white/15 rounded-2xl shadow-xl flex items-center gap-3 gpu-accelerated"
                         >
-                            <div className="w-full h-24 rounded-xl border border-dashed border-white/20 flex items-center justify-center">
-                                <Layers size={24} className="text-gray-500" />
+                            <div className="p-2 bg-pink-500/20 text-pink-400 rounded-lg">
+                                <Figma size={20} />
                             </div>
-                            <div className="space-y-2 mt-4">
-                                <div className="h-2 w-full bg-white/10 rounded-full" />
-                                <div className="h-2 w-4/5 bg-white/10 rounded-full" />
+                            <div>
+                                <span className="block text-xs font-bold text-white">Figma & UI</span>
+                                <span className="block text-[10px] text-gray-400">Design Systems</span>
                             </div>
                         </motion.div>
 
-                        {/* Floating Interaction Node */}
-                        <motion.div
-                            animate={{ x: [-10, 10, -10], y: [-5, 5, -5] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute top-[5%] right-[5%] p-4 bg-white/5 backdrop-blur-md rounded-full border border-secondary/20 shadow-[0_0_15px_rgba(0,199,183,0.2)]"
+                        {/* Floating Tool Badge 2: Frontend Code */}
+                        <motion.div 
+                            animate={{ y: [-15, 5, -15] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                            className="absolute bottom-[10%] left-[0%] p-4 bg-white/5 backdrop-blur-md border border-white/15 rounded-2xl shadow-xl flex items-center gap-3 z-30 gpu-accelerated"
                         >
-                            <Figma size={24} className="text-secondary" />
+                            <div className="p-2 bg-secondary/20 text-secondary rounded-lg">
+                                <Code2 size={20} />
+                            </div>
+                            <div>
+                                <span className="block text-xs font-bold text-white">Full-Stack Frontend</span>
+                                <span className="block text-[10px] text-gray-400">React & Tailwind</span>
+                            </div>
                         </motion.div>
 
-                        {/* Floating Logic Node */}
-                        <motion.div
-                            animate={{ y: [10, -10, 10], x: [-3, 3, -3] }}
-                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                            className="absolute -bottom-2 left-0 z-20 w-13 h-13 p-3 rounded-full bg-[#0a2033]/90 border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.35)] backdrop-blur-md flex items-center justify-center"
+                        {/* Floating Tool Badge 3: User Research */}
+                        <motion.div 
+                            animate={{ y: [8, -8, 8] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                            className="absolute bottom-[20%] right-[10%] p-4 bg-white/5 backdrop-blur-md border border-white/15 rounded-2xl shadow-xl flex items-center gap-3 z-20 gpu-accelerated"
                         >
-                            <Code2 size={24} className="text-cyan-400" />
+                            <div className="p-2 bg-purple-500/20 text-purple-400 rounded-lg">
+                                <Target size={20} />
+                            </div>
+                            <div>
+                                <span className="block text-xs font-bold text-white">Product Strategy</span>
+                                <span className="block text-[10px] text-gray-400">User Centricity</span>
+                            </div>
                         </motion.div>
 
                     </div>
                 </motion.div>
 
-            </div>
-
-            {/* Live KPI Ticker */}
-            <div className="absolute bottom-0 left-0 w-full overflow-hidden border-t border-white/5 bg-background/80 backdrop-blur-xl py-3 flex z-30">
-                <motion.div 
-                    initial={{ x: 0 }}
-                    animate={{ x: -1500 }} 
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                    className="flex whitespace-nowrap gap-12 pl-12"
-                >
-                    {[...Array(4)].map((_, i) => (
-                        <span key={i} className="flex gap-12">
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
-                                <Sparkles size={14} className="text-secondary" /> Elegant Design Systems
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
-                                <Brain size={14} className="text-purple-400" /> Creative Architecture
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
-                                <Users size={14} className="text-pink-400" /> Human-Centric AI
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
-                                <Target size={14} className="text-emerald-400" /> Strategic Vision
-                            </span>
-                        </span>
-                    ))}
-                </motion.div>
             </div>
 
             <TerminalModal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />

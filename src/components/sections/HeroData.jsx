@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity, Database, Network, Cpu, Code2, Layers, RefreshCw, Settings, Zap, Brain } from 'lucide-react';
+import TextScramble from '../ui/TextScramble';
+import MovingBorder from '../ui/MovingBorder';
 
 const HeroData = () => {
     return (
@@ -10,12 +12,12 @@ const HeroData = () => {
                 <motion.div 
                     animate={{ x: [-1000, 1000] }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-0 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent" 
+                    className="absolute top-1/4 left-0 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent gpu-accelerated" 
                 />
                 <motion.div 
                     animate={{ y: [-1000, 1000] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 2 }}
-                    className="absolute top-0 left-2/3 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-secondary to-transparent" 
+                    className="absolute top-0 left-2/3 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-secondary to-transparent gpu-accelerated" 
                 />
             </div>
 
@@ -30,9 +32,9 @@ const HeroData = () => {
                 >
                     <motion.div 
                         whileHover={{ scale: 1.05 }}
-                        className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-primary/20 text-gray-300 font-mono text-xs md:text-sm mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(236,72,153,0.1)] cursor-default"
+                        className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-primary/20 text-gray-300 font-mono text-xs md:text-sm mb-8 backdrop-blur-md shadow-sm cursor-default"
                     >
-                        <span className="font-bold text-primary drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">SHYAMETRICS // SYSTEMS ONLINE</span>
+                        <span className="font-bold text-primary">SHYAMETRICS // SYSTEMS ONLINE</span>
                     </motion.div>
                     
                     <motion.h1 
@@ -42,8 +44,8 @@ const HeroData = () => {
                         className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-white/95"
                     >
                         I engineer intelligent systems that turn raw data into <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary drop-shadow-sm">
-                            decisive action.
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                            <TextScramble text="decisive action." />
                         </span>
                     </motion.h1>
                         
@@ -62,15 +64,12 @@ const HeroData = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <motion.a
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            href="#projects"
-                            className="group px-8 py-4 text-background bg-primary hover:bg-white rounded-full font-medium transition-all duration-500 flex items-center gap-2 shadow-[0_0_20px_rgba(236,72,153,0.4)]"
-                        >
-                            Explore Technical Projects
-                            <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
-                        </motion.a>
+                        <a href="#projects">
+                            <MovingBorder duration={3000} className="font-sans font-semibold text-sm">
+                                <span>Explore Technical Projects</span>
+                                <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
+                            </MovingBorder>
+                        </a>
                     </motion.div>
                 </motion.div>
 
@@ -79,119 +78,84 @@ const HeroData = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="lg:col-span-6 xl:col-span-6 relative min-h-[460px] md:min-h-[500px] flex items-center justify-center"
+                    className="lg:col-span-6 xl:col-span-6 relative h-[500px] flex items-center justify-center"
                 >
-                    {/* Background Radial Glow */}
-                    <div className="absolute w-72 h-72 bg-gradient-to-tr from-cyan-500/20 via-purple-500/20 to-transparent rounded-full blur-3xl -z-10 pointer-events-none" />
-
-                    <div className="relative w-full max-w-[480px] h-[400px] flex items-center justify-center">
+                    <div className="relative w-full h-full max-w-[500px]">
                         
-                        {/* 1. Main Background Window Card */}
+                        {/* Back Layer: Code Terminal Preview */}
                         <motion.div 
-                            animate={{ y: [-6, 6, -6], rotate: [-1, 1, -1] }}
-                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute top-4 left-0 right-8 bottom-12 bg-[#0c1020]/80 border border-cyan-500/20 rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl flex flex-col justify-between"
+                            animate={{ y: [-5, 5, -5] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-[10%] left-[5%] w-[85%] h-[55%] bg-black/80 backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-2xl font-mono text-xs text-gray-300 z-10 gpu-accelerated"
                         >
-                            {/* Window Top Bar / Controls */}
-                            <div>
-                                <div className="flex items-center gap-2 mb-6">
-                                    <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
-                                    <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
+                            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
                                 </div>
-
-                                {/* Code / UI Skeleton Lines */}
-                                <div className="space-y-3.5">
-                                    <div className="h-3.5 w-4/5 bg-white/10 rounded-full" />
-                                    <div className="h-3.5 w-2/5 bg-white/10 rounded-full" />
-                                    <div className="h-3.5 w-11/12 bg-white/10 rounded-full" />
-                                    <div className="h-3.5 w-3/5 bg-white/10 rounded-full" />
-                                </div>
+                                <span className="text-[10px] text-gray-500">pipeline.py</span>
                             </div>
-
-                            {/* Action Buttons at bottom of background card */}
-                            <div className="flex gap-4 pt-6">
-                                <div className="h-11 w-32 bg-[#211e40]/90 border border-purple-500/30 rounded-xl shadow-inner flex items-center justify-center">
-                                    <div className="w-12 h-2.5 bg-purple-400/30 rounded-full" />
-                                </div>
-                                <div className="h-11 w-32 bg-[#122e42]/90 border border-cyan-500/30 rounded-xl shadow-inner flex items-center justify-center">
-                                    <div className="w-12 h-2.5 bg-cyan-400/30 rounded-full" />
-                                </div>
+                            <div className="space-y-1.5 text-gray-400">
+                                <p><span className="text-pink-400">from</span> sklearn.pipeline <span className="text-pink-400">import</span> Pipeline</p>
+                                <p><span className="text-pink-400">from</span> xgboost <span className="text-pink-400">import</span> XGBClassifier</p>
+                                <p className="pt-2 text-emerald-400"># Model evaluation & inference</p>
+                                <p><span className="text-secondary">model</span> = XGBClassifier(learning_rate=<span className="text-amber-300">0.05</span>)</p>
+                                <p><span className="text-secondary">model</span>.fit(X_train, y_train)</p>
                             </div>
                         </motion.div>
 
-                        {/* 2. Foreground Floating Overlay Card */}
+                        {/* Front Layer: Live Performance Telemetry Card */}
                         <motion.div 
-                            animate={{ y: [8, -8, 8], rotate: [1, -1, 1] }}
-                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute right-0 bottom-2 w-[58%] h-[68%] bg-[#080a14]/95 border border-white/15 rounded-2xl p-5 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl flex flex-col justify-between z-10"
+                            animate={{ y: [10, -10, 10] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute bottom-[10%] right-[5%] w-[80%] bg-surface/90 backdrop-blur-md border border-primary/30 rounded-2xl p-6 shadow-[0_0_30px_rgba(236,72,153,0.15)] z-20 space-y-4 gpu-accelerated"
                         >
-                            {/* Dashed Layer Container */}
-                            <div className="flex-1 border border-dashed border-white/20 rounded-xl flex items-center justify-center bg-white/[0.02]">
-                                <motion.div
-                                    animate={{ scale: [0.95, 1.05, 0.95] }}
-                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                    className="p-3 rounded-xl bg-white/5 border border-white/10 text-cyan-400"
-                                >
-                                    <Layers size={28} className="text-cyan-400" />
-                                </motion.div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                    <Activity size={16} className="text-primary animate-pulse" />
+                                    <span className="font-mono text-xs font-bold text-white">MODEL_METRICS</span>
+                                </div>
+                                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                    STATUS: OPTIMAL
+                                </span>
                             </div>
 
-                            {/* Bottom Skeleton Lines */}
-                            <div className="space-y-2 mt-4">
-                                <div className="h-2.5 w-4/5 bg-white/15 rounded-full" />
-                                <div className="h-2.5 w-1/2 bg-white/15 rounded-full" />
+                            <div className="grid grid-cols-2 gap-3 pt-1">
+                                <div className="p-3 bg-black/40 rounded-xl border border-white/5">
+                                    <span className="text-[10px] font-mono text-gray-400 block">PRECISION SCORE</span>
+                                    <span className="text-lg font-bold text-white font-mono">98.4%</span>
+                                </div>
+                                <div className="p-3 bg-black/40 rounded-xl border border-white/5">
+                                    <span className="text-[10px] font-mono text-gray-400 block">LATENCY (p99)</span>
+                                    <span className="text-lg font-bold text-primary font-mono">14ms</span>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* 3. Floating Badge - Figma (Top Right) */}
-                        <motion.div
-                            animate={{ y: [-10, 10, -10], x: [3, -3, 3] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                            className="absolute top-2 right-2 z-20 w-13 h-13 p-3 rounded-full bg-[#1b1535]/90 border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.35)] backdrop-blur-md flex items-center justify-center"
+                        {/* Floating Tech Pill 1 */}
+                        <motion.div 
+                            animate={{ y: [-8, 8, -8] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                            className="absolute top-[5%] right-[10%] px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full shadow-lg flex items-center gap-2 z-30 gpu-accelerated"
                         >
-                            <Cpu size={24} className="text-purple-400" />
+                            <Brain size={14} className="text-purple-400" />
+                            <span className="text-xs font-mono font-bold text-white">XGBoost & ML</span>
                         </motion.div>
 
-                        {/* 4. Floating Badge - Code Brackets (Bottom Left) */}
-                        <motion.div
-                            animate={{ y: [10, -10, 10], x: [-3, 3, -3] }}
-                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                            className="absolute -bottom-2 left-0 z-20 w-13 h-13 p-3 rounded-full bg-[#0a2033]/90 border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.35)] backdrop-blur-md flex items-center justify-center"
+                        {/* Floating Tech Pill 2 */}
+                        <motion.div 
+                            animate={{ y: [8, -8, 8] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                            className="absolute bottom-[5%] left-[10%] px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full shadow-lg flex items-center gap-2 z-30 gpu-accelerated"
                         >
-                            <Code2 size={24} className="text-cyan-400" />
+                            <Cpu size={14} className="text-secondary" />
+                            <span className="text-xs font-mono font-bold text-white">FastAPI Microservices</span>
                         </motion.div>
 
                     </div>
                 </motion.div>
 
-            </div>
-
-            {/* Live KPI Ticker */}
-            <div className="absolute bottom-0 left-0 w-full overflow-hidden border-t border-primary/20 bg-background/90 py-3 flex z-30">
-                <motion.div 
-                    initial={{ x: 0 }}
-                    animate={{ x: -1500 }} 
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                    className="flex whitespace-nowrap gap-12 pl-12"
-                >
-                    {[...Array(4)].map((_, i) => (
-                        <span key={i} className="flex gap-12">
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
-                                <RefreshCw size={14} className="text-primary" /> Continuous Model Evaluation
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
-                                <Settings size={14} className="text-purple-400" /> Scalable Decision Architecture
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
-                                <Zap size={14} className="text-secondary" /> Low-Latency Inference
-                            </span>
-                            <span className="text-xs md:text-sm font-mono text-primary flex items-center gap-2">
-                                <Brain size={14} className="text-pink-400" /> Probabilistic Reasoning
-                            </span>
-                        </span>
-                    ))}
-                </motion.div>
             </div>
         </section>
     );
