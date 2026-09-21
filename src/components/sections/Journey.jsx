@@ -606,12 +606,20 @@ const Journey = () => {
                                         {/* Certificate Image Document Preview */}
                                         {activeMilestone.proof.proofImage && (
                                             <div className="space-y-3">
-                                                <span className="text-xs font-mono text-gray-400 uppercase block">DOCUMENT PREVIEW / PROOF ARTIFACT</span>
-                                                <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/60 aspect-[16/9] flex items-center justify-center max-h-[450px]">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-xs font-mono text-gray-400 uppercase block">DOCUMENT PREVIEW / PROOF ARTIFACT</span>
+                                                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                                                        <ShieldCheck size={12} />
+                                                        WATERMARKED & PROTECTED
+                                                    </span>
+                                                </div>
+                                                <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/60 aspect-[16/9] flex items-center justify-center max-h-[450px] select-none">
                                                     <img 
                                                         src={activeMilestone.proof.proofImage} 
                                                         alt={activeMilestone.title} 
-                                                        className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                                                        onContextMenu={(e) => e.preventDefault()}
+                                                        onDragStart={(e) => e.preventDefault()}
+                                                        className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                                                     />
                                                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
                                                         <button 
@@ -619,7 +627,7 @@ const Journey = () => {
                                                             className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
                                                         >
                                                             <Maximize2 size={16} />
-                                                            View Fullscreen High-Res Scan
+                                                            View Protected High-Res Scan
                                                         </button>
                                                     </div>
                                                 </div>
@@ -722,26 +730,36 @@ const Journey = () => {
                 )}
             </AnimatePresence>
 
-            {/* Lightbox Modal for Fullscreen Certificate/Photo View */}
+            {/* Lightbox Modal for Protected Fullscreen Certificate/Photo View */}
             <AnimatePresence>
                 {lightboxImage && (
-                    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg">
+                    <div 
+                        className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg select-none"
+                        onContextMenu={(e) => e.preventDefault()}
+                    >
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
-                            className="relative max-w-5xl w-full"
+                            className="relative max-w-5xl w-full select-none"
                         >
+                            <div className="absolute top-4 left-4 z-30 px-4 py-2 rounded-full bg-black/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-mono text-xs flex items-center gap-2 shadow-2xl pointer-events-none">
+                                <ShieldCheck size={16} className="text-emerald-400" />
+                                <span>PROTECTED DOCUMENT // VERIFICATION ONLY // SRIDHAR SHYAM</span>
+                            </div>
+
                             <button
                                 onClick={() => setLightboxImage(null)}
-                                className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                                className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-30"
                             >
                                 <X size={24} />
                             </button>
                             <img 
                                 src={lightboxImage} 
                                 alt="Full Proof Certificate" 
-                                className="w-full h-auto rounded-2xl border border-white/20 shadow-2xl max-h-[85vh] object-contain"
+                                onContextMenu={(e) => e.preventDefault()}
+                                onDragStart={(e) => e.preventDefault()}
+                                className="w-full h-auto rounded-2xl border border-white/20 shadow-2xl max-h-[85vh] object-contain pointer-events-none select-none"
                             />
                         </motion.div>
                     </div>
