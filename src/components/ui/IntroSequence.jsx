@@ -45,19 +45,7 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          {/* Cyber HUD Grid Backdrop */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40" />
-
-          {/* Top/Bottom HUD Corner Telemetry */}
-          <div className="absolute top-6 left-6 font-mono text-[10px] text-white/40 tracking-widest pointer-events-none flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-            <TextScramble text="SYS // DATA_AI_CORE_ONLINE" speed={30} />
-          </div>
-          <div className="absolute bottom-6 right-6 font-mono text-[10px] text-white/40 tracking-widest pointer-events-none">
-            <TextScramble text="LATENCY: 0.0ms // 60FPS" speed={30} />
-          </div>
-
-          {/* Shockwave effect on landing */}
+          {/* Shockwave ring effect on landing */}
           <AnimatePresence>
             {phase === 'landing' && (
               <motion.div
@@ -93,9 +81,9 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             ))}
           </AnimatePresence>
 
-          {/* Ambient Radial Flare (Hardware Accelerated) */}
+          {/* Ambient Radial Glow */}
           <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none transform-gpu opacity-40"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full pointer-events-none transform-gpu opacity-40"
             style={{ 
               background: coinResult === 'S' 
                 ? 'radial-gradient(circle, rgba(0,199,183,0.3) 0%, rgba(0,0,0,0) 70%)' 
@@ -112,15 +100,6 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             }
             transition={{ duration: 0.8, ease: 'easeOut' }}
           />
-
-          {/* Aceternity Style Orbital Laser Ring during Spin */}
-          <motion.div
-            className="absolute w-36 h-36 md:w-44 md:h-44 rounded-full border border-white/10 pointer-events-none z-10 flex items-center justify-center transform-gpu"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-          >
-            <div className="w-full h-full rounded-full border-t-2 border-r-2 border-primary/80" />
-          </motion.div>
 
           {/* The 3D Coin Core */}
           <motion.div
@@ -179,7 +158,7 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             </div>
           </motion.div>
           
-          {/* ReactBits TextScramble Matrix Reveal on Landing */}
+          {/* ReactBits TextScramble Reveal on Landing */}
           <AnimatePresence>
             {(phase === 'landing' || phase === 'portal') && (
               <motion.div
@@ -195,9 +174,6 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
                   ) : (
                      <TextScramble text="DATA INTELLIGENCE // INITIALIZED" className="text-primary drop-shadow-[0_0_12px_rgba(236,72,153,0.6)]" speed={25} />
                   )}
-                </div>
-                <div className="text-[11px] text-white/50 tracking-widest uppercase">
-                  <TextScramble text="[AI MATRIX & ML MODELS READY]" speed={35} />
                 </div>
               </motion.div>
             )}
