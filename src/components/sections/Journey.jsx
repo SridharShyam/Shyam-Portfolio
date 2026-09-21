@@ -745,7 +745,7 @@ const Journey = () => {
                         >
                             <div className="absolute top-4 left-4 z-30 px-4 py-2 rounded-full bg-black/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-mono text-xs flex items-center gap-2 shadow-2xl pointer-events-none">
                                 <ShieldCheck size={16} className="text-emerald-400" />
-                                <span>PROTECTED DOCUMENT // VERIFICATION ONLY // SRIDHAR SHYAM</span>
+                                <span>PROTECTED DOCUMENT // VERIFICATION ONLY // SHYAM</span>
                             </div>
 
                             <button
