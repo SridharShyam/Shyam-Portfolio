@@ -119,7 +119,12 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             {/* Front of the coin (S - Shyam) */}
             <div 
               className="absolute inset-0 rounded-full border-[3px] border-secondary bg-surface flex items-center justify-center overflow-hidden" 
-              style={{ backfaceVisibility: 'hidden', boxShadow: '0 0 30px rgba(0,199,183,0.4)' }} // Removed backdrop blur and replaced with solid color + lighter shadow
+              style={{ 
+                backfaceVisibility: 'hidden', 
+                WebkitBackfaceVisibility: 'hidden', 
+                transform: 'translateZ(2px)', 
+                boxShadow: '0 0 30px rgba(0,199,183,0.4)' 
+              }}
             >
               <div className="absolute inset-2 rounded-full border border-secondary/40 border-dashed animate-[spin_6s_linear_infinite]" />
               <span className="text-secondary font-heading text-5xl md:text-6xl font-black tracking-tighter" style={{ textShadow: '0 0 10px rgba(0,199,183,0.5)' }}>S</span>
@@ -128,7 +133,12 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             {/* Back of the coin (D - Data) */}
             <div 
               className="absolute inset-0 rounded-full border-[3px] border-primary bg-surface flex items-center justify-center overflow-hidden" 
-              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 0 30px rgba(236,72,153,0.4)' }} // Removed backdrop blur
+              style={{ 
+                backfaceVisibility: 'hidden', 
+                WebkitBackfaceVisibility: 'hidden', 
+                transform: 'rotateY(180deg) translateZ(2px)', 
+                boxShadow: '0 0 30px rgba(236,72,153,0.4)' 
+              }}
             >
                <div className="absolute inset-2 rounded-full border border-primary/40 border-dashed animate-[spin_6s_linear_infinite_reverse]" />
               <span className="text-primary font-heading text-5xl md:text-6xl font-black tracking-tighter" style={{ textShadow: '0 0 10px rgba(236,72,153,0.5)' }}>D</span>

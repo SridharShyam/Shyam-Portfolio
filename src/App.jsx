@@ -23,6 +23,10 @@ function App() {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
+    // Clean up any leftover hash like /#journey on page load / intro sequence
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
     window.scrollTo(0, 0);
   }, []);
 
