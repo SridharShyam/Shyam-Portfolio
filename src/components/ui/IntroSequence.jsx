@@ -1,13 +1,16 @@
-import { useEffect, useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import TextScramble from './TextScramble';
+// Pure pre-configured particle telemetry layout
+const PARTICLE_METRICS = Array.from({ length: 10 }, (_, i) => ({
+  angle: (i / 10) * 360,
+  distance: 140 + ((i * 29) % 75),
+  size: 3.5 + ((i * 17) % 3),
+}));
 
 const IntroSequence = ({ onComplete, onPortalOpen }) => {
   const [phase, setPhase] = useState('entering');
   const [isVisible, setIsVisible] = useState(true);
   
   // Randomly decide if the coin lands on 'S' (Heads - Shyam) or 'D' (Tails - Data)
-  const [coinResult] = useState(() => Math.random() > 0.5 ? 'S' : 'D');
+  const [coinResult] = useState(() => (typeof window !== 'undefined' && Math.random() > 0.5) ? 'S' : 'D');
 
   useEffect(() => {
     // Crisp 3s total timing sequence (zero main-thread lag)
@@ -28,15 +31,6 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
   // Rotation parameters: 5 spins for S, 5.5 spins for D (360 * 5 = 1800 vs 1800 + 180 = 1980)
   const finalRotateY = coinResult === 'S' ? 1800 : 1980;
   const finalRotateX = 720; // 2 clean tumbles
-
-  // Lightweight pre-computed particles (rendered with GPU transform)
-  const particles = useMemo(() => {
-    return Array.from({ length: 10 }, (_, i) => ({
-      angle: (i / 10) * 360,
-      distance: 140 + Math.random() * 80,
-      size: 3 + Math.random() * 3,
-    }));
-  }, []);
 
   return (
     <AnimatePresence>
@@ -73,7 +67,7 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
 
           {/* Particle Burst on Landing */}
           <AnimatePresence>
-            {phase === 'landing' && particles.map((particle, i) => (
+            {phase === 'landing' && PARTICLE_METRICS.map((particle, i) => (
               <motion.div
                 key={i}
                 className="absolute rounded-full pointer-events-none z-10 transform-gpu"
