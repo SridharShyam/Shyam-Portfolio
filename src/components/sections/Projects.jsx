@@ -3,6 +3,7 @@ import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, C
 import { useState, useEffect } from 'react';
 import CardSpotlight from '../ui/CardSpotlight';
 import TextScramble from '../ui/TextScramble';
+import ArchitectureExplorer from '../ui/ArchitectureExplorer';
 
 const caseStudies = [
     {
@@ -553,13 +554,16 @@ const Projects = () => {
                         <GitBranch size={14} className="text-primary" />
                         SYSTEMS ARCHITECTURE // APPLIED AI & ML PROJECTS
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
                         Production & Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI Systems</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.
                     </p>
                 </motion.div>
+
+                {/* Signature Feature: Interactive Architecture Blueprint Explorer */}
+                <ArchitectureExplorer />
 
                 {/* 3 Domain Pillars */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">

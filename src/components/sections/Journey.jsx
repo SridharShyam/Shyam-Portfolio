@@ -98,7 +98,7 @@ const Journey = () => {
                         <Zap size={14} className="text-secondary" />
                         CAREER TIMELINE // 3D EXPLORER & VERIFIED PROOFS
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
                         Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
@@ -112,19 +112,19 @@ const Journey = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14"
                 >
                     {executiveStats.map((stat, idx) => (
-                        <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated">
-                            <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated min-w-0">
+                            <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
                                 <stat.icon size={20} />
                             </div>
-                            <div>
-                                <span className="text-2xl md:text-3xl font-extrabold text-white font-heading block leading-none mb-1">
+                            <div className="min-w-0 flex-1">
+                                <span className="text-2xl md:text-3xl font-extrabold text-white font-heading block leading-none mb-1 truncate">
                                     {stat.value}
                                 </span>
-                                <span className="text-xs font-semibold text-gray-300 block">{stat.label}</span>
-                                <span className="text-[10px] text-gray-500 block truncate mt-0.5">{stat.sub}</span>
+                                <span className="text-xs sm:text-sm font-semibold text-gray-300 block leading-snug">{stat.label}</span>
+                                <span className="text-[11px] text-gray-400 block truncate mt-1">{stat.sub}</span>
                             </div>
                         </div>
                     ))}
@@ -163,12 +163,12 @@ const Journey = () => {
                 {/* Snake Grid Timeline Container */}
                 <div ref={containerRef} className="space-y-12 md:space-y-16 relative">
                     
-                    {/* Mobile-only continuous vertical liquid line */}
-                    <div className="md:hidden absolute left-8 top-0 bottom-0 w-1 bg-white/5 rounded-full z-0 overflow-hidden">
+                    {/* Mobile-only continuous vertical timeline line */}
+                    <div className="md:hidden absolute left-3.5 top-4 bottom-4 w-0.5 bg-gradient-to-b from-primary via-secondary to-pink-500 rounded-full z-0 opacity-40 overflow-hidden">
                         <motion.div 
-                            className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-transparent via-primary to-transparent opacity-80"
-                            animate={{ top: ["-25%", "100%"] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-0 left-0 w-full h-1/3 bg-white opacity-80"
+                            animate={{ top: ["-33%", "100%"] }}
+                            transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
                         />
                     </div>
 
@@ -247,7 +247,7 @@ const Journey = () => {
                                         return (
                                             <motion.div
                                                 key={actualIndex}
-                                                className="w-full md:w-1/3 flex flex-col justify-center items-center text-center p-6 relative z-10 pl-16 md:pl-6 cursor-pointer gpu-accelerated"
+                                                className="w-full md:w-1/3 flex flex-col justify-center items-center text-center p-6 relative z-10 pl-8 md:pl-6 cursor-pointer gpu-accelerated"
                                                 initial={{ opacity: 0, scale: 0.9 }}
                                                 whileInView={{ opacity: 1, scale: 1 }}
                                                 viewport={{ once: true, margin: "-30px" }}
@@ -269,13 +269,16 @@ const Journey = () => {
                                     return (
                                         <motion.div
                                             key={actualIndex}
-                                            className="w-full md:w-1/3 relative z-10 pl-16 md:pl-0"
+                                            className="w-full md:w-1/3 relative z-10 pl-8 md:pl-0"
                                             initial={{ opacity: 0, y: 16 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true, margin: "-30px" }}
                                             transition={{ duration: 0.4, delay }}
                                             style={{ perspective: '1200px' }}
                                         >
+                                            {/* Mobile Timeline Node Dot */}
+                                            <div className="md:hidden absolute -left-[1.85rem] top-7 w-3.5 h-3.5 rounded-full bg-secondary border-2 border-background shadow-[0_0_12px_#00C7B7] z-20" />
+
                                             {/* Glowing burst ring on flip click */}
                                             <AnimatePresence>
                                                 {isFlipping && (
@@ -307,7 +310,7 @@ const Journey = () => {
                                                 }
                                                 whileHover={!isFlipping ? { y: -6, scale: 1.02 } : {}}
                                                 onClick={() => handleCardClick(item)}
-                                                className="h-full flex flex-col p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-secondary/40 transition-colors duration-300 group shadow-lg relative z-10 overflow-hidden cursor-pointer gpu-accelerated"
+                                                className="h-full flex flex-col p-5 sm:p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-secondary/40 transition-colors duration-300 group shadow-lg relative z-10 overflow-hidden cursor-pointer gpu-accelerated"
                                                 style={{ transformStyle: 'preserve-3d' }}
                                             >
                                                 {/* FRONT FACE OF THE CARD */}
@@ -316,34 +319,34 @@ const Journey = () => {
                                                     <div className="absolute top-0 right-0 w-28 h-28 bg-secondary/5 rounded-bl-full group-hover:bg-secondary/15 transition-colors pointer-events-none" />
 
                                                     {/* Top Meta Bar */}
-                                                    <div className="flex items-center justify-between mb-3.5 relative z-10">
-                                                        <div className="flex flex-wrap items-center gap-1.5">
-                                                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
+                                                    <div className="flex items-center justify-between mb-3.5 relative z-10 gap-2">
+                                                        <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                                                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20 shrink-0">
                                                                 #{item.stepNumber}
                                                             </span>
-                                                            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border`}>
+                                                            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border shrink-0`}>
                                                                 {item.category?.toUpperCase() || 'MILESTONE'}
                                                             </span>
                                                             {item.proof && (
-                                                                <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm">
+                                                                <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm shrink-0">
                                                                     <ShieldCheck size={10} className="text-emerald-400" />
                                                                     VERIFIED
                                                                 </span>
                                                             )}
                                                         </div>
 
-                                                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300">
+                                                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300 shrink-0">
                                                             <item.icon size={16} />
                                                         </div>
                                                     </div>
 
                                                     {/* Year Pill & Location */}
-                                                    <div className="flex items-center gap-2 mb-2">
-                                                        <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-sm backdrop-blur-md">
+                                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                                        <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-sm backdrop-blur-md shrink-0">
                                                             {item.year}
                                                         </span>
                                                         {item.location && (
-                                                            <span className="text-[11px] text-gray-400 flex items-center gap-1 font-mono">
+                                                            <span className="text-[11px] text-gray-400 flex items-center gap-1 font-mono shrink-0">
                                                                 <MapPin size={10} className="text-gray-500" />
                                                                 {item.location}
                                                             </span>

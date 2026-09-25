@@ -101,62 +101,101 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
           />
 
-          {/* The 3D Coin Core */}
-          <motion.div
-            className="relative w-28 h-28 md:w-36 md:h-36 z-20 will-change-transform transform-gpu"
-            initial={{ scale: 0, opacity: 0, rotateY: 0, rotateX: 0, y: 0 }}
-            animate={
-              phase === 'entering'
-                ? { scale: 1, opacity: 1, rotateY: 0, rotateX: 0, y: 0 }
-                : phase === 'flipping'
-                ? { 
-                    y: -220,
-                    rotateY: finalRotateY,
-                    rotateX: finalRotateX,
-                    opacity: 1,
-                    scale: 1.1
-                  }
-                : phase === 'landing'
-                ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, opacity: 1, scale: 1 }
-                : phase === 'portal'
-                ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, scale: 3.5, opacity: 0 }
-                : {}
-            }
-            transition={{
-              scale: phase === 'entering' ? { duration: 0.4, ease: 'backOut' } : phase === 'portal' ? { duration: 0.6, ease: 'easeInOut' } : { duration: 0.4 },
-              y: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0.4, ease: 'bounceOut' },
-              rotateY: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
-              rotateX: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
-              opacity: phase === 'portal' ? { duration: 0.5, ease: 'easeIn' } : { duration: 0.3 }
-            }}
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {/* Front of the coin (S - Shyam) */}
-            <div 
-              className="absolute inset-0 rounded-full border-[3px] border-secondary bg-surface flex items-center justify-center overflow-hidden shadow-[0_0_25px_rgba(0,199,183,0.5)]" 
-              style={{ 
-                backfaceVisibility: 'hidden', 
-                WebkitBackfaceVisibility: 'hidden', 
-                transform: 'translateZ(2px)', 
+          {/* 3D Perspective Stage */}
+          <div style={{ perspective: '1200px' }} className="relative z-20 flex items-center justify-center pointer-events-none">
+            {/* The 3D Physical Metallic Coin Core */}
+            <motion.div
+              className="relative w-32 h-32 md:w-40 md:h-40 will-change-transform transform-gpu"
+              initial={{ scale: 0, opacity: 0, rotateY: 0, rotateX: 0, y: 0 }}
+              animate={
+                phase === 'entering'
+                  ? { scale: 1, opacity: 1, rotateY: 0, rotateX: 0, y: 0 }
+                  : phase === 'flipping'
+                  ? { 
+                      y: -220,
+                      rotateY: finalRotateY,
+                      rotateX: finalRotateX,
+                      opacity: 1,
+                      scale: 1.15
+                    }
+                  : phase === 'landing'
+                  ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, opacity: 1, scale: 1 }
+                  : phase === 'portal'
+                  ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, scale: 3.5, opacity: 0 }
+                  : {}
+              }
+              transition={{
+                scale: phase === 'entering' ? { duration: 0.4, ease: 'backOut' } : phase === 'portal' ? { duration: 0.6, ease: 'easeInOut' } : { duration: 0.4 },
+                y: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0.4, ease: 'bounceOut' },
+                rotateY: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
+                rotateX: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
+                opacity: phase === 'portal' ? { duration: 0.5, ease: 'easeIn' } : { duration: 0.3 }
               }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="absolute inset-2 rounded-full border border-secondary/40 border-dashed animate-[spin_8s_linear_infinite]" />
-              <span className="text-secondary font-heading text-5xl md:text-6xl font-black tracking-tighter drop-shadow-[0_0_10px_rgba(0,199,183,0.8)]">S</span>
-            </div>
+              {/* 3D Physical Coin Thickness / Stacked Ribbed Cyber-Silver Edge Rings */}
+              {Array.from({ length: 14 }).map((_, i) => (
+                <div 
+                  key={i}
+                  className="absolute inset-0 rounded-full border border-slate-300/40 bg-gradient-to-r from-slate-400 via-slate-100 to-slate-500 pointer-events-none shadow-sm"
+                  style={{
+                    transform: `translateZ(${-7 + i * 1}px)`,
+                    backgroundImage: 'repeating-conic-gradient(rgba(255,255,255,0.4) 0deg 4deg, rgba(148,163,184,0.2) 4deg 8deg)'
+                  }}
+                />
+              ))}
 
-            {/* Back of the coin (D - Data) */}
-            <div 
-              className="absolute inset-0 rounded-full border-[3px] border-primary bg-surface flex items-center justify-center overflow-hidden shadow-[0_0_25px_rgba(236,72,153,0.5)]" 
-              style={{ 
-                backfaceVisibility: 'hidden', 
-                WebkitBackfaceVisibility: 'hidden', 
-                transform: 'rotateY(180deg) translateZ(2px)', 
-              }}
-            >
-              <div className="absolute inset-2 rounded-full border border-primary/40 border-dashed animate-[spin_8s_linear_infinite_reverse]" />
-              <span className="text-primary font-heading text-5xl md:text-6xl font-black tracking-tighter drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]">D</span>
-            </div>
-          </motion.div>
+              {/* Front Face (S - Shyam Cyber Silver Medallion - High Vibrancy) */}
+              <div 
+                className="absolute inset-0 rounded-full border-[4px] border-slate-100 bg-gradient-to-br from-slate-950 via-[#0a1b24] to-slate-900 flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(0,212,255,0.85),inset_0_0_25px_rgba(0,212,255,0.4)]" 
+                style={{ 
+                  backfaceVisibility: 'hidden', 
+                  WebkitBackfaceVisibility: 'hidden', 
+                  transform: 'translateZ(7px)', 
+                }}
+              >
+                {/* Metallic Platinum Inner Bevel Ring */}
+                <div className="absolute inset-1 rounded-full border border-slate-200/80 shadow-[inset_0_0_12px_rgba(255,255,255,0.4)]" />
+                
+                {/* Outer Dashed Orbit */}
+                <div className="absolute inset-2.5 rounded-full border border-primary/80 border-dashed animate-[spin_12s_linear_infinite]" />
+                <div className="absolute inset-4 rounded-full border border-primary/40 bg-gradient-to-tl from-primary/30 via-transparent to-white/20" />
+                
+                {/* Embossed 3D Letter */}
+                <span className="text-primary font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_0_18px_rgba(0,212,255,1)] select-none">
+                  S
+                </span>
+
+                {/* Specular Chrome Reflection Sweep */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/35 to-transparent transform -rotate-45 pointer-events-none" />
+              </div>
+
+              {/* Back Face (D - Data Intelligence Cyber Silver Medallion - High Vibrancy) */}
+              <div 
+                className="absolute inset-0 rounded-full border-[4px] border-slate-100 bg-gradient-to-br from-slate-950 via-[#260a1e] to-slate-900 flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(236,72,153,0.85),inset_0_0_25px_rgba(236,72,153,0.4)]" 
+                style={{ 
+                  backfaceVisibility: 'hidden', 
+                  WebkitBackfaceVisibility: 'hidden', 
+                  transform: 'rotateY(180deg) translateZ(7px)', 
+                }}
+              >
+                {/* Metallic Platinum Inner Bevel Ring */}
+                <div className="absolute inset-1 rounded-full border border-slate-200/80 shadow-[inset_0_0_12px_rgba(255,255,255,0.4)]" />
+                
+                {/* Outer Dashed Orbit */}
+                <div className="absolute inset-2.5 rounded-full border border-pink-500/80 border-dashed animate-[spin_12s_linear_infinite_reverse]" />
+                <div className="absolute inset-4 rounded-full border border-pink-500/40 bg-gradient-to-tl from-pink-500/30 via-transparent to-white/20" />
+                
+                {/* Embossed 3D Letter */}
+                <span className="text-pink-400 font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_0_18px_rgba(236,72,153,1)] select-none">
+                  D
+                </span>
+
+                {/* Specular Chrome Reflection Sweep */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/35 to-transparent transform -rotate-45 pointer-events-none" />
+              </div>
+            </motion.div>
+          </div>
           
           {/* ReactBits TextScramble Reveal on Landing */}
           <AnimatePresence>

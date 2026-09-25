@@ -62,15 +62,15 @@ const TerminalModal = ({ isOpen, onClose }) => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="w-full max-w-2xl bg-surface border border-white/10 rounded-2xl shadow-2xl overflow-hidden relative z-10 flex flex-col"
+                        className="w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden relative z-10 flex flex-col"
                     >
                         {/* Terminal Header */}
-                        <div className="bg-background px-4 py-3 border-b border-white/5 flex items-center justify-between">
+                        <div className="bg-background px-4 py-3 border-b border-border flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                                <Terminal size={16} className="text-gray-400" />
-                                <span className="text-sm font-mono text-gray-400">shyametrics_synthesis.exe</span>
+                                <Terminal size={16} className="text-primary" />
+                                <span className="text-sm font-mono text-muted">shyametrics_synthesis.exe</span>
                             </div>
-                            <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors">
+                            <button onClick={onClose} className="text-muted hover:text-heading transition-colors cursor-pointer">
                                 <X size={18} />
                             </button>
                         </div>
@@ -82,7 +82,7 @@ const TerminalModal = ({ isOpen, onClose }) => {
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     key={idx} 
-                                    className={`mb-2 ${line.startsWith('=====') ? 'text-primary font-bold my-4' : line.startsWith('Shyam') ? 'text-white' : 'text-gray-400'}`}
+                                    className={`mb-2 ${line.startsWith('=====') ? 'text-primary font-bold my-4' : line.startsWith('Shyam') ? 'text-heading font-semibold' : 'text-muted'}`}
                                 >
                                     {line}
                                 </motion.div>

@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Navbar from './components/layout/Navbar';
 import { ToastProvider } from './context/ToastContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Toast from './components/ui/Toast';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Hero from './components/sections/Hero';
@@ -50,8 +51,9 @@ function App() {
   }, []);
 
   return (
-    <ToastProvider>
-      <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative">
+    <ThemeProvider>
+      <ToastProvider>
+        <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
         
         {/* Intro Overlay */}
         {showIntro && (
@@ -85,6 +87,7 @@ function App() {
         )}
       </div>
     </ToastProvider>
+  </ThemeProvider>
   );
 }
 

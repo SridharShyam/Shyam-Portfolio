@@ -1,25 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-main: #0a0e27;
+  --bg-surface: #111827;
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --bg-elevated: #1f293d;
+  --text-main: #cbd5e1;
+  --text-bright: #ffffff;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --nav-bg: rgba(10, 14, 39, 0.88);
+  --heading-color: #ffffff;
+  --card-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.5);
+  --theme-transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+html.light {
+  --bg-main: #f0f4f9;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-elevated: #e2e8f0;
+  --text-main: #334155;
+  --text-bright: #0f172a;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 212, 255, 0.22);
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --nav-bg: rgba(240, 244, 249, 0.9);
+  --heading-color: #0f172a;
+  --card-shadow: 0 12px 36px -8px rgba(0, 120, 200, 0.08);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
   }
   body {
     @apply bg-background text-text font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-background;
+    transition: var(--theme-transition);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-white;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--heading-color);
+    transition: color 0.4s ease;
+  }
+  button, input, textarea, select {
+    font-family: 'Inter', sans-serif;
   }
   a {
     @apply transition-colors duration-200;
+  }
+  div, section, header, nav, footer, article, button {
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
 }
 
@@ -28,11 +69,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background: var(--bg-main);
+  transition: background-color 0.4s ease;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted/30 rounded-full hover:bg-primary transition-colors;
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
 }
 
 /* Hardware GPU acceleration helper */
@@ -42,20 +89,48 @@
   backface-visibility: hidden;
 }
 
-/* Glassmorphism utility - GPU optimized */
+/* Glassmorphism utility - Theme Responsive */
 .glass {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+  background: var(--bg-card);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
   transform: translateZ(0);
+  transition: var(--theme-transition);
 }
 
 .glass-card {
-   @apply bg-gray-900/50 backdrop-blur-md border border-white/5 shadow-lg rounded-2xl;
-   transform: translateZ(0);
+  background: var(--bg-card);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
+  transform: translateZ(0);
+  transition: var(--theme-transition);
+}
+
+/* Node graph blueprint grid animation */
+.bg-blueprint-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
 }
 
 /* Animation utilities */
 .animate-in {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes fadeIn {

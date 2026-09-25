@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Calendar, Target, Award, ChevronRight, Star, Rocket, Server, Database, Brain, Layers } from 'lucide-react';
+import { BookOpen, Calendar, Target, Award, ChevronRight, Star, Rocket, Server, Database, Brain, Layers, ArrowRight, Sparkles } from 'lucide-react';
 
 const learningFocus = [
     {
@@ -71,7 +71,6 @@ const DirectionAwareCard = ({ item }) => {
     const cardRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const [mouseDirection, setMouseDirection] = useState('right');
-    const Icon = item.icon || Target;
 
     const getDirection = (e) => {
         if (!cardRef.current) return 'right';
@@ -111,12 +110,6 @@ const DirectionAwareCard = ({ item }) => {
         if (mouseDirection === 'right') rotateY = -180;
     }
 
-    const backfaceTransform = 
-        mouseDirection === 'top' ? 'rotateX(180deg)' :
-        mouseDirection === 'bottom' ? 'rotateX(-180deg)' :
-        mouseDirection === 'left' ? 'rotateY(-180deg)' :
-        'rotateY(180deg)';
-
     return (
         <div 
             ref={cardRef}
@@ -133,7 +126,7 @@ const DirectionAwareCard = ({ item }) => {
             >
                 {/* FRONT FACE */}
                 <div 
-                    className="absolute inset-0 bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-amber-400/40 shadow-xl flex flex-col overflow-hidden transition-colors"
+                    className="absolute inset-0 bg-surface/90 backdrop-blur-xl p-6 rounded-2xl border border-border hover:border-amber-400/50 shadow-xl flex flex-col overflow-hidden transition-colors"
                     style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                 >
                     {/* Ambient Corner Glow */}
@@ -141,66 +134,59 @@ const DirectionAwareCard = ({ item }) => {
 
                     <div className="flex justify-between items-start mb-4 relative z-10">
                         <div>
-                            <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-white/5 border border-white/10 ${item.textColor} mb-3 inline-block shadow-sm backdrop-blur-md`}>
+                            <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-background border border-border ${item.textColor} mb-3 inline-block shadow-sm backdrop-blur-md`}>
                                 {item.status}
                             </span>
-                            <h3 className="text-xl font-bold text-white leading-tight font-heading">{item.title}</h3>
+                            <h3 className="text-xl font-bold text-heading leading-tight font-heading">{item.title}</h3>
                         </div>
                     </div>
 
-                    <p className="text-gray-400 text-sm mb-4 flex-grow leading-relaxed">{item.reason}</p>
+                    <p className="text-muted text-sm mb-4 flex-grow leading-relaxed">{item.reason}</p>
 
                     <div className="space-y-4 relative z-10 mt-auto">
-                        <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                        <div className="flex items-center justify-between border-t border-border pt-3">
                             <div className="flex flex-col gap-1">
-                                <div className="text-xs text-gray-300 flex items-center gap-1 font-mono">
-                                    <Layers size={12} className="text-amber-400" /> {item.source}
+                                <div className="text-xs text-text flex items-center gap-1 font-mono">
+                                    <Layers size={12} className="text-amber-500" /> {item.source}
                                 </div>
-                                <div className="flex items-center gap-2 text-[10px] text-gray-500 font-mono">
-                                    <Target size={10} />
-                                    <span>{item.date}</span>
+                                <div className="flex items-center gap-2 text-[10px] text-muted font-mono">
+                                    <Target size={10} /> {item.date}
                                 </div>
                             </div>
-                            <ChevronRight size={16} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+
+                            <span className="text-[11px] font-mono text-amber-500 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                                Flip Specs <ArrowRight size={12} />
+                            </span>
                         </div>
                     </div>
                 </div>
 
                 {/* BACK FACE */}
                 <div 
-                    className="absolute inset-0 bg-[#0b0f17] p-6 rounded-2xl border border-white/15 shadow-2xl flex flex-col overflow-hidden"
+                    className="absolute inset-0 bg-surface backdrop-blur-xl p-6 rounded-2xl border border-amber-500/40 shadow-2xl flex flex-col justify-between overflow-hidden"
                     style={{ 
-                        transform: backfaceTransform,
                         backfaceVisibility: "hidden", 
                         WebkitBackfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)" 
                     }}
                 >
-                    {/* Glow */}
-                    <div className={`absolute -top-10 -right-10 w-32 h-32 ${item.glowColor} blur-3xl rounded-full`} />
-                    
-                    <div className="relative z-10 flex flex-col h-full">
-                        <h4 className={`text-sm font-bold mb-3 flex items-center gap-2 ${item.textColor} font-heading`}>
-                            <Brain size={14} /> The Philosophy
-                        </h4>
-                        <p className="text-sm text-gray-300 leading-relaxed italic mb-4">
-                            "{item.philosophy}"
-                        </p>
-                        
-                        <div className="mt-auto border-t border-white/10 pt-4">
-                            <h4 className="text-xs font-mono text-gray-400 mb-3 uppercase tracking-wider font-bold">Tech Stack</h4>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {item.stack.map(tech => (
-                                    <span key={tech} className="text-[10px] px-2 py-1 rounded bg-white/5 text-gray-300 border border-white/10 font-mono">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                            <div className="w-full bg-black/40 rounded-full h-1.5 overflow-hidden">
-                                <div className={`h-full bg-gradient-to-r from-gray-600 ${item.gradientTo}`} style={{ width: `${item.progress}%` }} />
-                            </div>
-                            <div className="text-[10px] text-right mt-1 text-gray-400 font-mono">
-                                Mastery Progress: {item.progress}%
-                            </div>
+                    <div className="flex justify-between items-center border-b border-border pb-3">
+                        <h4 className="text-xs font-mono text-muted uppercase tracking-wider font-bold">Tech Stack</h4>
+                        <span className="text-[10px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">SPECS</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 my-auto">
+                        {(item.stack || []).map((t, idx) => (
+                            <span key={idx} className="bg-background text-text text-xs font-mono px-3 py-1.5 rounded-lg border border-border flex items-center gap-1.5 shadow-sm">
+                                <Sparkles size={10} className="text-amber-500" /> {t}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="border-t border-border pt-3">
+                        <div className="flex justify-between text-[11px] font-mono text-muted">
+                            <span>ETA Focus: Active Q3</span>
+                            <span className="text-amber-500 font-bold">In Progress</span>
                         </div>
                     </div>
                 </div>
@@ -211,24 +197,25 @@ const DirectionAwareCard = ({ item }) => {
 
 const Learning = () => {
     return (
-        <section id="learning" className="py-28 bg-background relative overflow-hidden">
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        <section id="learning" className="py-28 bg-surface relative overflow-hidden transition-colors duration-400">
+            {/* Background Orbs */}
+            <div className="absolute top-1/2 -left-32 w-96 h-96 bg-amber-400/5 rounded-full blur-[140px] pointer-events-none" />
 
-            <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="mb-16 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
-                        <BookOpen size={14} className="text-amber-400" />
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
+                        <BookOpen size={14} className="text-amber-500" />
                         CONTINUOUS EVOLUTION // ACTIVE RESEARCH & LEARNING
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
                         Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         Active skill acquisition, production engineering research, and next-generation ML architecture studies.
                     </p>
                 </motion.div>
@@ -249,29 +236,29 @@ const Learning = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <div className="bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2 font-heading">
-                                <Star className="text-amber-400" size={18} /> Next Up
+                        <div className="bg-surface/80 backdrop-blur-xl p-6 rounded-2xl border border-border shadow-xl">
+                            <h3 className="text-lg font-bold text-heading mb-4 flex items-center gap-2 font-heading">
+                                <Star className="text-amber-500" size={18} /> Next Up
                             </h3>
                             <ul className="space-y-4">
                                 {nextUp.map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-sm text-gray-300 group cursor-default font-mono">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 group-hover:bg-amber-400 transition-colors" />
-                                        <span className="group-hover:text-white transition-colors">{item}</span>
+                                    <li key={idx} className="flex items-center gap-3 text-sm text-text group cursor-default font-mono">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500/60 group-hover:bg-amber-500 transition-colors" />
+                                        <span className="group-hover:text-primary transition-colors">{item}</span>
                                     </li>
                                 ))}
                             </ul>
-                            <div className="mt-6 pt-6 border-t border-white/5">
-                                <p className="text-xs text-gray-400 italic">
+                            <div className="mt-6 pt-6 border-t border-border">
+                                <p className="text-xs text-muted italic">
                                     "The more I learn, the more I realize how much I don't know."
                                 </p>
                             </div>
                         </div>
 
                         {/* Quick Fact or Quote */}
-                        <div className="p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-xl">
-                            <p className="text-sm text-gray-300 leading-relaxed">
-                                Currently focusing on <span className="text-white font-semibold underline decoration-amber-400/50">strengthening MLOps fundamentals</span> and scaling practical AI systems.
+                        <div className="p-6 rounded-2xl bg-surface/80 backdrop-blur-xl border border-border shadow-xl">
+                            <p className="text-sm text-text leading-relaxed">
+                                Currently focusing on <span className="text-heading font-semibold underline decoration-amber-400/50">strengthening MLOps fundamentals</span> and scaling practical AI systems.
                             </p>
                         </div>
                     </motion.div>

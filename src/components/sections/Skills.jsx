@@ -134,7 +134,7 @@ const Skills = () => {
                         <Activity size={14} className="text-secondary" />
                         TECHNICAL PROFICIENCY // MODEL FEATURE IMPORTANCE
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-heading">
                         Empirical <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary"><TextScramble text="Skill Architecture" /></span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed">
@@ -150,18 +150,18 @@ const Skills = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}
-                        className="lg:col-span-5 h-full bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 md:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden"
+                        className="lg:col-span-5 h-full bg-surface/80 backdrop-blur-xl rounded-2xl border border-border p-6 md:p-8 flex flex-col justify-between shadow-xl relative overflow-hidden"
                     >
-                        <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+                        <div className="flex justify-between items-center mb-8 border-b border-border pb-4">
                             <div>
-                                <h3 className="text-xs font-mono text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-2">
+                                <h3 className="text-xs font-mono text-muted uppercase tracking-widest font-semibold flex items-center gap-2">
                                     <Sparkles size={14} className="text-primary" />
                                     Relative Proficiency (F-Score)
                                 </h3>
                             </div>
                             {isLive && (
-                                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                                     Live Sync
                                 </div>
                             )}
@@ -178,12 +178,12 @@ const Skills = () => {
                                         onClick={() => setActiveDomain(entry)}
                                     >
                                         {/* Domain Title */}
-                                        <div className={`flex-shrink-0 w-32 md:w-40 text-right pr-4 text-xs md:text-sm font-medium leading-tight transition-colors duration-300 ${isActive ? 'text-primary font-bold' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                                        <div className={`flex-shrink-0 w-32 md:w-40 text-right pr-4 text-xs md:text-sm font-medium leading-tight transition-colors duration-300 ${isActive ? 'text-primary font-bold' : 'text-muted group-hover:text-text'}`}>
                                             {entry.domain}
                                         </div>
                                         
                                         {/* Bar Container */}
-                                        <div className="flex-1 h-3.5 bg-white/5 rounded-full relative overflow-visible backdrop-blur-sm">
+                                        <div className="flex-1 h-3.5 bg-surface/90 border border-border/50 rounded-full relative overflow-visible backdrop-blur-sm">
                                             <motion.div 
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: `${entry.importance * 100}%` }}
@@ -192,20 +192,20 @@ const Skills = () => {
                                                 className={`absolute top-0 left-0 h-full rounded-full transition-all duration-500 ${
                                                     isActive 
                                                         ? 'bg-gradient-to-r from-primary via-purple-500 to-secondary shadow-[0_0_20px_rgba(236,72,153,0.5)]' 
-                                                        : 'bg-white/20 group-hover:bg-white/40'
+                                                        : 'bg-primary/30 group-hover:bg-primary/50'
                                                 }`}
                                             >
                                                 {/* Animated Tip Dot */}
                                                 <div className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 w-4 h-4 rounded-full border-2 border-background transition-all duration-500 ${
                                                     isActive 
-                                                        ? 'bg-white shadow-[0_0_15px_white] scale-125' 
-                                                        : 'bg-gray-400 opacity-0 group-hover:opacity-100'
+                                                        ? 'bg-primary shadow-[0_0_15px_#00d4ff] scale-125' 
+                                                        : 'bg-muted opacity-0 group-hover:opacity-100'
                                                 }`} />
                                             </motion.div>
                                         </div>
                                         
                                         {/* F-Score */}
-                                        <div className={`w-14 text-left pl-4 font-mono text-xs md:text-sm transition-colors duration-300 ${isActive ? 'text-white font-bold' : 'text-gray-500 group-hover:text-gray-300'}`}>
+                                        <div className={`w-14 text-left pl-4 font-mono text-xs md:text-sm transition-colors duration-300 ${isActive ? 'text-heading font-bold' : 'text-muted group-hover:text-text'}`}>
                                             {entry.importance.toFixed(2)}
                                         </div>
                                     </div>
@@ -213,7 +213,7 @@ const Skills = () => {
                             })}
                         </div>
 
-                        <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-500">
+                        <div className="mt-8 pt-4 border-t border-border flex items-center justify-between text-[11px] font-mono text-muted">
                             <span>* Model weights updated via GitHub</span>
                             <span>Scale: 0.00 - 1.00</span>
                         </div>
@@ -231,16 +231,16 @@ const Skills = () => {
                                         key={domain.domain}
                                         onClick={() => setActiveDomain(domain)}
                                         onMouseEnter={() => setActiveDomain(domain)}
-                                        className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 text-left backdrop-blur-md ${
+                                        className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 text-left backdrop-blur-md cursor-pointer ${
                                             isActive 
-                                                ? 'bg-primary/10 border-primary/50 shadow-[0_0_20px_rgba(236,72,153,0.2)]' 
-                                                : 'bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.05]'
+                                                ? 'bg-primary/10 border-primary/50 shadow-md ring-1 ring-primary/30' 
+                                                : 'bg-surface/80 border-border hover:border-primary/30 hover:bg-surface'
                                         }`}
                                     >
-                                        <div className={`p-2 rounded-lg ${isActive ? 'bg-primary/20 text-primary' : 'bg-white/5 text-gray-400'}`}>
+                                        <div className={`p-2 rounded-lg ${isActive ? 'bg-primary/20 text-primary' : 'bg-background text-muted'}`}>
                                             {domain.icon}
                                         </div>
-                                        <span className={`text-xs md:text-sm font-medium ${isActive ? 'text-white font-semibold' : 'text-gray-400'}`}>
+                                        <span className={`text-xs md:text-sm font-medium ${isActive ? 'text-heading font-semibold' : 'text-muted'}`}>
                                             {domain.domain}
                                         </span>
                                     </button>
@@ -257,37 +257,37 @@ const Skills = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -15 }}
                                     transition={{ duration: 0.25 }}
-                                    className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between backdrop-blur-xl shadow-2xl relative overflow-hidden"
+                                    className="bg-surface/90 border border-border rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between backdrop-blur-xl shadow-xl relative overflow-hidden"
                                 >
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none" />
 
                                     <div>
                                         {/* Header Title */}
                                         <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-2xl font-bold font-heading text-white flex items-center gap-3">
+                                            <h3 className="text-2xl font-bold font-heading text-heading flex items-center gap-3">
                                                 <span className="p-2 rounded-xl bg-primary/10 text-primary border border-primary/20">
                                                     {activeDomain.icon}
                                                 </span>
                                                 {activeDomain.domain}
                                             </h3>
-                                            <span className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                                            <span className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 font-semibold">
                                                 F-Score: {activeDomain.importance.toFixed(2)}
                                             </span>
                                         </div>
 
-                                        <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">
+                                        <p className="text-text text-sm md:text-base mb-6 leading-relaxed">
                                             {activeDomain.description}
                                         </p>
                                         
                                         {/* Core Stack Pills */}
                                         <div className="mb-6">
-                                            <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 font-semibold">Core Stack & Technologies</p>
+                                            <p className="text-xs font-mono text-muted uppercase tracking-widest mb-3 font-semibold">Core Stack & Technologies</p>
                                             <div className="flex flex-wrap gap-2.5">
                                                 {activeDomain.items.map((item, idx) => (
                                                     <motion.div
                                                         key={idx}
                                                         whileHover={{ scale: 1.05, y: -2 }}
-                                                        className="flex items-center gap-2 px-3.5 py-2 bg-white/[0.04] hover:bg-white/[0.08] text-gray-200 text-xs md:text-sm rounded-xl border border-white/10 shadow-sm transition-all"
+                                                        className="flex items-center gap-2 px-3.5 py-2 bg-background/80 text-text text-xs md:text-sm rounded-xl border border-border shadow-sm transition-all"
                                                     >
                                                         <span className="text-base">
                                                             {iconMap[item] || null}
@@ -300,18 +300,18 @@ const Skills = () => {
                                     </div>
 
                                     {/* Empirical Impact Metrics */}
-                                    <div className="pt-5 border-t border-white/10 mt-4">
-                                        <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 font-semibold flex items-center gap-1.5">
+                                    <div className="pt-5 border-t border-border mt-4">
+                                        <p className="text-xs font-mono text-muted uppercase tracking-widest mb-3 font-semibold flex items-center gap-1.5">
                                             <CheckCircle2 size={13} className="text-secondary" />
                                             Empirical Impact & Scale
                                         </p>
                                         <div className="grid grid-cols-2 gap-4">
                                             {activeDomain.impactMetrics.map((metric, idx) => (
-                                                <div key={idx} className="bg-white/[0.03] rounded-xl p-3.5 border border-white/5 hover:border-white/15 transition-all">
-                                                    <div className="text-xl md:text-2xl font-bold font-mono text-white mb-1 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                                                <div key={idx} className="bg-background/60 rounded-xl p-3.5 border border-border hover:border-primary/30 transition-all">
+                                                    <div className="text-xl md:text-2xl font-bold font-mono text-primary mb-1">
                                                         {metric.value}
                                                     </div>
-                                                    <div className="text-xs text-gray-400 leading-tight">
+                                                    <div className="text-xs text-muted leading-tight">
                                                         {metric.label}
                                                     </div>
                                                 </div>

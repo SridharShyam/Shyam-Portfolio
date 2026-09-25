@@ -66,7 +66,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Academic & Repository Record",
       issuer: "Self-Directed & Campus Lab",
       credentialId: "FOUND-2023-PY-01",
-      proofImage: "/proofs/cirf-inplant-training.svg",
+      proofImage: "/proofs/cirf-inplant-training.png",
       verificationUrl: "https://github.com/SridharShyam"
     }
   },
@@ -83,7 +83,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Technical Coursework Record",
       issuer: "Data Science Lab",
       credentialId: "DS-2024-IMM-102",
-      proofImage: "/proofs/cirf-inplant-training.svg",
+      proofImage: "/proofs/cirf-inplant-training.png",
       verificationUrl: "https://github.com/SridharShyam"
     }
   },
@@ -100,7 +100,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Industrial Training Certificate",
       issuer: "CIRF Lab",
       credentialId: "CIRF-2024-IPT-312",
-      proofImage: "/proofs/cirf-inplant-training.svg",
+      proofImage: "/proofs/cirf-inplant-training.png",
       verificationUrl: ""
     }
   },
@@ -117,7 +117,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "International Delegation Certificate",
       issuer: "Universiti Teknologi PETRONAS (UTP), Malaysia",
       credentialId: "UTP-SEC-2025-DELEGATE-084",
-      proofImage: "/proofs/utp-malaysia-delegation.svg",
+      proofImage: "/proofs/utp-malaysia-delegation.png",
       verificationUrl: "https://www.utp.edu.my"
     }
   },
@@ -134,7 +134,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Startup Pitch Finalist Certificate",
       issuer: "TNStartify / StartupTN",
       credentialId: "TNS-2025-FIN-9402",
-      proofImage: "/proofs/tnstartify-finalist.svg",
+      proofImage: "/proofs/tnstartify-finalist.png",
       verificationUrl: "https://startuptn.in"
     }
   },
@@ -151,7 +151,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Official Leadership Appointment",
       issuer: "YUVA Club — Saveetha Engineering College",
       credentialId: "YUVA-2025-CHAIR-01",
-      proofImage: "/proofs/yuva-leadership-appointment.svg",
+      proofImage: "/proofs/btg-titans-certificate.png",
       verificationUrl: ""
     }
   },
@@ -168,7 +168,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Engineering Trainee Certification",
       issuer: "QuodeSchool",
       credentialId: "QS-2025-ENG-771",
-      proofImage: "/proofs/cirf-inplant-training.svg",
+      proofImage: "/proofs/cirf-inplant-training.png",
       verificationUrl: ""
     }
   },
@@ -185,7 +185,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Industry Internship Completion",
       issuer: "QuodeWorks AI Lab",
       credentialId: "QW-2026-INT-409",
-      proofImage: "/proofs/utp-malaysia-delegation.svg",
+      proofImage: "/proofs/utp-malaysia-delegation.png",
       verificationUrl: ""
     }
   },
@@ -202,7 +202,7 @@ const ENRICHED_JOURNEY_MAP = {
       proofType: "Executive Board Appointment",
       issuer: "Voice Of The Wild Foundation",
       credentialId: "VOTW-2026-ADV-01",
-      proofImage: "/proofs/yuva-leadership-appointment.svg",
+      proofImage: "/proofs/btg-titans-certificate.png",
       verificationUrl: ""
     }
   },
@@ -220,11 +220,21 @@ const ENRICHED_JOURNEY_MAP = {
 };
 
 async function main() {
-  console.log('Fetching data from Notion...');
+  if (!NOTION_TOKEN || !JOURNEY_DB || !SKILLS_DB) {
+    console.log('Notice: Notion API credentials not provided in env. Preserving existing src/data/notion-data.json fallback.');
+    return;
+  }
+
+  console.log('Fetching data from Notion API...');
 
   try {
     const rawJourney = await fetchNotionDatabase(JOURNEY_DB);
     const rawSkills = await fetchNotionDatabase(SKILLS_DB);
+
+    if (!rawJourney || rawJourney.length === 0) {
+      console.log('Notice: Notion API returned empty results. Preserving existing src/data/notion-data.json fallback.');
+      return;
+    }
 
     const journey = rawJourney.map(page => {
       const p = page.properties;
@@ -293,8 +303,7 @@ async function main() {
     
     console.log(`Successfully wrote Notion data to ${outputPath}`);
   } catch (err) {
-    console.error('Error in Notion build pipeline:', err);
-    process.exit(1);
+    console.warn('Warning in Notion fetch step (falling back to cached data):', err.message);
   }
 }
 

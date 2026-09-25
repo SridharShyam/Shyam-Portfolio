@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Portfolio of Shyam, an AI & ML/Data Science Student from Chennai. Focused on designing data-driven systems, machine learning models, and intelligent applications that solve real-world problems beyond notebooks." />
     <meta name="keywords" content="Data Science, Machine Learning, AI, Shyam, RetailMind, HealthSentinel, SMB Solutions" />
     <meta name="author" content="Shyam" />
@@ -16,6 +16,21 @@
     <meta property="og:image" content="https://shyam-portfolio.vercel.app/og-image.png" />
 
     <title>Shyametrics | AI & Decision Support Systems</title>
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('shyam_portfolio_theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="bg-background text-text antialiased">
     <div id="root"></div>
