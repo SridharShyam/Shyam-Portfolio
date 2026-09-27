@@ -665,30 +665,30 @@ const Projects = () => {
                     {/* Pillar 3: CareerTech */}
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/30 to-violet-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                             <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-blue-500/20 transition-colors duration-500" />
-                                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-purple-500/20 transition-colors duration-500" />
+                                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 <div className="relative z-10 flex flex-col h-full gap-5">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-transparent border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-transparent border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(168,85,247,0.1)]">
                                             <GraduationCap size={24} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-2xl font-bold font-heading text-white">
-                                            Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Tech</span>
+                                            Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-violet-500">Tech</span>
                                         </h3>
                                     </div>
                                     
-                                    <div className="mt-auto pl-4 border-l-2 border-blue-500/40 relative">
-                                        <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-blue-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="mt-auto pl-4 border-l-2 border-purple-500/40 relative">
+                                        <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-purple-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                         <p className="text-gray-300 text-base leading-relaxed font-light italic">
                                             "Career decisions deserve the same rigour as medical ones."
                                         </p>
                                     </div>
                                 </div>
                                 
-                                <div className="absolute -bottom-8 -right-8 text-blue-500/5 group-hover:text-blue-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                <div className="absolute -bottom-8 -right-8 text-purple-500/5 group-hover:text-purple-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                                     <GraduationCap size={140} strokeWidth={1} />
                                 </div>
                             </div>
