@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ui/ThemeToggle';
 
@@ -7,13 +7,12 @@ const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Sandbox', href: '#sandbox' },
     { name: 'Journey', href: '#journey' },
     { name: 'Learning', href: '#learning' },
     { name: 'Contact', href: '#contact' },
 ];
 
-const Navbar = ({ onOpenTerminal }) => {
+const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('');
@@ -57,8 +56,13 @@ const Navbar = ({ onOpenTerminal }) => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-border' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#home" className="-ml-4 md:-ml-8 text-3xl md:text-4xl font-bold font-heading text-primary relative group tracking-wide flex items-center gap-1">
-                    Shyam<span className="text-text">etrics</span>
+                <a href="#home" className="-ml-4 md:-ml-8 flex flex-col group relative">
+                    <div className="text-2xl md:text-3xl font-bold font-heading text-primary tracking-wide flex items-center gap-1 leading-none">
+                        Shyam<span className="text-text">etrics</span>
+                    </div>
+                    <span className="text-[10px] md:text-xs text-muted font-mono font-medium tracking-wider mt-1">
+                        AI & Decision Support
+                    </span>
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                 </a>
 
@@ -75,18 +79,6 @@ const Navbar = ({ onOpenTerminal }) => {
                             </a>
                         ))}
                     </div>
-
-                    {/* CLI Terminal Launcher Button */}
-                    {onOpenTerminal && (
-                        <button
-                            onClick={onOpenTerminal}
-                            className="p-2 rounded-lg bg-surface border border-border text-muted hover:text-cyan-400 transition-all flex items-center gap-1.5 font-mono text-xs cursor-pointer"
-                            title="Open CLI Terminal (Novelty #1)"
-                        >
-                            <Terminal size={16} className="text-cyan-400" />
-                            <span className="hidden lg:inline font-bold">CLI</span>
-                        </button>
-                    )}
 
                     <ThemeToggle />
                 </div>

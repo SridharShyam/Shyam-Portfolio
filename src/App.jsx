@@ -13,15 +13,12 @@ import Learning from './components/sections/Learning';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import IntroSequence from './components/ui/IntroSequence';
-import LiveModelSandbox from './components/ui/LiveModelSandbox';
-import TerminalModal from './components/ui/TerminalModal';
-import { Terminal } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [appMounted, setAppMounted] = useState(false);
   const [coinResult, setCoinResult] = useState('S');
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -75,30 +72,17 @@ function App() {
               className={showIntro ? 'h-screen overflow-hidden' : ''}
           >
             <Toast />
-            <Navbar onOpenTerminal={() => setIsTerminalOpen(true)} />
+            <Navbar />
             <Hero mode={coinResult} />
             <About />
             <Skills />
             <Projects />
-            <LiveModelSandbox />
             <Journey />
             <Learning />
             <Contact />
             <Footer />
             <ScrollToTop />
-
-            {/* Novelty #1: Developer CLI Terminal Trigger Button */}
-            <button
-              onClick={() => setIsTerminalOpen(true)}
-              className="fixed bottom-6 left-6 z-40 px-3.5 py-2.5 rounded-full bg-surface border border-border text-cyan-400 hover:text-heading hover:border-cyan-400 font-mono text-xs shadow-xl backdrop-blur-md flex items-center gap-2 group transition-all duration-300 hover:scale-105 cursor-pointer"
-              title="Launch Developer CLI Terminal (Novelty #1)"
-            >
-              <Terminal size={14} className="text-cyan-400 group-hover:rotate-12 transition-transform" />
-              <span className="hidden sm:inline font-bold">CLI_TERMINAL</span>
-            </button>
-
-            {/* Developer CLI Modal */}
-            <TerminalModal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
+            <Toast />
           </motion.div>
         )}
       </div>

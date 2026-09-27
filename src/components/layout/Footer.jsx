@@ -19,9 +19,8 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className="text-center text-muted text-sm space-y-2 font-sans">
-                    <p className="font-medium text-heading">© {new Date().getFullYear()} SHYAM. All rights reserved.</p>
-                    <p>Designed and developed by Shyam using React, Tailwind CSS, and Framer Motion.</p>
+                <div className="text-center text-muted text-sm font-sans">
+                    <p className="font-medium text-heading">Shyametrics © 2026 · Built by Sridhar Shyam · Data is just the beginning. Decisions are the destination.</p>
                 </div>
 
             </div>
