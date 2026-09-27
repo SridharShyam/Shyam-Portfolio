@@ -57,7 +57,7 @@ const Navbar = () => {
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-border' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#home" className="-ml-4 md:-ml-8 flex flex-col group relative">
-                    <div className="text-2xl md:text-3xl font-bold font-heading text-primary tracking-wide flex items-center gap-1 leading-none">
+                    <div className="text-2xl md:text-3xl font-bold font-heading text-primary tracking-wide leading-none">
                         Shyam<span className="text-text">etrics</span>
                     </div>
                     <span className="text-[10px] md:text-xs text-muted font-mono font-medium tracking-wider mt-1">
