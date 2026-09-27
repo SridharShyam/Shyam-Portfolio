@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap, BookOpen } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import CardSpotlight from '../ui/CardSpotlight';
 import TextScramble from '../ui/TextScramble';
@@ -205,6 +205,24 @@ const projects = [
             "Personalized growth trajectories"
         ],
         links: { demo: "#", repo: "#" }
+    },
+    {
+        title: "EduSynk",
+        tagline: "AI-Driven Adaptive Learning & Knowledge Engine",
+        description: "An intelligent learning and assessment platform designed to deliver personalized educational pathways, dynamic gap analysis, and adaptive mastery tracking.",
+        businessImpact: "Transforms passive learning into adaptive, data-driven mastery by analyzing student knowledge gaps in real-time and scaling individualized instruction.",
+        image: "/projects/mcq_assessment_bg.png",
+        tech: ["Python", "FastAPI", "React", "NLP", "Adaptive Learning"],
+        status: "In Progress",
+        domain: "edutech",
+        featured: true,
+        question: "How can dynamic assessment models continuously adapt learning pathways to close individual knowledge gaps in real time?",
+        highlights: [
+            "Adaptive learning pathway engine",
+            "Automated knowledge gap diagnosis",
+            "Personalized learning trajectory modeling"
+        ],
+        links: { demo: "#", repo: "https://github.com/SridharShyam/EduSynk.git" }
     },
     {
         title: "MCQ Assessment System",
@@ -530,11 +548,12 @@ const Projects = () => {
     const styleSynk = projects.find(p => p.title === "StyleSynk");
     const healthSentinel = projects.find(p => p.title === "HealthSentinel AI");
     const careerSynk = projects.find(p => p.title === "CareerSynk");
+    const eduSynk = projects.find(p => p.title === "EduSynk");
     
     // Inject Live GitHub Projects directly into the remaining projects list!
     const remainingProjects = [
         ...githubProjects,
-        ...projects.filter(p => !["StyleSynk", "HealthSentinel AI", "CareerSynk"].includes(p.title))
+        ...projects.filter(p => !["StyleSynk", "HealthSentinel AI", "CareerSynk", "EduSynk"].includes(p.title))
     ];
 
     return (
@@ -565,36 +584,36 @@ const Projects = () => {
                 {/* Signature Feature: Interactive Architecture Blueprint Explorer */}
                 <ArchitectureExplorer />
 
-                {/* 3 Domain Pillars */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+                {/* 4 Domain Pillars */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
                     {/* Pillar 1: FashionTech */}
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-rose-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-8 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-rose-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
-                                <div className="relative z-10 flex flex-col h-full gap-6">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500/20 to-transparent border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(244,63,94,0.1)]">
-                                            <Shirt size={28} strokeWidth={1.5} />
+                                <div className="relative z-10 flex flex-col h-full gap-5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/20 to-transparent border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(244,63,94,0.1)]">
+                                            <Shirt size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-3xl font-bold font-heading text-white">
+                                        <h3 className="text-2xl font-bold font-heading text-white">
                                             Fashion<span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-500">Tech</span>
                                         </h3>
                                     </div>
                                     
-                                    <div className="mt-auto pl-5 border-l-2 border-rose-500/40 relative">
+                                    <div className="mt-auto pl-4 border-l-2 border-rose-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-rose-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-lg leading-relaxed font-light italic">
+                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
                                             "Style is data. Personal fit is a prediction problem."
                                         </p>
                                     </div>
                                 </div>
                                 
                                 <div className="absolute -bottom-8 -right-8 text-rose-500/5 group-hover:text-rose-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
-                                    <Shirt size={180} strokeWidth={1} />
+                                    <Shirt size={140} strokeWidth={1} />
                                 </div>
                             </div>
                         </div>
@@ -609,30 +628,30 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-8 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-emerald-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
-                                <div className="relative z-10 flex flex-col h-full gap-6">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
-                                            <HeartPulse size={28} strokeWidth={1.5} />
+                                <div className="relative z-10 flex flex-col h-full gap-5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
+                                            <HeartPulse size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-3xl font-bold font-heading text-white">
+                                        <h3 className="text-2xl font-bold font-heading text-white">
                                             Health<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Tech</span>
                                         </h3>
                                     </div>
                                     
-                                    <div className="mt-auto pl-5 border-l-2 border-emerald-500/40 relative">
+                                    <div className="mt-auto pl-4 border-l-2 border-emerald-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-emerald-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-lg leading-relaxed font-light italic">
+                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
                                             "AI should flag risk before a doctor has to guess."
                                         </p>
                                     </div>
                                 </div>
                                 
                                 <div className="absolute -bottom-8 -right-8 text-emerald-500/5 group-hover:text-emerald-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
-                                    <HeartPulse size={180} strokeWidth={1} />
+                                    <HeartPulse size={140} strokeWidth={1} />
                                 </div>
                             </div>
                         </div>
@@ -647,36 +666,74 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 to-indigo-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-8 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-blue-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
-                                <div className="relative z-10 flex flex-col h-full gap-6">
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-transparent border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
-                                            <GraduationCap size={28} strokeWidth={1.5} />
+                                <div className="relative z-10 flex flex-col h-full gap-5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-transparent border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
+                                            <GraduationCap size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-3xl font-bold font-heading text-white">
+                                        <h3 className="text-2xl font-bold font-heading text-white">
                                             Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Tech</span>
                                         </h3>
                                     </div>
                                     
-                                    <div className="mt-auto pl-5 border-l-2 border-blue-500/40 relative">
+                                    <div className="mt-auto pl-4 border-l-2 border-blue-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-blue-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-lg leading-relaxed font-light italic">
+                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
                                             "Career decisions deserve the same rigour as medical ones."
                                         </p>
                                     </div>
                                 </div>
                                 
                                 <div className="absolute -bottom-8 -right-8 text-blue-500/5 group-hover:text-blue-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
-                                    <GraduationCap size={180} strokeWidth={1} />
+                                    <GraduationCap size={140} strokeWidth={1} />
                                 </div>
                             </div>
                         </div>
                         {careerSynk && (
                             <div className="flex-grow">
                                 <ProjectCard project={careerSynk} index={2} isFullWidth={false} />
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Pillar 4: EduTech */}
+                    <div className="flex flex-col gap-6 h-full">
+                        <div className="relative group h-full">
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-amber-500/20 transition-colors duration-500" />
+                                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                
+                                <div className="relative z-10 flex flex-col h-full gap-5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-transparent border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(245,158,11,0.1)]">
+                                            <BookOpen size={24} strokeWidth={1.5} />
+                                        </div>
+                                        <h3 className="text-2xl font-bold font-heading text-white">
+                                            Edu<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Tech</span>
+                                        </h3>
+                                    </div>
+                                    
+                                    <div className="mt-auto pl-4 border-l-2 border-amber-500/40 relative">
+                                        <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-amber-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
+                                            "Education isn't one-size-fits-all. Learning pathways should adapt."
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="absolute -bottom-8 -right-8 text-amber-500/5 group-hover:text-amber-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                    <BookOpen size={140} strokeWidth={1} />
+                                </div>
+                            </div>
+                        </div>
+                        {eduSynk && (
+                            <div className="flex-grow">
+                                <ProjectCard project={eduSynk} index={3} isFullWidth={false} />
                             </div>
                         )}
                     </div>
