@@ -69,15 +69,26 @@ const Navbar = () => {
                 {/* Desktop Nav & Theme Toggle */}
                 <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
                     <div className="flex space-x-8 lg:space-x-10">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className={`transition-colors font-semibold text-base tracking-wide ${activeSection === link.href.substring(1) ? 'text-primary' : 'text-muted hover:text-primary'}`}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive = activeSection === link.href.substring(1);
+                            return (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`transition-colors duration-500 font-semibold text-base tracking-wide relative flex flex-col items-center group ${
+                                        isActive ? 'text-accent font-bold' : 'text-muted hover:text-accent'
+                                    }`}
+                                >
+                                    <span>{link.name}</span>
+                                    {isActive && (
+                                        <motion.span 
+                                            layoutId="activeNavIndicator"
+                                            className="absolute -bottom-2 w-1.5 h-1.5 rounded-full bg-accent transition-colors duration-500" 
+                                        />
+                                    )}
+                                </a>
+                            );
+                        })}
                     </div>
 
                     <ThemeToggle />
@@ -88,7 +99,7 @@ const Navbar = () => {
                     <ThemeToggle />
 
                     <button
-                        className="text-text hover:text-primary transition-colors p-1"
+                        className="text-text hover:text-accent transition-colors duration-500 p-1"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -106,16 +117,22 @@ const Navbar = () => {
                         className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
                     >
                         <div className="flex flex-col items-center py-8 space-y-6">
-                            {navLinks.map((link) => (
-                                <a
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`text-lg font-medium transition-colors ${activeSection === link.href.substring(1) ? 'text-primary' : 'text-gray-300 hover:text-primary'}`}
-                                >
-                                    {link.name}
-                                </a>
-                            ))}
+                            {navLinks.map((link) => {
+                                const isActive = activeSection === link.href.substring(1);
+                                return (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className={`text-lg font-medium transition-colors duration-500 flex items-center gap-2 ${
+                                            isActive ? 'text-accent font-bold' : 'text-gray-300 hover:text-accent'
+                                        }`}
+                                    >
+                                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-accent transition-colors duration-500" />}
+                                        <span>{link.name}</span>
+                                    </a>
+                                );
+                            })}
                         </div>
                     </motion.div>
                 )}

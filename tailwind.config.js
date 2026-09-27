@@ -12,7 +12,7 @@ export default {
         surface: "var(--bg-surface)",
         primary: "#00d4ff",
         secondary: "#8b5cf6",
-        accent: "#f59e0b",
+        accent: "var(--accent)",
         muted: "var(--text-muted)",
         text: "var(--text-main)",
         heading: "var(--heading-color)",

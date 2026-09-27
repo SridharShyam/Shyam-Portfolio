@@ -24,11 +24,28 @@ function App() {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
-    // Clean up any leftover hash like /#journey on page load / intro sequence
+    // Clean up any leftover hash on page load / intro sequence
     if (window.location.hash) {
       window.history.replaceState(null, '', window.location.pathname);
     }
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const domainColors = {
+      fashiontech: '#F43F5E',
+      healthtech:  '#10B981',
+      careertech:  '#3B82F6',
+      govtech:     '#F59E0B',
+    };
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      const color = domainColors[hash] || '#f59e0b';
+      document.documentElement.style.setProperty('--accent', color);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // run on mount
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   useEffect(() => {
