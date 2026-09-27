@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ui/ThemeToggle';
 
@@ -7,12 +6,13 @@ const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Sandbox', href: '#sandbox' },
     { name: 'Journey', href: '#journey' },
     { name: 'Learning', href: '#learning' },
     { name: 'Contact', href: '#contact' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onOpenTerminal }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('');
@@ -74,6 +74,18 @@ const Navbar = () => {
                             </a>
                         ))}
                     </div>
+
+                    {/* CLI Terminal Launcher Button */}
+                    {onOpenTerminal && (
+                        <button
+                            onClick={onOpenTerminal}
+                            className="p-2 rounded-lg bg-surface border border-border text-muted hover:text-cyan-400 transition-all flex items-center gap-1.5 font-mono text-xs cursor-pointer"
+                            title="Open CLI Terminal (Novelty #1)"
+                        >
+                            <Terminal size={16} className="text-cyan-400" />
+                            <span className="hidden lg:inline font-bold">CLI</span>
+                        </button>
+                    )}
 
                     <ThemeToggle />
                 </div>
