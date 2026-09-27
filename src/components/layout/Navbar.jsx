@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Menu, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ui/ThemeToggle';
