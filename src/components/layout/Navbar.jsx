@@ -4,12 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ui/ThemeToggle';
 
 const navLinks = [
-    { name: 'Shyamscape', href: '#about' },
-    { name: 'Shyamspecs', href: '#skills' },
-    { name: 'Shyamsystems', href: '#projects' },
-    { name: 'Shyamarks', href: '#journey' },
-    { name: 'Shyamsynapse', href: '#learning' },
-    { name: 'Shyamsignal', href: '#contact' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Journey', href: '#journey' },
+    { name: 'Learning', href: '#learning' },
+    { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
