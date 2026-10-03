@@ -73,7 +73,7 @@ const Navbar = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface/80 border border-border hover:border-secondary/50 transition-all text-muted hover:text-secondary text-[11px] font-mono group"
-                        title="Shyamarks — Achievement Vault (Coming Soon)"
+                        title="Shyamarks - Achievement Vault (Coming Soon)"
                     >
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
                         <span className="font-semibold text-heading group-hover:text-secondary">Shyamarks</span>

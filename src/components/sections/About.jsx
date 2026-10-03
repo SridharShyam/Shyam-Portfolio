@@ -48,7 +48,7 @@ const About = () => {
         {
             icon: Layers,
             title: "Three Domains, One Lens",
-            description: "Building across FashionTech, HealthTech, and CareerTech—all linked by the same goal: converting raw, noisy data into actionable next steps.",
+            description: "Building across FashionTech, HealthTech, and CareerTech-all linked by the same goal: converting raw, noisy data into actionable next steps.",
             color: "text-secondary",
             bgGradient: "from-secondary/20 via-secondary/5 to-transparent",
             borderColor: "hover:border-secondary/40"
@@ -56,7 +56,7 @@ const About = () => {
         {
             icon: Target,
             title: "Business KPI > Accuracy",
-            description: "A high ROC-AUC is meaningless if unused. Systems are engineered around stakeholder metrics—utilization, risk reduction, and ROI.",
+            description: "A high ROC-AUC is meaningless if unused. Systems are engineered around stakeholder metrics-utilization, risk reduction, and ROI.",
             color: "text-accent",
             bgGradient: "from-accent/20 via-accent/5 to-transparent",
             borderColor: "hover:border-accent/40"
@@ -91,7 +91,7 @@ const About = () => {
                         SHYAMSCAPE // MINDSET & ENGINEERING IDENTITY
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamscape — Systems That Turn <br className="hidden sm:block" />
+                        Shyamscape - Systems That Turn <br className="hidden sm:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">Data into Impact</span>
                     </h2>
                 </motion.div>

@@ -61,7 +61,7 @@ const caseStudies = [
     {
         title: "Hybrid Recommender System for Personalized Media",
         tagline: "Content & Collaborative Filtering Engine",
-        description: "Robust recommendation system combining Content-Based and Collaborative Filtering using the MovieLens dataset. Recommendation engines are the primary revenue lever for streaming platforms — a 1% lift in click-through rate translates to millions in retention value.",
+        description: "Robust recommendation system combining Content-Based and Collaborative Filtering using the MovieLens dataset. Recommendation engines are the primary revenue lever for streaming platforms - a 1% lift in click-through rate translates to millions in retention value.",
         businessImpact: "Drives user retention and increases platform stickiness by surfacing highly relevant media, directly impacting subscription renewal rates.",
         question: "Can combining content-based and collaborative filtering outperform either approach alone on cold-start users?",
         tech: ["Python", "scikit-surprise", "TF-IDF"],
@@ -96,7 +96,7 @@ const projects = [
         tech: ["Python", "TensorFlow", "Scikit-Learn", "FastAPI"],
         status: "Showcase",
         domain: "ml-core",
-        question: "Which clinical markers are most predictive — and does the model's reasoning align with what hepatologists already know?",
+        question: "Which clinical markers are most predictive - and does the model's reasoning align with what hepatologists already know?",
         highlights: [
             "Predictive modeling for retail & healthcare",
             "Advanced time series & econometric models",
@@ -107,7 +107,7 @@ const projects = [
     {
         title: "Cirrhosis Stage & Status Prediction",
         tagline: "Clinical Biomarker Classification & Survival Prediction",
-        description: "Developed a robust classification model to predict the progression stage of Liver Cirrhosis based on patient clinical parameters. Clinically, achieving 0.81 ROC-AUC for Stage 4 detection means earlier identification of high-risk patients — directly supporting faster intervention decisions by hepatologists.",
+        description: "Developed a robust classification model to predict the progression stage of Liver Cirrhosis based on patient clinical parameters. Clinically, achieving 0.81 ROC-AUC for Stage 4 detection means earlier identification of high-risk patients - directly supporting faster intervention decisions by hepatologists.",
         businessImpact: "Accelerates diagnostic triage by identifying Stage 4 progression risks early, allowing hepatologists to prioritize high-risk interventions and reduce late-stage mortality.",
         image: "/projects/cirrhosis_ai_bg.png",
         tech: ["XGBoost", "SMOTE", "Seaborn", "Optuna"],
@@ -147,7 +147,7 @@ const projects = [
         tech: ["Python", "Machine Learning", "Data Analytics"],
         status: "Iterating",
         domain: "healthtech",
-        question: "Can a model predict chronic disease risk across 13 conditions before symptoms become critical — calibrated for India?",
+        question: "Can a model predict chronic disease risk across 13 conditions before symptoms become critical - calibrated for India?",
         highlights: [
             "Predictive risk modeling for early detection",
             "Secure and scalable patient data processing",
@@ -159,13 +159,13 @@ const projects = [
         title: "StyleSynk",
         tagline: "Wardrobe Intelligence & Fashion Decision Support System",
         description: "StyleSynk converts unstructured wardrobe images into structured fashion intelligence. By combining a core visual classification model with context-aware decision logic (occasion, weather, style history), it generates ranked recommendations for what to wear, reuse, or purchase next.",
-        businessImpact: "Central KPI is not classification accuracy — it's recommendation acceptance rate, wardrobe utilization, and duplicate-purchase avoidance. Enables decisions for 4 stakeholders simultaneously: user (what to wear/buy), retailer (what's genuinely relevant), platform (what to rank), and sustainability (can an existing item satisfy this need?).",
+        businessImpact: "Central KPI is not classification accuracy - it's recommendation acceptance rate, wardrobe utilization, and duplicate-purchase avoidance. Enables decisions for 4 stakeholders simultaneously: user (what to wear/buy), retailer (what's genuinely relevant), platform (what to rank), and sustainability (can an existing item satisfy this need?).",
         image: "/projects/pantemo_fashion_bg.png",
         tech: ["Computer Vision", "Recommendation System", "FastAPI", "React", "Decision Support"],
         status: "In Progress",
         domain: "fashiontech",
         featured: true,
-        question: "Given everything a user already owns, prefers, and needs — what should they wear, reuse, avoid buying, or purchase next?",
+        question: "Given everything a user already owns, prefers, and needs - what should they wear, reuse, avoid buying, or purchase next?",
         highlights: [
             "Exploring new frontiers in AI-driven fashion",
             "Building scalable digital apparel architecture",
@@ -199,7 +199,7 @@ const projects = [
         tech: ["AI", "CareerTech"],
         status: "Upcoming",
         domain: "careertech",
-        question: "What career move is actually right for this person — based on their real profile, not just what's trending?",
+        question: "What career move is actually right for this person - based on their real profile, not just what's trending?",
         highlights: [
             "Data-driven career recommendations",
             "Personalized growth trajectories"
@@ -574,7 +574,7 @@ const Projects = () => {
                         SHYAMSYSTEMS // APPLIED AI & DECISION SUPPORT ENGINES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamsystems — Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI & Decision Engines</span>
+                        Shyamsystems - Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI & Decision Engines</span>
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.

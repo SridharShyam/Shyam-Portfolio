@@ -114,10 +114,10 @@ const Contact = () => {
                             SHYAMSIGNAL // DIRECT COMMUNICATION CHANNEL
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading mb-6">
-                            Shyamsignal — Let's Connect & <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Build Together</span>
+                            Shyamsignal - Let's Connect & <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Build Together</span>
                         </h2>
                         <p className="text-muted leading-relaxed text-base">
-                            Have an exciting AI idea, a role to discuss, or just want to connect over data science? Drop me a message—I'd love to chat!
+                            Have an exciting AI idea, a role to discuss, or just want to connect over data science? Drop me a message - I'd love to chat!
                         </p>
                     </div>
 

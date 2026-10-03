@@ -126,63 +126,32 @@
     },
     {
       "year": "Oct 2025 (Growth & Recognition)",
-      "phase": "Growth & Recognition",
+      "phase": "",
       "title": "Finalist — TNStartify 3.0",
-      "category": "Global",
-      "location": "Tamil Nadu, IN",
+      "category": "Experience",
+      "location": "India",
       "description": "Recognized as a finalist for developing innovative solutions in TNStartify 3.0.",
-      "highlights": [
-        "Startup Pitch",
-        "Product Innovation",
-        "Statewide Finalist"
-      ],
-      "details": "Recognized among top regional innovators at TNStartify 3.0 for designing a data-driven solution addressing high-impact business problem statements.",
-      "skills": [
-        "Product Design",
-        "Pitching",
-        "AI Solution Architecture"
-      ],
+      "highlights": [],
+      "details": "Recognized as a finalist for developing innovative solutions in TNStartify 3.0.",
+      "skills": [],
       "iconString": "Award",
       "isFuture": false,
-      "hardMetrics": [
-        "Top 15 out of 450+ Teams",
-        "Statewide Innovation Challenge",
-        "Pitched to 6 VC & Angel Jurors"
-      ],
-      "proof": {
-        "proofType": "Startup Pitch Finalist Certificate",
-        "issuer": "TNStartify / StartupTN",
-        "credentialId": "TNS-2025-FIN-9402",
-        "proofImage": "/proofs/tnstartify-finalist.png",
-        "verificationUrl": "https://startuptn.in"
-      }
+      "hardMetrics": [],
+      "proof": null
     },
     {
       "year": "Oct 2025 - July 2026",
-      "phase": "Leadership Role",
+      "phase": "",
       "title": "Innovation Vertical Chair — YUVA Club",
-      "category": "Leadership",
-      "location": "Chennai, IN",
+      "category": "Experience",
+      "location": "India",
       "description": "Leading innovation initiatives, organizing projects, and driving a culture of problem-solving within YUVA Club.",
-      "highlights": [
-        "Leading 50+ Innovators",
-        "Project Hackathons",
-        "Problem Solving Culture"
-      ],
-      "details": "Leading innovation directives, organizing technical hackathons, mentoring junior developers, and fostering a hands-on building culture across campus.",
-      "skills": [
-        "Team Leadership",
-        "Event Management",
-        "Mentorship",
-        "Strategic Planning"
-      ],
+      "highlights": [],
+      "details": "Leading innovation initiatives, organizing projects, and driving a culture of problem-solving within YUVA Club.",
+      "skills": [],
       "iconString": "Users",
       "isFuture": false,
-      "hardMetrics": [
-        "50+ Members Mentored",
-        "2 Campus Hackathons Organized",
-        "8 Student Prototypes Built"
-      ],
+      "hardMetrics": [],
       "proof": null
     },
     {
@@ -215,57 +184,32 @@
     },
     {
       "year": "Jan 2026 - Jun 2026",
-      "phase": "Industry Internship",
+      "phase": "",
       "title": "AI Forward Intern — QuodeWorks",
       "category": "Experience",
-      "location": "QuodeWorks",
+      "location": "India",
       "description": "Contributing to advanced AI initiatives and real-world machine learning solutions.",
-      "highlights": [
-        "Production AI Systems",
-        "Model Optimization",
-        "Enterprise Microservices"
-      ],
-      "details": "Engineered production machine learning services, optimizing API response latencies, tuning hyperparameters, and integrating backend microservices.",
-      "skills": [
-        "Machine Learning",
-        "FastAPI",
-        "Python",
-        "Cloud Deployment"
-      ],
+      "highlights": [],
+      "details": "Contributing to advanced AI initiatives and real-world machine learning solutions.",
+      "skills": [],
       "iconString": "Rocket",
       "isFuture": false,
-      "hardMetrics": [
-        "Sub-100ms Inference Latencies",
-        "3 Enterprise Microservices",
-        "Production AI Deployment"
-      ],
+      "hardMetrics": [],
       "proof": null
     },
     {
       "year": "Aug 2026 - Present",
-      "phase": "Strategic Advisory",
+      "phase": "",
       "title": "Chief Advisor — Voice Of The Wild",
-      "category": "Leadership",
-      "location": "Strategic Advisory",
+      "category": "Experience",
+      "location": "India",
       "description": "Providing strategic advisory and technological leadership for organizational initiatives.",
-      "highlights": [
-        "Tech Advisory",
-        "Strategic Vision",
-        "Wild-Tech Initiatives"
-      ],
-      "details": "Directing technological strategy, digital presence, and high-level initiative roadmaps for wildlife conservation and technology integration.",
-      "skills": [
-        "Strategic Advisory",
-        "Tech Leadership",
-        "Product Roadmap"
-      ],
+      "highlights": [],
+      "details": "Providing strategic advisory and technological leadership for organizational initiatives.",
+      "skills": [],
       "iconString": "Globe",
       "isFuture": false,
-      "hardMetrics": [
-        "Technical Strategy Roadmap",
-        "Digital Platform Architecture",
-        "Wildlife Tech Directives"
-      ],
+      "hardMetrics": [],
       "proof": null
     },
     {

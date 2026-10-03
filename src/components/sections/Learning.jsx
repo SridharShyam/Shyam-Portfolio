@@ -213,7 +213,7 @@ const Learning = () => {
                         SHYAMSYNAPSE // KNOWLEDGE BASE & TECHNICAL SYNTHESES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamsynapse — Active Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
+                        Shyamsynapse - Active Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         Active skill acquisition, production engineering research, and next-generation ML architecture studies.

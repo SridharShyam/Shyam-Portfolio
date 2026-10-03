@@ -109,7 +109,7 @@ const ENRICHED_JOURNEY_MAP = {
       verificationUrl: "https://www.utp.edu.my"
     }
   },
-  "Finalist — TNStartify 3.0": {
+  "Finalist - TNStartify 3.0": {
     year: "Oct 2025",
     phase: "Growth & Recognition",
     category: "Global",
@@ -126,7 +126,7 @@ const ENRICHED_JOURNEY_MAP = {
       verificationUrl: "https://startuptn.in"
     }
   },
-  "Innovation Vertical Chair — YUVA Club": {
+  "Innovation Vertical Chair - YUVA Club": {
     year: "Oct 2025 - July 2026",
     phase: "Leadership Role",
     category: "Leadership",
@@ -148,7 +148,7 @@ const ENRICHED_JOURNEY_MAP = {
     hardMetrics: ["FastAPI & Microservice Mastery", "Git & CI/CD Pipelines", "System Architecture Design"],
     proof: null
   },
-  "AI Forward Intern — QuodeWorks": {
+  "AI Forward Intern - QuodeWorks": {
     year: "Jan 2026 - Jun 2026",
     phase: "Industry Internship",
     category: "Experience",
@@ -159,7 +159,7 @@ const ENRICHED_JOURNEY_MAP = {
     hardMetrics: ["Sub-100ms Inference Latencies", "3 Enterprise Microservices", "Production AI Deployment"],
     proof: null
   },
-  "Chief Advisor — Voice Of The Wild": {
+  "Chief Advisor - Voice Of The Wild": {
     year: "Aug 2026 - Present",
     phase: "Strategic Advisory",
     category: "Leadership",

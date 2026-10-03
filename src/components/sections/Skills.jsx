@@ -135,7 +135,7 @@ const Skills = () => {
                         SHYAMSPECS // TECHNICAL PROFICIENCY & SKILL GRAPH
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-heading">
-                        Shyamspecs — <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary"><TextScramble text="Empirical Skill Architecture" /></span>
+                        Shyamspecs - <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary"><TextScramble text="Empirical Skill Architecture" /></span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed">
                         A multi-dimensional view of my technical proficiency, structured as a machine learning feature importance plot dynamically weighted by GitHub repository data.
