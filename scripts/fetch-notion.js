@@ -62,13 +62,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Wrote initial algorithmic implementations in Python, establishing fundamental concepts in data science, linear algebra, discrete mathematics, and model training workflows.",
     skills: ["Python", "Data Structures", "Linear Algebra", "Probability"],
     hardMetrics: ["Core Algorithmic Foundation", "Linear Algebra & Probability", "Python Data Pipelines"],
-    proof: {
-      proofType: "Academic & Repository Record",
-      issuer: "Self-Directed & Campus Lab",
-      credentialId: "FOUND-2023-PY-01",
-      proofImage: "/proofs/cirf-inplant-training.png",
-      verificationUrl: "https://github.com/SridharShyam"
-    }
+    proof: null
   },
   "AI & Data Science Immersion": {
     year: "2024",
@@ -79,13 +73,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Implemented end-to-end data preprocessing pipelines, feature engineering techniques, and baseline supervised regression and classification models.",
     skills: ["Python", "Pandas", "NumPy", "Scikit-Learn", "EDA"],
     hardMetrics: ["15+ ML Models Trained", "Feature Engineering Workflows", "Model Benchmark Evaluations"],
-    proof: {
-      proofType: "Technical Coursework Record",
-      issuer: "Data Science Lab",
-      credentialId: "DS-2024-IMM-102",
-      proofImage: "/proofs/cirf-inplant-training.png",
-      verificationUrl: "https://github.com/SridharShyam"
-    }
+    proof: null
   },
   "Inplant Training – CIRF": {
     year: "2024 (Mid)",
@@ -147,13 +135,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Leading innovation directives, organizing technical hackathons, mentoring junior developers, and fostering a hands-on building culture across campus.",
     skills: ["Team Leadership", "Event Management", "Mentorship", "Strategic Planning"],
     hardMetrics: ["50+ Members Mentored", "2 Campus Hackathons Organized", "8 Student Prototypes Built"],
-    proof: {
-      proofType: "Official Leadership Appointment",
-      issuer: "YUVA Club — Saveetha Engineering College",
-      credentialId: "YUVA-2025-CHAIR-01",
-      proofImage: "/proofs/btg-titans-certificate.png",
-      verificationUrl: ""
-    }
+    proof: null
   },
   "QuodeSchool Engineering Trainee": {
     year: "Aug 2025 - Dec 2025",
@@ -164,13 +146,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Intensive technical training bridging the gap between standalone machine learning models and scalable full-stack software architecture.",
     skills: ["FastAPI", "REST APIs", "Git", "Software Architecture"],
     hardMetrics: ["FastAPI & Microservice Mastery", "Git & CI/CD Pipelines", "System Architecture Design"],
-    proof: {
-      proofType: "Engineering Trainee Certification",
-      issuer: "QuodeSchool",
-      credentialId: "QS-2025-ENG-771",
-      proofImage: "/proofs/cirf-inplant-training.png",
-      verificationUrl: ""
-    }
+    proof: null
   },
   "AI Forward Intern — QuodeWorks": {
     year: "Jan 2026 - Jun 2026",
@@ -181,13 +157,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Engineered production machine learning services, optimizing API response latencies, tuning hyperparameters, and integrating backend microservices.",
     skills: ["Machine Learning", "FastAPI", "Python", "Cloud Deployment"],
     hardMetrics: ["Sub-100ms Inference Latencies", "3 Enterprise Microservices", "Production AI Deployment"],
-    proof: {
-      proofType: "Industry Internship Completion",
-      issuer: "QuodeWorks AI Lab",
-      credentialId: "QW-2026-INT-409",
-      proofImage: "/proofs/utp-malaysia-delegation.png",
-      verificationUrl: ""
-    }
+    proof: null
   },
   "Chief Advisor — Voice Of The Wild": {
     year: "Aug 2026 - Present",
@@ -198,13 +168,7 @@ const ENRICHED_JOURNEY_MAP = {
     details: "Directing technological strategy, digital presence, and high-level initiative roadmaps for wildlife conservation and technology integration.",
     skills: ["Strategic Advisory", "Tech Leadership", "Product Roadmap"],
     hardMetrics: ["Technical Strategy Roadmap", "Digital Platform Architecture", "Wildlife Tech Directives"],
-    proof: {
-      proofType: "Executive Board Appointment",
-      issuer: "Voice Of The Wild Foundation",
-      credentialId: "VOTW-2026-ADV-01",
-      proofImage: "/proofs/btg-titans-certificate.png",
-      verificationUrl: ""
-    }
+    proof: null
   },
   "The Horizon": {
     year: "Beyond 2026",

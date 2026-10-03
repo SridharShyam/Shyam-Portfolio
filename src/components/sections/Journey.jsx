@@ -96,13 +96,13 @@ const Journey = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        CAREER TIMELINE // 3D EXPLORER & VERIFIED PROOFS
+                        CAREER TIMELINE // VERIFIED MILESTONES & PROOFS
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
                         Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Click any milestone card to trigger a 3D spin & pop animation, opening a dedicated showcase page with verified proof documents and hard metrics.
+                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics.
                     </p>
                 </motion.div>
 
@@ -374,11 +374,11 @@ const Journey = () => {
                                                         </div>
                                                     )}
 
-                                                    {/* Click to spin & open page indicator */}
+                                                    {/* Click to open page indicator */}
                                                     <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2 border-t border-white/5">
                                                         <span className="text-[10px] text-gray-500 font-sans flex items-center gap-1">
-                                                            <RotateCw size={11} className="text-secondary/70 group-hover:rotate-180 transition-transform duration-500" />
-                                                            Spin & Expand
+                                                            <CheckCircle2 size={11} className="text-secondary/70" />
+                                                            Verified Record
                                                         </span>
                                                         <div className="flex items-center gap-0.5 font-bold text-secondary">
                                                             <span>Launch Showcase</span>
@@ -396,7 +396,7 @@ const Journey = () => {
                                                         <RotateCw size={24} />
                                                     </div>
                                                     <span className="text-xs font-mono font-bold text-secondary tracking-widest uppercase mb-1">
-                                                        3D POP & SPIN PORTAL
+                                                        LOADING SHOWCASE...
                                                     </span>
                                                     <h4 className="text-base font-bold text-white font-heading">
                                                         Opening Full Showcase Page...

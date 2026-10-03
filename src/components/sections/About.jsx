@@ -5,7 +5,7 @@ import InteractiveAIAvatar from '../ui/InteractiveAIAvatar';
 
 const AchievementCard = ({ icon: IconComponent, label, accentColor, delay }) => {
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -78,9 +78,9 @@ const About = () => {
             <div className="absolute bottom-10 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto px-6">
-                
+
                 {/* Section Header */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
@@ -98,7 +98,7 @@ const About = () => {
 
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-12 gap-12 items-center mb-16">
-                    
+
                     {/* Left: Interactive AI Representation Card & Uncluttered Badges */}
                     <motion.div
                         className="lg:col-span-5 relative"
@@ -196,12 +196,12 @@ const About = () => {
                 <div className="pt-8 border-t border-border">
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                         {achievements.map((item, idx) => (
-                            <AchievementCard 
-                                key={idx} 
-                                icon={item.icon} 
-                                label={item.label} 
+                            <AchievementCard
+                                key={idx}
+                                icon={item.icon}
+                                label={item.label}
                                 accentColor={item.accent}
-                                delay={0.1 * idx} 
+                                delay={0.1 * idx}
                             />
                         ))}
                     </div>
