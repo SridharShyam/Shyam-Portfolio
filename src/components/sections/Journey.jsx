@@ -96,13 +96,13 @@ const Journey = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        CAREER TIMELINE // VERIFIED MILESTONES & PROOFS
+                        SHYAMARKS // VERIFIED ACHIEVEMENT & PROOF VAULT
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
+                        Shyamarks <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Achievement Vault</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics.
+                        Welcome to <strong className="text-white">Shyamarks</strong>—the verified credential and achievement repository of Sridhar Shyam. Click any milestone card to inspect authentic proof records, credentials, and hard metrics.
                     </p>
                 </motion.div>
 
@@ -576,7 +576,7 @@ const Journey = () => {
                                         <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
                                             <div className="flex items-center gap-2.5 text-sm font-mono font-bold text-emerald-300 uppercase tracking-wider">
                                                 <ShieldCheck size={18} className="text-emerald-400" />
-                                                <span>Official Credential & Evidence Record</span>
+                                                <span>Official Credential & Evidence Record (SHYAMARKS)</span>
                                             </div>
                                             <span className="text-xs font-mono font-bold text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
                                                 VERIFIED AUTHENTIC

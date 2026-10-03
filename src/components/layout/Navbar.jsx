@@ -56,15 +56,27 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md py-4 shadow-lg border-b border-border' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#home" className="-ml-4 md:-ml-8 flex flex-col group relative">
-                    <div className="text-2xl md:text-3xl font-bold font-heading text-primary tracking-wide leading-none">
-                        Shyam<span className="text-text">etrics</span>
-                    </div>
-                    <span className="text-[10px] md:text-xs text-muted font-mono font-medium tracking-wider mt-1">
-                        AI & Decision Support
-                    </span>
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                </a>
+                <div className="flex items-center gap-3">
+                    <a href="#home" className="-ml-4 md:-ml-8 flex flex-col group relative">
+                        <div className="text-2xl md:text-3xl font-bold font-heading text-primary tracking-wide leading-none">
+                            Shyam<span className="text-text">etrics</span>
+                        </div>
+                        <span className="text-[10px] md:text-xs text-muted font-mono font-medium tracking-wider mt-1">
+                            AI & Decision Support
+                        </span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                    </a>
+
+                    {/* Shyamarks Vault Ecosystem Link */}
+                    <a 
+                        href="#journey" 
+                        className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/30 hover:bg-secondary/20 transition-all text-secondary text-[11px] font-mono font-semibold"
+                        title="Open Shyamarks Achievement Vault"
+                    >
+                        <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                        <span>Shyamarks Vault</span>
+                    </a>
+                </div>
 
                 {/* Desktop Nav & Theme Toggle */}
                 <div className="hidden md:flex items-center space-x-8 lg:space-x-10">

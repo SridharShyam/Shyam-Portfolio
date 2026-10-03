@@ -19,8 +19,13 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className="text-center text-muted text-sm font-sans">
-                    <p className="font-medium text-heading">Shyametrics © 2026 · Built by Sridhar Shyam · Data is just the beginning. Decisions are the destination.</p>
+                <div className="text-center text-muted text-sm font-sans space-y-1">
+                    <p className="font-medium text-heading">
+                        Shyametrics (Decision Systems) × Shyamarks (Achievement Vault) © 2026
+                    </p>
+                    <p className="text-xs text-muted">
+                        Built by Sridhar Shyam · Data is just the beginning. Decisions are the destination.
+                    </p>
                 </div>
 
             </div>
