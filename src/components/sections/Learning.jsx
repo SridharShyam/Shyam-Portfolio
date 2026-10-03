@@ -210,10 +210,10 @@ const Learning = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
                         <BookOpen size={14} className="text-amber-500" />
-                        CONTINUOUS EVOLUTION // ACTIVE RESEARCH & LEARNING
+                        SHYAMSYNAPSE // KNOWLEDGE BASE & TECHNICAL SYNTHESES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Learning & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
+                        Shyamsynapse — Active Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         Active skill acquisition, production engineering research, and next-generation ML architecture studies.

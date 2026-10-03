@@ -88,11 +88,11 @@ const About = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        ABOUT ME // CORE PHILOSOPHY
+                        SHYAMSCAPE // MINDSET & ENGINEERING IDENTITY
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold font-heading text-heading">
-                        Building Intelligent Systems <br className="hidden sm:block" />
-                        That Turn <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">Data into Impact</span>
+                        Shyamscape — Systems That Turn <br className="hidden sm:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">Data into Impact</span>
                     </h2>
                 </motion.div>
 

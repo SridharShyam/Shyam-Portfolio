@@ -571,10 +571,10 @@ const Projects = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <GitBranch size={14} className="text-primary" />
-                        SYSTEMS ARCHITECTURE // APPLIED AI & ML PROJECTS
+                        SHYAMSYSTEMS // APPLIED AI & DECISION SUPPORT ENGINES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Production & Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI Systems</span>
+                        Shyamsystems — Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI & Decision Engines</span>
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.
