@@ -96,13 +96,13 @@ const Journey = () => {
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
                         <Zap size={14} className="text-secondary" />
-                        SHYAMARKS // VERIFIED ACHIEVEMENT & PROOF VAULT
+                        CAREER TIMELINE // VERIFIED MILESTONES & PROOFS
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamarks <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Achievement Vault</span>
+                        Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Welcome to <strong className="text-white">Shyamarks</strong>—the verified credential and achievement repository of Sridhar Shyam. Click any milestone card to inspect authentic proof records, credentials, and hard metrics.
+                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics.
                     </p>
                 </motion.div>
 

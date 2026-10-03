@@ -19,12 +19,21 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className="text-center text-muted text-sm font-sans space-y-1">
+                <div className="text-center text-muted text-sm font-sans space-y-1.5">
                     <p className="font-medium text-heading">
-                        Shyametrics (Decision Systems) × Shyamarks (Achievement Vault) © 2026
+                        Shyametrics © 2026 · Built by Sridhar Shyam
                     </p>
-                    <p className="text-xs text-muted">
-                        Built by Sridhar Shyam · Data is just the beginning. Decisions are the destination.
+                    <p className="text-xs text-muted flex items-center justify-center gap-1.5 flex-wrap">
+                        <span>Data is just the beginning. Decisions are the destination.</span>
+                        <span className="hidden sm:inline">·</span>
+                        <a 
+                            href="https://shyamarks.vercel.app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-secondary hover:underline font-mono font-medium"
+                        >
+                            Sister App: Shyamarks (Coming Soon) ↗
+                        </a>
                     </p>
                 </div>
 

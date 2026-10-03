@@ -67,14 +67,17 @@ const Navbar = () => {
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                     </a>
 
-                    {/* Shyamarks Vault Ecosystem Link */}
+                    {/* Shyamarks External Sister App Link */}
                     <a 
-                        href="#journey" 
-                        className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/30 hover:bg-secondary/20 transition-all text-secondary text-[11px] font-mono font-semibold"
-                        title="Open Shyamarks Achievement Vault"
+                        href="https://shyamarks.vercel.app" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface/80 border border-border hover:border-secondary/50 transition-all text-muted hover:text-secondary text-[11px] font-mono group"
+                        title="Shyamarks — Achievement Vault (Coming Soon)"
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                        <span>Shyamarks Vault</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span className="font-semibold text-heading group-hover:text-secondary">Shyamarks</span>
+                        <span className="text-[10px] text-muted/70">(Coming Soon)</span>
                     </a>
                 </div>
 
