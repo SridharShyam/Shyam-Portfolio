@@ -82,6 +82,6 @@ You could browse the source code here, but that only tells half the story. To tr
 
 **Curious to see the answers?**
 
-👉 **[Enter Shyametrics Here](https://shyam-portfolio-chi.vercel.app)**
+👉 **[Enter Shyametrics Here](https://shyametrics.vercel.app)**
 
 *Data is just the beginning. Decisions are the destination.*
