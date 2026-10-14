@@ -72,12 +72,12 @@ const Navbar = () => {
                         href="https://shyamarks.vercel.app" 
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface/80 border border-border hover:border-secondary/50 transition-all text-muted hover:text-secondary text-[11px] font-mono group"
-                        title="Shyamarks - Achievement Vault (Coming Soon)"
+                        className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface/80 border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-emerald-500/10 transition-all text-muted hover:text-emerald-400 text-[11px] font-mono group shadow-xs"
+                        title="Shyamarks - Verified Achievement & Proof Vault (Live)"
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                        <span className="font-semibold text-heading group-hover:text-secondary">Shyamarks</span>
-                        <span className="text-[10px] text-muted/70">(Coming Soon)</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span className="font-semibold text-heading group-hover:text-emerald-300">Shyamarks</span>
+                        <span className="text-[10px] text-emerald-400/80 font-medium">Vault ↗</span>
                     </a>
                 </div>
 

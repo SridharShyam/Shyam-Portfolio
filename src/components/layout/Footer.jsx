@@ -30,9 +30,10 @@ const Footer = () => {
                             href="https://shyamarks.vercel.app" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-secondary hover:underline font-mono font-medium"
+                            className="text-emerald-400 hover:text-emerald-300 hover:underline font-mono font-medium inline-flex items-center gap-1"
                         >
-                            Sister App: Shyamarks (Coming Soon) ↗
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span>Sister App: Shyamarks (Verified Vault) ↗</span>
                         </a>
                     </p>
                 </div>
