@@ -23,7 +23,7 @@ const executiveStats = [
     { label: 'Growth Journey', value: '4+ Years', sub: 'Continuous AI & ML Exploration', icon: Calendar, color: 'text-secondary' },
     { label: 'Global Immersion', value: '1 Delegated', sub: 'SEC × UTP, Malaysia Exchange', icon: Globe, color: 'text-amber-400' },
     { label: 'Strategic Leadership', value: '2 Key Roles', sub: 'YUVA Chair & Chief Advisor', icon: Users, color: 'text-purple-400' },
-    { label: 'Recognition', value: '1 Finalist', sub: 'TNStartify 3.0 Startup Innovation', icon: Award, color: 'text-emerald-400' },
+    { label: 'Shyamarks Vault', value: '100% Authentic', sub: 'All credentials verified on sister app', icon: ShieldCheck, color: 'text-emerald-400', link: 'https://shyamarks.vercel.app' },
 ];
 
 const categories = ['All', 'Leadership', 'Experience', 'Global', 'Foundations'];
@@ -125,20 +125,39 @@ const Journey = () => {
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14"
                 >
-                    {executiveStats.map((stat, idx) => (
-                        <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated min-w-0">
-                            <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
-                                <stat.icon size={20} />
+                    {executiveStats.map((stat, idx) => {
+                        const CardContent = (
+                            <div className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated min-w-0 h-full">
+                                <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                                    <stat.icon size={20} />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <span className="text-2xl md:text-3xl font-extrabold text-white font-heading block leading-none mb-1 truncate">
+                                        {stat.value}
+                                    </span>
+                                    <span className="text-xs sm:text-sm font-semibold text-gray-300 block leading-snug">{stat.label}</span>
+                                    <span className="text-[11px] text-gray-400 block truncate mt-1">{stat.sub}</span>
+                                </div>
                             </div>
-                            <div className="min-w-0 flex-1">
-                                <span className="text-2xl md:text-3xl font-extrabold text-white font-heading block leading-none mb-1 truncate">
-                                    {stat.value}
-                                </span>
-                                <span className="text-xs sm:text-sm font-semibold text-gray-300 block leading-snug">{stat.label}</span>
-                                <span className="text-[11px] text-gray-400 block truncate mt-1">{stat.sub}</span>
+                        );
+
+                        return stat.link ? (
+                            <a 
+                                key={idx} 
+                                href={stat.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="block h-full transition-transform hover:-translate-y-1 group"
+                                title="Open Shyamarks Vault"
+                            >
+                                {CardContent}
+                            </a>
+                        ) : (
+                            <div key={idx} className="h-full">
+                                {CardContent}
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </motion.div>
 
                 {/* Category Filter Pills */}
@@ -339,10 +358,20 @@ const Journey = () => {
                                                                 {item.category?.toUpperCase() || 'MILESTONE'}
                                                             </span>
                                                             {item.proof && (
-                                                                <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 shadow-sm shrink-0">
-                                                                    <ShieldCheck size={10} className="text-emerald-400" />
-                                                                    VERIFIED
-                                                                </span>
+                                                                <a 
+                                                                    href={item.proof.verificationUrl || "https://shyamarks.vercel.app"} 
+                                                                    target="_blank" 
+                                                                    rel="noopener noreferrer"
+                                                                    onClick={(e) => e.stopPropagation()}
+                                                                    className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition-colors flex items-center gap-1 shadow-sm shrink-0 group/badge"
+                                                                    title={`Verified credential record: ${item.proof.credentialId || 'Authentic'} on Shyamarks`}
+                                                                >
+                                                                    <ShieldCheck size={11} className="text-emerald-400" />
+                                                                    <span>Verified on Shyamarks</span>
+                                                                    {item.proof.credentialId && (
+                                                                        <span className="text-emerald-400/80 font-normal">#{item.proof.credentialId.split('-')[0] || item.proof.credentialId}</span>
+                                                                    )}
+                                                                </a>
                                                             )}
                                                         </div>
 
@@ -649,20 +678,28 @@ const Journey = () => {
                                         )}
 
                                         {/* External Direct Link */}
-                                        {activeMilestone.proof.verificationUrl && (
-                                            <div className="pt-2">
+                                        <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                                            <a 
+                                                href="https://shyamarks.vercel.app"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex-1 py-3.5 px-6 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 hover:bg-emerald-500/25 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group shadow-sm"
+                                            >
+                                                <span>🏛️ Inspect Official Record in Shyamarks Vault</span>
+                                                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                            </a>
+                                            {activeMilestone.proof.verificationUrl && (
                                                 <a 
                                                     href={activeMilestone.proof.verificationUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="w-full py-3.5 px-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group"
+                                                    className="py-3.5 px-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 hover:text-white font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-all"
                                                 >
-                                                    <ExternalLink size={16} />
-                                                    <span>OPEN ONLINE VERIFICATION PORTAL</span>
-                                                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                                    <ExternalLink size={14} />
+                                                    <span>Issuer Authority</span>
                                                 </a>
-                                            </div>
-                                        )}
+                                            )}
+                                        </div>
                                     </motion.section>
                                 )}
 

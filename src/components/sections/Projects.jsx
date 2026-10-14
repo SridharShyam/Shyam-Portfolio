@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap, BookOpen } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Star, GitBranch, X, CheckCircle2, Clock, Calendar, Beaker, RefreshCw, PauseCircle, Archive, Shirt, HeartPulse, GraduationCap, BookOpen, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import CardSpotlight from '../ui/CardSpotlight';
 import TextScramble from '../ui/TextScramble';
@@ -113,6 +113,7 @@ const projects = [
         tech: ["XGBoost", "SMOTE", "Seaborn", "Optuna"],
         status: "Completed",
         domain: "healthtech",
+        shyamarksVerified: "CIRF-2024",
         question: "Can clinical biomarkers alone predict liver disease stage and survival outcome accurately enough to inform early intervention?",
         highlights: [
             "Feature engineering on clinical biomarker data",
@@ -249,6 +250,7 @@ const projects = [
         tech: ["GovTech", "Data Matching"],
         status: "Upcoming",
         domain: "govtech",
+        shyamarksVerified: "TNS-2025",
         question: "Can a recursive eligibility engine surface the right welfare scheme for any Tamil Nadu resident in under 2 minutes?",
         highlights: [
             "Eligibility prediction",
@@ -409,8 +411,22 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                 </div>
                 
                 {/* Status Badge Overlay */}
-                <div className="absolute top-4 left-4 z-10">
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
                     <StatusBadge status={project.status} />
+                    {project.shyamarksVerified && (
+                        <a 
+                            href="https://shyamarks.vercel.app" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] font-semibold backdrop-blur-md hover:bg-emerald-900/80 transition-all shadow-md group/badge"
+                            title="Verified on Shyamarks Vault"
+                        >
+                            <ShieldCheck size={11} className="text-emerald-400" />
+                            <span>Verified on Shyamarks</span>
+                            <span className="text-emerald-400/80">#{project.shyamarksVerified}</span>
+                        </a>
+                    )}
                 </div>
 
                 {/* GitHub Quick Stats Overlay */}

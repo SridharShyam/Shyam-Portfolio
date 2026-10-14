@@ -203,7 +203,8 @@ async function main() {
     const journey = rawJourney.map(page => {
       const p = page.properties;
       const title = extractText(p.Title || p.Name);
-      const fallback = ENRICHED_JOURNEY_MAP[title] || {};
+      const normalizedTitle = title.replace(/[—–]/g, '-');
+      const fallback = ENRICHED_JOURNEY_MAP[title] || ENRICHED_JOURNEY_MAP[normalizedTitle] || {};
 
       const year = extractText(p.Year) || fallback.year || '2025';
       const category = extractText(p.Category) || fallback.category || 'Experience';
