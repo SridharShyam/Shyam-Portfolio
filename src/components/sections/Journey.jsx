@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Award, Users, Lightbulb, TrendingUp, Globe, Rocket, Sparkles, 
     BookOpen, Code, Zap, Star, MapPin, ChevronRight, X, Calendar, 
-    Layers, Filter, CheckCircle2, ShieldCheck, ExternalLink, Maximize2, 
-    FileCheck, BarChart2, Building2, ArrowLeft, ArrowRight, RotateCw
+    Layers, Filter, CheckCircle2, ShieldCheck, ExternalLink, RotateCw
 } from 'lucide-react';
 import notionData from '../../data/notion-data.json';
 
@@ -33,8 +32,6 @@ const Journey = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [flippingCardId, setFlippingCardId] = useState(null);
     const [activeMilestone, setActiveMilestone] = useState(null);
-    const [lightboxImage, setLightboxImage] = useState(null);
-    const [activeShowcaseTab, setActiveShowcaseTab] = useState('all');
 
     // Map timeline items from Notion data
     const rawTimeline = notionData.journey.map((item, index) => ({
@@ -55,7 +52,7 @@ const Journey = () => {
         chunkedTimeline.push(filteredTimeline.slice(i, i + 3));
     }
 
-    // Trigger 3D pop, spin & morph sequence before launching showcase page
+    // Trigger 3D pop, spin & morph sequence before launching details modal
     const handleCardClick = (item) => {
         if (flippingCardId) return; // prevent duplicate clicks
         setFlippingCardId(item.stepNumber);
@@ -63,7 +60,6 @@ const Journey = () => {
         setTimeout(() => {
             setActiveMilestone(item);
             setFlippingCardId(null);
-            setActiveShowcaseTab('all');
         }, 420); // match spin animation duration
     };
 
@@ -414,14 +410,14 @@ const Journey = () => {
                                                         </div>
                                                     )}
 
-                                                    {/* Click to open page indicator */}
+                                                    {/* Click to open details indicator */}
                                                     <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2 border-t border-white/5">
                                                         <span className="text-[10px] text-gray-500 font-sans flex items-center gap-1">
                                                             <CheckCircle2 size={11} className="text-secondary/70" />
-                                                            Verified Record
+                                                            Journey Record
                                                         </span>
                                                         <div className="flex items-center gap-0.5 font-bold text-secondary">
-                                                            <span>Launch Showcase</span>
+                                                            <span>View Details</span>
                                                             <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                                         </div>
                                                     </div>
@@ -436,10 +432,10 @@ const Journey = () => {
                                                         <RotateCw size={24} />
                                                     </div>
                                                     <span className="text-xs font-mono font-bold text-secondary tracking-widest uppercase mb-1">
-                                                        LOADING SHOWCASE...
+                                                        OPENING RECORD...
                                                     </span>
                                                     <h4 className="text-base font-bold text-white font-heading">
-                                                        Opening Full Showcase Page...
+                                                        Journey & Accomplishments
                                                     </h4>
                                                 </div>
                                             </motion.div>
@@ -452,368 +448,147 @@ const Journey = () => {
                 </div>
             </div>
 
-            {/* FULL-PAGE SHOWCASE DRAWER / PAGE OVERLAY */}
+            {/* FOCUSED MILESTONE SHOWCASE MODAL */}
             <AnimatePresence>
                 {activeMilestone && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.92, y: 40 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 40 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="fixed inset-0 z-50 bg-[#07090e]/98 backdrop-blur-xl overflow-y-auto min-h-screen flex flex-col text-white custom-scrollbar gpu-accelerated"
-                    >
-                        {/* STICKY TOP NAVIGATION HEADER */}
-                        <div className="sticky top-0 z-30 bg-[#07090e]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
-                            <button
-                                onClick={() => setActiveMilestone(null)}
-                                className="px-4 py-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white font-mono text-xs flex items-center gap-2 transition-all group"
-                            >
-                                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                                <span>RETURN TO TIMELINE</span>
-                            </button>
-
-                            <div className="flex items-center gap-3">
-                                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 hidden sm:inline-block">
-                                    MILESTONE #{activeMilestone.stepNumber} // {activeMilestone.year}
-                                </span>
-                                {activeMilestone.proof && (
-                                    <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
-                                        <ShieldCheck size={14} className="text-emerald-400" />
-                                        VERIFIED PROOF ATTACHED
-                                    </span>
-                                )}
-                            </div>
-
-                            <button
-                                onClick={() => setActiveMilestone(null)}
-                                className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
-                            >
-                                <X size={20} />
-                            </button>
-                        </div>
-
-                        {/* FULL PAGE HERO BANNER */}
-                        <div className="max-w-5xl mx-auto px-6 pt-10 pb-8 w-full">
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-white/10 pb-8">
-                                <div className="space-y-3 max-w-3xl">
-                                    <div className="flex flex-wrap items-center gap-2">
-                                        <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full bg-gradient-to-r ${categoryColorMap[activeMilestone.category] || 'text-gray-300'} border`}>
-                                            {activeMilestone.category?.toUpperCase() || 'MILESTONE'}
-                                        </span>
-                                        <span className="text-xs font-mono text-secondary px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20">
-                                            {activeMilestone.phase}
-                                        </span>
-                                        {activeMilestone.location && (
-                                            <span className="text-xs font-mono text-gray-400 flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                                                <MapPin size={12} className="text-secondary" />
-                                                {activeMilestone.location}
-                                            </span>
-                                        )}
-                                    </div>
-                                    <h1 className="text-3xl md:text-5xl font-black font-heading tracking-tight leading-tight text-white">
-                                        {activeMilestone.title}
-                                    </h1>
-                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed pt-1">
-                                        {activeMilestone.details || activeMilestone.description}
-                                    </p>
-                                </div>
-
-                                <div className="p-6 rounded-3xl bg-secondary/10 border border-secondary/30 text-secondary flex flex-col items-center justify-center shrink-0 w-32 h-32 self-start md:self-center shadow-lg">
-                                    <activeMilestone.icon size={48} />
-                                    <span className="text-[10px] font-mono font-bold mt-2 uppercase text-secondary/80">
-                                        #{activeMilestone.stepNumber}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* SHOWCASE SECTION TABS */}
-                            <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5">
-                                <button
-                                    onClick={() => setActiveShowcaseTab('all')}
-                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
-                                        activeShowcaseTab === 'all'
-                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
-                                            : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
-                                    }`}
-                                >
-                                    SHOW ALL SECTIONS
-                                </button>
-                                {activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
-                                    <button
-                                        onClick={() => setActiveShowcaseTab('metrics')}
-                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
-                                            activeShowcaseTab === 'metrics'
-                                                ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
-                                                : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
-                                        }`}
-                                    >
-                                        VERIFIED METRICS
-                                    </button>
-                                )}
-                                {activeMilestone.proof && (
-                                    <button
-                                        onClick={() => setActiveShowcaseTab('proof')}
-                                        className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
-                                            activeShowcaseTab === 'proof'
-                                                ? 'bg-emerald-400 text-black shadow-[0_0_15px_rgba(52,211,153,0.4)]'
-                                                : 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
-                                        }`}
-                                    >
-                                        📜 PROOF & CERTIFICATE
-                                    </button>
-                                )}
-                                <button
-                                    onClick={() => setActiveShowcaseTab('overview')}
-                                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
-                                        activeShowcaseTab === 'overview'
-                                            ? 'bg-secondary text-black shadow-[0_0_15px_rgba(0,199,183,0.4)]'
-                                            : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
-                                    }`}
-                                >
-                                    KEY DELIVERABLES
-                                </button>
-                            </div>
-
-                            {/* MAIN PAGE SHOWCASE CONTENT GRID */}
-                            <div className="space-y-12 pb-16">
-                                
-                                {/* SECTION 1: QUANTIFIABLE IMPACT METRICS */}
-                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'metrics') && activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0 && (
-                                    <motion.section 
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
-                                            <BarChart2 size={16} />
-                                            <span>Quantifiable Impact & Verified Outcomes</span>
-                                        </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                            {activeMilestone.hardMetrics.map((metric, mIdx) => (
-                                                <div key={mIdx} className="p-5 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-secondary/30 flex items-start gap-3.5 group hover:border-secondary transition-colors gpu-accelerated">
-                                                    <div className="p-2.5 rounded-xl bg-secondary/10 text-secondary group-hover:scale-110 transition-transform">
-                                                        <CheckCircle2 size={20} />
-                                                    </div>
-                                                    <div>
-                                                        <span className="text-base font-bold text-white block leading-snug">{metric}</span>
-                                                        <span className="text-[11px] font-mono text-gray-400 mt-1 block">Verified Metric</span>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </motion.section>
-                                )}
-
-                                {/* SECTION 2: VERIFIED PROOF GALLERY & CREDENTIAL METADATA */}
-                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'proof') && activeMilestone.proof && (
-                                    <motion.section 
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="space-y-6 p-6 md:p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/30 relative overflow-hidden gpu-accelerated"
-                                    >
-                                        <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
-                                            <div className="flex items-center gap-2.5 text-sm font-mono font-bold text-emerald-300 uppercase tracking-wider">
-                                                <ShieldCheck size={18} className="text-emerald-400" />
-                                                <span>Official Credential & Evidence Record (SHYAMARKS)</span>
-                                            </div>
-                                            <span className="text-xs font-mono font-bold text-emerald-300 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                                                VERIFIED AUTHENTIC
-                                            </span>
-                                        </div>
-
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
-                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">CREDENTIAL TYPE</span>
-                                                <span className="text-sm font-bold text-white flex items-center gap-1.5 mt-1">
-                                                    <Award size={16} className="text-emerald-400" />
-                                                    {activeMilestone.proof.proofType}
-                                                </span>
-                                            </div>
-                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
-                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">ISSUING AUTHORITY</span>
-                                                <span className="text-sm font-bold text-white flex items-center gap-1.5 mt-1">
-                                                    <Building2 size={16} className="text-emerald-400" />
-                                                    {activeMilestone.proof.issuer}
-                                                </span>
-                                            </div>
-                                            <div className="p-4 rounded-2xl bg-black/40 border border-white/10">
-                                                <span className="text-[10px] font-mono text-gray-400 uppercase block">CREDENTIAL RECORD ID</span>
-                                                <span className="text-sm font-mono font-bold text-emerald-300 flex items-center gap-1.5 mt-1">
-                                                    {activeMilestone.proof.credentialId || 'N/A'}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Certificate Image Document Preview */}
-                                        {activeMilestone.proof.proofImage && (
-                                            <div className="space-y-3">
-                                                <div className="flex items-center justify-between">
-                                                    <span className="text-xs font-mono text-gray-400 uppercase block">DOCUMENT PREVIEW / PROOF ARTIFACT</span>
-                                                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                                                        <ShieldCheck size={12} />
-                                                        WATERMARKED & PROTECTED
-                                                    </span>
-                                                </div>
-                                                <div className="relative group rounded-2xl overflow-hidden border border-white/15 bg-black/60 aspect-[16/9] flex items-center justify-center max-h-[450px] select-none">
-                                                    <img 
-                                                        src={activeMilestone.proof.proofImage} 
-                                                        alt={activeMilestone.title} 
-                                                        onContextMenu={(e) => e.preventDefault()}
-                                                        onDragStart={(e) => e.preventDefault()}
-                                                        className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
-                                                    />
-                                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-xs">
-                                                        <button 
-                                                            onClick={() => setLightboxImage(activeMilestone.proof.proofImage)}
-                                                            className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
-                                                        >
-                                                            <Maximize2 size={16} />
-                                                            View Protected High-Res Scan
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {/* External Direct Link */}
-                                        <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                                            <a 
-                                                href="https://shyamarks.vercel.app"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex-1 py-3.5 px-6 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 hover:bg-emerald-500/25 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all group shadow-sm"
-                                            >
-                                                <span>🏛️ Inspect Official Record in Shyamarks Vault</span>
-                                                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                                            </a>
-                                            {activeMilestone.proof.verificationUrl && (
-                                                <a 
-                                                    href={activeMilestone.proof.verificationUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="py-3.5 px-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 hover:text-white font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-all"
-                                                >
-                                                    <ExternalLink size={14} />
-                                                    <span>Issuer Authority</span>
-                                                </a>
-                                            )}
-                                        </div>
-                                    </motion.section>
-                                )}
-
-                                {/* SECTION 3: KEY DELIVERABLES & HIGHLIGHTS */}
-                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'overview') && (
-                                    <motion.section 
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
-                                            <FileCheck size={16} />
-                                            <span>Key Deliverables & Milestones Achieved</span>
-                                        </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            {activeMilestone.highlights && activeMilestone.highlights.map((h, i) => (
-                                                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sm text-gray-200">
-                                                    <div className="w-2 h-2 rounded-full bg-secondary shrink-0" />
-                                                    <span className="font-medium">{h}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </motion.section>
-                                )}
-
-                                {/* SECTION 4: TECHNICAL SKILLS & COMPETENCIES */}
-                                {(activeShowcaseTab === 'all' || activeShowcaseTab === 'overview') && activeMilestone.skills && (
-                                    <motion.section 
-                                        initial={{ opacity: 0, y: 15 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="space-y-4"
-                                    >
-                                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-secondary uppercase tracking-wider">
-                                            <Code size={16} />
-                                            <span>Competencies & Technologies Applied</span>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2.5">
-                                            {activeMilestone.skills.map((skill, sIdx) => (
-                                                <span key={sIdx} className="text-xs px-4 py-2 rounded-xl bg-secondary/10 text-secondary border border-secondary/20 font-mono font-bold">
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </motion.section>
-                                )}
-
-                            </div>
-
-                            {/* FOOTER PREV / NEXT NAVIGATION BAR */}
-                            <div className="border-t border-white/10 pt-6 pb-4 flex items-center justify-between mt-auto">
-                                <button
-                                    onClick={() => navigateMilestone('prev')}
-                                    className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-bold flex items-center gap-2 transition-all"
-                                >
-                                    <ArrowLeft size={14} />
-                                    <span>PREVIOUS MILESTONE</span>
-                                </button>
-
-                                <button
-                                    onClick={() => setActiveMilestone(null)}
-                                    className="px-6 py-2.5 rounded-xl bg-secondary text-black text-xs font-bold font-mono hover:bg-secondary/90 transition-all shadow-[0_0_20px_rgba(236,72,153,0.4)]"
-                                >
-                                    BACK TO TIMELINE
-                                </button>
-
-                                <button
-                                    onClick={() => navigateMilestone('next')}
-                                    className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-bold flex items-center gap-2 transition-all"
-                                >
-                                    <span>NEXT MILESTONE</span>
-                                    <ArrowRight size={14} />
-                                </button>
-                            </div>
-
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* Lightbox Modal for Protected Fullscreen Certificate/Photo View */}
-            <AnimatePresence>
-                {lightboxImage && (
-                    <div 
-                        className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg select-none"
-                        onContextMenu={(e) => e.preventDefault()}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4 sm:p-6 text-white custom-scrollbar"
+                        onClick={() => setActiveMilestone(null)}
                     >
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            className="relative max-w-5xl w-full select-none"
+                            initial={{ scale: 0.94, y: 20, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.94, y: 20, opacity: 0 }}
+                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-2xl bg-[#0b0f19] border border-white/15 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden my-auto"
                         >
-                            <div className="absolute top-4 left-4 z-30 px-4 py-2 rounded-full bg-black/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 font-mono text-xs flex items-center gap-2 shadow-2xl pointer-events-none">
-                                <ShieldCheck size={16} className="text-emerald-400" />
-                                <span>PROTECTED DOCUMENT // VERIFICATION ONLY // SHYAM</span>
+                            {/* Ambient Glow */}
+                            <div className="absolute top-0 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
+
+                            {/* Top Bar with category & close */}
+                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10 relative z-10">
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
+                                        #{activeMilestone.stepNumber}
+                                    </span>
+                                    <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[activeMilestone.category] || 'text-gray-300'} border`}>
+                                        {activeMilestone.category?.toUpperCase() || 'MILESTONE'}
+                                    </span>
+                                    <span className="text-xs font-mono text-gray-400">
+                                        {activeMilestone.year}
+                                    </span>
+                                </div>
+                                <button
+                                    onClick={() => setActiveMilestone(null)}
+                                    className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
+                                    aria-label="Close modal"
+                                >
+                                    <X size={18} />
+                                </button>
                             </div>
 
-                            <button
-                                onClick={() => setLightboxImage(null)}
-                                className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-30"
-                            >
-                                <X size={24} />
-                            </button>
-                            <img 
-                                src={lightboxImage} 
-                                alt="Full Proof Certificate" 
-                                onContextMenu={(e) => e.preventDefault()}
-                                onDragStart={(e) => e.preventDefault()}
-                                className="w-full h-auto rounded-2xl border border-white/20 shadow-2xl max-h-[85vh] object-contain pointer-events-none select-none"
-                            />
+                            {/* Milestone Title & Location */}
+                            <div className="space-y-2 mb-5 relative z-10">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary shrink-0">
+                                        <activeMilestone.icon size={22} />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-bold font-heading text-white leading-snug">
+                                            {activeMilestone.title}
+                                        </h2>
+                                        {activeMilestone.location && (
+                                            <p className="text-xs font-mono text-gray-400 flex items-center gap-1 mt-0.5">
+                                                <MapPin size={11} className="text-secondary" />
+                                                {activeMilestone.location}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Small Description / Journey Narrative */}
+                            <div className="mb-6 relative z-10 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
+                                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-secondary mb-2 flex items-center gap-1.5">
+                                    <Sparkles size={14} />
+                                    About The Journey
+                                </h3>
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                    {activeMilestone.details || activeMilestone.description}
+                                </p>
+                            </div>
+
+                            {/* Key Accomplishments & Metrics */}
+                            {((activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0) || (activeMilestone.highlights && activeMilestone.highlights.length > 0)) && (
+                                <div className="mb-6 relative z-10">
+                                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-gray-300 mb-3 flex items-center gap-1.5">
+                                        <Award size={14} className="text-secondary" />
+                                        Accomplishments & Impact
+                                    </h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                        {(activeMilestone.hardMetrics || activeMilestone.highlights).map((item, idx) => (
+                                            <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-gray-200">
+                                                <CheckCircle2 size={15} className="text-secondary shrink-0 mt-0.5" />
+                                                <span className="leading-snug">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Skills / Tech */}
+                            {activeMilestone.skills && activeMilestone.skills.length > 0 && (
+                                <div className="mb-6 relative z-10 flex flex-wrap gap-1.5">
+                                    {activeMilestone.skills.map((skill, sIdx) => (
+                                        <span key={sIdx} className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-secondary/10 text-secondary border border-secondary/20">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* View More on Shyamarks CTA & Prev/Next Navigation */}
+                            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
+                                <a
+                                    href={activeMilestone.proof?.verificationUrl || "https://shyamarks.vercel.app"}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-secondary/20 border border-emerald-500/40 hover:border-emerald-400 text-emerald-300 hover:text-emerald-200 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-md group"
+                                >
+                                    <ShieldCheck size={16} className="text-emerald-400" />
+                                    <span>View more on Shyamarks</span>
+                                    <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                </a>
+
+                                <div className="flex items-center gap-2 w-full sm:w-auto">
+                                    <button
+                                        onClick={() => navigateMilestone('prev')}
+                                        className="flex-1 sm:flex-none py-3 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono transition-colors"
+                                        title="Previous milestone"
+                                    >
+                                        ← Prev
+                                    </button>
+                                    <button
+                                        onClick={() => navigateMilestone('next')}
+                                        className="flex-1 sm:flex-none py-3 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono transition-colors"
+                                        title="Next milestone"
+                                    >
+                                        Next →
+                                    </button>
+                                    <button
+                                        onClick={() => setActiveMilestone(null)}
+                                        className="flex-1 sm:flex-none py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-medium transition-colors text-center"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </section>
