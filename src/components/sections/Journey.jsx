@@ -123,16 +123,16 @@ const Journey = () => {
                 >
                     {executiveStats.map((stat, idx) => {
                         const CardContent = (
-                            <div className="p-4 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 flex items-start gap-3.5 group hover:border-white/20 transition-all duration-300 gpu-accelerated min-w-0 h-full">
-                                <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                            <div className="p-4 rounded-2xl bg-card border border-border shadow-xs hover:shadow-md flex items-start gap-3.5 group hover:border-primary/40 transition-all duration-300 gpu-accelerated min-w-0 h-full">
+                                <div className={`p-2.5 rounded-xl bg-surface border border-border ${stat.color} group-hover:scale-110 transition-transform duration-300 shrink-0 shadow-xs`}>
                                     <stat.icon size={20} />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <span className="text-2xl md:text-3xl font-extrabold text-white font-heading block leading-none mb-1 truncate">
+                                    <span className="text-2xl md:text-3xl font-extrabold text-heading font-heading block leading-none mb-1 truncate">
                                         {stat.value}
                                     </span>
-                                    <span className="text-xs sm:text-sm font-semibold text-gray-300 block leading-snug">{stat.label}</span>
-                                    <span className="text-[11px] text-gray-400 block truncate mt-1">{stat.sub}</span>
+                                    <span className="text-xs sm:text-sm font-semibold text-text block leading-snug">{stat.label}</span>
+                                    <span className="text-[11px] text-muted block truncate mt-1">{stat.sub}</span>
                                 </div>
                             </div>
                         );
@@ -162,9 +162,9 @@ const Journey = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-wrap items-center gap-2 mb-14 pb-2 border-b border-white/5"
+                    className="flex flex-wrap items-center gap-2 mb-14 pb-2 border-b border-border/60"
                 >
-                    <div className="flex items-center gap-1.5 text-xs text-gray-400 font-mono mr-2">
+                    <div className="flex items-center gap-1.5 text-xs text-muted font-mono mr-2">
                         <Filter size={14} className="text-secondary" />
                         <span>FILTER:</span>
                     </div>
@@ -174,10 +174,10 @@ const Journey = () => {
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
-                                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
                                     isActive 
-                                        ? 'bg-secondary text-black font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)] scale-105' 
-                                        : 'bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
+                                        ? 'bg-primary text-white font-bold shadow-md scale-105' 
+                                        : 'bg-surface border border-border text-muted hover:text-heading hover:bg-elevated'
                                 }`}
                             >
                                 {cat}
@@ -336,7 +336,7 @@ const Journey = () => {
                                                 }
                                                 whileHover={!isFlipping ? { y: -6, scale: 1.02 } : {}}
                                                 onClick={() => handleCardClick(item)}
-                                                className="h-full flex flex-col p-5 sm:p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 hover:border-secondary/40 transition-colors duration-300 group shadow-lg relative z-10 overflow-hidden cursor-pointer gpu-accelerated"
+                                                className="h-full flex flex-col p-5 sm:p-6 rounded-2xl bg-card border border-border hover:border-secondary/50 transition-colors duration-300 group shadow-xs hover:shadow-md relative z-10 overflow-hidden cursor-pointer gpu-accelerated"
                                                 style={{ transformStyle: 'preserve-3d' }}
                                             >
                                                 {/* FRONT FACE OF THE CARD */}
@@ -347,10 +347,10 @@ const Journey = () => {
                                                     {/* Top Meta Bar */}
                                                     <div className="flex items-center justify-between mb-3.5 relative z-10 gap-2">
                                                         <div className="flex flex-wrap items-center gap-1.5 min-w-0">
-                                                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20 shrink-0">
+                                                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-surface text-secondary border border-secondary/20 shrink-0">
                                                                 #{item.stepNumber}
                                                             </span>
-                                                            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[item.category] || 'text-gray-300'} border shrink-0`}>
+                                                            <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-surface ${categoryColorMap[item.category] || 'text-muted'} border shrink-0`}>
                                                                 {item.category?.toUpperCase() || 'MILESTONE'}
                                                             </span>
                                                             {item.proof && (
@@ -359,51 +359,51 @@ const Journey = () => {
                                                                     target="_blank" 
                                                                     rel="noopener noreferrer"
                                                                     onClick={(e) => e.stopPropagation()}
-                                                                    className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/25 transition-colors flex items-center gap-1 shadow-sm shrink-0 group/badge"
+                                                                    className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20 transition-colors flex items-center gap-1 shadow-xs shrink-0 group/badge"
                                                                     title={`Verified credential record: ${item.proof.credentialId || 'Authentic'} on Shyamarks`}
                                                                 >
-                                                                    <ShieldCheck size={11} className="text-emerald-400" />
+                                                                    <ShieldCheck size={11} className="text-emerald-500" />
                                                                     <span>Verified on Shyamarks</span>
                                                                     {item.proof.credentialId && (
-                                                                        <span className="text-emerald-400/80 font-normal">#{item.proof.credentialId.split('-')[0] || item.proof.credentialId}</span>
+                                                                        <span className="text-emerald-600/80 dark:text-emerald-400/80 font-normal">#{item.proof.credentialId.split('-')[0] || item.proof.credentialId}</span>
                                                                     )}
                                                                 </a>
                                                             )}
                                                         </div>
 
-                                                        <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:text-secondary group-hover:scale-110 transition-all duration-300 shrink-0">
+                                                        <div className="p-2 rounded-xl bg-surface border border-border text-muted group-hover:text-secondary group-hover:scale-110 transition-all duration-300 shrink-0 shadow-xs">
                                                             <item.icon size={16} />
                                                         </div>
                                                     </div>
 
                                                     {/* Year Pill & Location */}
                                                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                                                        <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-sm backdrop-blur-md shrink-0">
+                                                        <span className="text-secondary font-mono text-xs font-bold px-2.5 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 shadow-xs backdrop-blur-md shrink-0">
                                                             {item.year}
                                                         </span>
                                                         {item.location && (
-                                                            <span className="text-[11px] text-gray-400 flex items-center gap-1 font-mono shrink-0">
-                                                                <MapPin size={10} className="text-gray-500" />
+                                                            <span className="text-[11px] text-muted flex items-center gap-1 font-mono shrink-0">
+                                                                <MapPin size={10} className="text-muted" />
                                                                 {item.location}
                                                             </span>
                                                         )}
                                                     </div>
 
                                                     {/* Title */}
-                                                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-secondary transition-colors leading-snug font-heading">
+                                                    <h3 className="text-lg font-bold text-heading mb-2 group-hover:text-secondary transition-colors leading-snug font-heading">
                                                         {item.title}
                                                     </h3>
 
                                                     {/* Description */}
-                                                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-4 flex-grow">
+                                                    <p className="text-muted text-xs md:text-sm leading-relaxed mb-4 flex-grow">
                                                         {item.description}
                                                     </p>
 
                                                     {/* Highlight Chips */}
                                                     {item.highlights && item.highlights.length > 0 && (
-                                                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                                                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border">
                                                             {item.highlights.map((h, hIdx) => (
-                                                                <span key={hIdx} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10 font-mono">
+                                                                <span key={hIdx} className="text-[10px] px-2 py-0.5 rounded-md bg-surface text-muted border border-border font-mono">
                                                                     {h}
                                                                 </span>
                                                             ))}
@@ -411,9 +411,9 @@ const Journey = () => {
                                                     )}
 
                                                     {/* Click to open details indicator */}
-                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/70 group-hover:text-secondary transition-colors pt-2 border-t border-white/5">
-                                                        <span className="text-[10px] text-gray-500 font-sans flex items-center gap-1">
-                                                            <CheckCircle2 size={11} className="text-secondary/70" />
+                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-mono text-secondary/80 group-hover:text-secondary transition-colors pt-2 border-t border-border">
+                                                        <span className="text-[10px] text-muted font-sans flex items-center gap-1">
+                                                            <CheckCircle2 size={11} className="text-secondary/80" />
                                                             Journey Record
                                                         </span>
                                                         <div className="flex items-center gap-0.5 font-bold text-secondary">
@@ -425,7 +425,7 @@ const Journey = () => {
 
                                                 {/* BACK FACE OF THE CARD (Rotated 180 deg) */}
                                                 <div 
-                                                    className="absolute inset-0 p-6 rounded-2xl bg-[#090e17] border border-secondary/50 flex flex-col items-center justify-center text-center z-20"
+                                                    className="absolute inset-0 p-6 rounded-2xl bg-surface border border-secondary/50 flex flex-col items-center justify-center text-center z-20 shadow-xl"
                                                     style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
                                                 >
                                                     <div className="w-14 h-14 rounded-full bg-secondary/10 border border-secondary/40 flex items-center justify-center text-secondary mb-3 animate-spin">
@@ -434,7 +434,7 @@ const Journey = () => {
                                                     <span className="text-xs font-mono font-bold text-secondary tracking-widest uppercase mb-1">
                                                         OPENING RECORD...
                                                     </span>
-                                                    <h4 className="text-base font-bold text-white font-heading">
+                                                    <h4 className="text-base font-bold text-heading font-heading">
                                                         Journey & Accomplishments
                                                     </h4>
                                                 </div>
@@ -455,7 +455,7 @@ const Journey = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4 sm:p-6 text-white custom-scrollbar"
+                        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4 sm:p-6 text-text custom-scrollbar"
                         onClick={() => setActiveMilestone(null)}
                     >
                         <motion.div
@@ -464,27 +464,27 @@ const Journey = () => {
                             exit={{ scale: 0.94, y: 20, opacity: 0 }}
                             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full max-w-2xl bg-[#0b0f19] border border-white/15 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden my-auto"
+                            className="relative w-full max-w-2xl bg-card border border-border rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden my-auto"
                         >
                             {/* Ambient Glow */}
                             <div className="absolute top-0 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
 
                             {/* Top Bar with category & close */}
-                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10 relative z-10">
+                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-border relative z-10">
                                 <div className="flex flex-wrap items-center gap-2">
-                                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-white/10 text-secondary border border-secondary/20">
+                                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-surface text-secondary border border-secondary/20">
                                         #{activeMilestone.stepNumber}
                                     </span>
-                                    <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-gradient-to-r ${categoryColorMap[activeMilestone.category] || 'text-gray-300'} border`}>
+                                    <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-surface ${categoryColorMap[activeMilestone.category] || 'text-muted'} border`}>
                                         {activeMilestone.category?.toUpperCase() || 'MILESTONE'}
                                     </span>
-                                    <span className="text-xs font-mono text-gray-400">
+                                    <span className="text-xs font-mono text-muted">
                                         {activeMilestone.year}
                                     </span>
                                 </div>
                                 <button
                                     onClick={() => setActiveMilestone(null)}
-                                    className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
+                                    className="p-2 rounded-full bg-surface hover:bg-elevated text-muted hover:text-heading transition-colors border border-border"
                                     aria-label="Close modal"
                                 >
                                     <X size={18} />
@@ -498,11 +498,11 @@ const Journey = () => {
                                         <activeMilestone.icon size={22} />
                                     </div>
                                     <div>
-                                        <h2 className="text-xl sm:text-2xl font-bold font-heading text-white leading-snug">
+                                        <h2 className="text-xl sm:text-2xl font-bold font-heading text-heading leading-snug">
                                             {activeMilestone.title}
                                         </h2>
                                         {activeMilestone.location && (
-                                            <p className="text-xs font-mono text-gray-400 flex items-center gap-1 mt-0.5">
+                                            <p className="text-xs font-mono text-muted flex items-center gap-1 mt-0.5">
                                                 <MapPin size={11} className="text-secondary" />
                                                 {activeMilestone.location}
                                             </p>
@@ -512,12 +512,12 @@ const Journey = () => {
                             </div>
 
                             {/* Small Description / Journey Narrative */}
-                            <div className="mb-6 relative z-10 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
+                            <div className="mb-6 relative z-10 p-4 rounded-2xl bg-surface border border-border">
                                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-secondary mb-2 flex items-center gap-1.5">
                                     <Sparkles size={14} />
                                     About The Journey
                                 </h3>
-                                <p className="text-gray-300 text-sm leading-relaxed">
+                                <p className="text-text text-sm leading-relaxed">
                                     {activeMilestone.details || activeMilestone.description}
                                 </p>
                             </div>
@@ -525,13 +525,13 @@ const Journey = () => {
                             {/* Key Accomplishments & Metrics */}
                             {((activeMilestone.hardMetrics && activeMilestone.hardMetrics.length > 0) || (activeMilestone.highlights && activeMilestone.highlights.length > 0)) && (
                                 <div className="mb-6 relative z-10">
-                                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-gray-300 mb-3 flex items-center gap-1.5">
+                                    <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-heading mb-3 flex items-center gap-1.5">
                                         <Award size={14} className="text-secondary" />
                                         Accomplishments & Impact
                                     </h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                         {(activeMilestone.hardMetrics || activeMilestone.highlights).map((item, idx) => (
-                                            <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-gray-200">
+                                            <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-surface border border-border text-xs text-text">
                                                 <CheckCircle2 size={15} className="text-secondary shrink-0 mt-0.5" />
                                                 <span className="leading-snug">{item}</span>
                                             </div>
@@ -552,14 +552,14 @@ const Journey = () => {
                             )}
 
                             {/* View More on Shyamarks CTA & Prev/Next Navigation */}
-                            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
+                            <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
                                 <a
                                     href={activeMilestone.proof?.verificationUrl || "https://shyamarks.vercel.app"}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-secondary/20 border border-emerald-500/40 hover:border-emerald-400 text-emerald-300 hover:text-emerald-200 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-md group"
+                                    className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-500/15 to-secondary/15 border border-emerald-500/35 hover:border-emerald-400 text-emerald-700 dark:text-emerald-300 font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs group"
                                 >
-                                    <ShieldCheck size={16} className="text-emerald-400" />
+                                    <ShieldCheck size={16} className="text-emerald-500" />
                                     <span>View more on Shyamarks</span>
                                     <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </a>
@@ -567,21 +567,21 @@ const Journey = () => {
                                 <div className="flex items-center gap-2 w-full sm:w-auto">
                                     <button
                                         onClick={() => navigateMilestone('prev')}
-                                        className="flex-1 sm:flex-none py-3 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono transition-colors"
+                                        className="flex-1 sm:flex-none py-3 px-4 rounded-xl bg-surface hover:bg-elevated border border-border text-text text-xs font-mono transition-colors cursor-pointer"
                                         title="Previous milestone"
                                     >
                                         ← Prev
                                     </button>
                                     <button
                                         onClick={() => navigateMilestone('next')}
-                                        className="flex-1 sm:flex-none py-3 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono transition-colors"
+                                        className="flex-1 sm:flex-none py-3 px-4 rounded-xl bg-surface hover:bg-elevated border border-border text-text text-xs font-mono transition-colors cursor-pointer"
                                         title="Next milestone"
                                     >
                                         Next →
                                     </button>
                                     <button
                                         onClick={() => setActiveMilestone(null)}
-                                        className="flex-1 sm:flex-none py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 text-xs font-mono font-medium transition-colors text-center"
+                                        className="flex-1 sm:flex-none py-3 px-4 rounded-xl bg-surface hover:bg-elevated border border-border text-muted hover:text-heading text-xs font-mono font-medium transition-colors cursor-pointer"
                                     >
                                         Close
                                     </button>

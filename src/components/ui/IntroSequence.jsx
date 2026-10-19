@@ -16,6 +16,12 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
   // Randomly decide if the coin lands on 'S' (Heads - Shyam) or 'D' (Tails - Data)
   const [coinResult] = useState(() => (typeof window !== 'undefined' && Math.random() > 0.5) ? 'S' : 'D');
 
+  const handleSkip = () => {
+    if (onPortalOpen) onPortalOpen(coinResult);
+    setIsVisible(false);
+    if (onComplete) onComplete();
+  };
+
   useEffect(() => {
     // Crisp 3s total timing sequence (zero main-thread lag)
     const t1 = setTimeout(() => setPhase('flipping'), 400);
@@ -45,6 +51,14 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
+          {/* Direct Skip Action */}
+          <button
+            onClick={handleSkip}
+            className="absolute top-6 right-6 z-30 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs backdrop-blur-md transition-all cursor-pointer shadow-lg"
+            aria-label="Skip Intro Sequence"
+          >
+            Skip Intro ➔
+          </button>
           {/* Shockwave ring effect on landing */}
           <AnimatePresence>
             {phase === 'landing' && (

@@ -10,8 +10,8 @@ export default {
       colors: {
         background: "var(--bg-main)",
         surface: "var(--bg-surface)",
-        primary: "#00d4ff",
-        secondary: "#8b5cf6",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
         accent: "var(--accent)",
         muted: "var(--text-muted)",
         text: "var(--text-main)",

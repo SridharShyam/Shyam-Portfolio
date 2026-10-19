@@ -114,8 +114,10 @@ const Navbar = () => {
                     <ThemeToggle />
 
                     <button
-                        className="text-text hover:text-accent transition-colors duration-500 p-1"
+                        className="text-text hover:text-accent transition-colors duration-500 p-1 cursor-pointer"
                         onClick={() => setIsOpen(!isOpen)}
+                        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                        aria-expanded={isOpen}
                     >
                         {isOpen ? <X size={26} /> : <Menu size={26} />}
                     </button>

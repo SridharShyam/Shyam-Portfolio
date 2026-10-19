@@ -28,13 +28,13 @@
       (function() {
         try {
           var saved = localStorage.getItem('shyam_portfolio_theme');
-          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-          if (theme === 'light') {
-            document.documentElement.classList.add('light');
-            document.documentElement.classList.remove('dark');
-          } else {
+          var theme = saved || 'light'; // Default to clean modern Light Mode
+          if (theme === 'dark') {
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
           }
         } catch (e) {}
       })();

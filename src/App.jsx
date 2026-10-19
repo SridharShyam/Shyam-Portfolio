@@ -13,11 +13,22 @@ import Learning from './components/sections/Learning';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import IntroSequence from './components/ui/IntroSequence';
+import ThemePipelineHUD from './components/ui/ThemePipelineHUD';
 import { motion } from 'framer-motion';
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
-  const [appMounted, setAppMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return false;
+    }
+    return true;
+  });
+  const [appMounted, setAppMounted] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return true;
+    }
+    return false;
+  });
   const [coinResult, setCoinResult] = useState('S');
 
   useEffect(() => {
@@ -88,7 +99,7 @@ function App() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className={showIntro ? 'h-screen overflow-hidden' : ''}
           >
-            <Toast />
+            <ThemePipelineHUD />
             <Navbar />
             <Hero mode={coinResult} />
             <About />

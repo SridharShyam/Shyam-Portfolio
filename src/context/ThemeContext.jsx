@@ -6,7 +6,7 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('shyam_portfolio_theme');
     if (saved) return saved;
-    return 'dark'; // Default to sleek obsidian dark mode
+    return 'light'; // Default to clean modern Unstop-inspired light mode
   });
 
   const [switchCount, setSwitchCount] = useState(() => {
@@ -89,6 +89,7 @@ export function ThemeProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {

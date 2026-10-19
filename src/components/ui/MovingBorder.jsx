@@ -5,17 +5,16 @@ export const MovingBorder = ({
   duration = 3500,
   className = "",
   containerClassName = "",
-  as: Component = "button",
   borderClassName = "",
   ...otherProps
 }) => {
   return (
-    <Component
+    <div
       className={`relative p-[1.5px] overflow-hidden rounded-full font-mono text-xs font-bold transition-transform active:scale-95 ${containerClassName}`}
       {...otherProps}
     >
       {/* Moving Border Gradient Beam */}
-      <div className="absolute inset-0 rounded-full overflow-hidden">
+      <div className={`absolute inset-0 rounded-full overflow-hidden ${borderClassName}`}>
         <motion.div
           className="absolute -inset-[100%] w-[300%] h-[300%] m-auto"
           style={{
@@ -27,10 +26,10 @@ export const MovingBorder = ({
       </div>
 
       {/* Inner Button Content */}
-      <div className={`relative px-6 py-3 rounded-full bg-[#0b0f17] text-white flex items-center justify-center gap-2 backdrop-blur-xl ${className}`}>
+      <div className={`relative px-6 py-3 rounded-full bg-surface text-heading hover:bg-elevated/80 flex items-center justify-center gap-2 backdrop-blur-xl border border-border/40 transition-colors shadow-sm ${className}`}>
         {children}
       </div>
-    </Component>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
 export const CardSpotlight = ({
@@ -11,7 +10,6 @@ export const CardSpotlight = ({
 }) => {
   const mouseX = useMotionValue(-radius);
   const mouseY = useMotionValue(-radius);
-  const [isHovered, setIsHovered] = useState(false);
 
   function handleMouseMove({ currentTarget, clientX, clientY }) {
     const { left, top } = currentTarget.getBoundingClientRect();
@@ -24,11 +22,9 @@ export const CardSpotlight = ({
 
   return (
     <div
-      className={`relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 group overflow-hidden ${className}`}
+      className={`relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 group overflow-hidden shadow-xs hover:shadow-md ${className}`}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
-        setIsHovered(false);
         mouseX.set(-radius);
         mouseY.set(-radius);
       }}

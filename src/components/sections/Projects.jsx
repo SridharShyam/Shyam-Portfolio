@@ -334,14 +334,18 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
         const fetchStats = async () => {
             if (project.links.repo && project.links.repo.includes('github.com')) {
                 try {
-                    const repoPath = project.links.repo.split('github.com/')[1];
-                    const response = await fetch(`https://api.github.com/repos/${repoPath}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        setGithubStats({
-                            stars: data.stargazers_count,
-                            forks: data.forks_count
-                        });
+                    const rawPath = project.links.repo.split('github.com/')[1] || '';
+                    const parts = rawPath.split('/').filter(Boolean);
+                    if (parts.length >= 2) {
+                        const ownerRepo = `${parts[0]}/${parts[1]}`;
+                        const response = await fetch(`https://api.github.com/repos/${ownerRepo}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            setGithubStats({
+                                stars: data.stargazers_count || 0,
+                                forks: data.forks_count || 0
+                            });
+                        }
                     }
                 } catch (error) {
                     console.error("Error fetching GitHub stats:", error);
@@ -375,35 +379,35 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                 </div>
             )}
 
-            <div className="h-48 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden group">
+            <div className="h-48 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 relative overflow-hidden group">
                 {project.image ? (
                     <>
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700 ease-out" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-85 group-hover:opacity-35 group-hover:scale-105 transition-all duration-700 ease-out" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     </>
                 ) : (
                     <>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(236,72,153,0.15),rgba(0,0,0,0))]" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-primary/15 rounded-full blur-3xl group-hover:bg-primary/25 transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.2),rgba(0,0,0,0))]" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500" />
                     </>
                 )}
 
                 {/* Architecture Node-Graph Hover Overlay */}
-                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 z-0 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-all duration-500 z-0 flex items-center justify-center overflow-hidden">
                     <div className="relative w-full h-full">
                         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60">
-                            <motion.line x1="20%" y1="30%" x2="50%" y2="50%" stroke="#00C7B7" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-                            <motion.line x1="50%" y1="50%" x2="80%" y2="70%" stroke="#a855f7" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-                            <motion.line x1="50%" y1="50%" x2="75%" y2="25%" stroke="#10b981" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+                            <motion.line x1="20%" y1="30%" x2="50%" y2="50%" stroke="#1d4ed8" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+                            <motion.line x1="50%" y1="50%" x2="80%" y2="70%" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+                            <motion.line x1="50%" y1="50%" x2="75%" y2="25%" stroke="#0d9488" strokeWidth="1.5" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
                         </svg>
 
-                        <div className="absolute top-[30%] left-[20%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-primary shadow-[0_0_10px_#00C7B7] animate-pulse" />
-                        <div className="absolute top-[50%] left-[50%] w-3 h-3 -ml-[6px] -mt-[6px] rounded-full bg-purple-500 shadow-[0_0_15px_#a855f7] animate-pulse" style={{ animationDelay: '0.2s' }} />
-                        <div className="absolute top-[70%] left-[80%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" style={{ animationDelay: '0.4s' }} />
-                        <div className="absolute top-[25%] left-[75%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse" style={{ animationDelay: '0.1s' }} />
+                        <div className="absolute top-[30%] left-[20%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-primary shadow-[0_0_10px_rgba(29,78,216,0.6)] animate-pulse" />
+                        <div className="absolute top-[50%] left-[50%] w-3 h-3 -ml-[6px] -mt-[6px] rounded-full bg-purple-500 shadow-[0_0_15px_rgba(139,92,246,0.6)] animate-pulse" style={{ animationDelay: '0.2s' }} />
+                        <div className="absolute top-[70%] left-[80%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-teal-500 shadow-[0_0_10px_rgba(13,148,136,0.6)] animate-pulse" style={{ animationDelay: '0.4s' }} />
+                        <div className="absolute top-[25%] left-[75%] w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-teal-500 shadow-[0_0_10px_rgba(13,148,136,0.6)] animate-pulse" style={{ animationDelay: '0.1s' }} />
 
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-white font-mono text-[10px] font-bold tracking-widest uppercase bg-black/90 px-4 py-1.5 rounded-full border border-white/20 shadow-2xl backdrop-blur-md">
+                            <span className="text-white font-mono text-[10px] font-bold tracking-widest uppercase bg-slate-900/90 px-4 py-1.5 rounded-full border border-white/20 shadow-2xl backdrop-blur-md">
                                 AI Architecture Node
                             </span>
                         </div>
@@ -419,7 +423,7 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] font-semibold backdrop-blur-md hover:bg-emerald-900/80 transition-all shadow-md group/badge"
+                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/85 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] font-semibold backdrop-blur-md hover:bg-emerald-900/90 transition-all shadow-md group/badge"
                             title="Verified on Shyamarks Vault"
                         >
                             <ShieldCheck size={11} className="text-emerald-400" />
@@ -440,43 +444,43 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
                 </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold font-heading text-white group-hover:text-primary transition-colors flex items-center gap-2">
+            <div className="p-6 flex flex-col flex-grow bg-card">
+                <div className="flex justify-between items-start mb-3 gap-2">
+                    <h3 className="text-xl font-bold font-heading text-heading group-hover:text-primary transition-colors flex items-center gap-2">
                         {project.title}
                         {onClick && (
-                            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-normal px-2.5 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20">
+                            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20">
                                 Case Study <ArrowUpRight size={12} />
                             </span>
                         )}
                     </h3>
-                    <div className="flex gap-2.5 shrink-0">
+                    <div className="flex gap-2 shrink-0">
                         {project.links.repo && project.links.repo !== "#" && (
-                            <a href={project.links.repo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all border border-white/10" aria-label="GitHub Repo"><Github size={16} /></a>
+                            <a href={project.links.repo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-surface hover:bg-elevated text-muted hover:text-heading transition-all border border-border shadow-xs" aria-label="GitHub Repo"><Github size={16} /></a>
                         )}
                         {project.links.demo && project.links.demo !== "#" && (
-                            <a href={project.links.demo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary hover:text-white transition-all border border-primary/20" aria-label="Live Demo"><ExternalLink size={16} /></a>
+                            <a href={project.links.demo} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary transition-all border border-primary/25 shadow-xs" aria-label="Live Demo"><ExternalLink size={16} /></a>
                         )}
                     </div>
                 </div>
 
                 {project.question && (
-                    <div className="mb-4 p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                        <span className="text-[10px] font-mono font-bold text-primary/80 tracking-widest uppercase block mb-1">THE QUESTION</span>
-                        <p className="text-[12px] italic text-gray-300 leading-snug">
+                    <div className="mb-4 p-3 rounded-xl bg-surface border border-border/80">
+                        <span className="text-[10px] font-mono font-bold text-primary tracking-widest uppercase block mb-1">THE QUESTION</span>
+                        <p className="text-[12px] italic text-text leading-snug">
                             "{project.question}"
                         </p>
                     </div>
                 )}
 
-                <p className="text-gray-400 mb-5 text-xs md:text-sm leading-relaxed">
+                <p className="text-muted mb-5 text-xs md:text-sm leading-relaxed">
                     {project.description}
                 </p>
 
                 {project.businessImpact && (
-                    <div className="mb-5 p-3 rounded-xl bg-emerald-500/[0.03] border border-emerald-500/10">
-                        <span className="text-[10px] font-mono font-bold text-emerald-400 tracking-widest uppercase block mb-1">BUSINESS IMPACT</span>
-                        <p className="text-[12px] text-gray-300 leading-snug">
+                    <div className="mb-5 p-3 rounded-xl bg-teal-500/5 border border-teal-500/20">
+                        <span className="text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400 tracking-widest uppercase block mb-1">BUSINESS IMPACT</span>
+                        <p className="text-[12px] text-text leading-snug">
                             {project.businessImpact}
                         </p>
                     </div>
@@ -484,16 +488,16 @@ const ProjectCard = ({ project, index, isFullWidth, onClick }) => {
 
                 <ul className="mb-6 space-y-2">
                     {project.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
+                        <li key={i} className="flex items-start gap-2 text-xs text-text">
                             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                             <span>{h}</span>
                         </li>
                     ))}
                 </ul>
 
-                <div className="mt-auto pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                <div className="mt-auto pt-4 border-t border-border flex flex-wrap gap-2">
                     {project.tech.map((t, i) => (
-                        <span key={i} className="bg-white/5 text-[11px] font-mono text-gray-300 px-2.5 py-1 rounded-lg border border-white/10">
+                        <span key={i} className="bg-surface text-[11px] font-mono text-muted px-2.5 py-1 rounded-lg border border-border">
                             {t}
                         </span>
                     ))}
@@ -606,29 +610,29 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-rose-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-card/95 backdrop-blur-xl rounded-2xl border border-border p-6 overflow-hidden flex flex-col justify-between shadow-xs">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-rose-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 <div className="relative z-10 flex flex-col h-full gap-5">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/20 to-transparent border border-rose-500/30 flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(244,63,94,0.1)]">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/20 to-transparent border border-rose-500/30 flex items-center justify-center text-rose-500 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(244,63,94,0.1)]">
                                             <Shirt size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-2xl font-bold font-heading text-white">
-                                            Fashion<span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-500">Tech</span>
+                                        <h3 className="text-2xl font-bold font-heading text-heading">
+                                            Fashion<span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Tech</span>
                                         </h3>
                                     </div>
                                     
                                     <div className="mt-auto pl-4 border-l-2 border-rose-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-rose-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
+                                        <p className="text-muted text-base leading-relaxed font-normal italic">
                                             "Style is data. Personal fit is a prediction problem."
                                         </p>
                                     </div>
                                 </div>
                                 
-                                <div className="absolute -bottom-8 -right-8 text-rose-500/5 group-hover:text-rose-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                <div className="absolute -bottom-8 -right-8 text-rose-500/10 group-hover:text-rose-500/15 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                                     <Shirt size={140} strokeWidth={1} />
                                 </div>
                             </div>
@@ -644,29 +648,29 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-card/95 backdrop-blur-xl rounded-2xl border border-border p-6 overflow-hidden flex flex-col justify-between shadow-xs">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-emerald-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 <div className="relative z-10 flex flex-col h-full gap-5">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent border border-emerald-500/30 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
                                             <HeartPulse size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-2xl font-bold font-heading text-white">
-                                            Health<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">Tech</span>
+                                        <h3 className="text-2xl font-bold font-heading text-heading">
+                                            Health<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Tech</span>
                                         </h3>
                                     </div>
                                     
                                     <div className="mt-auto pl-4 border-l-2 border-emerald-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-emerald-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
+                                        <p className="text-muted text-base leading-relaxed font-normal italic">
                                             "AI should flag risk before a doctor has to guess."
                                         </p>
                                     </div>
                                 </div>
                                 
-                                <div className="absolute -bottom-8 -right-8 text-emerald-500/5 group-hover:text-emerald-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                <div className="absolute -bottom-8 -right-8 text-emerald-500/10 group-hover:text-emerald-500/15 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                                     <HeartPulse size={140} strokeWidth={1} />
                                 </div>
                             </div>
@@ -682,29 +686,29 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/30 to-violet-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-card/95 backdrop-blur-xl rounded-2xl border border-border p-6 overflow-hidden flex flex-col justify-between shadow-xs">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-purple-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 <div className="relative z-10 flex flex-col h-full gap-5">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-transparent border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(168,85,247,0.1)]">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-transparent border border-purple-500/30 flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(168,85,247,0.1)]">
                                             <GraduationCap size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-2xl font-bold font-heading text-white">
-                                            Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-violet-500">Tech</span>
+                                        <h3 className="text-2xl font-bold font-heading text-heading">
+                                            Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-violet-500">Tech</span>
                                         </h3>
                                     </div>
                                     
                                     <div className="mt-auto pl-4 border-l-2 border-purple-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-purple-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
+                                        <p className="text-muted text-base leading-relaxed font-normal italic">
                                             "Career decisions deserve the same rigour as medical ones."
                                         </p>
                                     </div>
                                 </div>
                                 
-                                <div className="absolute -bottom-8 -right-8 text-purple-500/5 group-hover:text-purple-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                <div className="absolute -bottom-8 -right-8 text-purple-500/10 group-hover:text-purple-500/15 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                                     <GraduationCap size={140} strokeWidth={1} />
                                 </div>
                             </div>
@@ -720,29 +724,29 @@ const Projects = () => {
                     <div className="flex flex-col gap-6 h-full">
                         <div className="relative group h-full">
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-white/10 p-6 overflow-hidden flex flex-col justify-between">
+                            <div className="relative h-full bg-card/95 backdrop-blur-xl rounded-2xl border border-border p-6 overflow-hidden flex flex-col justify-between shadow-xs">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-amber-500/20 transition-colors duration-500" />
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 
                                 <div className="relative z-10 flex flex-col h-full gap-5">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-transparent border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(245,158,11,0.1)]">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-transparent border border-amber-500/30 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform duration-500 shadow-[inset_0_0_20px_rgba(245,158,11,0.1)]">
                                             <BookOpen size={24} strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-2xl font-bold font-heading text-white">
-                                            Edu<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Tech</span>
+                                        <h3 className="text-2xl font-bold font-heading text-heading">
+                                            Edu<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Tech</span>
                                         </h3>
                                     </div>
                                     
                                     <div className="mt-auto pl-4 border-l-2 border-amber-500/40 relative">
                                         <div className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-amber-400 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <p className="text-gray-300 text-base leading-relaxed font-light italic">
+                                        <p className="text-muted text-base leading-relaxed font-normal italic">
                                             "Education isn't one-size-fits-all. Learning pathways should adapt."
                                         </p>
                                     </div>
                                 </div>
                                 
-                                <div className="absolute -bottom-8 -right-8 text-amber-500/5 group-hover:text-amber-500/10 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                                <div className="absolute -bottom-8 -right-8 text-amber-500/10 group-hover:text-amber-500/15 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                                     <BookOpen size={140} strokeWidth={1} />
                                 </div>
                             </div>
@@ -762,7 +766,7 @@ const Projects = () => {
                     viewport={{ once: true }}
                     className="mb-10"
                 >
-                    <h2 className="text-2xl md:text-3xl font-bold font-heading text-white">
+                    <h2 className="text-2xl md:text-3xl font-bold font-heading text-heading">
                         More <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Projects</span>
                     </h2>
                 </motion.div>

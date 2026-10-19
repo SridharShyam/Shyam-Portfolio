@@ -70,6 +70,33 @@ const HeroCreative = () => {
                                 <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
                             </MovingBorder>
                         </a>
+                        <a 
+                            href="#journey" 
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface border border-border text-heading hover:bg-elevated text-sm font-semibold transition-all shadow-xs"
+                        >
+                            <span>Career Timeline</span>
+                        </a>
+                    </motion.div>
+
+                    {/* Unstop-style Quick Metric Chips */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.35 }}
+                        className="grid grid-cols-3 gap-3 mt-10 pt-6 border-t border-border/80 max-w-xl"
+                    >
+                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                            <span className="block text-xl md:text-2xl font-bold font-heading text-primary leading-none mb-1">15+</span>
+                            <span className="text-[11px] font-mono text-muted block leading-tight">AI & ML Repos</span>
+                        </div>
+                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                            <span className="block text-xl md:text-2xl font-bold font-heading text-secondary leading-none mb-1">4+ Yrs</span>
+                            <span className="text-[11px] font-mono text-muted block leading-tight">Continuous Growth</span>
+                        </div>
+                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                            <span className="block text-xl md:text-2xl font-bold font-heading text-emerald-600 dark:text-emerald-400 leading-none mb-1">100%</span>
+                            <span className="text-[11px] font-mono text-muted block leading-tight">Authentic Vault</span>
+                        </div>
                     </motion.div>
                 </motion.div>
 
