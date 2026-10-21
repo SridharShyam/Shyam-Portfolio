@@ -131,7 +131,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+                        className="md:hidden bg-card/95 backdrop-blur-xl border-b border-border overflow-hidden transition-colors duration-300 shadow-xl"
                     >
                         <div className="flex flex-col items-center py-8 space-y-6">
                             {navLinks.map((link) => {
@@ -141,11 +141,13 @@ const Navbar = () => {
                                         key={link.name}
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className={`text-lg font-medium transition-colors duration-500 flex items-center gap-2 ${
-                                            isActive ? 'text-accent font-bold' : 'text-gray-300 hover:text-accent'
+                                        className={`text-lg font-medium transition-colors duration-200 flex items-center gap-2 ${
+                                            isActive 
+                                                ? 'text-primary font-bold' 
+                                                : 'text-text hover:text-primary'
                                         }`}
                                     >
-                                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-accent transition-colors duration-500" />}
+                                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
                                         <span>{link.name}</span>
                                     </a>
                                 );

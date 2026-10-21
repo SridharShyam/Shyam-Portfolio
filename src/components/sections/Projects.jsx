@@ -797,54 +797,55 @@ const Projects = () => {
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-surface border border-white/10 w-full max-w-4xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col shadow-2xl"
+                            className="bg-card border border-border w-full max-w-4xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col shadow-2xl transition-colors duration-300"
                         >
                             {/* Modal Header */}
-                            <div className="flex justify-between items-center p-6 border-b border-white/10 bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
-                                <h3 className="text-2xl font-bold font-heading text-white">More Projects & Case Studies</h3>
+                            <div className="flex justify-between items-center p-6 border-b border-border bg-surface/90 backdrop-blur-md sticky top-0 z-10">
+                                <h3 className="text-2xl font-bold font-heading text-heading">More Projects & Case Studies</h3>
                                 <button 
                                     onClick={() => setIsModalOpen(false)}
-                                    className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full"
+                                    aria-label="Close modal"
+                                    className="text-muted hover:text-heading transition-colors p-2 hover:bg-surface rounded-full"
                                 >
                                     <X size={24} />
                                 </button>
                             </div>
 
                             {/* Modal Body */}
-                            <div className="p-6 overflow-y-auto space-y-8">
+                            <div className="p-6 overflow-y-auto space-y-8 bg-card">
                                 {Object.entries(groupedCaseStudies).map(([status, groupProjects]) => (
                                     groupProjects.length > 0 && (
                                         <div key={status} className="space-y-4">
-                                            <div className="flex items-center gap-3 border-b border-white/10 pb-2">
+                                            <div className="flex items-center gap-3 border-b border-border pb-2">
                                                 <StatusBadge status={status} />
-                                                <h4 className="text-lg font-heading text-white font-semibold">{status} Projects</h4>
+                                                <h4 className="text-lg font-heading text-heading font-semibold">{status} Projects</h4>
                                             </div>
                                             
                                             <div className="space-y-4">
                                                 {groupProjects.map((p, i) => (
-                                                    <div key={i} className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:border-primary/50 transition-colors flex flex-col sm:flex-row gap-6 justify-between items-start">
+                                                    <div key={i} className="group bg-surface/70 hover:bg-surface border border-border rounded-xl p-6 hover:border-primary/50 transition-all flex flex-col sm:flex-row gap-6 justify-between items-start shadow-sm hover:shadow-md">
                                                         <div>
-                                                            <h5 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">{p.title}</h5>
-                                                            {p.tagline && <div className="text-sm font-semibold text-primary/80 mb-3">{p.tagline}</div>}
+                                                            <h5 className="text-xl font-bold text-heading mb-1 group-hover:text-primary transition-colors">{p.title}</h5>
+                                                            {p.tagline && <div className="text-sm font-semibold text-primary mb-3">{p.tagline}</div>}
                                                             
                                                             {p.question && (
-                                                                <div className="mb-4 p-3 bg-black/20 rounded-lg border border-white/5">
-                                                                    <span className="text-[10px] font-bold text-primary/70 tracking-wider uppercase block mb-1">THE QUESTION</span>
-                                                                    <p className="text-[12px] italic text-gray-300">"{p.question}"</p>
+                                                                <div className="mb-4 p-3 bg-background/60 rounded-lg border border-border">
+                                                                    <span className="text-[10px] font-bold text-primary tracking-wider uppercase block mb-1">THE QUESTION</span>
+                                                                    <p className="text-[12px] italic text-muted">"{p.question}"</p>
                                                                 </div>
                                                             )}
                                                             
-                                                            <p className="text-gray-400 text-sm mb-4 leading-relaxed max-w-2xl">{p.description}</p>
+                                                            <p className="text-text text-sm mb-4 leading-relaxed max-w-2xl">{p.description}</p>
                                                             
                                                             {p.businessImpact && (
                                                                 <div className="mb-4">
-                                                                    <span className="text-[10px] font-bold text-emerald-500/70 tracking-wider uppercase block mb-1">BUSINESS IMPACT</span>
-                                                                    <p className="text-[12px] italic text-gray-300">{p.businessImpact}</p>
+                                                                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase block mb-1">BUSINESS IMPACT</span>
+                                                                    <p className="text-[12px] italic text-muted">{p.businessImpact}</p>
                                                                 </div>
                                                             )}
                                                             <div className="flex flex-wrap gap-2">
                                                                 {p.tech.map((t, j) => (
-                                                                    <span key={j} className="text-xs text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20">
+                                                                    <span key={j} className="text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 font-medium">
                                                                         {t}
                                                                     </span>
                                                                 ))}
@@ -852,7 +853,7 @@ const Projects = () => {
                                                         </div>
                                                         <div className="shrink-0 pt-1">
                                                             {p.links.repo && p.links.repo !== "#" && (
-                                                                <a href={p.links.repo} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 hover:bg-white/10 text-white rounded-lg flex items-center gap-2 text-sm transition-colors border border-white/10">
+                                                                <a href={p.links.repo} target="_blank" rel="noopener noreferrer" className="p-2 bg-surface hover:bg-primary/10 text-heading hover:text-primary rounded-lg flex items-center gap-2 text-sm font-medium transition-colors border border-border">
                                                                     <Github size={16} /> Code
                                                                 </a>
                                                             )}

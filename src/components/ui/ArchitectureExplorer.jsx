@@ -114,7 +114,7 @@ const ArchitectureExplorer = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-4 rounded-2xl bg-background/50 border border-border">
         <div>
           <span className="text-xs text-muted block uppercase font-medium">Pipeline Status</span>
-          <span className="text-sm font-semibold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mt-0.5">
             <CheckCircle size={14} /> {activeBlueprint.stats.status}
           </span>
         </div>
@@ -128,7 +128,7 @@ const ArchitectureExplorer = () => {
         </div>
         <div>
           <span className="text-xs text-muted block uppercase font-medium">Target Uptime</span>
-          <span className="text-sm font-semibold text-amber-400 mt-0.5 block">{activeBlueprint.stats.uptime}</span>
+          <span className="text-sm font-semibold text-amber-600 dark:text-amber-400 mt-0.5 block">{activeBlueprint.stats.uptime}</span>
         </div>
       </div>
 
@@ -196,8 +196,8 @@ const ArchitectureExplorer = () => {
               </div>
             </div>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" /> Node Active
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" /> Node Active
             </span>
           </div>
 

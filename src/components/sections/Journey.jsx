@@ -287,7 +287,7 @@ const Journey = () => {
                                                     STEP {item.stepNumber} // NEXT FRONTIER
                                                 </span>
                                                 <h3 className="font-heading font-bold text-2xl tracking-wide uppercase italic text-secondary mb-2">{item.title}</h3>
-                                                <p className="text-gray-500 text-xs md:text-sm">{item.description}</p>
+                                                <p className="text-muted text-xs md:text-sm">{item.description}</p>
                                             </motion.div>
                                         );
                                     }
