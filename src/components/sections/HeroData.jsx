@@ -33,9 +33,9 @@ const HeroData = () => {
                 >
                     <motion.div 
                         whileHover={{ scale: 1.05 }}
-                        className="inline-block py-1.5 px-4 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs md:text-sm mb-6 backdrop-blur-md shadow-sm cursor-default"
+                        className="inline-block py-1.5 px-4 rounded-full bg-surface border border-border text-muted font-mono text-xs md:text-sm mb-6 shadow-xs cursor-default"
                     >
-                        <span className="font-bold text-primary">SHYAMETRICS // SYSTEMS ONLINE</span>
+                        <span className="font-bold text-blue-700 dark:text-blue-400">SHYAMETRICS // SYSTEMS ONLINE</span>
                     </motion.div>
                     
                     <motion.h1 
@@ -45,7 +45,7 @@ const HeroData = () => {
                         className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading"
                     >
                         Engineering intelligent systems that turn raw data into <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">
                             <TextScramble text="decisive action." />
                         </span>
                     </motion.h1>

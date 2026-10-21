@@ -109,12 +109,12 @@ const Contact = () => {
                     className="lg:col-span-5 space-y-8"
                 >
                     <div>
-                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
+                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                             <Mail size={14} className="text-primary" />
                             SHYAMSIGNAL // DIRECT COMMUNICATION CHANNEL
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading mb-6">
-                            Shyamsignal - Let's Connect & <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">Build Together</span>
+                            Shyamsignal - Let's Connect & <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">Build Together</span>
                         </h2>
                         <p className="text-muted leading-relaxed text-base">
                             Have an exciting AI idea, a role to discuss, or just want to connect over data science? Drop me a message - I'd love to chat!

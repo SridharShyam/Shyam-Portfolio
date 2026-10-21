@@ -12,10 +12,10 @@ const iconMap = {
 };
 
 const categoryColorMap = {
-    'Foundations': 'from-blue-500/20 to-cyan-500/20 border-cyan-500/30 text-cyan-300',
-    'Experience': 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30 text-emerald-300',
-    'Leadership': 'from-purple-500/20 to-pink-500/20 border-purple-500/30 text-purple-300',
-    'Global': 'from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-300',
+    'Foundations': 'from-blue-500/20 to-cyan-500/20 border-cyan-500/30 text-cyan-800 dark:text-cyan-300',
+    'Experience': 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30 text-emerald-800 dark:text-emerald-300',
+    'Leadership': 'from-purple-500/20 to-pink-500/20 border-purple-500/30 text-purple-800 dark:text-purple-300',
+    'Global': 'from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-800 dark:text-amber-300',
 };
 
 const executiveStats = [
@@ -91,25 +91,25 @@ const Journey = () => {
                     transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
                     <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs backdrop-blur-md">
-                            <Zap size={14} className="text-secondary" />
+                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs shadow-xs">
+                            <Zap size={14} className="text-primary" />
                             CAREER TIMELINE // VERIFIED MILESTONES & PROOFS
                         </div>
                         <a 
                             href="https://shyamarks.vercel.app" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs hover:bg-emerald-500/20 transition-all group"
+                            className="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 font-mono text-xs hover:bg-emerald-500/20 transition-all group font-medium"
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span>Explore Full Vault on Shyamarks ↗</span>
                         </a>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-400 to-pink-500">Leadership Timeline</span>
+                        Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-secondary dark:via-purple-400 dark:to-pink-500">Leadership Timeline</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics. Full credential repository is hosted on <a href="https://shyamarks.vercel.app" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline font-medium">Shyamarks ↗</a>.
+                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics. Full credential repository is hosted on <a href="https://shyamarks.vercel.app" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 hover:underline font-semibold">Shyamarks ↗</a>.
                     </p>
                 </motion.div>
 

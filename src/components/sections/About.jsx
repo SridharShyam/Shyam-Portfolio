@@ -86,13 +86,13 @@ const About = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                         SHYAMSCAPE // MINDSET & ENGINEERING IDENTITY
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold font-heading text-heading">
                         Shyamscape - Systems That Turn <br className="hidden sm:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">Data into Impact</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-500 dark:to-secondary">Data into Impact</span>
                     </h2>
                 </motion.div>
 

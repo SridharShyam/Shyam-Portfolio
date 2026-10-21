@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Cpu, Brain, Layers, Zap, Database } from 'lucide-react';
 
 const techBadges = [
-    { label: 'Deep Learning', sub: 'PyTorch · Transformers', icon: Brain, accent: 'text-pink-400 border-pink-500/30 bg-pink-500/10' },
-    { label: 'Predictive ML', sub: 'Scikit-Learn · XGBoost', icon: Layers, accent: 'text-purple-400 border-purple-500/30 bg-purple-500/10' },
-    { label: 'Agentic AI', sub: 'Multi-Agent Networks', icon: Cpu, accent: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10' },
-    { label: 'Backend APIs', sub: 'FastAPI · Python', icon: Zap, accent: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
-    { label: 'Data Pipelines', sub: 'Pandas · NumPy · EDA', icon: Database, accent: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
+    { label: 'Deep Learning', sub: 'PyTorch · Transformers', icon: Brain, accent: 'text-pink-600 dark:text-pink-400 border-pink-500/30 bg-pink-500/10' },
+    { label: 'Predictive ML', sub: 'Scikit-Learn · XGBoost', icon: Layers, accent: 'text-purple-600 dark:text-purple-400 border-purple-500/30 bg-purple-500/10' },
+    { label: 'Agentic AI', sub: 'Multi-Agent Networks', icon: Cpu, accent: 'text-cyan-700 dark:text-cyan-400 border-cyan-500/30 bg-cyan-500/10' },
+    { label: 'Backend APIs', sub: 'FastAPI · Python', icon: Zap, accent: 'text-amber-600 dark:text-amber-400 border-amber-500/30 bg-amber-500/10' },
+    { label: 'Data Pipelines', sub: 'Pandas · NumPy · EDA', icon: Database, accent: 'text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
 ];
 
 const HeroVisual = () => {
@@ -38,11 +38,11 @@ const HeroVisual = () => {
                 {/* Grounded Identity Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-surface/95 backdrop-blur-xl border border-border shadow-xl flex items-center justify-between">
                     <div>
-                        <span className="text-[10px] font-mono tracking-widest text-secondary font-bold block uppercase">AI ENGINEER & DATA SCIENTIST</span>
+                        <span className="text-[10px] font-mono tracking-widest text-primary font-bold block uppercase">AI ENGINEER & DATA SCIENTIST</span>
                         <span className="text-lg font-bold text-heading font-heading tracking-tight">SHYAM</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/30 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         AVAILABLE
                     </div>
                 </div>

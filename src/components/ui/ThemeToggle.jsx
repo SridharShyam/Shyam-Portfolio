@@ -79,17 +79,17 @@ const ThemeToggle = () => {
 
       {/* Obsidian (Dark) Option */}
       <div className={`relative z-10 flex items-center gap-1.5 px-2 py-0.5 text-xs font-mono font-bold tracking-wider transition-colors duration-300 ${
-        isDark ? 'text-primary' : 'text-muted'
+        isDark ? 'text-primary' : 'text-slate-500 hover:text-slate-900'
       }`}>
-        <Moon size={13} className={isDark ? 'text-cyan-400' : ''} />
+        <Moon size={13} className={isDark ? 'text-cyan-400' : 'text-slate-400'} />
         <span className="hidden sm:inline">OBSIDIAN</span>
       </div>
 
       {/* Solar (Light) Option */}
       <div className={`relative z-10 flex items-center gap-1.5 px-2 py-0.5 text-xs font-mono font-bold tracking-wider transition-colors duration-300 ${
-        !isDark ? 'text-amber-500' : 'text-muted'
+        !isDark ? 'text-amber-700' : 'text-slate-400 hover:text-slate-200'
       }`}>
-        <Sun size={13} className={!isDark ? 'text-amber-500' : ''} />
+        <Sun size={13} className={!isDark ? 'text-amber-600' : 'text-slate-400'} />
         <span className="hidden sm:inline">SOLAR</span>
       </div>
 

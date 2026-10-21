@@ -32,9 +32,9 @@ const HeroCreative = () => {
                 >
                     <motion.div 
                         whileHover={{ scale: 1.05 }}
-                        className="inline-block py-1.5 px-4 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs md:text-sm mb-6 backdrop-blur-md shadow-sm cursor-default"
+                        className="inline-block py-1.5 px-4 rounded-full bg-surface border border-border text-muted font-mono text-xs md:text-sm mb-6 shadow-xs cursor-default"
                     >
-                        <span className="font-bold text-secondary">SHYAM // AI & DATA INNOVATION</span>
+                        <span className="font-bold text-teal-700 dark:text-teal-400">SHYAM // AI & DATA INNOVATION</span>
                     </motion.div>
                     
                     <motion.h1 
@@ -44,7 +44,7 @@ const HeroCreative = () => {
                         className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading"
                     >
                         Architecting intelligent systems driven by <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-purple-500 to-primary">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-purple-600 to-blue-600 dark:from-teal-400 dark:via-purple-400 dark:to-primary">
                             <TextScramble text="neural insights." />
                         </span>
                     </motion.h1>

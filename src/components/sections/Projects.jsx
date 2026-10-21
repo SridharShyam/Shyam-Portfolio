@@ -282,35 +282,35 @@ const StatusBadge = ({ status }) => {
     
     switch(status) {
         case "Completed":
-            colorClass = "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+            colorClass = "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/30";
             Icon = CheckCircle2;
             break;
         case "In Progress":
-            colorClass = "bg-amber-500/10 text-amber-400 border-amber-500/20";
+            colorClass = "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/30";
             Icon = Clock;
             break;
         case "Upcoming":
-            colorClass = "bg-blue-500/10 text-blue-400 border-blue-500/20";
+            colorClass = "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/30";
             Icon = Calendar;
             break;
         case "Beta":
-            colorClass = "bg-pink-500/10 text-pink-400 border-pink-500/20";
+            colorClass = "bg-pink-500/10 text-pink-700 dark:text-pink-400 border-pink-500/30";
             Icon = Beaker;
             break;
         case "Iterating":
-            colorClass = "bg-indigo-500/10 text-indigo-400 border-indigo-500/20";
+            colorClass = "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border-indigo-500/30";
             Icon = RefreshCw;
             break;
         case "Paused":
-            colorClass = "bg-gray-500/10 text-gray-400 border-gray-500/20";
+            colorClass = "bg-slate-500/10 text-slate-700 dark:text-slate-400 border-slate-500/30";
             Icon = PauseCircle;
             break;
         case "Legacy":
-            colorClass = "bg-stone-500/10 text-stone-400 border-stone-500/20";
+            colorClass = "bg-stone-500/10 text-stone-700 dark:text-stone-400 border-stone-500/30";
             Icon = Archive;
             break;
         case "Showcase":
-            colorClass = "bg-purple-500/10 text-purple-400 border-purple-500/20";
+            colorClass = "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/30";
             Icon = Star;
             break;
         default:
@@ -589,12 +589,12 @@ const Projects = () => {
                     viewport={{ once: true }}
                     className="mb-16 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs mb-4 backdrop-blur-md">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                         <GitBranch size={14} className="text-primary" />
                         SHYAMSYSTEMS // APPLIED AI & DECISION SUPPORT ENGINES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamsystems - Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-400 to-secondary">AI & Decision Engines</span>
+                        Shyamsystems - Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">AI & Decision Engines</span>
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
                         End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.
