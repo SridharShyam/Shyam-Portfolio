@@ -125,9 +125,6 @@ const InteractiveAIAvatar = () => {
                         className="absolute inset-0 w-full h-full object-cover object-[50%_15%] select-none pointer-events-none"
                     />
 
-                    {/* Ambient Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-
                     {/* Interactive Status Pill at Bottom */}
                     <div className="absolute bottom-3 left-3 right-3 z-20 pointer-events-none">
                         <div className="p-3 rounded-2xl bg-surface/90 backdrop-blur-md border border-border shadow-md flex items-center justify-between">

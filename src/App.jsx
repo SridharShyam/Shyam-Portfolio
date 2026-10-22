@@ -13,7 +13,6 @@ import Learning from './components/sections/Learning';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import IntroSequence from './components/ui/IntroSequence';
-import ThemePipelineHUD from './components/ui/ThemePipelineHUD';
 import { motion } from 'framer-motion';
 
 function App() {
@@ -105,7 +104,6 @@ function App() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className={`relative z-10 ${showIntro ? 'h-screen overflow-hidden' : ''}`}
           >
-            <ThemePipelineHUD />
             <Navbar />
             <Hero mode={coinResult} />
             <About />

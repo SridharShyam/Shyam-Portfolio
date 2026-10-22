@@ -23,7 +23,7 @@ const HeroVisual = () => {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="relative z-10 w-full aspect-[4/5] max-w-[360px] sm:max-w-[400px] rounded-3xl overflow-hidden border border-border bg-surface shadow-2xl group"
             >
-                {/* Real Formal Photograph */}
+                {/* Real Formal Photograph - 100% crisp and clear with no milky washes */}
                 <img 
                     src="/shyam-formal.jpeg" 
                     alt="SHYAM" 
@@ -31,9 +31,6 @@ const HeroVisual = () => {
                     onDragStart={(e) => e.preventDefault()}
                     className="w-full h-full object-cover object-[50%_20%] scale-[1.03] group-hover:scale-[1.06] transition-transform duration-700 ease-out select-none pointer-events-none" 
                 />
-
-                {/* Soft Vignette Fade */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent opacity-85 group-hover:opacity-60 transition-opacity duration-500" />
                 
                 {/* Grounded Identity Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-surface/95 backdrop-blur-xl border border-border shadow-xl flex items-center justify-between">
