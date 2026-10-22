@@ -577,7 +577,7 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-28 bg-surface/50 relative overflow-hidden">
+        <section id="projects" className="py-28 bg-transparent relative overflow-hidden">
             {/* Background Orbs */}
             <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />

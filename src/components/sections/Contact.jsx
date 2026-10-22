@@ -94,7 +94,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 bg-gradient-to-b from-surface to-background relative overflow-hidden">
+        <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
             {/* Background Ambient Glow Orbs */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />

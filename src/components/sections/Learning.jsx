@@ -197,7 +197,7 @@ const DirectionAwareCard = ({ item }) => {
 
 const Learning = () => {
     return (
-        <section id="learning" className="py-28 bg-surface relative overflow-hidden transition-colors duration-400">
+        <section id="learning" className="py-28 bg-transparent relative overflow-hidden transition-colors duration-400">
             {/* Background Orbs */}
             <div className="absolute top-1/2 -left-32 w-96 h-96 bg-amber-400/5 rounded-full blur-[140px] pointer-events-none" />
 

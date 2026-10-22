@@ -116,7 +116,7 @@ const Skills = () => {
     }, []);
 
     return (
-        <section id="skills" className="py-28 bg-background relative overflow-hidden">
+        <section id="skills" className="py-28 bg-transparent relative overflow-hidden">
             {/* Background Radial Glow Orbs */}
             <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[550px] h-[550px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />

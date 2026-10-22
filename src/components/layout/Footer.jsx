@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-background border-t border-border py-12 relative overflow-hidden transition-colors duration-400">
+        <footer className="bg-transparent border-t border-border py-12 relative overflow-hidden transition-colors duration-400">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-20 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">

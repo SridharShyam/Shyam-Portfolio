@@ -81,7 +81,7 @@ function App() {
   return (
     <ThemeProvider>
       <ToastProvider>
-        <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
+        <div className="shyamarks-atmospheric-canvas min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
         
         {/* Intro Overlay */}
         {showIntro && (

@@ -72,7 +72,7 @@ const About = () => {
     ];
 
     return (
-        <section id="about" ref={ref} className="py-28 bg-surface relative overflow-hidden transition-colors duration-400">
+        <section id="about" ref={ref} className="py-28 bg-surface/40 relative overflow-hidden transition-colors duration-400">
             {/* Background Glow Orbs */}
             <div className="absolute top-1/4 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-10 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />

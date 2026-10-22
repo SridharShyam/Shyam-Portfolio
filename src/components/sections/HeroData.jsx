@@ -6,10 +6,9 @@ import HeroVisual from '../ui/HeroVisual';
 
 const HeroData = () => {
     return (
-        <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-background px-6 pt-24 pb-16">
+        <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-transparent px-6 pt-24 pb-16">
             {/* Rigid Cybernetic Background */}
-            <div className="absolute inset-0 z-0 opacity-20">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+            <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
                 <motion.div 
                     animate={{ x: [-1000, 1000] }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}

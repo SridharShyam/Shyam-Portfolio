@@ -76,7 +76,7 @@ const Journey = () => {
     };
 
     return (
-        <section id="journey" className="py-24 bg-background relative overflow-hidden">
+        <section id="journey" className="py-24 bg-transparent relative overflow-hidden">
             {/* Background Glow Orbs - GPU Optimized */}
             <div className="absolute top-1/3 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />
             <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />

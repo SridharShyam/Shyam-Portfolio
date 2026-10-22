@@ -6,7 +6,7 @@ import HeroVisual from '../ui/HeroVisual';
 
 const HeroCreative = () => {
     return (
-        <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-background px-6 pt-24 pb-16">
+        <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-transparent px-6 pt-24 pb-16">
             {/* Fluid Organic Background - GPU Optimized */}
             <div className="absolute inset-0 z-0">
                 <motion.div 
