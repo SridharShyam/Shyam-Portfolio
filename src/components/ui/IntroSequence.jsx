@@ -174,18 +174,41 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
               }}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              {/* 3D Physical Coin Thickness / Stacked Ribbed Cyber-Silver Edge Rings */}
-              {Array.from({ length: 18 }).map((_, i) => (
-                <div 
-                  key={i}
-                  className="absolute inset-0 rounded-full border border-slate-600/30 pointer-events-none"
-                  style={{
-                    transform: `translateZ(${-9 + i * 1}px)`,
-                    background: 'linear-gradient(135deg, #cbd5e1 0%, #64748b 35%, #0f172a 55%, #94a3b8 80%, #f8fafc 100%)',
-                    boxShadow: 'inset 0 0 4px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.25)'
-                  }}
-                />
-              ))}
+              {/* TRUE 3D CYLINDRICAL REEDED EDGE: 64 High-Definition Ridges */}
+              {Array.from({ length: 64 }).map((_, i) => {
+                const angle = (i * 360) / 64;
+                const isHighlight = i % 2 === 0;
+                return (
+                  <div
+                    key={i}
+                    className="absolute top-1/2 left-1/2 pointer-events-none"
+                    style={{
+                      width: '18px', // Coin thickness / depth along Z
+                      height: '7.8px', // Segment width along circular circumference
+                      marginLeft: '-9px',
+                      marginTop: '-3.9px',
+                      transform: `rotate(${angle}deg) translateX(79px) rotateY(90deg)`,
+                      transformStyle: 'preserve-3d',
+                      background: isHighlight
+                        ? 'linear-gradient(to right, #94a3b8 0%, #f8fafc 25%, #cbd5e1 60%, #64748b 100%)'
+                        : 'linear-gradient(to right, #020617 0%, #1e293b 30%, #0f172a 70%, #334155 100%)',
+                      boxShadow: isHighlight
+                        ? '0 0 2px rgba(255,255,255,0.7)'
+                        : 'inset 0 0 2px rgba(0,0,0,0.95)',
+                    }}
+                  />
+                );
+              })}
+
+              {/* Cylindrical Rim Core Filler to block internal see-through */}
+              <div 
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  transform: 'translateZ(0px)',
+                  background: 'radial-gradient(circle, #334155 0%, #0f172a 75%, #020617 100%)',
+                  boxShadow: '0 0 16px rgba(0,0,0,0.6)'
+                }}
+              />
 
               {/* Front Face (S - Shyam Cyber Silver Medallion - High Vibrancy) */}
               <div 
