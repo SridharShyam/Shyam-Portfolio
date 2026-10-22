@@ -54,7 +54,7 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
           {/* Direct Skip Action */}
           <button
             onClick={handleSkip}
-            className="absolute top-6 right-6 z-30 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs backdrop-blur-md transition-all cursor-pointer shadow-lg"
+            className="absolute top-6 right-6 z-30 px-4 py-2 rounded-full bg-surface/90 hover:bg-surface border border-border text-heading hover:text-primary font-mono text-xs font-semibold backdrop-blur-md transition-all cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
             aria-label="Skip Intro Sequence"
           >
             Skip Intro ➔
@@ -215,7 +215,7 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
           <AnimatePresence>
             {(phase === 'landing' || phase === 'portal') && (
               <motion.div
-                className="absolute top-[68%] text-center font-mono text-sm md:text-base font-bold text-white z-20 flex flex-col items-center gap-1"
+                className="absolute top-[68%] text-center font-mono text-sm md:text-base font-bold text-heading z-20 flex flex-col items-center gap-1"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
