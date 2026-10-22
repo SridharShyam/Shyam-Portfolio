@@ -81,8 +81,14 @@ function App() {
   return (
     <ThemeProvider>
       <ToastProvider>
-        <div className="shyamarks-atmospheric-canvas min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
+        <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
         
+        {/* Shyamarks Exact Background Layers */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-cyber-grid opacity-100" />
+          <div className="absolute inset-0 bg-glow-radial opacity-100" />
+        </div>
+
         {/* Intro Overlay */}
         {showIntro && (
           <IntroSequence 
@@ -97,7 +103,7 @@ function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className={showIntro ? 'h-screen overflow-hidden' : ''}
+              className={`relative z-10 ${showIntro ? 'h-screen overflow-hidden' : ''}`}
           >
             <ThemePipelineHUD />
             <Navbar />
