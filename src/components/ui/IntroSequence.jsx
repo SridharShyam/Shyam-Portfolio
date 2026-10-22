@@ -115,6 +115,33 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
           />
 
+          {/* 3D Dynamic Ground Contact Shadow */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 rounded-full pointer-events-none z-10 transform-gpu"
+            style={{
+              width: '130px',
+              height: '24px',
+              marginTop: '55px',
+              background: 'radial-gradient(ellipse at center, rgba(15,23,42,0.45) 0%, rgba(15,23,42,0.18) 45%, transparent 75%)',
+              filter: 'blur(4px)',
+            }}
+            animate={
+              phase === 'entering'
+                ? { scale: [0, 1], opacity: [0, 0.7] }
+                : phase === 'flipping'
+                ? { scale: [1, 0.35, 1], opacity: [0.7, 0.2, 0.7], y: [0, 20, 0] }
+                : phase === 'landing'
+                ? { scale: [0.5, 1.15, 1], opacity: [0.3, 0.85, 0.75] }
+                : phase === 'portal'
+                ? { scale: 3, opacity: 0 }
+                : { scale: 1, opacity: 0.7 }
+            }
+            transition={{
+              duration: phase === 'flipping' ? 1.6 : 0.4,
+              ease: 'easeInOut'
+            }}
+          />
+
           {/* 3D Perspective Stage */}
           <div style={{ perspective: '1200px' }} className="relative z-20 flex items-center justify-center pointer-events-none">
             {/* The 3D Physical Metallic Coin Core */}
@@ -148,65 +175,66 @@ const IntroSequence = ({ onComplete, onPortalOpen }) => {
               style={{ transformStyle: 'preserve-3d' }}
             >
               {/* 3D Physical Coin Thickness / Stacked Ribbed Cyber-Silver Edge Rings */}
-              {Array.from({ length: 14 }).map((_, i) => (
+              {Array.from({ length: 18 }).map((_, i) => (
                 <div 
                   key={i}
-                  className="absolute inset-0 rounded-full border border-slate-300/40 bg-gradient-to-r from-slate-400 via-slate-100 to-slate-500 pointer-events-none shadow-sm"
+                  className="absolute inset-0 rounded-full border border-slate-600/30 pointer-events-none"
                   style={{
-                    transform: `translateZ(${-7 + i * 1}px)`,
-                    backgroundImage: 'repeating-conic-gradient(rgba(255,255,255,0.4) 0deg 4deg, rgba(148,163,184,0.2) 4deg 8deg)'
+                    transform: `translateZ(${-9 + i * 1}px)`,
+                    background: 'linear-gradient(135deg, #cbd5e1 0%, #64748b 35%, #0f172a 55%, #94a3b8 80%, #f8fafc 100%)',
+                    boxShadow: 'inset 0 0 4px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.25)'
                   }}
                 />
               ))}
 
               {/* Front Face (S - Shyam Cyber Silver Medallion - High Vibrancy) */}
               <div 
-                className="absolute inset-0 rounded-full border-[4px] border-slate-100 bg-gradient-to-br from-slate-950 via-[#0a1b24] to-slate-900 flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(0,212,255,0.85),inset_0_0_25px_rgba(0,212,255,0.4)]" 
+                className="absolute inset-0 rounded-full border-[4px] border-slate-300 dark:border-slate-100 bg-gradient-to-br from-slate-900 via-[#0a1b24] to-slate-950 flex items-center justify-center overflow-hidden shadow-[0_12px_28px_rgba(0,0,0,0.35),0_0_35px_rgba(0,199,183,0.5),inset_0_0_20px_rgba(0,199,183,0.35)]" 
                 style={{ 
                   backfaceVisibility: 'hidden', 
                   WebkitBackfaceVisibility: 'hidden', 
-                  transform: 'translateZ(7px)', 
+                  transform: 'translateZ(9px)', 
                 }}
               >
-                {/* Metallic Platinum Inner Bevel Ring */}
-                <div className="absolute inset-1 rounded-full border border-slate-200/80 shadow-[inset_0_0_12px_rgba(255,255,255,0.4)]" />
+                {/* Metallic Platinum Inner Bevel Ring with deep ambient shade */}
+                <div className="absolute inset-1 rounded-full border-2 border-slate-400/60 dark:border-slate-200/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8),inset_0_-2px_6px_rgba(255,255,255,0.4)]" />
                 
                 {/* Outer Dashed Orbit */}
                 <div className="absolute inset-2.5 rounded-full border border-primary/80 border-dashed animate-[spin_12s_linear_infinite]" />
                 <div className="absolute inset-4 rounded-full border border-primary/40 bg-gradient-to-tl from-primary/30 via-transparent to-white/20" />
                 
-                {/* Embossed 3D Letter */}
-                <span className="text-primary font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_0_18px_rgba(0,212,255,1)] select-none">
+                {/* Embossed 3D Letter with multi-layer bevel drop shadow */}
+                <span className="text-primary font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] drop-shadow-[0_0_20px_rgba(0,212,255,0.9)] select-none">
                   S
                 </span>
 
                 {/* Specular Chrome Reflection Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/35 to-transparent transform -rotate-45 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent transform -rotate-45 pointer-events-none" />
               </div>
 
               {/* Back Face (D - Data Intelligence Cyber Silver Medallion - High Vibrancy) */}
               <div 
-                className="absolute inset-0 rounded-full border-[4px] border-slate-100 bg-gradient-to-br from-slate-950 via-[#260a1e] to-slate-900 flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(236,72,153,0.85),inset_0_0_25px_rgba(236,72,153,0.4)]" 
+                className="absolute inset-0 rounded-full border-[4px] border-slate-300 dark:border-slate-100 bg-gradient-to-br from-slate-900 via-[#260a1e] to-slate-950 flex items-center justify-center overflow-hidden shadow-[0_12px_28px_rgba(0,0,0,0.35),0_0_35px_rgba(236,72,153,0.5),inset_0_0_20px_rgba(236,72,153,0.35)]" 
                 style={{ 
                   backfaceVisibility: 'hidden', 
                   WebkitBackfaceVisibility: 'hidden', 
-                  transform: 'rotateY(180deg) translateZ(7px)', 
+                  transform: 'rotateY(180deg) translateZ(9px)', 
                 }}
               >
-                {/* Metallic Platinum Inner Bevel Ring */}
-                <div className="absolute inset-1 rounded-full border border-slate-200/80 shadow-[inset_0_0_12px_rgba(255,255,255,0.4)]" />
+                {/* Metallic Platinum Inner Bevel Ring with deep ambient shade */}
+                <div className="absolute inset-1 rounded-full border-2 border-slate-400/60 dark:border-slate-200/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8),inset_0_-2px_6px_rgba(255,255,255,0.4)]" />
                 
                 {/* Outer Dashed Orbit */}
                 <div className="absolute inset-2.5 rounded-full border border-pink-500/80 border-dashed animate-[spin_12s_linear_infinite_reverse]" />
                 <div className="absolute inset-4 rounded-full border border-pink-500/40 bg-gradient-to-tl from-pink-500/30 via-transparent to-white/20" />
                 
-                {/* Embossed 3D Letter */}
-                <span className="text-pink-400 font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_0_18px_rgba(236,72,153,1)] select-none">
+                {/* Embossed 3D Letter with multi-layer bevel drop shadow */}
+                <span className="text-pink-400 font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] drop-shadow-[0_0_20px_rgba(236,72,153,0.9)] select-none">
                   D
                 </span>
 
                 {/* Specular Chrome Reflection Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/35 to-transparent transform -rotate-45 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent transform -rotate-45 pointer-events-none" />
               </div>
             </motion.div>
           </div>
