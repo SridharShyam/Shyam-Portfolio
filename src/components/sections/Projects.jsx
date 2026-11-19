@@ -577,27 +577,23 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-28 bg-transparent relative overflow-hidden">
-            {/* Background Orbs */}
-            <div className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16 text-left"
+                    className="mb-14 text-left"
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                         <GitBranch size={14} className="text-primary" />
-                        SHYAMSYSTEMS // APPLIED AI & DECISION SUPPORT ENGINES
+                        ENGINEERED SYSTEMS & CASE STUDIES
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamsystems - Applied <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">AI & Decision Engines</span>
+                        Applied AI & Decision Engines
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        End-to-end machine learning architectures, predictive analytics engines, and decision-support platforms built across domain verticals.
+                        End-to-end machine learning architectures, predictive analytics models, and decision-support systems built across domain verticals.
                     </p>
                 </motion.div>
 

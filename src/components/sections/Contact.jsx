@@ -95,15 +95,11 @@ const Contact = () => {
 
     return (
         <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
-            {/* Background Ambient Glow Orbs */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
             <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-start relative z-10">
 
-                {/* Left Column: Friendly Contact Info & Channels */}
+                {/* Left Column: Direct Contact Info & Channels */}
                 <motion.div
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     className="lg:col-span-5 space-y-8"
@@ -111,13 +107,13 @@ const Contact = () => {
                     <div>
                         <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                             <Mail size={14} className="text-primary" />
-                            SHYAMSIGNAL // DIRECT COMMUNICATION CHANNEL
+                            GET IN TOUCH
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading mb-6">
-                            Shyamsignal - Let's Connect & <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">Build Together</span>
+                            Let's Connect & Build Together
                         </h2>
                         <p className="text-muted leading-relaxed text-base">
-                            Have an exciting AI idea, a role to discuss, or just want to connect over data science? Drop me a message - I'd love to chat!
+                            Whether you want to discuss a machine learning architecture, explore an engineering role, or exchange ideas on predictive modeling, feel free to reach out.
                         </p>
                     </div>
 

@@ -1,69 +1,37 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import TextScramble from '../ui/TextScramble';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import MovingBorder from '../ui/MovingBorder';
 import HeroVisual from '../ui/HeroVisual';
 
 const HeroData = () => {
     return (
         <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-transparent px-6 pt-24 pb-16">
-            {/* Rigid Cybernetic Background */}
-            <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
-                <motion.div 
-                    animate={{ x: [-1000, 1000] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-0 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent gpu-accelerated" 
-                />
-                <motion.div 
-                    animate={{ y: [-1000, 1000] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 2 }}
-                    className="absolute top-0 left-2/3 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-secondary to-transparent gpu-accelerated" 
-                />
-            </div>
-
             <div className="max-w-7xl mx-auto w-full z-20 relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                 
                 {/* Left Text Column */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
                     className="text-left lg:col-span-6 xl:col-span-6"
                 >
-                    <motion.div 
-                        whileHover={{ scale: 1.05 }}
-                        className="inline-block py-1.5 px-4 rounded-full bg-surface border border-border text-muted font-mono text-xs md:text-sm mb-6 shadow-xs cursor-default"
-                    >
-                        <span className="font-bold text-blue-700 dark:text-blue-400">SHYAMETRICS // SYSTEMS ONLINE</span>
-                    </motion.div>
+                    <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-surface border border-border text-muted font-mono text-xs md:text-sm mb-6 shadow-xs">
+                        <span className="w-2 h-2 rounded-full bg-primary" />
+                        <span className="font-semibold text-text">Data Scientist & AI Systems Engineer</span>
+                    </div>
                     
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading"
-                    >
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading">
                         Engineering intelligent systems that turn raw data into <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary">
-                            <TextScramble text="decisive action." />
+                        <span className="text-primary">
+                            decisive action.
                         </span>
-                    </motion.h1>
+                    </h1>
                         
-                    <motion.p 
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
-                        className="mt-6 text-muted text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl"
-                    >
+                    <p className="mt-6 text-muted text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl">
                         Designing robust machine learning architectures, probabilistic models, and decision-support logic to solve complex, real-world problems at scale.
-                    </motion.p>
+                    </p>
 
-                    <motion.div
-                        className="flex flex-col sm:flex-row gap-4 items-start mt-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
+                    <div className="flex flex-col sm:flex-row gap-4 items-start mt-8">
                         <a href="#projects">
                             <MovingBorder duration={3000} className="font-sans font-semibold text-sm">
                                 <span>Explore Technical Projects</span>
@@ -76,35 +44,30 @@ const HeroData = () => {
                         >
                             <span>Career Timeline</span>
                         </a>
-                    </motion.div>
+                    </div>
 
-                    {/* Unstop-style Quick Metric Chips */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.35 }}
-                        className="grid grid-cols-3 gap-3 mt-10 pt-6 border-t border-border/80 max-w-xl"
-                    >
-                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                    {/* Quick Metric Summary */}
+                    <div className="grid grid-cols-3 gap-3 mt-10 pt-6 border-t border-border/80 max-w-xl">
+                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
                             <span className="block text-xl md:text-2xl font-bold font-heading text-primary leading-none mb-1">15+</span>
                             <span className="text-[11px] font-mono text-muted block leading-tight">AI & ML Repos</span>
                         </div>
-                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
                             <span className="block text-xl md:text-2xl font-bold font-heading text-secondary leading-none mb-1">4+ Yrs</span>
                             <span className="text-[11px] font-mono text-muted block leading-tight">Continuous Growth</span>
                         </div>
-                        <div className="p-3 rounded-2xl bg-surface border border-border shadow-xs">
+                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
                             <span className="block text-xl md:text-2xl font-bold font-heading text-emerald-600 dark:text-emerald-400 leading-none mb-1">100%</span>
                             <span className="text-[11px] font-mono text-muted block leading-tight">Authentic Vault</span>
                         </div>
-                    </motion.div>
+                    </div>
                 </motion.div>
 
-                {/* Right Visual Column (Personal Image + Orbiting Tech Cards) */}
+                {/* Right Visual Column */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.15 }}
                     className="lg:col-span-6 xl:col-span-6 flex items-center justify-center relative"
                 >
                     <HeroVisual />

@@ -197,26 +197,23 @@ const DirectionAwareCard = ({ item }) => {
 
 const Learning = () => {
     return (
-        <section id="learning" className="py-28 bg-transparent relative overflow-hidden transition-colors duration-400">
-            {/* Background Orbs */}
-            <div className="absolute top-1/2 -left-32 w-96 h-96 bg-amber-400/5 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="learning" className="py-24 bg-transparent relative overflow-hidden transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16 text-left"
+                    className="mb-14 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 backdrop-blur-md shadow-sm">
-                        <BookOpen size={14} className="text-amber-500" />
-                        SHYAMSYNAPSE // KNOWLEDGE BASE & TECHNICAL SYNTHESES
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 shadow-xs">
+                        <BookOpen size={14} className="text-primary" />
+                        CONTINUOUS UPSKILLING & TECHNICAL FOCUS
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamsynapse - Active Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">Technical Focus</span>
+                        Active Research & Technical Focus
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Active skill acquisition, production engineering research, and next-generation ML architecture studies.
+                        Systematic skill acquisition, production engineering research, and scalable ML architecture exploration.
                     </p>
                 </motion.div>
 

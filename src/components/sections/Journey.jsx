@@ -77,23 +77,19 @@ const Journey = () => {
 
     return (
         <section id="journey" className="py-24 bg-transparent relative overflow-hidden">
-            {/* Background Glow Orbs - GPU Optimized */}
-            <div className="absolute top-1/3 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-[100px] pointer-events-none gpu-accelerated" />
-
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 {/* Header */}
                 <motion.div
                     className="mb-12 text-left"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                     <div className="flex flex-wrap items-center gap-3 mb-4">
                         <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs shadow-xs">
                             <Zap size={14} className="text-primary" />
-                            CAREER TIMELINE // VERIFIED MILESTONES & PROOFS
+                            CAREER TIMELINE & CREDENTIALS
                         </div>
                         <a 
                             href="https://shyamarks.vercel.app" 
@@ -101,15 +97,15 @@ const Journey = () => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 py-1 px-3.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 font-mono text-xs hover:bg-emerald-500/20 transition-all group font-medium"
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                             <span>Explore Full Vault on Shyamarks ↗</span>
                         </a>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
-                        Journey & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-secondary dark:via-purple-400 dark:to-pink-500">Leadership Timeline</span>
+                        Journey & Leadership Timeline
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
-                        Click any milestone card to open its dedicated showcase view with verified proof documents and key metrics. Full credential repository is hosted on <a href="https://shyamarks.vercel.app" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 hover:underline font-semibold">Shyamarks ↗</a>.
+                        Milestone records, leadership contributions, and academic credentials. Proof documentation and verification records are maintained on <a href="https://shyamarks.vercel.app" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 hover:underline font-semibold">Shyamarks ↗</a>.
                     </p>
                 </motion.div>
 

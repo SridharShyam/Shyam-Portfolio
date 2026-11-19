@@ -3,20 +3,18 @@ import { useRef } from 'react';
 import { HelpCircle, Layers, Target, Rocket, MapPin, Award, Cpu, Zap, Trophy, Network } from 'lucide-react';
 import InteractiveAIAvatar from '../ui/InteractiveAIAvatar';
 
-const AchievementCard = ({ icon: IconComponent, label, accentColor, delay }) => {
+const AchievementCard = ({ icon: IconComponent, label, delay }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay }}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="group relative p-4 bg-surface/80 hover:bg-surface backdrop-blur-md rounded-xl border border-border hover:border-primary/40 transition-all duration-300 flex flex-col justify-between min-h-[95px] overflow-hidden shadow-sm"
+            transition={{ duration: 0.4, delay }}
+            className="group relative p-4 bg-surface rounded-xl border border-border hover:border-primary/40 transition-colors flex flex-col justify-between min-h-[90px] shadow-xs"
         >
-            <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl ${accentColor} opacity-10 group-hover:opacity-25 rounded-bl-full transition-opacity duration-300`} />
             <div className="flex items-center gap-2 mb-2">
-                {IconComponent && <IconComponent size={18} className="text-muted group-hover:text-primary transition-colors" />}
-                <span className="text-[10px] font-mono uppercase tracking-wider text-muted/70 group-hover:text-muted">Pillar</span>
+                {IconComponent && <IconComponent size={16} className="text-primary" />}
+                <span className="text-[10px] font-mono uppercase tracking-wider text-muted">Focus Area</span>
             </div>
             <div className="text-xs md:text-sm font-semibold text-heading leading-snug">
                 {label}
@@ -30,106 +28,89 @@ const About = () => {
     const isInView = useInView(ref, { once: true, amount: 0.2 });
 
     const achievements = [
-        { label: "Architecting Scalable AI Pipelines", icon: Cpu, accent: "from-primary to-transparent" },
-        { label: "TNStartify 3.0 Finalist (Innovation)", icon: Trophy, accent: "from-amber-500 to-transparent" },
-        { label: "Bridging Data Science & Systems", icon: Network, accent: "from-secondary to-transparent" },
-        { label: "Production-Ready ML Deployments", icon: Zap, accent: "from-cyan-500 to-transparent" },
+        { label: "Architecting Scalable AI Pipelines", icon: Cpu },
+        { label: "TNStartify 3.0 Finalist (Innovation)", icon: Trophy },
+        { label: "Bridging Data Science & Systems", icon: Network },
+        { label: "Production-Ready ML Deployments", icon: Zap },
     ];
 
     const philosophies = [
         {
             icon: HelpCircle,
             title: "Question First",
-            description: "Before touching a dataset, I write the core question the model must answer and who acts on it. A model without a decision-maker is just an experiment.",
-            color: "text-primary",
-            bgGradient: "from-primary/20 via-primary/5 to-transparent",
-            borderColor: "hover:border-primary/40"
+            description: "Before touching a dataset, I determine the operational question the model must answer and who acts on it. A model without an actionable decision is just an experiment.",
         },
         {
             icon: Layers,
-            title: "Three Domains, One Lens",
-            description: "Building across FashionTech, HealthTech, and CareerTech-all linked by the same goal: converting raw, noisy data into actionable next steps.",
-            color: "text-secondary",
-            bgGradient: "from-secondary/20 via-secondary/5 to-transparent",
-            borderColor: "hover:border-secondary/40"
+            title: "Cross-Domain Synergy",
+            description: "Applying unified machine learning and predictive modeling foundations across FashionTech, HealthTech, and CareerTech to solve domain-specific data bottlenecks.",
         },
         {
             icon: Target,
-            title: "Business KPI > Accuracy",
-            description: "A high ROC-AUC is meaningless if unused. Systems are engineered around stakeholder metrics-utilization, risk reduction, and ROI.",
-            color: "text-accent",
-            bgGradient: "from-accent/20 via-accent/5 to-transparent",
-            borderColor: "hover:border-accent/40"
+            title: "Business KPI > Raw Accuracy",
+            description: "High metric benchmarks are meaningless if unused. Systems must be engineered around stakeholder requirements: latency, utilization, risk reduction, and interpretability.",
         },
         {
             icon: Rocket,
             title: "Ship, Then Iterate",
-            description: "Deploying early captures real user questions no test set can predict. Production feedback is the ultimate feature engineering tool.",
-            color: "text-cyan-500",
-            bgGradient: "from-cyan-400/20 via-cyan-400/5 to-transparent",
-            borderColor: "hover:border-cyan-400/40"
+            description: "Deploying early captures real user interactions no static test split can simulate. Production feedback is the most reliable driver of feature engineering.",
         }
     ];
 
     return (
-        <section id="about" ref={ref} className="py-28 bg-surface/40 relative overflow-hidden transition-colors duration-400">
-            {/* Background Glow Orbs */}
-            <div className="absolute top-1/4 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-10 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
-
+        <section id="about" ref={ref} className="py-24 bg-surface/30 relative overflow-hidden transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-6">
 
                 {/* Section Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16 text-left"
+                    transition={{ duration: 0.5 }}
+                    className="mb-14 text-left"
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        SHYAMSCAPE // MINDSET & ENGINEERING IDENTITY
+                        <span className="w-2 h-2 rounded-full bg-primary" />
+                        ENGINEERING MINDSET & IDENTITY
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold font-heading text-heading">
-                        Shyamscape - Systems That Turn <br className="hidden sm:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-500 dark:to-secondary">Data into Impact</span>
+                        Systems That Turn Data into Impact
                     </h2>
                 </motion.div>
 
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-12 gap-12 items-center mb-16">
 
-                    {/* Left: Interactive AI Representation Card & Uncluttered Badges */}
+                    {/* Left: Professional Portrait & Grounded Badges */}
                     <motion.div
                         className="lg:col-span-5 relative"
-                        initial={{ opacity: 0, x: -40 }}
+                        initial={{ opacity: 0, x: -20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.6 }}
                     >
                         <div className="relative mx-auto max-w-[380px] lg:max-w-none">
                             <InteractiveAIAvatar />
 
-                            {/* Clean Badges Bar Under Portrait (No Overlap) */}
+                            {/* Clean Badges Bar Under Portrait */}
                             <div className="mt-4 grid grid-cols-2 gap-2.5">
                                 {/* Location */}
-                                <div className="py-2 px-3 bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-md flex items-center gap-2">
+                                <div className="py-2.5 px-3 bg-surface border border-border rounded-xl shadow-xs flex items-center gap-2">
                                     <MapPin size={14} className="text-secondary shrink-0" />
                                     <span className="text-xs font-mono text-heading font-medium truncate">Chennai, TN</span>
                                 </div>
 
                                 {/* Engineering */}
-                                <div className="py-2 px-3 bg-surface/90 backdrop-blur-xl border border-border rounded-xl shadow-md flex items-center gap-2">
+                                <div className="py-2.5 px-3 bg-surface border border-border rounded-xl shadow-xs flex items-center gap-2">
                                     <Cpu size={14} className="text-primary shrink-0" />
                                     <span className="text-xs font-mono text-heading font-medium truncate">AI & ML Engineer</span>
                                 </div>
 
                                 {/* Achievement */}
-                                <div className="col-span-2 py-2 px-3.5 bg-surface/90 backdrop-blur-xl border border-amber-500/30 rounded-xl shadow-md flex items-center gap-2.5">
-                                    <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
+                                <div className="col-span-2 py-2.5 px-3.5 bg-surface border border-amber-500/30 rounded-xl shadow-xs flex items-center gap-2.5">
+                                    <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 shrink-0">
                                         <Award size={15} />
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <span className="text-[9px] font-mono text-amber-400 uppercase font-bold block leading-none">Achievement</span>
+                                        <span className="text-[9px] font-mono text-amber-600 dark:text-amber-400 uppercase font-bold block leading-none">Achievement</span>
                                         <span className="text-xs font-semibold text-heading truncate block">TNStartify 3.0 Finalist</span>
                                     </div>
                                 </div>
@@ -140,23 +121,23 @@ const About = () => {
                     {/* Right: Bio & Philosophy Grid */}
                     <motion.div
                         className="lg:col-span-7 space-y-8"
-                        initial={{ opacity: 0, x: 40 }}
+                        initial={{ opacity: 0, x: 20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.15 }}
                     >
                         {/* Bio Paragraphs */}
                         <div className="space-y-4 text-text leading-relaxed text-base md:text-lg">
                             <p>
-                                I'm an <strong className="text-heading font-semibold">AI Engineer</strong> based in Chennai. I don't just train models in isolation; I design end-to-end data pipelines and decision architectures that translate raw inputs into measurable business outcomes.
+                                I am an <strong className="text-heading font-semibold">AI Engineer & Data Scientist</strong> based in Chennai. I don't just train models in isolation; I design end-to-end data pipelines and decision architectures that translate raw inputs into measurable outcomes.
                             </p>
                             <p>
-                                From predicting supply chain bottlenecks to flagging clinical health risks, my focus is always on engineering robust features that capture reality and deploying production-ready models that solve actual operational challenges.
+                                From predicting survival risks in clinical biomarker datasets to building context-aware recommendation engines, my focus is on engineering robust features, validating statistical hypotheses, and deploying production-ready services that solve operational challenges.
                             </p>
                         </div>
 
                         {/* Philosophy Cards Grid */}
                         <div>
-                            <h3 className="text-xl font-bold font-heading text-heading mb-5 flex items-center gap-2">
+                            <h3 className="text-xl font-bold font-heading text-heading mb-4 flex items-center gap-2">
                                 <span className="w-1.5 h-5 rounded-full bg-primary" />
                                 How I Think & Build
                             </h3>
@@ -164,18 +145,16 @@ const About = () => {
                                 {philosophies.map((item, idx) => {
                                     const IconComponent = item.icon;
                                     return (
-                                        <motion.div
+                                        <div
                                             key={idx}
-                                            whileHover={{ y: -3 }}
-                                            className={`p-5 rounded-2xl bg-surface/80 hover:bg-surface border border-border ${item.borderColor} transition-all duration-300 backdrop-blur-sm group relative overflow-hidden shadow-sm`}
+                                            className="p-5 rounded-xl bg-surface border border-border shadow-xs hover:border-primary/40 transition-colors"
                                         >
-                                            <div className={`absolute -top-12 -right-12 w-24 h-24 bg-gradient-to-br ${item.bgGradient} rounded-full blur-xl group-hover:scale-150 transition-transform duration-500`} />
-                                            <div className="flex items-start gap-3.5 relative z-10">
-                                                <div className={`p-2.5 rounded-xl bg-surface border border-border ${item.color} shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                                                    <IconComponent size={20} />
+                                            <div className="flex items-start gap-3.5">
+                                                <div className="p-2.5 rounded-lg bg-background border border-border text-primary shrink-0">
+                                                    <IconComponent size={18} />
                                                 </div>
                                                 <div>
-                                                    <h4 className="font-heading font-semibold text-heading text-base mb-1 group-hover:text-primary transition-colors">
+                                                    <h4 className="font-heading font-semibold text-heading text-base mb-1">
                                                         {item.title}
                                                     </h4>
                                                     <p className="text-xs text-muted leading-relaxed">
@@ -183,7 +162,7 @@ const About = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                        </motion.div>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -200,8 +179,7 @@ const About = () => {
                                 key={idx}
                                 icon={item.icon}
                                 label={item.label}
-                                accentColor={item.accent}
-                                delay={0.1 * idx}
+                                delay={0.08 * idx}
                             />
                         ))}
                     </div>

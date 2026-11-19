@@ -116,29 +116,25 @@ const Skills = () => {
     }, []);
 
     return (
-        <section id="skills" className="py-28 bg-transparent relative overflow-hidden">
-            {/* Background Radial Glow Orbs */}
-            <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[550px] h-[550px] bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="skills" className="py-24 bg-transparent relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16 text-left"
+                    className="mb-14 text-left"
                 >
                     <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
                         <Activity size={14} className="text-primary" />
-                        SHYAMSPECS // TECHNICAL PROFICIENCY & SKILL GRAPH
+                        TECHNICAL COMPETENCIES & STACK
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-heading">
-                        Shyamspecs - <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 dark:from-primary dark:via-purple-400 dark:to-secondary"><TextScramble text="Empirical Skill Architecture" /></span>
+                        Empirical Skill Architecture
                     </h2>
                     <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed">
-                        A multi-dimensional view of my technical proficiency, structured as a machine learning feature importance plot dynamically weighted by GitHub repository data.
+                        A structured breakdown of my technical proficiency, mapped across core domains and dynamically weighted against GitHub codebase activity.
                     </p>
                 </motion.div>
 
