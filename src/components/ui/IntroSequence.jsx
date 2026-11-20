@@ -1,270 +1,138 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import TextScramble from './TextScramble';
 
-// Pure pre-configured particle telemetry layout
-const PARTICLE_METRICS = Array.from({ length: 10 }, (_, i) => ({
-  angle: (i / 10) * 360,
-  distance: 140 + ((i * 29) % 75),
-  size: 3.5 + ((i * 17) % 3),
-}));
+const sequenceSteps = [
+  { prefix: '01', label: 'CORE', value: 'Machine Learning & Predictive Systems' },
+  { prefix: '02', label: 'DOMAINS', value: 'FashionTech · HealthTech · GovTech' },
+  { prefix: '03', label: 'STATUS', value: 'Production Systems Online' },
+];
 
-const IntroSequence = ({ onComplete, onPortalOpen }) => {
-  const [phase, setPhase] = useState('entering');
-  const [isVisible, setIsVisible] = useState(true);
-  
-  // Randomly decide if the coin lands on 'S' (Heads - Shyam) or 'D' (Tails - Data)
-  const [coinResult] = useState(() => (typeof window !== 'undefined' && Math.random() > 0.5) ? 'S' : 'D');
+const IntroSequence = ({ onComplete }) => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    // Generous, dignified editorial pacing (~3.6s total)
+    const t1 = setTimeout(() => setActiveStep(1), 800);
+    const t2 = setTimeout(() => setActiveStep(2), 1700);
+    const t3 = setTimeout(() => {
+      if (onComplete) onComplete();
+    }, 3600);
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (onComplete) onComplete();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onComplete]);
 
   const handleSkip = () => {
-    if (onPortalOpen) onPortalOpen(coinResult);
-    setIsVisible(false);
     if (onComplete) onComplete();
   };
 
-  useEffect(() => {
-    // Crisp 3s total timing sequence (zero main-thread lag)
-    const t1 = setTimeout(() => setPhase('flipping'), 400);
-    const t2 = setTimeout(() => setPhase('landing'), 2000); 
-    const t3 = setTimeout(() => {
-        setPhase('portal');
-        if (onPortalOpen) onPortalOpen(coinResult); 
-    }, 2800); 
-    const t4 = setTimeout(() => setIsVisible(false), 3400);
-    const t5 = setTimeout(() => { if (onComplete) onComplete(); }, 3800);
-
-    return () => {
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5);
-    };
-  }, [onComplete, onPortalOpen, coinResult]);
-
-  // Rotation parameters: 5 spins for S, 5.5 spins for D (360 * 5 = 1800 vs 1800 + 180 = 1980)
-  const finalRotateY = coinResult === 'S' ? 1800 : 1980;
-  const finalRotateX = 720; // 2 clean tumbles
-
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden select-none will-change-transform transform-gpu"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          {/* Direct Skip Action */}
-          <button
-            onClick={handleSkip}
-            className="absolute top-6 right-6 z-30 px-4 py-2 rounded-full bg-surface/90 hover:bg-surface border border-border text-heading hover:text-primary font-mono text-xs font-semibold backdrop-blur-md transition-all cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
-            aria-label="Skip Intro Sequence"
-          >
-            Skip Intro ➔
-          </button>
-          {/* Shockwave ring effect on landing */}
-          <AnimatePresence>
-            {phase === 'landing' && (
-              <motion.div
-                className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[2px] border-white/60 pointer-events-none z-0 transform-gpu"
-                initial={{ scale: 0.8, opacity: 1 }}
-                animate={{ scale: 12, opacity: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-              />
-            )}
-          </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-[100] flex flex-col justify-between p-8 md:p-16 bg-background select-none overflow-hidden will-change-[opacity]"
+    >
+          {/* Top Row: Monospace Header + Skip Action */}
+          <div className="flex items-center justify-between w-full max-w-6xl mx-auto border-b border-border/80 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-xs font-mono font-semibold tracking-wider text-heading uppercase">
+                SHYAM SRIDHAR
+              </span>
+              <span className="text-muted/40 font-mono text-xs">/</span>
+              <span className="text-xs font-mono text-muted hidden sm:inline-block">
+                PORTFOLIO ARCHITECTURE
+              </span>
+            </div>
 
-          {/* Particle Burst on Landing */}
-          <AnimatePresence>
-            {phase === 'landing' && PARTICLE_METRICS.map((particle, i) => (
-              <motion.div
-                key={i}
-                className="absolute rounded-full pointer-events-none z-10 transform-gpu"
-                style={{
-                  width: particle.size,
-                  height: particle.size,
-                  backgroundColor: coinResult === 'S' ? '#00C7B7' : '#EC4899',
-                  boxShadow: coinResult === 'S' ? '0 0 10px #00C7B7' : '0 0 10px #EC4899'
-                }}
-                initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-                animate={{ 
-                  x: Math.cos(particle.angle * (Math.PI / 180)) * particle.distance, 
-                  y: Math.sin(particle.angle * (Math.PI / 180)) * particle.distance,
-                  opacity: 0,
-                  scale: 0
-                }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
-              />
-            ))}
-          </AnimatePresence>
-
-          {/* Ambient Radial Glow */}
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full pointer-events-none transform-gpu opacity-40"
-            style={{ 
-              background: coinResult === 'S' 
-                ? 'radial-gradient(circle, rgba(0,199,183,0.3) 0%, rgba(0,0,0,0) 70%)' 
-                : 'radial-gradient(circle, rgba(236,72,153,0.3) 0%, rgba(0,0,0,0) 70%)'
-            }}
-            animate={
-              phase === 'flipping' 
-                ? { scale: [1, 1.4, 1.1], opacity: [0.3, 0.7, 0.4] } 
-                : phase === 'landing'
-                ? { scale: 1.8, opacity: 0.8 }
-                : phase === 'portal'
-                ? { scale: 5, opacity: 0 }
-                : { scale: 1, opacity: 0.3 }
-            }
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          />
-
-          {/* 3D Dynamic Ground Contact Shadow */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 rounded-full pointer-events-none z-10 transform-gpu"
-            style={{
-              width: '130px',
-              height: '24px',
-              marginTop: '55px',
-              background: 'radial-gradient(ellipse at center, rgba(15,23,42,0.45) 0%, rgba(15,23,42,0.18) 45%, transparent 75%)',
-              filter: 'blur(4px)',
-            }}
-            animate={
-              phase === 'entering'
-                ? { scale: [0, 1], opacity: [0, 0.7] }
-                : phase === 'flipping'
-                ? { scale: [1, 0.35, 1], opacity: [0.7, 0.2, 0.7], y: [0, 20, 0] }
-                : phase === 'landing'
-                ? { scale: [0.5, 1.15, 1], opacity: [0.3, 0.85, 0.75] }
-                : phase === 'portal'
-                ? { scale: 3, opacity: 0 }
-                : { scale: 1, opacity: 0.7 }
-            }
-            transition={{
-              duration: phase === 'flipping' ? 1.6 : 0.4,
-              ease: 'easeInOut'
-            }}
-          />
-
-          {/* 3D Perspective Stage */}
-          <div style={{ perspective: '1200px' }} className="relative z-20 flex items-center justify-center pointer-events-none">
-            {/* The 3D Physical Metallic Coin Core */}
-            <motion.div
-              className="relative w-32 h-32 md:w-40 md:h-40 will-change-transform transform-gpu"
-              initial={{ scale: 0, opacity: 0, rotateY: 0, rotateX: 0, y: 0 }}
-              animate={
-                phase === 'entering'
-                  ? { scale: 1, opacity: 1, rotateY: 0, rotateX: 0, y: 0 }
-                  : phase === 'flipping'
-                  ? { 
-                      y: -220,
-                      rotateY: finalRotateY,
-                      rotateX: finalRotateX,
-                      opacity: 1,
-                      scale: 1.15
-                    }
-                  : phase === 'landing'
-                  ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, opacity: 1, scale: 1 }
-                  : phase === 'portal'
-                  ? { y: 0, rotateY: finalRotateY, rotateX: finalRotateX, scale: 3.5, opacity: 0 }
-                  : {}
-              }
-              transition={{
-                scale: phase === 'entering' ? { duration: 0.4, ease: 'backOut' } : phase === 'portal' ? { duration: 0.6, ease: 'easeInOut' } : { duration: 0.4 },
-                y: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0.4, ease: 'bounceOut' },
-                rotateY: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
-                rotateX: phase === 'flipping' ? { duration: 1.6, ease: [0.25, 1, 0.5, 1] } : { duration: 0 },
-                opacity: phase === 'portal' ? { duration: 0.5, ease: 'easeIn' } : { duration: 0.3 }
-              }}
-              style={{ transformStyle: 'preserve-3d' }}
+            <button
+              onClick={handleSkip}
+              className="text-xs font-mono text-muted hover:text-heading transition-colors cursor-pointer px-3 py-1.5 rounded-full border border-border bg-surface hover:bg-elevated shadow-xs"
+              aria-label="Skip Introduction"
             >
-              {/* 3D Physical Coin Thickness / Stacked Ribbed Cyber-Silver Edge Rings */}
-              {Array.from({ length: 15 }).map((_, i) => (
-                <div 
-                  key={i}
-                  className="absolute inset-0 rounded-full border border-slate-300/40 pointer-events-none shadow-sm"
-                  style={{
-                    transform: `translateZ(${-7 + i * 1}px)`,
-                    background: 'linear-gradient(135deg, #cbd5e1 0%, #64748b 35%, #0f172a 55%, #94a3b8 80%, #f8fafc 100%)',
-                    backgroundImage: 'repeating-conic-gradient(rgba(255,255,255,0.7) 0deg 4deg, rgba(15,23,42,0.85) 4deg 8deg)',
-                    boxShadow: 'inset 0 0 3px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.2)'
-                  }}
-                />
-              ))}
-
-              {/* Front Face (S - Shyam Cyber Silver Medallion - High Vibrancy) */}
-              <div 
-                className="absolute inset-0 rounded-full border-[4px] border-slate-300 dark:border-slate-100 bg-gradient-to-br from-slate-900 via-[#0a1b24] to-slate-950 flex items-center justify-center overflow-hidden shadow-[0_12px_28px_rgba(0,0,0,0.35),0_0_35px_rgba(0,199,183,0.5),inset_0_0_20px_rgba(0,199,183,0.35)]" 
-                style={{ 
-                  backfaceVisibility: 'hidden', 
-                  WebkitBackfaceVisibility: 'hidden', 
-                  transform: 'translateZ(7.5px)', 
-                }}
-              >
-                {/* Metallic Platinum Inner Bevel Ring with deep ambient shade */}
-                <div className="absolute inset-1 rounded-full border-2 border-slate-400/60 dark:border-slate-200/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8),inset_0_-2px_6px_rgba(255,255,255,0.4)]" />
-                
-                {/* Outer Dashed Orbit */}
-                <div className="absolute inset-2.5 rounded-full border border-primary/80 border-dashed animate-[spin_12s_linear_infinite]" />
-                <div className="absolute inset-4 rounded-full border border-primary/40 bg-gradient-to-tl from-primary/30 via-transparent to-white/20" />
-                
-                {/* Embossed 3D Letter with multi-layer bevel drop shadow */}
-                <span className="text-primary font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] drop-shadow-[0_0_20px_rgba(0,212,255,0.9)] select-none">
-                  S
-                </span>
-
-                {/* Specular Chrome Reflection Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent transform -rotate-45 pointer-events-none" />
-              </div>
-
-              {/* Back Face (D - Data Intelligence Cyber Silver Medallion - High Vibrancy) */}
-              <div 
-                className="absolute inset-0 rounded-full border-[4px] border-slate-300 dark:border-slate-100 bg-gradient-to-br from-slate-900 via-[#260a1e] to-slate-950 flex items-center justify-center overflow-hidden shadow-[0_12px_28px_rgba(0,0,0,0.35),0_0_35px_rgba(236,72,153,0.5),inset_0_0_20px_rgba(236,72,153,0.35)]" 
-                style={{ 
-                  backfaceVisibility: 'hidden', 
-                  WebkitBackfaceVisibility: 'hidden', 
-                  transform: 'rotateY(180deg) translateZ(7.5px)', 
-                }}
-              >
-                {/* Metallic Platinum Inner Bevel Ring with deep ambient shade */}
-                <div className="absolute inset-1 rounded-full border-2 border-slate-400/60 dark:border-slate-200/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8),inset_0_-2px_6px_rgba(255,255,255,0.4)]" />
-                
-                {/* Outer Dashed Orbit */}
-                <div className="absolute inset-2.5 rounded-full border border-pink-500/80 border-dashed animate-[spin_12s_linear_infinite_reverse]" />
-                <div className="absolute inset-4 rounded-full border border-pink-500/40 bg-gradient-to-tl from-pink-500/30 via-transparent to-white/20" />
-                
-                {/* Embossed 3D Letter with multi-layer bevel drop shadow */}
-                <span className="text-pink-400 font-heading text-6xl md:text-7xl font-black tracking-tighter drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] drop-shadow-[0_0_20px_rgba(236,72,153,0.9)] select-none">
-                  D
-                </span>
-
-                {/* Specular Chrome Reflection Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent transform -rotate-45 pointer-events-none" />
-              </div>
-            </motion.div>
+              Skip Intro [ESC]
+            </button>
           </div>
-          
-          {/* ReactBits TextScramble Reveal on Landing */}
-          <AnimatePresence>
-            {(phase === 'landing' || phase === 'portal') && (
+
+          {/* Central Editorial Hero Focal Point */}
+          <div className="w-full max-w-6xl mx-auto my-auto py-12">
+            <div className="overflow-hidden mb-4">
               <motion.div
-                className="absolute top-[68%] text-center font-mono text-sm md:text-base font-bold text-heading z-20 flex flex-col items-center gap-1"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
+                initial={{ y: 35, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="tracking-[0.3em] font-extrabold text-lg md:text-xl">
-                  {coinResult === 'S' ? (
-                     <TextScramble text="SHYAM // SYSTEMS ONLINE" className="text-secondary drop-shadow-[0_0_12px_rgba(0,199,183,0.6)]" speed={25} />
-                  ) : (
-                     <TextScramble text="DATA INTELLIGENCE // INITIALIZED" className="text-primary drop-shadow-[0_0_12px_rgba(236,72,153,0.6)]" speed={25} />
-                  )}
-                </div>
+                <span className="text-xs font-mono uppercase tracking-widest text-muted block mb-3">
+                  Applied AI & Decision Support
+                </span>
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold font-heading text-heading tracking-tight leading-[1.08]">
+                  Engineering Data Into Action.
+                </h1>
               </motion.div>
-            )}
-          </AnimatePresence>
+            </div>
+
+            {/* Stepped Architectural Telemetry Items */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border">
+              {sequenceSteps.map((step, idx) => {
+                const isReached = activeStep >= idx;
+                return (
+                  <div
+                    key={step.prefix}
+                    className="flex flex-col gap-1.5 transition-all duration-500 ease-out"
+                    style={{
+                      opacity: isReached ? 1 : 0.25,
+                      transform: isReached ? 'translateY(0px)' : 'translateY(6px)',
+                    }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono text-primary font-bold">
+                        {step.prefix}
+                      </span>
+                      <span className="text-[10px] font-mono tracking-widest text-muted uppercase">
+                        {step.label}
+                      </span>
+                    </div>
+                    <span className="text-sm font-medium text-heading font-sans">
+                      {step.value}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom Row: Minimal Baseline Status & Progress Indicator */}
+          <div className="w-full max-w-6xl mx-auto border-t border-border/80 pt-4 space-y-3">
+            <div className="w-full h-[2px] bg-surface rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 3.2, ease: 'linear' }}
+                className="h-full bg-primary"
+              />
+            </div>
+            <div className="flex items-center justify-between text-[11px] font-mono text-muted">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                SYSTEM ACTIVE · CHENNAI, IN
+              </span>
+              <span>2026 EDITION</span>
+            </div>
+          </div>
         </motion.div>
-      )}
-    </AnimatePresence>
   );
 };
 
 export default IntroSequence;
-

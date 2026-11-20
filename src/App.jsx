@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Navbar from './components/layout/Navbar';
 import { ToastProvider } from './context/ToastContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -12,8 +12,17 @@ import Journey from './components/sections/Journey';
 import Learning from './components/sections/Learning';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
+import IntroSequence from './components/ui/IntroSequence';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return false;
+    }
+    return true;
+  });
+
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -42,23 +51,42 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  useEffect(() => {
+    if (showIntro) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [showIntro]);
+
+  const handleComplete = useCallback(() => {
+    setShowIntro(false);
+  }, []);
+
   return (
     <ThemeProvider>
       <ToastProvider>
         <div className="bg-background min-h-screen text-text overflow-x-hidden selection:bg-primary/30 selection:text-white scroll-smooth relative transition-colors duration-300">
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Journey />
-            <Learning />
-            <Contact />
-          </main>
-          <Footer />
-          <ScrollToTop />
-          <Toast />
+          <AnimatePresence>
+            {showIntro && <IntroSequence onComplete={handleComplete} />}
+          </AnimatePresence>
+
+          <div className="relative z-10">
+            <Navbar />
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Journey />
+              <Learning />
+              <Contact />
+            </main>
+            <Footer />
+            <ScrollToTop />
+            <Toast />
+          </div>
         </div>
       </ToastProvider>
     </ThemeProvider>
