@@ -44,7 +44,7 @@ const HeroCreative = () => {
                         className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading"
                     >
                         Architecting intelligent systems driven by <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-purple-600 to-blue-600 dark:from-teal-400 dark:via-purple-400 dark:to-primary">
+                        <span className="text-primary font-extrabold">
                             <TextScramble text="neural insights." />
                         </span>
                     </motion.h1>

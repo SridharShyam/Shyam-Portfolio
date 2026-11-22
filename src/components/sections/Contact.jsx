@@ -157,8 +157,8 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="lg:col-span-7 bg-surface/95 backdrop-blur-xl border border-border p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden"
                 >
-                    {/* Top Accent Gradient Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-purple-500 to-secondary" />
+                    {/* Top Accent Solid Border */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
 
                     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                         
@@ -294,7 +294,7 @@ const Contact = () => {
                         <button
                             type="submit"
                             disabled={status === 'submitting'}
-                            className="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                            className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-6 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {status === 'submitting' ? (
                                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

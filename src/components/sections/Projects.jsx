@@ -177,7 +177,7 @@ const projects = [
     {
         title: "Ruled.Ink",
         tagline: "Digital Workspace & Ink Recognition Engine",
-        description: "A modern digital workspace and notebook application designed for seamless thought organization and creative expression.",
+        description: "A modern digital workspace and notebook application designed for focused thought organization and creative expression.",
         businessImpact: "Bridges the gap between analog ideation and digital structuring, improving personal productivity and unstructured data capture.",
         image: "/projects/ruled_ink_bg.png",
         tech: ["React", "Web Technologies", "UI/UX"],
@@ -616,7 +616,7 @@ const Projects = () => {
                                             <Shirt size={24} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-2xl font-bold font-heading text-heading">
-                                            Fashion<span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Tech</span>
+                                            Fashion<span className="text-rose-500 font-extrabold">Tech</span>
                                         </h3>
                                     </div>
                                     
@@ -654,7 +654,7 @@ const Projects = () => {
                                             <HeartPulse size={24} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-2xl font-bold font-heading text-heading">
-                                            Health<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Tech</span>
+                                            Health<span className="text-emerald-500 font-extrabold">Tech</span>
                                         </h3>
                                     </div>
                                     
@@ -692,7 +692,7 @@ const Projects = () => {
                                             <GraduationCap size={24} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-2xl font-bold font-heading text-heading">
-                                            Career<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-violet-500">Tech</span>
+                                            Career<span className="text-primary font-extrabold">Tech</span>
                                         </h3>
                                     </div>
                                     
@@ -730,7 +730,7 @@ const Projects = () => {
                                             <BookOpen size={24} strokeWidth={1.5} />
                                         </div>
                                         <h3 className="text-2xl font-bold font-heading text-heading">
-                                            Edu<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Tech</span>
+                                            Edu<span className="text-amber-500 font-extrabold">Tech</span>
                                         </h3>
                                     </div>
                                     
@@ -763,7 +763,7 @@ const Projects = () => {
                     className="mb-10"
                 >
                     <h2 className="text-2xl md:text-3xl font-bold font-heading text-heading">
-                        More <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Projects</span>
+                        More <span className="text-primary">Projects</span>
                     </h2>
                 </motion.div>
 
