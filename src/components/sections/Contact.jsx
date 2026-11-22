@@ -105,14 +105,14 @@ const Contact = () => {
                     className="lg:col-span-5 space-y-8"
                 >
                     <div>
-                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
+                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-4 shadow-xs">
                             <Mail size={14} className="text-primary" />
-                            GET IN TOUCH
+                            <span className="font-semibold text-heading">GET IN TOUCH</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading mb-4 tracking-tight leading-tight">
                             Let's Connect & Build Together
                         </h2>
-                        <p className="text-muted leading-relaxed text-base">
+                        <p className="text-text leading-relaxed text-base sm:text-lg font-normal">
                             Whether you want to discuss a machine learning architecture, explore an engineering role, or exchange ideas on predictive modeling, feel free to reach out.
                         </p>
                     </div>

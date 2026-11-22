@@ -68,11 +68,11 @@ const About = () => {
                     transition={{ duration: 0.5 }}
                     className="mb-14 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-4 shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-primary" />
-                        ENGINEERING MINDSET & IDENTITY
+                        <span className="font-semibold text-heading">ENGINEERING MINDSET & IDENTITY</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-bold font-heading text-heading">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading tracking-tight leading-tight">
                         Systems That Turn Data into Impact
                     </h2>
                 </motion.div>
@@ -126,7 +126,7 @@ const About = () => {
                         transition={{ duration: 0.6, delay: 0.15 }}
                     >
                         {/* Bio Paragraphs */}
-                        <div className="space-y-4 text-text leading-relaxed text-base md:text-lg">
+                        <div className="space-y-4 text-text leading-relaxed text-base sm:text-lg">
                             <p>
                                 I am an <strong className="text-heading font-semibold">AI Engineer & Data Scientist</strong> based in Chennai. I don't just train models in isolation; I design end-to-end data pipelines and decision architectures that translate raw inputs into measurable outcomes.
                             </p>
@@ -150,14 +150,14 @@ const About = () => {
                                             className="p-5 rounded-xl bg-surface border border-border shadow-xs hover:border-primary/40 transition-colors"
                                         >
                                             <div className="flex items-start gap-3.5">
-                                                <div className="p-2.5 rounded-lg bg-background border border-border text-primary shrink-0">
+                                                <div className="p-2.5 rounded-lg bg-elevated text-primary shrink-0">
                                                     <IconComponent size={18} />
                                                 </div>
                                                 <div>
                                                     <h4 className="font-heading font-semibold text-heading text-base mb-1">
                                                         {item.title}
                                                     </h4>
-                                                    <p className="text-xs text-muted leading-relaxed">
+                                                    <p className="text-xs sm:text-sm text-muted leading-relaxed">
                                                         {item.description}
                                                     </p>
                                                 </div>

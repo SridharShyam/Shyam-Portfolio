@@ -15,50 +15,51 @@ const HeroData = () => {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className="text-left lg:col-span-6 xl:col-span-6"
                 >
-                    <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-surface border border-border text-muted font-mono text-xs md:text-sm mb-6 shadow-xs">
+                    <div className="inline-flex items-center gap-2.5 py-1.5 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-6 shadow-xs">
                         <span className="w-2 h-2 rounded-full bg-primary" />
-                        <span className="font-semibold text-text">Data Scientist & AI Systems Engineer</span>
+                        <span className="font-medium text-heading">Data Scientist & AI Systems Engineer</span>
                     </div>
                     
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading leading-[1.1] tracking-tight text-heading">
-                        Engineering intelligent systems that turn raw data into <br className="hidden md:block" />
-                        <span className="text-primary">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading leading-[1.12] tracking-tight text-heading">
+                        Engineering intelligent systems that turn raw data into{' '}
+                        <span className="text-primary font-extrabold">
                             decisive action.
                         </span>
                     </h1>
                         
-                    <p className="mt-6 text-muted text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl">
+                    <p className="mt-5 text-text text-base sm:text-lg leading-relaxed max-w-xl font-normal">
                         Designing robust machine learning architectures, probabilistic models, and decision-support logic to solve complex, real-world problems at scale.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 items-start mt-8">
-                        <a href="#projects">
-                            <MovingBorder duration={3000} className="font-sans font-semibold text-sm">
-                                <span>Explore Technical Projects</span>
-                                <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
-                            </MovingBorder>
+                    <div className="flex flex-col sm:flex-row gap-3.5 items-stretch sm:items-center mt-8">
+                        <a 
+                            href="#projects" 
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all shadow-xs cursor-pointer"
+                        >
+                            <span>Explore Technical Projects</span>
+                            <ArrowRight size={16} />
                         </a>
                         <a 
                             href="#journey" 
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface border border-border text-heading hover:bg-elevated text-sm font-semibold transition-all shadow-xs"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-surface border border-border text-heading hover:bg-elevated text-sm font-semibold transition-all shadow-xs cursor-pointer"
                         >
                             <span>Career Timeline</span>
                         </a>
                     </div>
 
                     {/* Quick Metric Summary */}
-                    <div className="grid grid-cols-3 gap-3 mt-10 pt-6 border-t border-border/80 max-w-xl">
-                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
-                            <span className="block text-xl md:text-2xl font-bold font-heading text-primary leading-none mb-1">15+</span>
-                            <span className="text-[11px] font-mono text-muted block leading-tight">AI & ML Repos</span>
+                    <div className="grid grid-cols-3 gap-3 mt-10 pt-6 border-t border-border max-w-xl">
+                        <div className="p-3.5 rounded-xl bg-surface border border-border shadow-xs">
+                            <span className="block text-2xl font-bold font-heading text-primary leading-none mb-1">15+</span>
+                            <span className="text-xs font-mono text-muted block leading-tight">AI & ML Repos</span>
                         </div>
-                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
-                            <span className="block text-xl md:text-2xl font-bold font-heading text-secondary leading-none mb-1">4+ Yrs</span>
-                            <span className="text-[11px] font-mono text-muted block leading-tight">Continuous Growth</span>
+                        <div className="p-3.5 rounded-xl bg-surface border border-border shadow-xs">
+                            <span className="block text-2xl font-bold font-heading text-secondary leading-none mb-1">4+ Yrs</span>
+                            <span className="text-xs font-mono text-muted block leading-tight">Continuous Growth</span>
                         </div>
-                        <div className="p-3.5 rounded-2xl bg-surface border border-border shadow-xs">
-                            <span className="block text-xl md:text-2xl font-bold font-heading text-emerald-600 dark:text-emerald-400 leading-none mb-1">100%</span>
-                            <span className="text-[11px] font-mono text-muted block leading-tight">Authentic Vault</span>
+                        <div className="p-3.5 rounded-xl bg-surface border border-border shadow-xs">
+                            <span className="block text-2xl font-bold font-heading text-emerald-600 dark:text-emerald-400 leading-none mb-1">100%</span>
+                            <span className="text-xs font-mono text-muted block leading-tight">Authentic Vault</span>
                         </div>
                     </div>
                 </motion.div>

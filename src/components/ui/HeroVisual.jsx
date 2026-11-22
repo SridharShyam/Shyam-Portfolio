@@ -18,7 +18,7 @@ const HeroVisual = () => {
                 initial={{ opacity: 0, scale: 0.98, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative z-10 w-full aspect-[4/5] max-w-[360px] sm:max-w-[390px] rounded-2xl overflow-hidden border border-border bg-surface shadow-lg group"
+                className="relative z-10 w-full aspect-[4/5] max-w-[360px] sm:max-w-[390px] rounded-2xl overflow-hidden border border-border bg-surface shadow-md group"
             >
                 {/* Real Formal Photograph */}
                 <img 
@@ -30,12 +30,12 @@ const HeroVisual = () => {
                 />
                 
                 {/* Grounded Identity Overlay */}
-                <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-surface/95 backdrop-blur-md border border-border shadow-md flex items-center justify-between">
+                <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-surface/95 backdrop-blur-md border border-border shadow-sm flex items-center justify-between">
                     <div>
-                        <span className="text-[10px] font-mono tracking-wider text-primary font-bold block uppercase">DATA SCIENTIST & ML ENGINEER</span>
+                        <span className="text-[11px] font-mono tracking-wider text-primary font-bold block uppercase">DATA SCIENTIST & ML ENGINEER</span>
                         <span className="text-base font-bold text-heading font-heading tracking-tight">SHYAM</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/30 font-semibold">
+                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/30 font-semibold">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         AVAILABLE
                     </div>
@@ -51,14 +51,14 @@ const HeroVisual = () => {
                             key={idx}
                             className={`p-2.5 rounded-xl bg-surface border border-border shadow-xs flex items-center gap-2.5 transition-colors hover:border-primary/40 ${idx === 4 ? 'col-span-2' : ''}`}
                         >
-                            <div className="p-2 rounded-lg bg-background border border-border text-primary shrink-0">
+                            <div className="p-2 rounded-lg bg-elevated text-primary shrink-0">
                                 <IconComp size={15} />
                             </div>
                             <div className="min-w-0 flex-1">
-                                <span className="block text-xs font-bold text-heading font-heading truncate leading-tight">
+                                <span className="block text-xs font-semibold text-heading font-heading truncate leading-tight">
                                     {badge.label}
                                 </span>
-                                <span className="block text-[10px] font-mono text-muted truncate">
+                                <span className="block text-[11px] font-mono text-muted truncate">
                                     {badge.sub}
                                 </span>
                             </div>

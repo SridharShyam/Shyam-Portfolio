@@ -104,11 +104,18 @@ const DirectionAwareCard = ({ item }) => {
     let rotateY = 0;
 
     if (isHovered) {
-        if (mouseDirection === 'top') rotateX = -180;
-        if (mouseDirection === 'bottom') rotateX = 180;
-        if (mouseDirection === 'left') rotateY = 180;
-        if (mouseDirection === 'right') rotateY = -180;
+        if (mouseDirection === 'top') {
+            rotateX = -180;
+        } else if (mouseDirection === 'bottom') {
+            rotateX = 180;
+        } else if (mouseDirection === 'left') {
+            rotateY = -180;
+        } else if (mouseDirection === 'right') {
+            rotateY = 180;
+        }
     }
+
+    const isFlippingVertical = mouseDirection === 'top' || mouseDirection === 'bottom';
 
     return (
         <div 
@@ -167,7 +174,7 @@ const DirectionAwareCard = ({ item }) => {
                     style={{ 
                         backfaceVisibility: "hidden", 
                         WebkitBackfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)" 
+                        transform: isFlippingVertical ? "rotateX(180deg)" : "rotateY(180deg)" 
                     }}
                 >
                     <div className="flex justify-between items-center border-b border-border pb-3">
@@ -205,14 +212,14 @@ const Learning = () => {
                     viewport={{ once: true }}
                     className="mb-14 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface/80 border border-border text-muted font-mono text-xs mb-4 shadow-xs">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-4 shadow-xs">
                         <BookOpen size={14} className="text-primary" />
-                        CONTINUOUS UPSKILLING & TECHNICAL FOCUS
+                        <span className="font-semibold text-heading">CONTINUOUS UPSKILLING & TECHNICAL FOCUS</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading tracking-tight leading-tight">
                         Active Research & Technical Focus
                     </h2>
-                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                    <p className="text-text max-w-2xl text-base sm:text-lg leading-relaxed mt-2 font-normal">
                         Systematic skill acquisition, production engineering research, and scalable ML architecture exploration.
                     </p>
                 </motion.div>

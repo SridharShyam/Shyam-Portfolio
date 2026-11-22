@@ -5,68 +5,68 @@
 @tailwind utilities;
 
 :root {
-  /* Shyamarks Exact Light Theme */
-  --bg-main: #F4F6FB;
+  /* Clean High-Legibility Light Theme */
+  --bg-main: #F8FAFC;
   --bg-surface: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-elevated: #FFFFFF;
-  --text-main: #475569;
+  --bg-elevated: #F1F5F9;
+  --text-main: #334155;
   --text-bright: #0F172A;
   --text-muted: #64748B;
   --border-color: #E2E8F0;
   --border-subtle: #F1F5F9;
-  --nav-bg: rgba(244, 246, 251, 0.85);
+  --nav-bg: rgba(248, 250, 252, 0.9);
   --heading-color: #0F172A;
-  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-  --card-shadow-hover: 0 12px 30px -4px rgba(37, 99, 235, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
-  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --theme-transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   --accent: #2563EB;
-  --accent-glow: rgba(37, 99, 235, 0.18);
+  --accent-glow: rgba(37, 99, 235, 0.12);
   --accent-secondary: #0D9488;
-  --accent-transition: color 400ms ease, background-color 400ms ease, border-color 400ms ease;
+  --accent-transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease;
   --primary: #2563EB;
-  --secondary: #10B981;
+  --secondary: #0D9488;
 }
 
 html.dark {
-  /* Shyamarks Exact Dark Theme */
+  /* Crisp High-Contrast Dark Theme */
   --bg-main: #0B0F19;
-  --bg-surface: rgba(17, 24, 39, 0.7);
-  --bg-card: rgba(17, 24, 39, 0.7);
-  --bg-elevated: rgba(30, 41, 59, 0.8);
+  --bg-surface: #111827;
+  --bg-card: #111827;
+  --bg-elevated: #1F2937;
   --text-main: #CBD5E1;
   --text-bright: #F8FAFC;
   --text-muted: #94A3B8;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --nav-bg: rgba(11, 15, 25, 0.85);
+  --border-color: #1F2937;
+  --border-subtle: #162032;
+  --nav-bg: rgba(11, 15, 25, 0.9);
   --heading-color: #F8FAFC;
-  --card-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
-  --card-shadow-hover: 0 16px 40px -6px rgba(37, 99, 235, 0.25);
-  --accent: #60A5FA;
-  --accent-glow: rgba(96, 165, 250, 0.25);
-  --primary: #60A5FA;
-  --secondary: #34D399;
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --accent: #3B82F6;
+  --accent-glow: rgba(59, 130, 246, 0.2);
+  --primary: #3B82F6;
+  --secondary: #10B981;
 }
 
 html.light {
-  --bg-main: #F4F6FB;
+  --bg-main: #F8FAFC;
   --bg-surface: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-elevated: #FFFFFF;
-  --text-main: #475569;
+  --bg-elevated: #F1F5F9;
+  --text-main: #334155;
   --text-bright: #0F172A;
   --text-muted: #64748B;
   --border-color: #E2E8F0;
   --border-subtle: #F1F5F9;
-  --nav-bg: rgba(244, 246, 251, 0.85);
+  --nav-bg: rgba(248, 250, 252, 0.9);
   --heading-color: #0F172A;
-  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-  --card-shadow-hover: 0 12px 30px -4px rgba(37, 99, 235, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   --accent: #2563EB;
-  --accent-glow: rgba(37, 99, 235, 0.18);
+  --accent-glow: rgba(37, 99, 235, 0.12);
   --primary: #2563EB;
-  --secondary: #10B981;
+  --secondary: #0D9488;
 }
 
 @layer base {

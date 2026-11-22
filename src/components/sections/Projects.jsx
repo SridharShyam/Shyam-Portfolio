@@ -585,14 +585,14 @@ const Projects = () => {
                     viewport={{ once: true }}
                     className="mb-14 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-4 shadow-xs">
                         <GitBranch size={14} className="text-primary" />
-                        ENGINEERED SYSTEMS & CASE STUDIES
+                        <span className="font-semibold text-heading">ENGINEERED SYSTEMS & CASE STUDIES</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading tracking-tight leading-tight">
                         Applied AI & Decision Engines
                     </h2>
-                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                    <p className="text-text max-w-2xl text-base sm:text-lg leading-relaxed mt-2 font-normal">
                         End-to-end machine learning architectures, predictive analytics models, and decision-support systems built across domain verticals.
                     </p>
                 </motion.div>

@@ -126,14 +126,14 @@ const Skills = () => {
                     viewport={{ once: true }}
                     className="mb-14 text-left"
                 >
-                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs mb-4 shadow-xs">
+                    <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs mb-4 shadow-xs">
                         <Activity size={14} className="text-primary" />
-                        TECHNICAL COMPETENCIES & STACK
+                        <span className="font-semibold text-heading">TECHNICAL COMPETENCIES & STACK</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-heading">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading mb-4 text-heading tracking-tight leading-tight">
                         Empirical Skill Architecture
                     </h2>
-                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed">
+                    <p className="text-text max-w-2xl text-base sm:text-lg leading-relaxed font-normal">
                         A structured breakdown of my technical proficiency, mapped across core domains and dynamically weighted against GitHub codebase activity.
                     </p>
                 </motion.div>
@@ -253,15 +253,13 @@ const Skills = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -15 }}
                                     transition={{ duration: 0.25 }}
-                                    className="bg-surface/90 border border-border rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between backdrop-blur-xl shadow-xl relative overflow-hidden"
+                                    className="bg-surface border border-border rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between shadow-sm relative overflow-hidden"
                                 >
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none" />
-
                                     <div>
                                         {/* Header Title */}
                                         <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-2xl font-bold font-heading text-heading flex items-center gap-3">
-                                                <span className="p-2 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                                            <h3 className="text-xl sm:text-2xl font-bold font-heading text-heading flex items-center gap-3">
+                                                <span className="p-2 rounded-xl bg-elevated text-primary border border-border">
                                                     {activeDomain.icon}
                                                 </span>
                                                 {activeDomain.domain}
@@ -271,25 +269,24 @@ const Skills = () => {
                                             </span>
                                         </div>
 
-                                        <p className="text-text text-sm md:text-base mb-6 leading-relaxed">
+                                        <p className="text-text text-sm sm:text-base mb-6 leading-relaxed">
                                             {activeDomain.description}
                                         </p>
                                         
                                         {/* Core Stack Pills */}
                                         <div className="mb-6">
-                                            <p className="text-xs font-mono text-muted uppercase tracking-widest mb-3 font-semibold">Core Stack & Technologies</p>
+                                            <p className="text-xs font-mono text-muted uppercase tracking-wider mb-3 font-semibold">Core Stack & Technologies</p>
                                             <div className="flex flex-wrap gap-2.5">
                                                 {activeDomain.items.map((item, idx) => (
-                                                    <motion.div
+                                                    <div
                                                         key={idx}
-                                                        whileHover={{ scale: 1.05, y: -2 }}
-                                                        className="flex items-center gap-2 px-3.5 py-2 bg-background/80 text-text text-xs md:text-sm rounded-xl border border-border shadow-sm transition-all"
+                                                        className="flex items-center gap-2 px-3 py-1.5 bg-elevated text-heading text-xs sm:text-sm rounded-lg border border-border shadow-xs"
                                                     >
-                                                        <span className="text-base">
+                                                        <span className="text-sm">
                                                             {iconMap[item] || null}
                                                         </span>
                                                         <span className="font-medium">{item}</span>
-                                                    </motion.div>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </div>
@@ -297,14 +294,14 @@ const Skills = () => {
 
                                     {/* Empirical Impact Metrics */}
                                     <div className="pt-5 border-t border-border mt-4">
-                                        <p className="text-xs font-mono text-muted uppercase tracking-widest mb-3 font-semibold flex items-center gap-1.5">
+                                        <p className="text-xs font-mono text-muted uppercase tracking-wider mb-3 font-semibold flex items-center gap-1.5">
                                             <CheckCircle2 size={13} className="text-secondary" />
                                             Empirical Impact & Scale
                                         </p>
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-2 gap-3.5">
                                             {activeDomain.impactMetrics.map((metric, idx) => (
-                                                <div key={idx} className="bg-background/60 rounded-xl p-3.5 border border-border hover:border-primary/30 transition-all">
-                                                    <div className="text-xl md:text-2xl font-bold font-mono text-primary mb-1">
+                                                <div key={idx} className="bg-elevated/60 rounded-xl p-3.5 border border-border">
+                                                    <div className="text-xl sm:text-2xl font-bold font-mono text-primary mb-1">
                                                         {metric.value}
                                                     </div>
                                                     <div className="text-xs text-muted leading-tight">

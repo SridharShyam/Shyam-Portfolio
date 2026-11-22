@@ -87,9 +87,9 @@ const Journey = () => {
                     transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                     <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-text font-mono text-xs shadow-xs">
+                        <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-surface border border-border text-muted font-mono text-xs shadow-xs">
                             <Zap size={14} className="text-primary" />
-                            CAREER TIMELINE & CREDENTIALS
+                            <span className="font-semibold text-heading">CAREER TIMELINE & CREDENTIALS</span>
                         </div>
                         <a 
                             href="https://shyamarks.vercel.app" 
@@ -101,10 +101,10 @@ const Journey = () => {
                             <span>Explore Full Vault on Shyamarks ↗</span>
                         </a>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-heading">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-heading tracking-tight leading-tight">
                         Journey & Leadership Timeline
                     </h2>
-                    <p className="text-muted max-w-2xl text-base md:text-lg leading-relaxed mt-2">
+                    <p className="text-text max-w-2xl text-base sm:text-lg leading-relaxed mt-2 font-normal">
                         Milestone records, leadership contributions, and academic credentials. Proof documentation and verification records are maintained on <a href="https://shyamarks.vercel.app" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 hover:underline font-semibold">Shyamarks ↗</a>.
                     </p>
                 </motion.div>
